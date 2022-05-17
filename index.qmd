@@ -1,5 +1,5 @@
 ---
-title: "Wlademir R. Prates"
+title: "Wlademir Ribeiro Prates"
 ---
 
 This is a Quarto website.
