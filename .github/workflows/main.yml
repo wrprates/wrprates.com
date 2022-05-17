@@ -18,4 +18,4 @@ jobs:
         username: ${{ secrets.ftp_user }}
         password: ${{ secrets.ftp_password }}
         local-dir: ./_site/
-        server-dir: public_html/wrprates.com/
+        server-dir: public_html/
