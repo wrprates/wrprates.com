@@ -3,8 +3,11 @@ project:
 
 website:
   title: "wrprates.com"
+  search: 
+    location: navbar
+    type: overlay
   navbar:
-    background: primary
+    background: black
     left:
       - href: index.qmd
         text: Home
@@ -12,7 +15,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: litera
     css: styles.css
     toc: true
 
