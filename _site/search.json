@@ -4,7 +4,7 @@
     "href": "posts/post-with-code/index.html",
     "title": "Post With Code",
     "section": "",
-    "text": "This is a post with executable code."
+    "text": "A small chunk of R code:\n\na <- 3\nb <- a + 5\n\nAn example of interactive chart;\n\n\n\n\n\n\n\nThat’s all!"
   },
   {
     "objectID": "posts/welcome/index.html",
