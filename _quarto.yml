@@ -12,12 +12,14 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/wrprates/
+      - icon: linkedin
+        href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
 format:
   html:
     theme: litera
     css: styles.css
     toc: true
-
-
-
