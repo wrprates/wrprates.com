@@ -7,3 +7,18 @@ image: "image.jpg"
 ---
 
 This is a post with executable code.
+
+A small chunk of `R` code:
+
+```{r}
+a <- 3
+b <- a + 5
+```
+
+An example of interactive chart;
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(highcharter)
+hchart(hist(mtcars$cyl, plot = FALSE))
+```
+That's all!
