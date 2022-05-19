@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium lacinia neque. Nulla ornare id nisl ut tempor.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque iaculis lobortis neque sed ullamcorper. Fusce porta vestibulum blandit. Sed faucibus dolor in leo semper maximus."
+  },
+  {
+    "objectID": "posts/welcome/index.html#subtitle-1",
+    "href": "posts/welcome/index.html#subtitle-1",
+    "title": "Welcome To My Blog",
+    "section": "Subtitle 1",
+    "text": "Subtitle 1\nPhasellus quis orci nec nulla rutrum efficitur quis non quam. Duis volutpat urna ligula, vel ultricies orci consectetur sed. Sed id justo vehicula, consectetur enim ut, imperdiet est. Donec feugiat maximus orci, a malesuada ligula venenatis in. Nullam a gravida augue.\nDonec rutrum vulputate arcu eget bibendum. Morbi ullamcorper in erat et ultricies. Ut mollis pulvinar elit eget dapibus."
+  },
+  {
+    "objectID": "posts/welcome/index.html#subtitle-2",
+    "href": "posts/welcome/index.html#subtitle-2",
+    "title": "Welcome To My Blog",
+    "section": "Subtitle 2",
+    "text": "Subtitle 2\nVivamus euismod egestas leo, quis varius lectus sollicitudin ac. Vestibulum at venenatis nunc. In hac habitasse platea dictumst. Duis aliquet tortor eget aliquet scelerisque. In hac habitasse platea dictumst.\nNunc id lectus sed erat euismod semper. Nulla facilisi. Fusce dictum pellentesque pellentesque. Proin commodo imperdiet enim ac laoreet. Cras id sapien at tortor congue efficitur quis eget ex. Cras vel velit a mi varius condimentum vitae vel urna.\nNulla facilisi. Donec nec est a sem ultrices interdum et sit amet felis."
+  },
+  {
+    "objectID": "posts/welcome/index.html#subtitle-3",
+    "href": "posts/welcome/index.html#subtitle-3",
+    "title": "Welcome To My Blog",
+    "section": "Subtitle 3",
+    "text": "Subtitle 3\nPraesent imperdiet leo id quam sollicitudin, sit amet efficitur erat sodales. Ut aliquam nec erat sed consectetur. Praesent aliquet ornare massa ac ultricies. Phasellus rhoncus diam in felis maximus rhoncus.\nEtiam euismod pharetra velit rutrum volutpat. Nam mattis, purus vel feugiat facilisis, nunc tortor consectetur sapien, sed ultrices neque mauris quis tortor. Nullam blandit fringilla suscipit. Sed pulvinar metus ut erat congue, nec rutrum nibh mollis."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -30,8 +65,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Wlademir Ribeiro Prates",
+    "title": "myblog",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "news\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMay 19, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMay 16, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   }
 ]
