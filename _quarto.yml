@@ -7,11 +7,10 @@ website:
     location: navbar
     type: overlay
   navbar:
-    background: black
+    background: "#222"
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
     right:
       - about.qmd
       - icon: github
@@ -20,6 +19,6 @@ website:
         href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
 format:
   html:
-    theme: litera
+    theme: minty
     css: styles.css
     toc: true

@@ -39,33 +39,19 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium lacinia neque. Nulla ornare id nisl ut tempor.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque iaculis lobortis neque sed ullamcorper. Fusce porta vestibulum blandit. Sed faucibus dolor in leo semper maximus."
+    "text": "Senior Data Scientist. Experienced R and Shiny developer, with examples of use cases in several large companies. Experienced with machine learning implementation to solve business problems. PhD and Master’s in Finance. Researcher in behavioral finance / economics, and capital markets. I also have a website, where articles about business, technology and data science are published."
   },
   {
-    "objectID": "about.html#subtitle-1",
-    "href": "about.html#subtitle-1",
+    "objectID": "about.html#education",
+    "href": "about.html#education",
     "title": "About",
-    "section": "Subtitle 1",
-    "text": "Subtitle 1\nPhasellus quis orci nec nulla rutrum efficitur quis non quam. Duis volutpat urna ligula, vel ultricies orci consectetur sed. Sed id justo vehicula, consectetur enim ut, imperdiet est. Donec feugiat maximus orci, a malesuada ligula venenatis in. Nullam a gravida augue.\nDonec rutrum vulputate arcu eget bibendum. Morbi ullamcorper in erat et ultricies. Ut mollis pulvinar elit eget dapibus."
-  },
-  {
-    "objectID": "about.html#subtitle-2",
-    "href": "about.html#subtitle-2",
-    "title": "About",
-    "section": "Subtitle 2",
-    "text": "Subtitle 2\nVivamus euismod egestas leo, quis varius lectus sollicitudin ac. Vestibulum at venenatis nunc. In hac habitasse platea dictumst. Duis aliquet tortor eget aliquet scelerisque. In hac habitasse platea dictumst.\nNunc id lectus sed erat euismod semper. Nulla facilisi. Fusce dictum pellentesque pellentesque. Proin commodo imperdiet enim ac laoreet. Cras id sapien at tortor congue efficitur quis eget ex. Cras vel velit a mi varius condimentum vitae vel urna.\nNulla facilisi. Donec nec est a sem ultrices interdum et sit amet felis."
-  },
-  {
-    "objectID": "about.html#subtitle-3",
-    "href": "about.html#subtitle-3",
-    "title": "About",
-    "section": "Subtitle 3",
-    "text": "Subtitle 3\nPraesent imperdiet leo id quam sollicitudin, sit amet efficitur erat sodales. Ut aliquam nec erat sed consectetur. Praesent aliquet ornare massa ac ultricies. Phasellus rhoncus diam in felis maximus rhoncus.\nEtiam euismod pharetra velit rutrum volutpat. Nam mattis, purus vel feugiat facilisis, nunc tortor consectetur sapien, sed ultrices neque mauris quis tortor. Nullam blandit fringilla suscipit. Sed pulvinar metus ut erat congue, nec rutrum nibh mollis."
+    "section": "Education",
+    "text": "Education\n\n2012-2016 - PhD in Finance (UFSC)\n2010-2012 - Master’s in Finance (UFSC)\n2006-2009 - Undergraduate in Business Administration (Anhanguera)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "myblog",
+    "title": "Blog",
     "section": "",
     "text": "news\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMay 19, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMay 16, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   }
