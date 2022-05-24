@@ -22,3 +22,6 @@ format:
     theme: minty
     css: styles.css
     toc: true
+comments:
+  giscus: 
+    repo: quarto-dev/quarto-docs
