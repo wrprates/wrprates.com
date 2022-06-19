@@ -7,7 +7,7 @@ website:
     location: navbar
     type: overlay
   navbar:
-    background: "#222"
+    #background: "#222"
     left:
       - href: index.qmd
         text: Home
@@ -19,7 +19,7 @@ website:
         href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
 format:
   html:
-    theme: minty
+    theme: litera
     css: styles.css
     toc: true
 comments:

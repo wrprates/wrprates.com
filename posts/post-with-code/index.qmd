@@ -1,51 +1,91 @@
 ---
-title: "Post With Code"
-author: "Harlow Malloc"
-date: "2022-05-19"
-categories: [news, code, analysis]
-image: "image.jpg"
+title: "Setup a website with Quarto and automate the deployment"
+author: "Wlademir Ribeiro Prates"
+date: "2022-05-31"
+categories: [r, reporting]
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium lacinia neque. Nulla ornare id nisl ut tempor.
+Who works with data analysis and want to share content face some limitations from the traditional tools to build website. One of the main reasons is the difficulty to share the results of chunks of code without needing to copy and paste images.
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque iaculis lobortis neque sed ullamcorper. Fusce porta vestibulum blandit. Sed faucibus dolor in leo semper maximus.
+For example, if you are a data scientist and use Python or R to build interactive charts and tables in your work, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.
 
-## Subtitle 1
+There already many available solutions that facilitate this job. But here I want to call the attention to [Quarto](https://quarto.org/).
 
-Phasellus quis orci nec nulla rutrum efficitur quis non quam. Duis volutpat urna ligula, vel ultricies orci consectetur sed. Sed id justo vehicula, consectetur enim ut, imperdiet est. Donec feugiat maximus orci, a malesuada ligula venenatis in. Nullam a gravida augue.
+## What is Quarto?
 
-This is a post with executable code.
+Quarto is a great reporting tool, which is supported by RStudio. Its own definition is:
 
-A small chunk of `R` code:
+> Quarto® is an open-source scientific and technical publishing system built on Pandoc.
 
-```{r}
-a <- 3
-b <- a + 5
+In Quarto you can "create dynamic content with Python, R, Julia, and Observable".
+
+## Basic workflow for a Quarto website with automated deployment
+
+After taking a look to Quarto documentation and watching a [video](https://www.youtube.com/watch?v=3cLbh-k2qKk) (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose using this tool.
+
+So, the workflow I built using Quarto had as a result this website, and works like described below:
+
+1. **Write** a post or build a static page (locally).
+2. **Render** the website (locally).
+3. **Push** it to Git.
+4. After a merge in certain branch, **automate the deployment** process (upload the files via FTP).
+
+## Steps to create an automated Quarto website
+
+Quarto documentation is great. Basically all you need to know how to create a website with Quarto is to read [this session](https://quarto.org/docs/websites/) in their website.
+
+### Step 1. Download and install Quarto
+
+If you don't have Quarto installed yet you can follow the steps [here](https://quarto.org/docs/get-started/).
+
+### Step 2. Build a Quarto website or blog
+
+After have installed Quarto, it is needed to run on terminal the following code to create a Quarto website:
+
+```
+quarto create-project mysite --type website
 ```
 
-An example of interactive chart;
+If your website will be a *blog*, so you may prefer to use the following code:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(highcharter)
-hchart(hist(mtcars$cyl, plot = FALSE))
+```
+quarto create-project myblog --type website:blog
 ```
 
-That's all!
+This code will create a basic folder structure with the main files needed to start customizing your website.
+
+### Step 3. Create a repo on Github
+
+To be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need
+to create a Github repository.
+
+In this post I expected the reader to have at least minimum experience with Git (create repositories, understand how branches work, `git push`, `git pull`.)
+
+You could have created the repository in the very first moment, but you can also 
+
+### Step 4. Setup Github Actions
+
+<!-- - I write a post in a Quarto file (`.qmd`) using Markdown syntax. I can add code chunks to the post and show the results (with interactivity, depending on the libraries used). It is similar with what we have for Jupyter notebooks (but with more possibilities), and basically the same we have for RMarkdown documents. -->
+
+<!-- Yesterday after my work I was doing an interesting thing (at least for me:sweat_smile:). Some years ago I had a blog (using wordpress), then for some reasons I decided to move the content of this blog to another website. But I was always with the idea of reactivating a personal blog (not using wordpress). Then, yesterday I created a repo from the Quarto (R package for publishing) website template and I setup the repo with GitHub actions, in a way that every time you push on main branch it will "deploy the website" (upload the files to the host via ftp). As I am not so used with Github actions, making it work was awesome! -->
 
 
-Donec rutrum vulputate arcu eget bibendum. Morbi ullamcorper in erat et ultricies. Ut mollis pulvinar elit eget dapibus.
-
-## Subtitle 2
-
-Vivamus euismod egestas leo, quis varius lectus sollicitudin ac. Vestibulum at venenatis nunc. In hac habitasse platea dictumst. Duis aliquet tortor eget aliquet scelerisque. In hac habitasse platea dictumst.
-
-Nunc id lectus sed erat euismod semper. Nulla facilisi. Fusce dictum pellentesque pellentesque. Proin commodo imperdiet enim ac laoreet. Cras id sapien at tortor congue efficitur quis eget ex. Cras vel velit a mi varius condimentum vitae vel urna.
-
-Nulla facilisi. Donec nec est a sem ultrices interdum et sit amet felis.
-
-## Subtitle 3
-
-Praesent imperdiet leo id quam sollicitudin, sit amet efficitur erat sodales. Ut aliquam nec erat sed consectetur. Praesent aliquet ornare massa ac ultricies. Phasellus rhoncus diam in felis maximus rhoncus.
-
-Etiam euismod pharetra velit rutrum volutpat. Nam mattis, purus vel feugiat facilisis, nunc tortor consectetur sapien, sed ultrices neque mauris quis tortor. Nullam blandit fringilla suscipit. Sed pulvinar metus ut erat congue, nec rutrum nibh mollis.
-
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://wrprates.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

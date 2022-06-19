@@ -2,65 +2,37 @@
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "title": "Setup a website with Quarto and automate the deployment",
     "section": "",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium lacinia neque. Nulla ornare id nisl ut tempor.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque iaculis lobortis neque sed ullamcorper. Fusce porta vestibulum blandit. Sed faucibus dolor in leo semper maximus."
+    "text": "Who works with data analysis and want to share content face some limitations from the traditional tools to build website. One of the main reasons is the difficulty to share the results of chunks of code without needing to copy and paste images.\nFor example, if you are a data scientist and use Python or R to build interactive charts and tables in your work, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.\nThere already many available solutions that facilitate this job. But here I want to call the attention to Quarto."
   },
   {
-    "objectID": "posts/post-with-code/index.html#subtitle-1",
-    "href": "posts/post-with-code/index.html#subtitle-1",
-    "title": "Post With Code",
-    "section": "Subtitle 1",
-    "text": "Subtitle 1\nPhasellus quis orci nec nulla rutrum efficitur quis non quam. Duis volutpat urna ligula, vel ultricies orci consectetur sed. Sed id justo vehicula, consectetur enim ut, imperdiet est. Donec feugiat maximus orci, a malesuada ligula venenatis in. Nullam a gravida augue.\nThis is a post with executable code.\nA small chunk of R code:\n\na <- 3\nb <- a + 5\n\nAn example of interactive chart;\n\n\n\n\n\n\n\nThat’s all!\nDonec rutrum vulputate arcu eget bibendum. Morbi ullamcorper in erat et ultricies. Ut mollis pulvinar elit eget dapibus."
+    "objectID": "posts/post-with-code/index.html#what-is-quarto",
+    "href": "posts/post-with-code/index.html#what-is-quarto",
+    "title": "Setup a website with Quarto and automate the deployment",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto is a great reporting tool, which is supported by RStudio. Its own definition is:\n\nQuarto® is an open-source scientific and technical publishing system built on Pandoc.\n\nIn Quarto you can “create dynamic content with Python, R, Julia, and Observable”."
   },
   {
-    "objectID": "posts/post-with-code/index.html#subtitle-2",
-    "href": "posts/post-with-code/index.html#subtitle-2",
-    "title": "Post With Code",
-    "section": "Subtitle 2",
-    "text": "Subtitle 2\nVivamus euismod egestas leo, quis varius lectus sollicitudin ac. Vestibulum at venenatis nunc. In hac habitasse platea dictumst. Duis aliquet tortor eget aliquet scelerisque. In hac habitasse platea dictumst.\nNunc id lectus sed erat euismod semper. Nulla facilisi. Fusce dictum pellentesque pellentesque. Proin commodo imperdiet enim ac laoreet. Cras id sapien at tortor congue efficitur quis eget ex. Cras vel velit a mi varius condimentum vitae vel urna.\nNulla facilisi. Donec nec est a sem ultrices interdum et sit amet felis."
+    "objectID": "posts/post-with-code/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
+    "href": "posts/post-with-code/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
+    "title": "Setup a website with Quarto and automate the deployment",
+    "section": "Basic workflow for a Quarto website with automated deployment",
+    "text": "Basic workflow for a Quarto website with automated deployment\nAfter taking a look to Quarto documentation and watching a video (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose using this tool.\nSo, the workflow I built using Quarto had as a result this website, and works like described below:\n\nWrite a post or build a static page (locally).\nRender the website (locally).\nPush it to Git.\nAfter a merge in certain branch, automate the deployment process (upload the files via FTP)."
   },
   {
-    "objectID": "posts/post-with-code/index.html#subtitle-3",
-    "href": "posts/post-with-code/index.html#subtitle-3",
-    "title": "Post With Code",
-    "section": "Subtitle 3",
-    "text": "Subtitle 3\nPraesent imperdiet leo id quam sollicitudin, sit amet efficitur erat sodales. Ut aliquam nec erat sed consectetur. Praesent aliquet ornare massa ac ultricies. Phasellus rhoncus diam in felis maximus rhoncus.\nEtiam euismod pharetra velit rutrum volutpat. Nam mattis, purus vel feugiat facilisis, nunc tortor consectetur sapien, sed ultrices neque mauris quis tortor. Nullam blandit fringilla suscipit. Sed pulvinar metus ut erat congue, nec rutrum nibh mollis."
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium lacinia neque. Nulla ornare id nisl ut tempor.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque iaculis lobortis neque sed ullamcorper. Fusce porta vestibulum blandit. Sed faucibus dolor in leo semper maximus."
-  },
-  {
-    "objectID": "posts/welcome/index.html#subtitle-1",
-    "href": "posts/welcome/index.html#subtitle-1",
-    "title": "Welcome To My Blog",
-    "section": "Subtitle 1",
-    "text": "Subtitle 1\nPhasellus quis orci nec nulla rutrum efficitur quis non quam. Duis volutpat urna ligula, vel ultricies orci consectetur sed. Sed id justo vehicula, consectetur enim ut, imperdiet est. Donec feugiat maximus orci, a malesuada ligula venenatis in. Nullam a gravida augue.\nDonec rutrum vulputate arcu eget bibendum. Morbi ullamcorper in erat et ultricies. Ut mollis pulvinar elit eget dapibus."
-  },
-  {
-    "objectID": "posts/welcome/index.html#subtitle-2",
-    "href": "posts/welcome/index.html#subtitle-2",
-    "title": "Welcome To My Blog",
-    "section": "Subtitle 2",
-    "text": "Subtitle 2\nVivamus euismod egestas leo, quis varius lectus sollicitudin ac. Vestibulum at venenatis nunc. In hac habitasse platea dictumst. Duis aliquet tortor eget aliquet scelerisque. In hac habitasse platea dictumst.\nNunc id lectus sed erat euismod semper. Nulla facilisi. Fusce dictum pellentesque pellentesque. Proin commodo imperdiet enim ac laoreet. Cras id sapien at tortor congue efficitur quis eget ex. Cras vel velit a mi varius condimentum vitae vel urna.\nNulla facilisi. Donec nec est a sem ultrices interdum et sit amet felis."
-  },
-  {
-    "objectID": "posts/welcome/index.html#subtitle-3",
-    "href": "posts/welcome/index.html#subtitle-3",
-    "title": "Welcome To My Blog",
-    "section": "Subtitle 3",
-    "text": "Subtitle 3\nPraesent imperdiet leo id quam sollicitudin, sit amet efficitur erat sodales. Ut aliquam nec erat sed consectetur. Praesent aliquet ornare massa ac ultricies. Phasellus rhoncus diam in felis maximus rhoncus.\nEtiam euismod pharetra velit rutrum volutpat. Nam mattis, purus vel feugiat facilisis, nunc tortor consectetur sapien, sed ultrices neque mauris quis tortor. Nullam blandit fringilla suscipit. Sed pulvinar metus ut erat congue, nec rutrum nibh mollis."
+    "objectID": "posts/post-with-code/index.html#steps-to-create-an-automated-quarto-website",
+    "href": "posts/post-with-code/index.html#steps-to-create-an-automated-quarto-website",
+    "title": "Setup a website with Quarto and automate the deployment",
+    "section": "Steps to create an automated Quarto website",
+    "text": "Steps to create an automated Quarto website\nQuarto documentation is great. Basically all you need to know how to create a website with Quarto is to read this session in their website.\n\nStep 1. Download and install Quarto\nIf you don’t have Quarto installed yet you can follow the steps here.\n\n\nStep 2. Build a Quarto website or blog\nAfter have installed Quarto, it is needed to run on terminal the following code to create a Quarto website:\nquarto create-project mysite --type website\nIf your website will be a blog, so you may prefer to use the following code:\nquarto create-project myblog --type website:blog\nThis code will create a basic folder structure with the main files needed to start customizing your website.\n\n\nStep 3. Create a repo on Github\nTo be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need to create a Github repository.\nIn this post I expected the reader to have at least minimum experience with Git (create repositories, understand how branches work, git push, git pull.)\nYou could have created the repository in the very first moment, but you can also\n\n\nStep 4. Setup Github Actions\n\nI write a post in a Quarto file (.qmd) using Markdown syntax. I can add code chunks to the post and show the results (with interactivity, depending on the libraries used). It is similar with what we have for Jupyter notebooks (but with more possibilities), and basically the same we have for RMarkdown documents.\n\nYesterday after my work I was doing an interesting thing (at least for me:sweat_smile:). Some years ago I had a blog (using wordpress), then for some reasons I decided to move the content of this blog to another website. But I was always with the idea of reactivating a personal blog (not using wordpress). Then, yesterday I created a repo from the Quarto (R package for publishing) website template and I setup the repo with GitHub actions, in a way that every time you push on main branch it will “deploy the website” (upload the files to the host via ftp). As I am not so used with Github actions, making it work was awesome!\n\n\n\n\n\nPlease enable JavaScript to view the comments powered by Disqus."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Senior Data Scientist. Experienced R and Shiny developer, with examples of use cases in several large companies. Experienced with machine learning implementation to solve business problems. PhD and Master’s in Finance. Researcher in behavioral finance / economics, and capital markets. I also have a website, where articles about business, technology and data science are published."
+    "text": "Hi, I am Wlademir Ribeiro Prates. Welcome to my personal blog.\nI am a Senior Data Scientist. Experienced R and Shiny developer, with examples of use cases in several large companies. Experienced with machine learning implementation to solve business problems. PhD and Master’s in Finance. Researcher in behavioral finance / economics, and capital markets. I also have a website, where articles about business, technology and data science are published."
   },
   {
     "objectID": "about.html#education",
@@ -74,6 +46,6 @@
     "href": "index.html",
     "title": "Blog",
     "section": "",
-    "text": "news\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMay 19, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMay 16, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "r\n\n\nreporting\n\n\n\n\n\n\n\n\n\n\n\nMay 31, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
   }
 ]
