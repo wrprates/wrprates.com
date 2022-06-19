@@ -1,13 +1,11 @@
 project:
   type: website
-
 website:
   title: "wrprates.com"
   search: 
     location: navbar
     type: overlay
   navbar:
-    #background: "#222"
     left:
       - href: index.qmd
         text: Home
@@ -22,5 +20,3 @@ format:
     theme: litera
     css: styles.css
     toc: true
-comments:
-  hypothesis: true
