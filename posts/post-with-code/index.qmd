@@ -5,6 +5,8 @@ date: "2022-05-31"
 categories: [r, reporting]
 ---
 
+## Introduction
+
 Who works with data analysis and want to share content face some limitations from the traditional tools to build website. One of the main reasons is the difficulty to share the results of chunks of code without needing to copy and paste images.
 
 For example, if you are a data scientist and use Python or R to build interactive charts and tables in your work, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.
