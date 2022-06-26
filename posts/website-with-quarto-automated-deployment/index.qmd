@@ -2,10 +2,8 @@
 title: "Setup a website with Quarto and automate the deployment"
 author: "Wlademir Ribeiro Prates"
 date: "2022-05-31"
-categories: [r, reporting]
+categories: [reporting]
 ---
-
-## Introduction
 
 Who works with data analysis and want to share content face some limitations from the traditional tools to build website. One of the main reasons is the difficulty to share the results of chunks of code without needing to copy and paste images.
 
@@ -25,7 +23,7 @@ In Quarto you can "create dynamic content with Python, R, Julia, and Observable"
 
 After taking a look to Quarto documentation and watching a [video](https://www.youtube.com/watch?v=3cLbh-k2qKk) (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose using this tool.
 
-So, the workflow I built using Quarto had as a result this website, and works like described below:
+So, the workflow I built using Quarto had as a result this website (check the [Github repo](https://github.com/wrprates/wrprates.com)), and works like described below:
 
 1. **Write** a post or build a static page (locally).
 2. **Render** the website (locally).
@@ -35,6 +33,8 @@ So, the workflow I built using Quarto had as a result this website, and works li
 ## Steps to create an automated Quarto website
 
 Quarto documentation is great. Basically all you need to know how to create a website with Quarto is to read [this session](https://quarto.org/docs/websites/) in their website.
+
+Below I am sharing the main commands that you will need, and also the needed information to setup the automated deployment.
 
 ### Step 1. Download and install Quarto
 
@@ -59,15 +59,73 @@ This code will create a basic folder structure with the main files needed to sta
 ### Step 3. Create a repo on Github
 
 To be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need
-to create a Github repository.
+to create a Github repository for the project.
 
 In this post I expected the reader to have at least minimum experience with Git (create repositories, understand how branches work, `git push`, `git pull`.)
 
-You could have created the repository in the very first moment, but you can also 
-
 ### Step 4. Setup Github Actions
 
-<!-- - I write a post in a Quarto file (`.qmd`) using Markdown syntax. I can add code chunks to the post and show the results (with interactivity, depending on the libraries used). It is similar with what we have for Jupyter notebooks (but with more possibilities), and basically the same we have for RMarkdown documents. -->
+We will need to go to the Github Actions Marketplace and look for "FTP Deploy", or just [click here](https://github.com/marketplace/actions/ftp-deploy).
+
+In fact, to use this Action we will just need to copy and paste the `.yml` file as it is in the example from the Action's page.
+
+Inside your project, the `.yml` file needs to be located in the path `.github/workflows/main.yml`
+
+However, I did some changes, mostly based on [this great video](https://github.com/marketplace/actions/ftp-deploy) about this topic, but it is in portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.
+
+```
+on:
+  push:
+    branches:
+      - main
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ secrets.ftp_host }}
+        username: ${{ secrets.ftp_user }}
+        password: ${{ secrets.ftp_password }}
+        local-dir: ./_site/
+        server-dir: ${{ secrets.server_dir }}
+```
+
+Basically what these comands are doing is **updating the files** in the website Host **after any push on `main` branch** of the project.
+
+#### Details about Github Secrets
+
+Here we are also using *Github Secrets* for the Host information.
+
+Github Secrets will allow us to add private information, like passwords and usernames, without worrying on security.
+
+They'll be securely saved on your Github account and you will call the variable that contains the "secrets" in your code. So these sensitive information don't need to be hard coded.
+
+Check the screenshot below to see how the secrets will look like. You need to record them as they are being called (e.g. `ftp_host` for `secrets.ftp_user`). Register the secrets with small letters and don't worry if they appear with capital letter (see screnshot).
+
+![Using Github Secrets](github_secrets.png)
+
+Some general comments:
+
+- The only needed information here is `ftp_host`, `ftp_user` and `ftp_password`. They are the same that you use for other commom FTP services.
+- I added `local-dir` because of Quarto files structure.
+- I used `server-dir` to specify the folder where the website will be (e.g. `public_html`).
+
+## Final comments
+
+After all the steps above you are ready to `git push` your changes and submit a **Pull Request** to merge your local branch with the `main` branch (if you created a separated branch, which is highly recommended!).
+
+After merging with `main`, check if the files in your Host were updated. If yes, check if your website is now running on the internet. 
+
+I am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.
+
+Did you like this post? Let your comments below and share your experience if you try to setup a website like I described here.
 
 <!-- Yesterday after my work I was doing an interesting thing (at least for me:sweat_smile:). Some years ago I had a blog (using wordpress), then for some reasons I decided to move the content of this blog to another website. But I was always with the idea of reactivating a personal blog (not using wordpress). Then, yesterday I created a repo from the Quarto (R package for publishing) website template and I setup the repo with GitHub actions, in a way that every time you push on main branch it will "deploy the website" (upload the files to the host via ftp). As I am not so used with Github actions, making it work was awesome! -->
 

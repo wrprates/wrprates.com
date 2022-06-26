@@ -6,11 +6,9 @@ website:
     location: navbar
     type: overlay
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
     right:
-      - about.qmd
+      - href: about.qmd
+        text: About
       - icon: github
         href: https://github.com/wrprates/
       - icon: linkedin
