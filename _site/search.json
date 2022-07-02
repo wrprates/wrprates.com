@@ -32,7 +32,7 @@
     "href": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
     "title": "Set up a website with Quarto and automate deployment",
     "section": "Final comments",
-    "text": "Final comments\nAfter all the steps above you are ready to git push your changes and submit a Pull Request to merge your local branch with the main branch (if you created a separated branch, which is highly recommended!).\nAfter merging with main, check if the files in your Host were updated. If yes, check if your website is now running on the internet.\nI am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.\nDid you like this post? Let your comments below and share your experience if you try to set up a website as I described here.\n\n\n\n\n\nPlease enable JavaScript to view the comments powered by Disqus."
+    "text": "Final comments\nAfter all the steps above you are ready to git push your changes and submit a Pull Request to merge your local branch with the main branch (if you created a separated branch, which is highly recommended!).\nAfter merging with main, check if the files in your Host were updated. If yes, check if your website is now running on the internet.\nI am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.\nDid you like this post? Let your comments below and share your experience if you try to set up a website as I described here."
   },
   {
     "objectID": "about.html",

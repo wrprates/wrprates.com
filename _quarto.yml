@@ -17,6 +17,7 @@ website:
   cookie-consent: true
 format:
   html:
+    include-after-body: disqus.html
     theme: litera
     css: styles.css
     toc: true
