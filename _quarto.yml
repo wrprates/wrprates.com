@@ -13,6 +13,8 @@ website:
         href: https://github.com/wrprates/
       - icon: linkedin
         href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
+  google-analytics: "UA-55388899-1"
+  cookie-consent: true
 format:
   html:
     theme: litera
