@@ -1,27 +1,31 @@
 ---
-title: "Setup a website with Quarto and automate the deployment"
+title: "Set up a website with Quarto and automate deployment"
 author: "Wlademir Ribeiro Prates"
-date: "2022-05-31"
-categories: [reporting]
+date: "2022-07-02"
+categories: [Reporting]
 ---
 
-Who works with data analysis and want to share content face some limitations from the traditional tools to build website. One of the main reasons is the difficulty to share the results of chunks of code without needing to copy and paste images.
+Anyone who works with data analysis and wants to share content faces some limitations from the traditional tools to build a website. One of the main reasons is the difficulty of sharing the results of chunks of code without needing to copy and paste images.
 
-For example, if you are a data scientist and use Python or R to build interactive charts and tables in your work, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.
+For example, suppose you are a data scientist and use Python or R to build interactive charts and tables in your work. In that case, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.
 
-There already many available solutions that facilitate this job. But here I want to call the attention to [Quarto](https://quarto.org/).
+There are already many available solutions that facilitate this job. But here I want to draw attention to [Quarto](https://quarto.org/).
 
 ## What is Quarto?
 
 Quarto is a great reporting tool, which is supported by RStudio. Its own definition is:
 
-> Quarto® is an open-source scientific and technical publishing system built on Pandoc.
+> Quarto is an open-source scientific and technical publishing system built on Pandoc.
 
-In Quarto you can "create dynamic content with Python, R, Julia, and Observable".
+In Quarto, you can "create dynamic content with Python, R, Julia, and Observable".
+
+In other words, with Quarto, it is possible to create reports using the same syntax used to build RMarkdown documents, but in Quarto there are more possibilities when compared with RMarkdown.
+
+One of the biggest Quarto advantages is that it is a multi-language platform. Besides that, RStudio announces that Quarto is the "next generation version of R Markdown".
 
 ## Basic workflow for a Quarto website with automated deployment
 
-After taking a look to Quarto documentation and watching a [video](https://www.youtube.com/watch?v=3cLbh-k2qKk) (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose using this tool.
+After taking a look to Quarto documentation and watching a [video](https://www.youtube.com/watch?v=3cLbh-k2qKk) (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose.
 
 So, the workflow I built using Quarto had as a result this website (check the [Github repo](https://github.com/wrprates/wrprates.com)), and works like described below:
 
@@ -32,9 +36,9 @@ So, the workflow I built using Quarto had as a result this website (check the [G
 
 ## Steps to create an automated Quarto website
 
-Quarto documentation is great. Basically all you need to know how to create a website with Quarto is to read [this session](https://quarto.org/docs/websites/) in their website.
+Quarto documentation is great. Basically, all you need to know how to create a website with Quarto is to read [this session](https://quarto.org/docs/websites/) in their website.
 
-Below I am sharing the main commands that you will need, and also the needed information to setup the automated deployment.
+Below I am sharing the main commands that you will need, and also the needed information to set up the automated deployment.
 
 ### Step 1. Download and install Quarto
 
@@ -42,7 +46,7 @@ If you don't have Quarto installed yet you can follow the steps [here](https://q
 
 ### Step 2. Build a Quarto website or blog
 
-After have installed Quarto, it is needed to run on terminal the following code to create a Quarto website:
+After having installed Quarto, it is needed to run on terminal the following code to create a Quarto website:
 
 ```
 quarto create-project mysite --type website
@@ -61,9 +65,9 @@ This code will create a basic folder structure with the main files needed to sta
 To be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need
 to create a Github repository for the project.
 
-In this post I expected the reader to have at least minimum experience with Git (create repositories, understand how branches work, `git push`, `git pull`.)
+In this post I expect the reader to have at least minimum experience with Git (create repositories, understand how branches work, `git push`, `git pull`.)
 
-### Step 4. Setup Github Actions
+### Step 4. Set up Github Actions
 
 We will need to go to the Github Actions Marketplace and look for "FTP Deploy", or just [click here](https://github.com/marketplace/actions/ftp-deploy).
 
@@ -71,7 +75,7 @@ In fact, to use this Action we will just need to copy and paste the `.yml` file 
 
 Inside your project, the `.yml` file needs to be located in the path `.github/workflows/main.yml`
 
-However, I did some changes, mostly based on [this great video](https://github.com/marketplace/actions/ftp-deploy) about this topic, but it is in portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.
+However, I did some changes, mostly based on [this great video](https://github.com/marketplace/actions/ftp-deploy) about this topic, but it is in Portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.
 
 ```
 on:
@@ -97,17 +101,17 @@ jobs:
         server-dir: ${{ secrets.server_dir }}
 ```
 
-Basically what these comands are doing is **updating the files** in the website Host **after any push on `main` branch** of the project.
+Basically what these commands are doing is **updating the files** in the website Host **after any push on `main` branch** of the project.
 
 #### Details about Github Secrets
 
 Here we are also using *Github Secrets* for the Host information.
 
-Github Secrets will allow us to add private information, like passwords and usernames, without worrying on security.
+Github Secrets will allow us to add private information, like passwords and usernames, without worrying about security.
 
-They'll be securely saved on your Github account and you will call the variable that contains the "secrets" in your code. So these sensitive information don't need to be hard coded.
+They'll be securely saved on your Github account and you will call the variable that contains the "secrets" in your code. So this sensitive information doesn't need to be hard coded.
 
-Check the screenshot below to see how the secrets will look like. You need to record them as they are being called (e.g. `ftp_host` for `secrets.ftp_user`). Register the secrets with small letters and don't worry if they appear with capital letter (see screnshot).
+Check out the screenshot below to see what Github Secrets looks like. You need to record them as they are being called (e.g. `ftp_host` for `secrets.ftp_user`). Register the secrets with small letters and don't worry if they appear with capital letters (see screenshot).
 
 ![Using Github Secrets](github_secrets.png)
 
@@ -125,8 +129,6 @@ After merging with `main`, check if the files in your Host were updated. If yes,
 
 I am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.
 
-Did you like this post? Let your comments below and share your experience if you try to setup a website like I described here.
-
-<!-- Yesterday after my work I was doing an interesting thing (at least for me:sweat_smile:). Some years ago I had a blog (using wordpress), then for some reasons I decided to move the content of this blog to another website. But I was always with the idea of reactivating a personal blog (not using wordpress). Then, yesterday I created a repo from the Quarto (R package for publishing) website template and I setup the repo with GitHub actions, in a way that every time you push on main branch it will "deploy the website" (upload the files to the host via ftp). As I am not so used with Github actions, making it work was awesome! -->
+Did you like this post? Let your comments below and share your experience if you try to set up a website as I described here.
 
 {{< include disqus.html >}}
