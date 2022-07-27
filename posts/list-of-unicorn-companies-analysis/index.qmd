@@ -1,0 +1,21 @@
+---
+title: "List of Unicorn Companies Analysis"
+author: "Wlademir Ribeiro Prates"
+date: "2022-07-29"
+categories: [Reporting]
+---
+
+## Reading Unicorn companies list
+
+The full and updated list of Unicorn companies used on this analysis can be found [here](https://www.cbinsights.com/research-unicorn-companies), at the CBInsights website.
+
+```{r}
+library(readxl)
+library(echarts4r)
+library(reactable)
+
+unicorn_data <- readxl::read_excel("unicorn_companies.xlsx", skip = 2)
+reactable(unicorn_data)
+```
+
+

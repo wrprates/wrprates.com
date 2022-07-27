@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "posts/list-of-unicorn-companies-analysis/index.html",
+    "href": "posts/list-of-unicorn-companies-analysis/index.html",
+    "title": "List of Unicorn Companies Analysis",
+    "section": "",
+    "text": "The full and updated list of Unicorn companies used on this analysis can be found here, at the CBInsights website.\n\nlibrary(readxl)\nlibrary(echarts4r)\nlibrary(reactable)\n\nunicorn_data <- readxl::read_excel(\"unicorn_companies.xlsx\", skip = 2)\nreactable(unicorn_data)"
+  },
+  {
     "objectID": "posts/website-with-quarto-automated-deployment/index.html",
     "href": "posts/website-with-quarto-automated-deployment/index.html",
     "title": "Set up a website with Quarto and automate deployment",
@@ -53,6 +60,6 @@
     "href": "index.html",
     "title": "Blog",
     "section": "",
-    "text": "Reporting\n\n\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
+    "text": "Reporting\n\n\n\n\n\n\n\n\n\n\n\nJul 29, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
   }
 ]
