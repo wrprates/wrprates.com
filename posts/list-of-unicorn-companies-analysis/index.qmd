@@ -18,6 +18,7 @@ First, we need to load the used packages and read the data. Below I am showing t
 # Loading packages
 library(dplyr)
 library(echarts4r)
+library(glue)
 library(lubridate)
 library(reactable)
 library(readxl)
@@ -25,18 +26,31 @@ library(readxl)
 # Reading the Excel file
 unicorn_data <- readxl::read_excel("unicorn_companies.xlsx", skip = 2) |>
   dplyr::arrange(dplyr::desc("Valuation ($B)")) |>
-  dplyr::mutate(`Years of existence` = floor((lubridate::interval(`Date Joined`, lubridate::today()) %/% months(1)) / 12))
+  dplyr::mutate(
+    `Years as Unicorn` = round(
+      (lubridate::interval(`Date Joined`, lubridate::today()) %/% months(1)) / 12,
+      digits = 2
+    ),
+    `Number of Investors` = stringr::str_count(`Select Investors`, ',') + 1,
+    `Industry` = as.factor(`Industry`)
+  )
+
+interactive_table_data <- unicorn_data |>
+  dplyr::select(-`Date Joined`) |>
+  dplyr::mutate(`Years as Unicorn` = floor(`Years as Unicorn`))
 
 # Creating an interactive table
 reactable::reactable(
-  unicorn_data |> dplyr::select(-`Date Joined`),
+  interactive_table_data,
   columns = list(
-    `Select Investors` = colDef(minWidth = 180)
+    `Select Investors` = colDef(minWidth = 180),
+    Country = colDef(html = TRUE)
   ),
   style = list(fontSize = "0.70rem"),
   defaultPageSize = 10,
   searchable = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  resizable = TRUE
 )
 ```
 
@@ -51,11 +65,10 @@ tree_data <- unicorn_data |>
   dplyr::mutate(children = purrr::map(children, ~ filter(., value >= 5))) |>
   dplyr::rename(name = Industry)
 
-
 tree_data |>
   echarts4r::e_charts() |>
   echarts4r::e_title(text = "Unicorn companies by Industry") |>
-  echarts4r::e_theme("auritus") |>
+  echarts4r::e_theme("infographic") |>
   echarts4r::e_treemap(
     leafDepth = 2,
     breadcrumb = TRUE,
@@ -71,39 +84,127 @@ tree_data |>
       height = 30,
       formatter = "{b}",
       color = "black",
-      fontSize = 16
+      fontSize = 12
     ))
   ) |>
   echarts4r::e_tooltip()
-
 ```
 
 
-## Boxplot by categories
+## Boxplot by Industry
 
 ```{r}
 boxplot_by_category <- function(data, category, outliers) {
   data |>
     dplyr::group_by(!!rlang::sym(category)) |>
+    dplyr::mutate(median = median(`Valuation ($B)`)) |>
+    dplyr::arrange(dplyr::desc(median)) |>
     echarts4r::e_charts() |>
+    echarts4r::e_theme("essos")  |>
+    echarts4r::e_color(background = "white") |>
     echarts4r::e_boxplot(serie = `Valuation ($B)`, outliers = outliers) |>
-    echarts4r::e_tooltip()
+    echarts4r::e_tooltip(trigger = "item") |>
+    echarts4r::e_datazoom() |>
+    echarts4r::e_title(glue::glue("Valuation ($B) Boxplot by {category}")) |>
+    echarts4r::e_y_axis(type = "log")
+}
+
+boxplot_by_category(unicorn_data, category = "Industry", outliers = TRUE)
+```
+
+### Scatterplot
+
+```{r}
+unicorn_scatterplot <- function(data) {
+  data |>
+    echarts4r::e_charts(`Years as Unicorn`) |>
+    echarts4r::e_scatter(`Valuation ($B)`, `Number of Investors`, bind = Company) |>
+    echarts4r::e_labels(show = FALSE, position = "top") |>
+    echarts4r::e_title(glue::glue("Valuation ($B) vs Years as Unicorn vs Number of Investors Scatterplot")) |>
+    echarts4r::e_y_axis_(type = "log") |>
+    echarts4r::e_tooltip(
+      axisPointer = list(type = "cross"),
+      formatter = htmlwidgets::JS("
+      function(params){return(
+        '<strong>' + params.name + '</strong>' + '<br>' +
+          'Industry: <i>' + params.seriesName + '</i><br>' +
+          'Valuation ($B): <i>' + parseFloat((params.value[1] * 10) / 10).toFixed(1) + '</i><br>' +
+          'Years as Unicorn: <i>' + params.value[0] + '</i><br>' +
+          'Number of Investors: <i>' + params.value[2] + '</i>'
+      )}"
+      )
+    ) |>
+    echarts4r::e_axis_labels(x = "Years as Unicorn", y = "Valuation ($B) - log scale") |>
+    echarts4r::e_legend(show = TRUE, type = "scroll", right = "0", left = "0", bottom = 1) |>
+    echarts4r::e_dims(height = "auto", width = "auto")
 }
 ```
 
+::: {.panel-tabset}
 
-### By Industry
+### Tech
 
 ```{r}
-boxplot_by_category(unicorn_data, category = "Industry", outliers = FALSE)
+tech <- c(
+  "Artificial intelligence",
+  "Fintech",
+  "Data management & analytics",
+  "Edtech",
+  "Other"
+)
+unicorn_data |>
+  dplyr::filter(Industry %in% tech) |>
+  dplyr::group_by(Industry) |>
+  unicorn_scatterplot()
 ```
 
 
-### By Country
+### Sales
 
 ```{r}
-boxplot_by_category(unicorn_data, category = "Country", outliers = FALSE)
+sales <- c(
+  "E-commerce & direct-to-consumer",
+  "Consumer & retail"
+)
+unicorn_data |>
+  dplyr::filter(Industry %in% sales) |>
+  dplyr::group_by(Industry) |>
+  unicorn_scatterplot()
 ```
+
+
+### Movement
+
+```{r}
+movement <- c(
+  "Supply chain, logistics, & delivery",
+  "Auto & transportation",
+  "Travel",
+  "Health"
+)
+unicorn_data |>
+  dplyr::filter(Industry %in% movement) |>
+  dplyr::group_by(Industry) |>
+  unicorn_scatterplot()
+```
+
+
+### Informatics
+
+```{r}
+informatics <- c(
+  "Internet software & services",
+  "Cybersecurity",
+  "Hardware",
+  "Mobile & telecommunications"
+)
+unicorn_data |>
+  dplyr::filter(Industry %in% informatics) |>
+  dplyr::group_by(Industry) |>
+  unicorn_scatterplot()
+```
+
+:::
 
 Para investigar:
 
