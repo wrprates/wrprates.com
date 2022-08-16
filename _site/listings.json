@@ -2,7 +2,6 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/list-of-unicorn-companies-analysis/index.html",
       "/posts/website-with-quarto-automated-deployment/index.html"
     ]
   }

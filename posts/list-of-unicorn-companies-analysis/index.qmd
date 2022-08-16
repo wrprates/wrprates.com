@@ -3,6 +3,7 @@ title: "List of Unicorn Companies Analysis"
 author: "Wlademir Ribeiro Prates"
 date: "2022-07-29"
 categories: [Reporting]
+draft: true
 ---
 
 The full and updated list of Unicorn companies used on this analysis can be found [here](https://www.cbinsights.com/research-unicorn-companies), at the CBInsights website.
@@ -20,6 +21,7 @@ library(dplyr)
 library(echarts4r)
 library(glue)
 library(lubridate)
+library(MetBrewer)
 library(reactable)
 library(readxl)
 
@@ -32,7 +34,14 @@ unicorn_data <- readxl::read_excel("unicorn_companies.xlsx", skip = 2) |>
       digits = 2
     ),
     `Number of Investors` = stringr::str_count(`Select Investors`, ',') + 1,
-    `Industry` = as.factor(`Industry`)
+    `Industry` = as.factor(`Industry`),
+    Quartiles = dplyr::case_when(
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.25, na.rm = TRUE) ~ 'Q1',
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.5, na.rm = TRUE) ~ 'Q2',
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.75, na.rm = TRUE) ~ 'Q3',
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 1, na.rm = TRUE) ~ 'Q4'
+    )#,
+     # Quartiles = dplyr::mutate(dplyr::across(`Valuation ($B)`, .fn = function(x) cut(x, quantile(x, 0:4/4))))
   )
 
 interactive_table_data <- unicorn_data |>
@@ -56,39 +65,102 @@ reactable::reactable(
 
 ## Treemap
 
-```{r}
-tree_data <- unicorn_data |>
-  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
-  dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |>
-  tidyr::nest(children = c("name", "value")) |>
-  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
-  dplyr::mutate(children = purrr::map(children, ~ filter(., value >= 5))) |>
-  dplyr::rename(name = Industry)
 
-tree_data |>
-  echarts4r::e_charts() |>
-  echarts4r::e_title(text = "Unicorn companies by Industry") |>
-  echarts4r::e_theme("infographic") |>
-  echarts4r::e_treemap(
-    leafDepth = 2,
-    breadcrumb = TRUE,
-    backgroundColor = "red",
-    itemStyle = list(normal = list(
-      borderWidth = 0,
-      gapWidth = 2,
-      backgroundColor = "gray70"
-    )),
-    name = "Having fun with treemaps",
-    upperLabel = list(normal = list(
-      show = TRUE,
-      height = 30,
-      formatter = "{b}",
-      color = "black",
-      fontSize = 12
-    ))
-  ) |>
-  echarts4r::e_tooltip()
+```{r}
+tree_map_chart <- function(data, quartile, colors_df) {
+  treemap_data <- data |>
+    dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+    dplyr::filter(Quartiles == quartile) |>
+    dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |>
+    tidyr::nest(children = c("name", "value")) |>
+    dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
+    dplyr::rename(name = Industry) |>
+    dplyr::left_join(colors_df, by = "name")
+
+  min_valuation <- min(data$`Valuation ($B)`)
+  max_valuation <- max(data$`Valuation ($B)`)
+
+  treemap_data |>
+    echarts4r::e_charts() |>
+    echarts4r::e_title(
+      text = paste0("Unicorns by Industry - from $",  min_valuation, "B to $", max_valuation, "B"),
+      subtext = paste0("Quartile ", quartile)
+    ) |>
+    echarts4r::e_treemap(
+      leafDepth = 1,
+      #breadcrumb = TRUE,
+      itemStyle = list(
+        normal = list(
+          borderWidth = 0,
+          gapWidth = 1,
+          backgroundColor = "white"
+        )
+      ),
+      upperLabel = list(
+        normal = list(
+          show = FALSE,
+          height = 30,
+          formatter = "{b}",
+          color = "black",
+          fontSize = 12
+        )
+      )
+    ) |>
+    echarts4r::e_tooltip(
+      backgroundColor = "rgba(255,255,255,0.8)",
+      formatter = htmlwidgets::JS(
+        "
+      function(info){
+        var treePathInfo = info.treePathInfo;
+        var treePath = [];
+        for (var i = 1; i < treePathInfo.length; i++) {
+          treePath.push(treePathInfo[i].name);
+        }
+      return(
+        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '</strong>' + '<br>' +
+        'Valuation ($B): <i>' + info.value + '</i><br>'
+      )}"
+      )
+    )
+}
+
+colors_df <- dplyr::tibble(
+  name = unique(unicorn_data$Industry),
+  itemStyle = dplyr::tibble(
+    color = as.character(
+      MetBrewer::met.brewer(
+        "Redon",
+        length(unique(unicorn_data$Industry))
+      )
+    )
+  )
+)
+
 ```
+
+Treemaps with data split into quartiles.
+
+
+### Q3
+
+```{r, fig.fullwidth = TRUE}
+tree_map_chart(data = unicorn_data, quartile = "Q4", colors_df = colors_df)
+```
+
+
+```{r, fig.fullwidth = TRUE}
+#| fig.fullwidth = TRUE
+htmltools::div(
+  tree_map_chart(data = unicorn_data, quartile = "Q4", colors_df = colors_df),
+  tree_map_chart(data = unicorn_data, quartile = "Q3", colors_df = colors_df),
+  tree_map_chart(data = unicorn_data, quartile = "Q2", colors_df = colors_df),
+  tree_map_chart(data = unicorn_data, quartile = "Q1", colors_df = colors_df),
+)
+
+
+```
+
+
 
 
 ## Boxplot by Industry
