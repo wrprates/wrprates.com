@@ -6,11 +6,13 @@ categories: [Reporting]
 draft: true
 ---
 
+
 The full and updated list of Unicorn companies used on this analysis can be found [here](https://www.cbinsights.com/research-unicorn-companies), at the CBInsights website.
 
 ## Reading Unicorn companies list
 
 First, we need to load the used packages and read the data. Below I am showing the top 50 Unicorn companies, with all the variables from the raw data.
+
 
 ```{r}
 #| warning: false
@@ -63,7 +65,9 @@ reactable::reactable(
 )
 ```
 
+
 ## Exploring top 50 Unicorn companies
+
 
 ```{r}
 colors_industry <- dplyr::tibble(
@@ -174,7 +178,9 @@ unicorn_data |>
     )
 ```
 
+
 ## Unicorn companies in Brazil (my country)
+
 
 ```{r}
 unicorn_data |>
@@ -212,7 +218,9 @@ unicorn_data |>
     )
 ```
 
+
 ## Exploring all Unicorn companies with *treemaps*
+
 
 
 ```{r}
@@ -263,7 +271,9 @@ tree_map_chart <- function(data, quartile, colors_df, tooltip = treemap_tooltip)
 
 ```
 
+
 Treemaps with data split into quartiles.
+
 
 
 ```{r}
