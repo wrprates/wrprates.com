@@ -12,6 +12,8 @@ The full and updated list of Unicorn companies used on this analysis can be foun
 
 First, we need to load the used packages and read the data. Below I am showing the top 50 Unicorn companies, with all the variables from the raw data.
 
+In this very beginning of the post some settings are already created, like the colors for Countries and Industries, to use in the whole document.
+
 ```{r}
 #| warning: false
 #| message: false
@@ -19,7 +21,6 @@ First, we need to load the used packages and read the data. Below I am showing t
 # Loading packages
 library(dplyr)
 library(echarts4r)
-library(glue)
 library(lubridate)
 library(MetBrewer)
 library(reactable)
@@ -43,29 +44,6 @@ unicorn_data <- readxl::read_excel("unicorn_companies.xlsx", skip = 2) |>
     )
   )
 
-interactive_table_data <- unicorn_data |>
-  dplyr::select(-c("Date Joined", "Number of Investors", "Quartiles")) |>
-  dplyr::mutate(`Years as Unicorn` = floor(`Years as Unicorn`)) |>
-  head(50)
-
-# Creating an interactive table
-reactable::reactable(
-  interactive_table_data,
-  columns = list(
-    `Select Investors` = colDef(minWidth = 180),
-    Country = colDef(html = TRUE)
-  ),
-  style = list(fontSize = "0.70rem"),
-  defaultPageSize = 5,
-  searchable = TRUE,
-  striped = TRUE,
-  resizable = TRUE
-)
-```
-
-## Exploring top 50 Unicorn companies
-
-```{r}
 colors_industry <- dplyr::tibble(
   name = unique(unicorn_data$Industry),
   itemStyle = dplyr::tibble(
@@ -89,7 +67,77 @@ colors_country <- dplyr::tibble(
     )
   )
 )
+```
 
+After reading the data I have created two charts to briefly show the summarized data by Country and by Industry.
+
+```{r}
+unicorn_data |>
+  dplyr::group_by(Country) |>
+  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+  head(5) |>
+  dplyr::left_join(
+    colors_country |> dplyr::rename(Country = name, color = `itemStyle`),
+    by = "Country"
+  ) |> 
+  echarts4r::e_charts(`Valuation ($B)`) |>
+  echarts4r::e_legend(show = FALSE) |>
+  echarts4r::e_bar(Country) |>
+  echarts4r::e_y_axis(type = "category") |>
+  echarts4r::e_grid(containLabel = TRUE) |>
+  echarts4r::e_tooltip() |>
+  echarts4r::e_add_nested('itemStyle', color) |>
+  echarts4r::e_title(text = "Unicorns by Country") 
+```
+
+
+```{r}
+unicorn_data |>
+  dplyr::group_by(Industry) |>
+  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+    dplyr::left_join(
+      colors_industry |> dplyr::rename(Industry = name, color = `itemStyle`),
+      by = "Industry"
+    ) |>
+  echarts4r::e_charts(`Valuation ($B)`) |>
+  echarts4r::e_legend(show = FALSE) |>
+  echarts4r::e_bar(Industry) |>
+  echarts4r::e_y_axis(type = "category") |>
+  echarts4r::e_grid(containLabel = TRUE) |>
+  echarts4r::e_tooltip() |>
+  echarts4r::e_add_nested('itemStyle', color) |>
+  echarts4r::e_title(text = "Unicorns by Industry")
+```
+
+
+Interactive table with the first 50 Unicorn companies.
+
+```{r}
+interactive_table_data <- unicorn_data |>
+  dplyr::select(-c("Date Joined", "Number of Investors", "Quartiles")) |>
+  dplyr::mutate(`Years as Unicorn` = floor(`Years as Unicorn`)) |>
+  head(50)
+
+# Creating an interactive table
+reactable::reactable(
+  interactive_table_data,
+  columns = list(
+    `Select Investors` = colDef(minWidth = 180),
+    Country = colDef(html = TRUE)
+  ),
+  style = list(fontSize = "0.70rem"),
+  defaultPageSize = 5,
+  searchable = TRUE,
+  striped = TRUE,
+  resizable = TRUE
+)
+```
+
+## Exploring top 50 Unicorn companies
+
+```{r}
 treemap_tooltip <- htmlwidgets::JS(
       "function(info){
         var treePathInfo = info.treePathInfo;
@@ -112,30 +160,28 @@ unicorn_data |>
   dplyr::rename(name = Country) |>
   dplyr::left_join(colors_country, by = "name") |>
   echarts4r::e_charts() |>
-    echarts4r::e_title(text = paste0("Unicorns by Country")) |>
-    echarts4r::e_treemap(
-      leafDepth = 2,
-      itemStyle = list(
-        normal = list(
-          borderWidth = 0,
-          gapWidth = 2,
-          backgroundColor = "white"
-        )
-      ),
-      upperLabel = list(
-        normal = list(
-          show = TRUE,
-          height = 30,
-          formatter = "{b}",
-          color = "black",
-          fontSize = 12
-        )
+  echarts4r::e_title(text = "Unicorns by Country") |>
+  echarts4r::e_treemap(
+    leafDepth = 2,
+    itemStyle = list(normal = list(
+      borderWidth = 0,
+      gapWidth = 2,
+      backgroundColor = "white"
+    )),
+    upperLabel = list(
+      normal = list(
+        show = TRUE,
+        height = 30,
+        formatter = "{b}",
+        color = "black",
+        fontSize = 12
       )
-    ) |>
-    echarts4r::e_tooltip(
-      backgroundColor = "rgba(255,255,255,0.8)",
-      formatter = treemap_tooltip
     )
+  ) |>
+  echarts4r::e_tooltip(
+    backgroundColor = "rgba(255,255,255,0.8)",
+    formatter = treemap_tooltip
+  )
 ```
 
 ```{r}
@@ -148,68 +194,28 @@ unicorn_data |>
   dplyr::rename(name = Industry) |>
   dplyr::left_join(colors_industry, by = "name") |>
   echarts4r::e_charts() |>
-    echarts4r::e_title(text = paste0("Unicorns by Industry")) |>
-    echarts4r::e_treemap(
-      leafDepth = 2,
-      itemStyle = list(
-        normal = list(
-          borderWidth = 0,
-          gapWidth = 2,
-          backgroundColor = "white"
-        )
-      ),
-      upperLabel = list(
-        normal = list(
-          show = TRUE,
-          height = 30,
-          formatter = "{b}",
-          color = "black",
-          fontSize = 12
-        )
+  echarts4r::e_title(text = "Unicorns by Industry") |>
+  echarts4r::e_treemap(
+    leafDepth = 2,
+    itemStyle = list(normal = list(
+      borderWidth = 0,
+      gapWidth = 2,
+      backgroundColor = "white"
+    )),
+    upperLabel = list(
+      normal = list(
+        show = TRUE,
+        height = 30,
+        formatter = "{b}",
+        color = "black",
+        fontSize = 12
       )
-    ) |>
-    echarts4r::e_tooltip(
-      backgroundColor = "rgba(255,255,255,0.8)",
-      formatter = treemap_tooltip
     )
-```
-
-## Unicorn companies in Brazil (my country)
-
-```{r}
-unicorn_data |>
-  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
-  dplyr::filter(Country == "Brazil") |>
-  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |>
-  tidyr::nest(children = c("name", "value")) |>
-  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
-  dplyr::rename(name = Country) |>
-  dplyr::left_join(colors_country, by = "name") |>
-  echarts4r::e_charts() |>
-    echarts4r::e_title(text = paste0("Unicorns in Brazil")) |>
-    echarts4r::e_treemap(
-      leafDepth = 2,
-      itemStyle = list(
-        normal = list(
-          borderWidth = 0,
-          gapWidth = 2,
-          backgroundColor = "white"
-        )
-      ),
-      upperLabel = list(
-        normal = list(
-          show = TRUE,
-          height = 30,
-          formatter = "{b}",
-          color = "black",
-          fontSize = 12
-        )
-      )
-    ) |>
-    echarts4r::e_tooltip(
-      backgroundColor = "rgba(255,255,255,0.8)",
-      formatter = treemap_tooltip
-    )
+  ) |>
+  echarts4r::e_tooltip(
+    backgroundColor = "rgba(255,255,255,0.8)",
+    formatter = treemap_tooltip
+  )
 ```
 
 ## Exploring all Unicorn companies with *treemaps*
@@ -275,5 +281,44 @@ htmltools::div(
 )
 
 
+```
+
+
+## Unicorn companies in Brazil (my country)
+
+```{r}
+unicorn_data |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+  dplyr::filter(Country == "Brazil") |>
+  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |>
+  tidyr::nest(children = c("name", "value")) |>
+  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
+  dplyr::rename(name = Country) |>
+  dplyr::left_join(colors_country, by = "name") |>
+  echarts4r::e_charts() |>
+    echarts4r::e_title(text = "Unicorns in Brazil") |>
+    echarts4r::e_treemap(
+      leafDepth = 2,
+      itemStyle = list(
+        normal = list(
+          borderWidth = 0,
+          gapWidth = 2,
+          backgroundColor = "white"
+        )
+      ),
+      upperLabel = list(
+        normal = list(
+          show = TRUE,
+          height = 30,
+          formatter = "{b}",
+          color = "black",
+          fontSize = 12
+        )
+      )
+    ) |>
+    echarts4r::e_tooltip(
+      backgroundColor = "rgba(255,255,255,0.8)",
+      formatter = treemap_tooltip
+    )
 ```
 
