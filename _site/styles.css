@@ -1,1 +1,9 @@
 /* css styles */
+pre code {
+    background-color: transparent;
+    font-size: small;
+}
+
+summary {
+    font-size: smaller;
+}

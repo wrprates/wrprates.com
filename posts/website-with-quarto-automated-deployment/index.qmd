@@ -129,4 +129,4 @@ After merging with `main`, check if the files in your Host were updated. If yes,
 
 I am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.
 
-Did you like this post? Let your comments below and share your experience if you try to set up a website as I described here.
+Did you like this post? Leave your comments below and share your experience if you try to set up a website as I described here.

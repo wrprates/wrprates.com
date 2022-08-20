@@ -1,0 +1,370 @@
+---
+title: "Analyzing Unicorn Companies with treemaps in R"
+author: "Wlademir Ribeiro Prates"
+date: "2022-08-20"
+categories: [Reporting]
+---
+
+Have you already heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.
+
+A **Unicorn** company is usually defined as **a private startup valued at over U$ 1 billion**. 
+
+The full and updated list of Unicorn companies in the world used on this analysis can be found [here](https://www.cbinsights.com/research-unicorn-companies), at the CBInsights website.
+
+**What will you see in this blog post?**
+
+- The countries and industries with the most valuable Unicorn companies.
+- Treemaps that will allow you to explore all the Unicorn companies, split into quartiles.
+- A treemap showing the Unicorn companies in Brazil (my country) :)
+
+**What technical skills will you find here?**
+
+- How to deal with data analysis in a real world, using R language.
+- Properly transform the data before plotting it.
+- Use some good practices of data visualization.
+
+In this kind of blog post, I won't write any interpretations about the charts and tables, because I want to be able to update the data in the future without needing to replace text paragraphs. So, the idea is to keep the charts as self-explanatory as possible.
+
+## Reading data: Unicorn companies list
+
+First, we need to load the used packages and read the data. Below I am showing the first rows of the raw data and doing some data manipulations.
+
+In this very beginning of the post some settings are already created, like the colors palette for Countries and Industries, to use in the whole document.
+
+The next chunk of code is responsible to load the packages, read the data and create some useful variables, like valuation `Quartiles`, `Number of Investors` and `Years as Unicorn`.
+
+```{r}
+#| warning: false
+#| message: false
+
+# Loading packages
+library(dplyr)
+library(echarts4r)
+library(lubridate)
+library(MetBrewer)
+library(reactable)
+library(readxl)
+
+# Reading the Excel file
+unicorn_data <- readxl::read_excel("unicorn_companies.xlsx", skip = 2) |>
+  dplyr::arrange(dplyr::desc("Valuation ($B)")) |>
+  dplyr::mutate(
+    `Years as Unicorn` = round(
+      (lubridate::interval(`Date Joined`, lubridate::today()) %/% months(1)) / 12,
+      digits = 2
+    ),
+    `Number of Investors` = stringr::str_count(`Select Investors`, ',') + 1,
+    `Industry` = as.factor(`Industry`),
+    Quartiles = dplyr::case_when(
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.25, na.rm = TRUE) ~ 'Q4',
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.5, na.rm = TRUE) ~ 'Q3',
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.75, na.rm = TRUE) ~ 'Q2',
+      `Valuation ($B)` <= quantile(`Valuation ($B)`, 1, na.rm = TRUE) ~ 'Q1'
+    )
+  )
+```
+
+## Valuation by Country and Industry
+
+After reading the data I have created two charts to briefly show the summarized data by Country and by Industry.
+
+In this part I also create the color palettes that will be used in other charts as well.
+
+Here comes a nice tip: the usage of the R package [`MetBrewer`](https://github.com/BlakeRMills/MetBrewer) to create very nice color palettes.
+
+```{r}
+create_color_palette <- function(vector, theme) {
+  dplyr::tibble(
+    name = vector,
+    itemStyle = dplyr::tibble(
+      color = as.character(MetBrewer::met.brewer(theme, length(vector)))
+    )
+  )
+}
+
+unicorn_data_by_country <- unicorn_data |>
+  dplyr::group_by(Country) |>
+  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+  head(15)
+
+colors_country <- create_color_palette(unicorn_data_by_country$Country, "Derain")
+
+unicorn_data_by_industry <- unicorn_data |>
+  dplyr::group_by(Industry) |>
+  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`))
+
+colors_industry <- create_color_palette(unicorn_data_by_industry$Industry, "Juarez")
+```
+
+Below we can see the sum of all the companies' Valuations for Industry and Country in a column chart. 
+
+```{r}
+unicorn_data_by_industry |>
+  dplyr::left_join(
+    colors_industry |> dplyr::rename(Industry = name, color = `itemStyle`),
+    by = "Industry"
+  ) |>
+  echarts4r::e_charts(`Valuation ($B)`) |>
+  echarts4r::e_legend(show = FALSE) |>
+  echarts4r::e_bar(Industry) |>
+  echarts4r::e_y_axis(type = "category") |>
+  echarts4r::e_grid(containLabel = TRUE) |>
+  echarts4r::e_tooltip() |>
+  echarts4r::e_add_nested('itemStyle', color) |>
+  echarts4r::e_title(text = "Unicorns by Industry", subtext = "Sum the valuation of all the Industries")
+```
+
+
+```{r}
+unicorn_data_by_country |>
+  dplyr::left_join(
+    colors_country |> dplyr::rename(Country = name, color = `itemStyle`),
+    by = "Country"
+  ) |> 
+  echarts4r::e_charts(`Valuation ($B)`) |>
+  echarts4r::e_legend(show = FALSE) |>
+  echarts4r::e_bar(Country) |>
+  echarts4r::e_y_axis(type = "category") |>
+  echarts4r::e_grid(containLabel = TRUE) |>
+  echarts4r::e_tooltip() |>
+  echarts4r::e_add_nested('itemStyle', color) |>
+  echarts4r::e_title(text = "Unicorns by Country", subtext = "Sum the valuation of the 15 first countries") 
+```
+
+## Exploring the top 50 Unicorn companies
+
+In the following interactive table we can navigate into the first 50 Unicorn companies.
+
+I won't show all the table here, because if you want to have access tothe complete dataset, please check the [CBInsights](https://www.cbinsights.com/research-unicorn-companies) website.
+
+In the table it is possible to sort the data by column and also search.
+
+```{r}
+interactive_table_data <- unicorn_data |>
+  dplyr::select(-c("Date Joined", "Number of Investors", "Quartiles")) |>
+  dplyr::mutate(`Years as Unicorn` = floor(`Years as Unicorn`)) |>
+  head(50)
+
+# Creating an interactive table
+reactable::reactable(
+  interactive_table_data,
+  columns = list(
+    `Select Investors` = colDef(minWidth = 180),
+    Country = colDef(html = TRUE)
+  ),
+  style = list(fontSize = "0.70rem"),
+  defaultPageSize = 5,
+  searchable = TRUE,
+  striped = TRUE,
+  resizable = TRUE
+)
+```
+
+
+
+```{r}
+treemap_tooltip <- htmlwidgets::JS(
+      "function(info){
+        var treePathInfo = info.treePathInfo;
+        var treePath = [];
+        for (var i = 1; i < treePathInfo.length; i++) {
+          treePath.push(treePathInfo[i].name);
+        }
+      return(
+        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '</strong>' + '<br>' +
+        'Valuation ($B): <i>' + info.value + '</i><br>'
+      )}"
+      )
+
+unicorn_data |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+  head(50) |>
+  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |>
+  tidyr::nest(children = c("name", "value")) |>
+  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
+  dplyr::rename(name = Country) |>
+  dplyr::left_join(colors_country, by = "name") |>
+  echarts4r::e_charts() |>
+  echarts4r::e_title(text = "Unicorns by Country") |>
+  echarts4r::e_treemap(
+    leafDepth = 2,
+    itemStyle = list(normal = list(
+      borderWidth = 0,
+      gapWidth = 2,
+      backgroundColor = "white"
+    )),
+    upperLabel = list(
+      normal = list(
+        show = TRUE,
+        height = 30,
+        formatter = "{b}",
+        color = "black",
+        fontSize = 12
+      )
+    )
+  ) |>
+  echarts4r::e_tooltip(
+    backgroundColor = "rgba(255,255,255,0.8)",
+    formatter = treemap_tooltip
+  )
+```
+
+```{r}
+unicorn_data |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+  head(50) |>
+  dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |>
+  tidyr::nest(children = c("name", "value")) |>
+  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
+  dplyr::rename(name = Industry) |>
+  dplyr::left_join(colors_industry, by = "name") |>
+  echarts4r::e_charts() |>
+  echarts4r::e_title(text = "Unicorns by Industry") |>
+  echarts4r::e_treemap(
+    leafDepth = 2,
+    itemStyle = list(normal = list(
+      borderWidth = 0,
+      gapWidth = 2,
+      backgroundColor = "white"
+    )),
+    upperLabel = list(
+      normal = list(
+        show = TRUE,
+        height = 30,
+        formatter = "{b}",
+        color = "black",
+        fontSize = 12
+      )
+    )
+  ) |>
+  echarts4r::e_tooltip(
+    backgroundColor = "rgba(255,255,255,0.8)",
+    formatter = treemap_tooltip
+  )
+```
+
+## Exploring all Unicorn companies with *treemaps*
+
+This section will show treemaps that allow the user to explore all the Unicorn companies in the dataset. For that, I created a function for the treemap(next chunk of code) and I also decided to plot them by quartiles of valuation, to facilitate the navigation.
+
+```{r}
+tree_map_chart <- function(data, quartile, colors_df, tooltip = treemap_tooltip) {
+  filtered_data <- data |> dplyr::filter(Quartiles == quartile) 
+
+  treemap_data <- filtered_data |>
+    dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+    dplyr::filter(Quartiles == quartile) |>
+    dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |>
+    tidyr::nest(children = c("name", "value")) |>
+    dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
+    dplyr::rename(name = Industry) |>
+    dplyr::left_join(colors_df, by = "name")
+
+  min_valuation <- min(filtered_data$`Valuation ($B)`)
+  max_valuation <- max(filtered_data$`Valuation ($B)`)
+
+  treemap_data |>
+    echarts4r::e_charts() |>
+    echarts4r::e_title(
+      text = paste0("Unicorns by Industry - from $",  min_valuation, "B to $", max_valuation, "B", "(", quartile,")")
+    ) |>
+    echarts4r::e_treemap(
+      leafDepth = 1,
+      itemStyle = list(
+        normal = list(
+          borderWidth = 0,
+          gapWidth = 2,
+          backgroundColor = "white"
+        )
+      ),
+      upperLabel = list(
+        normal = list(
+          show = FALSE,
+          height = 30,
+          formatter = "{b}",
+          color = "black",
+          fontSize = 12
+        )
+      )
+    ) |>
+    echarts4r::e_tooltip(
+      backgroundColor = "rgba(255,255,255,0.8)",
+      formatter = treemap_tooltip
+    )
+}
+
+```
+
+Below we can see treemaps created in R, with the `echarts4r` library, with data split into quartiles.
+
+How to navigate in those treemaps?
+
+- Click on the desired Industry and see all the companies for that category.
+- Check the grey bar below the treemap, and click in the first grey square to go back to the initial view of the treemap.
+
+```{r}
+htmltools::div(
+  tree_map_chart(data = unicorn_data, quartile = "Q1", colors_df = colors_industry),
+  htmltools::br(),
+  tree_map_chart(data = unicorn_data, quartile = "Q2", colors_df = colors_industry),
+  htmltools::br(),
+  tree_map_chart(data = unicorn_data, quartile = "Q3", colors_df = colors_industry),
+  htmltools::br(),
+  tree_map_chart(data = unicorn_data, quartile = "Q4", colors_df = colors_industry),
+)
+
+
+```
+
+
+## Unicorn companies in Brazil (my country)
+
+```{r}
+unicorn_data |>
+  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
+  dplyr::filter(Country == "Brazil") |>
+  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |>
+  tidyr::nest(children = c("name", "value")) |>
+  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
+  dplyr::rename(name = Country) |>
+  dplyr::left_join(colors_country, by = "name") |>
+  echarts4r::e_charts() |>
+    echarts4r::e_title(text = "Unicorns in Brazil") |>
+    echarts4r::e_treemap(
+      leafDepth = 2,
+      itemStyle = list(
+        normal = list(
+          borderWidth = 0,
+          gapWidth = 2,
+          backgroundColor = "white"
+        )
+      ),
+      upperLabel = list(
+        normal = list(
+          show = TRUE,
+          height = 30,
+          formatter = "{b}",
+          color = "black",
+          fontSize = 12
+        )
+      )
+    ) |>
+    echarts4r::e_tooltip(
+      backgroundColor = "rgba(255,255,255,0.8)",
+      formatter = treemap_tooltip
+    )
+```
+
+## Final comments
+
+This post showed a brief example of generating an interactive report based on Data Analysis. This post shows how we can facilitate the understanding of a data set by plotting charts in an objective way.
+
+Below are some points I'd like to highlight about the technical side from this blog post:
+
+- When doing data analysis, try to **keep the same colors for categorical variables in the whole study**. It is basic, but requires some extra work, like creating a palette color and setting the desired colors usually as a column in the dataset. But this is a very important step to allow the user to quickly reach some conclusions from the data.
+
+- Treemaps are very nice, but sometimes they are not clear about the size of some categories. So, other charts, like the column charts we used here, can help in understanding better the behavior of some categories.
+
+I hope you enjoyed this content. Please leave your comments below. If you want to see the updated version of this analysis, please also leave a comment.
