@@ -162,89 +162,6 @@ reactable::reactable(
 )
 ```
 
-
-
-```{r}
-treemap_tooltip <- htmlwidgets::JS(
-      "function(info){
-        var treePathInfo = info.treePathInfo;
-        var treePath = [];
-        for (var i = 1; i < treePathInfo.length; i++) {
-          treePath.push(treePathInfo[i].name);
-        }
-      return(
-        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '</strong>' + '<br>' +
-        'Valuation ($B): <i>' + info.value + '</i><br>'
-      )}"
-      )
-
-unicorn_data |>
-  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
-  head(50) |>
-  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |>
-  tidyr::nest(children = c("name", "value")) |>
-  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
-  dplyr::rename(name = Country) |>
-  dplyr::left_join(colors_country, by = "name") |>
-  echarts4r::e_charts() |>
-  echarts4r::e_title(text = "Unicorns by Country") |>
-  echarts4r::e_treemap(
-    leafDepth = 2,
-    itemStyle = list(normal = list(
-      borderWidth = 0,
-      gapWidth = 2,
-      backgroundColor = "white"
-    )),
-    upperLabel = list(
-      normal = list(
-        show = TRUE,
-        height = 30,
-        formatter = "{b}",
-        color = "black",
-        fontSize = 12
-      )
-    )
-  ) |>
-  echarts4r::e_tooltip(
-    backgroundColor = "rgba(255,255,255,0.8)",
-    formatter = treemap_tooltip
-  )
-```
-
-```{r}
-unicorn_data |>
-  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
-  head(50) |>
-  dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |>
-  tidyr::nest(children = c("name", "value")) |>
-  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>
-  dplyr::rename(name = Industry) |>
-  dplyr::left_join(colors_industry, by = "name") |>
-  echarts4r::e_charts() |>
-  echarts4r::e_title(text = "Unicorns by Industry") |>
-  echarts4r::e_treemap(
-    leafDepth = 2,
-    itemStyle = list(normal = list(
-      borderWidth = 0,
-      gapWidth = 2,
-      backgroundColor = "white"
-    )),
-    upperLabel = list(
-      normal = list(
-        show = TRUE,
-        height = 30,
-        formatter = "{b}",
-        color = "black",
-        fontSize = 12
-      )
-    )
-  ) |>
-  echarts4r::e_tooltip(
-    backgroundColor = "rgba(255,255,255,0.8)",
-    formatter = treemap_tooltip
-  )
-```
-
 ## Exploring all Unicorn companies with *treemaps*
 
 This section will show treemaps that allow the user to explore all the Unicorn companies in the dataset. For that, I created a function for the treemap(next chunk of code) and I also decided to plot them by quartiles of valuation, to facilitate the navigation.
@@ -295,6 +212,18 @@ tree_map_chart <- function(data, quartile, colors_df, tooltip = treemap_tooltip)
     )
 }
 
+treemap_tooltip <- htmlwidgets::JS(
+      "function(info){
+        var treePathInfo = info.treePathInfo;
+        var treePath = [];
+        for (var i = 1; i < treePathInfo.length; i++) {
+          treePath.push(treePathInfo[i].name);
+        }
+      return(
+        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '</strong>' + '<br>' +
+        'Valuation ($B): <i>' + info.value + '</i><br>'
+      )}"
+)
 ```
 
 Below we can see treemaps created in R, with the `echarts4r` library, with data split into quartiles.
