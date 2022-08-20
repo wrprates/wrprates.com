@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/unicorn-companies-treemaps-in-r/index.html",
       "/posts/website-with-quarto-automated-deployment/index.html"
     ]
   }
