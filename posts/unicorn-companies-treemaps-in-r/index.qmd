@@ -3,13 +3,16 @@ title: "Analyzing Unicorn Companies with treemaps in R"
 author: "Wlademir Ribeiro Prates"
 date: "2022-08-20"
 categories: [Reporting]
+image: preview.png
 ---
 
-Have you already heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.
+Have you ever heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.
 
 A **Unicorn** company is usually defined as **a private startup valued at over U$ 1 billion**. 
 
 The full and updated list of Unicorn companies in the world used on this analysis can be found [here](https://www.cbinsights.com/research-unicorn-companies), at the CBInsights website.
+
+**Note**: the data for this post was downloaded on 1st October 2022.
 
 **What will you see in this blog post?**
 
@@ -217,7 +220,7 @@ unicorn_data |>
   )
 ```
 
-```{r}
+```{r, fig.fullwidth = TRUE}
 unicorn_data |>
   dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>
   head(50) |>

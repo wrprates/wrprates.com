@@ -2,6 +2,8 @@ project:
   type: website
 website:
   title: "wrprates.com"
+  site-url: https://wrprates.com/
+  favicon: favicon.png
   search: 
     location: navbar
     type: overlay
@@ -13,6 +15,8 @@ website:
         href: https://github.com/wrprates/
       - icon: linkedin
         href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
+      - icon: youtube
+        href: https://www.youtube.com/channel/UC6rS3fNDO19l0us3HEaqpAQ
   google-analytics: "G-JEQZHY19QW"
   cookie-consent: true
 format:
