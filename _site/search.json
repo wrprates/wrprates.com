@@ -1,10 +1,45 @@
 [
   {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html",
+    "href": "posts/website-with-quarto-automated-deployment/index.html",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "",
+    "text": "Anyone who works with data analysis and wants to share content faces some limitations from the traditional tools to build a website. One of the main reasons is the difficulty of sharing the results of chunks of code without needing to copy and paste images.\nFor example, suppose you are a data scientist and use Python or R to build interactive charts and tables in your work. In that case, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.\nThere are already many available solutions that facilitate this job. But here I want to draw attention to Quarto."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto is a great reporting tool, which is supported by RStudio. Its own definition is:\n\nQuarto is an open-source scientific and technical publishing system built on Pandoc.\n\nIn Quarto, you can “create dynamic content with Python, R, Julia, and Observable”.\nIn other words, with Quarto, it is possible to create reports using the same syntax used to build RMarkdown documents, but in Quarto there are more possibilities when compared with RMarkdown.\nOne of the biggest Quarto advantages is that it is a multi-language platform. Besides that, RStudio announces that Quarto is the “next generation version of R Markdown”."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "Basic workflow for a Quarto website with automated deployment",
+    "text": "Basic workflow for a Quarto website with automated deployment\nAfter taking a look to Quarto documentation and watching a video (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose.\nSo, the workflow I built using Quarto had as a result this website (check the Github repo), and works like described below:\n\nWrite a post or build a static page (locally).\nRender the website (locally).\nPush it to Git.\nAfter a merge in certain branch, automate the deployment process (upload the files via FTP)."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "Steps to create an automated Quarto website",
+    "text": "Steps to create an automated Quarto website\nQuarto documentation is great. Basically, all you need to know how to create a website with Quarto is to read this session in their website.\nBelow I am sharing the main commands that you will need, and also the needed information to set up the automated deployment.\n\nStep 1. Download and install Quarto\nIf you don’t have Quarto installed yet you can follow the steps here.\n\n\nStep 2. Build a Quarto website or blog\nAfter having installed Quarto, it is needed to run on terminal the following code to create a Quarto website:\nquarto create-project mysite --type website\nIf your website will be a blog, so you may prefer to use the following code:\nquarto create-project myblog --type website:blog\nThis code will create a basic folder structure with the main files needed to start customizing your website.\n\n\nStep 3. Create a repo on Github\nTo be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need to create a Github repository for the project.\nIn this post I expect the reader to have at least minimum experience with Git (create repositories, understand how branches work, git push, git pull.)\n\n\nStep 4. Set up Github Actions\nWe will need to go to the Github Actions Marketplace and look for “FTP Deploy”, or just click here.\nIn fact, to use this Action we will just need to copy and paste the .yml file as it is in the example from the Action’s page.\nInside your project, the .yml file needs to be located in the path .github/workflows/main.yml\nHowever, I did some changes, mostly based on this great video about this topic, but it is in Portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.\non:\n  push:\n    branches:\n      - main\nname: 🚀 Deploy website on push\njobs:\n  web-deploy:\n    name: 🎉 Deploy\n    runs-on: ubuntu-latest\n    steps:\n    - name: 🚚 Get latest code\n      uses: actions/checkout@v2\n    \n    - name: 📂 Sync files\n      uses: SamKirkland/FTP-Deploy-Action@4.3.0\n      with:\n        server: ${{ secrets.ftp_host }}\n        username: ${{ secrets.ftp_user }}\n        password: ${{ secrets.ftp_password }}\n        local-dir: ./_site/\n        server-dir: ${{ secrets.server_dir }}\nBasically what these commands are doing is updating the files in the website Host after any push on main branch of the project.\n\nDetails about Github Secrets\nHere we are also using Github Secrets for the Host information.\nGithub Secrets will allow us to add private information, like passwords and usernames, without worrying about security.\nThey’ll be securely saved on your Github account and you will call the variable that contains the “secrets” in your code. So this sensitive information doesn’t need to be hard coded.\nCheck out the screenshot below to see what Github Secrets looks like. You need to record them as they are being called (e.g. ftp_host for secrets.ftp_user). Register the secrets with small letters and don’t worry if they appear with capital letters (see screenshot).\n\n\n\nUsing Github Secrets\n\n\nSome general comments:\n\nThe only needed information here is ftp_host, ftp_user and ftp_password. They are the same that you use for other commom FTP services.\nI added local-dir because of Quarto files structure.\nI used server-dir to specify the folder where the website will be (e.g. public_html)."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "Final comments",
+    "text": "Final comments\nAfter all the steps above you are ready to git push your changes and submit a Pull Request to merge your local branch with the main branch (if you created a separated branch, which is highly recommended!).\nAfter merging with main, check if the files in your Host were updated. If yes, check if your website is now running on the internet.\nI am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.\nDid you like this post? Leave your comments below and share your experience if you try to set up a website as I described here."
+  },
+  {
     "objectID": "posts/unicorn-companies-treemaps-in-r/index.html",
     "href": "posts/unicorn-companies-treemaps-in-r/index.html",
     "title": "Analyzing Unicorn Companies with treemaps in R",
     "section": "",
-    "text": "Have you already heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.\nA Unicorn company is usually defined as a private startup valued at over U$ 1 billion.\nThe full and updated list of Unicorn companies in the world used on this analysis can be found here, at the CBInsights website.\nWhat will you see in this blog post?\nWhat technical skills will you find here?\nIn this kind of blog post, I won’t write any interpretations about the charts and tables, because I want to be able to update the data in the future without needing to replace text paragraphs. So, the idea is to keep the charts as self-explanatory as possible."
+    "text": "Have you ever heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.\nA Unicorn company is usually defined as a private startup valued at over U$ 1 billion.\nThe full and updated list of Unicorn companies in the world used on this analysis can be found here, at the CBInsights website.\nNote: the data for this post was downloaded on 1st October 2022.\nWhat will you see in this blog post?\nWhat technical skills will you find here?\nIn this kind of blog post, I won’t write any interpretations about the charts and tables, because I want to be able to update the data in the future without needing to replace text paragraphs. So, the idea is to keep the charts as self-explanatory as possible."
   },
   {
     "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#reading-data-unicorn-companies-list",
@@ -49,39 +84,11 @@
     "text": "Final comments\nThis post showed a brief example of generating an interactive report based on Data Analysis. This post shows how we can facilitate the understanding of a data set by plotting charts in an objective way.\nBelow are some points I’d like to highlight about the technical side from this blog post:\n\nWhen doing data analysis, try to keep the same colors for categorical variables in the whole study. It is basic, but requires some extra work, like creating a palette color and setting the desired colors usually as a column in the dataset. But this is a very important step to allow the user to quickly reach some conclusions from the data.\nTreemaps are very nice, but sometimes they are not clear about the size of some categories. So, other charts, like the column charts we used here, can help in understanding better the behavior of some categories.\n\nI hope you enjoyed this content. Please leave your comments below. If you want to see the updated version of this analysis, please also leave a comment."
   },
   {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html",
-    "href": "posts/website-with-quarto-automated-deployment/index.html",
-    "title": "Set up a website with Quarto and automate deployment",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
     "section": "",
-    "text": "Anyone who works with data analysis and wants to share content faces some limitations from the traditional tools to build a website. One of the main reasons is the difficulty of sharing the results of chunks of code without needing to copy and paste images.\nFor example, suppose you are a data scientist and use Python or R to build interactive charts and tables in your work. In that case, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.\nThere are already many available solutions that facilitate this job. But here I want to draw attention to Quarto."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto is a great reporting tool, which is supported by RStudio. Its own definition is:\n\nQuarto is an open-source scientific and technical publishing system built on Pandoc.\n\nIn Quarto, you can “create dynamic content with Python, R, Julia, and Observable”.\nIn other words, with Quarto, it is possible to create reports using the same syntax used to build RMarkdown documents, but in Quarto there are more possibilities when compared with RMarkdown.\nOne of the biggest Quarto advantages is that it is a multi-language platform. Besides that, RStudio announces that Quarto is the “next generation version of R Markdown”."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "Basic workflow for a Quarto website with automated deployment",
-    "text": "Basic workflow for a Quarto website with automated deployment\nAfter taking a look to Quarto documentation and watching a video (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose.\nSo, the workflow I built using Quarto had as a result this website (check the Github repo), and works like described below:\n\nWrite a post or build a static page (locally).\nRender the website (locally).\nPush it to Git.\nAfter a merge in certain branch, automate the deployment process (upload the files via FTP)."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "Steps to create an automated Quarto website",
-    "text": "Steps to create an automated Quarto website\nQuarto documentation is great. Basically, all you need to know how to create a website with Quarto is to read this session in their website.\nBelow I am sharing the main commands that you will need, and also the needed information to set up the automated deployment.\n\nStep 1. Download and install Quarto\nIf you don’t have Quarto installed yet you can follow the steps here.\n\n\nStep 2. Build a Quarto website or blog\nAfter having installed Quarto, it is needed to run on terminal the following code to create a Quarto website:\nquarto create-project mysite --type website\nIf your website will be a blog, so you may prefer to use the following code:\nquarto create-project myblog --type website:blog\nThis code will create a basic folder structure with the main files needed to start customizing your website.\n\n\nStep 3. Create a repo on Github\nTo be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need to create a Github repository for the project.\nIn this post I expect the reader to have at least minimum experience with Git (create repositories, understand how branches work, git push, git pull.)\n\n\nStep 4. Set up Github Actions\nWe will need to go to the Github Actions Marketplace and look for “FTP Deploy”, or just click here.\nIn fact, to use this Action we will just need to copy and paste the .yml file as it is in the example from the Action’s page.\nInside your project, the .yml file needs to be located in the path .github/workflows/main.yml\nHowever, I did some changes, mostly based on this great video about this topic, but it is in Portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.\non:\n  push:\n    branches:\n      - main\nname: 🚀 Deploy website on push\njobs:\n  web-deploy:\n    name: 🎉 Deploy\n    runs-on: ubuntu-latest\n    steps:\n    - name: 🚚 Get latest code\n      uses: actions/checkout@v2\n    \n    - name: 📂 Sync files\n      uses: SamKirkland/FTP-Deploy-Action@4.3.0\n      with:\n        server: ${{ secrets.ftp_host }}\n        username: ${{ secrets.ftp_user }}\n        password: ${{ secrets.ftp_password }}\n        local-dir: ./_site/\n        server-dir: ${{ secrets.server_dir }}\nBasically what these commands are doing is updating the files in the website Host after any push on main branch of the project.\n\nDetails about Github Secrets\nHere we are also using Github Secrets for the Host information.\nGithub Secrets will allow us to add private information, like passwords and usernames, without worrying about security.\nThey’ll be securely saved on your Github account and you will call the variable that contains the “secrets” in your code. So this sensitive information doesn’t need to be hard coded.\nCheck out the screenshot below to see what Github Secrets looks like. You need to record them as they are being called (e.g. ftp_host for secrets.ftp_user). Register the secrets with small letters and don’t worry if they appear with capital letters (see screenshot).\n\n\n\nUsing Github Secrets\n\n\nSome general comments:\n\nThe only needed information here is ftp_host, ftp_user and ftp_password. They are the same that you use for other commom FTP services.\nI added local-dir because of Quarto files structure.\nI used server-dir to specify the folder where the website will be (e.g. public_html)."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "Final comments",
-    "text": "Final comments\nAfter all the steps above you are ready to git push your changes and submit a Pull Request to merge your local branch with the main branch (if you created a separated branch, which is highly recommended!).\nAfter merging with main, check if the files in your Host were updated. If yes, check if your website is now running on the internet.\nI am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.\nDid you like this post? Leave your comments below and share your experience if you try to set up a website as I described here."
+    "text": "Reporting\n\n\n\n\n\n\n\n\n\n\n\nAug 20, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -96,12 +103,5 @@
     "title": "About",
     "section": "Education",
     "text": "Education\n\n2012-2016 - PhD in Finance (UFSC)\n2010-2012 - Master’s in Finance (UFSC)\n2006-2009 - Undergraduate in Business Administration (Anhanguera)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Reporting\n\n\n\n\n\n\n\n\n\n\n\nAug 20, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
   }
 ]
