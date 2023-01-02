@@ -1,13 +1,13 @@
 project:
   type: website
 website:
-  title: "wrprates.com"
   site-url: https://wrprates.com/
   favicon: favicon.png
   search: 
     location: navbar
     type: overlay
   navbar:
+    logo: logo.png
     right:
       - href: about.qmd
         text: About
@@ -22,7 +22,7 @@ website:
 format:
   html:
     include-after-body: disqus.html
-    theme: litera
+    theme: flatly
     css: styles.css
     toc: true
     code-fold: true

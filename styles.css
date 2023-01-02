@@ -7,3 +7,7 @@ pre code {
 summary {
     font-size: smaller;
 }
+
+.navbar-logo {
+    max-height: 45px;
+}
