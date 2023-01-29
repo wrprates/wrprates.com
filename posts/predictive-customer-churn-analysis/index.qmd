@@ -1,0 +1,11 @@
+---
+title: "Predictive Customer Churn Analysis"
+author: "Wlademir Ribeiro Prates"
+date: "2023-02-01"
+categories: [Reporting]
+image: preview.png
+---
+
+Have you ever heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.
+
+
