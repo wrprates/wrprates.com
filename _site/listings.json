@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/predictive-customer-churn-analysis/index.html",
       "/posts/unicorn-companies-treemaps-in-r/index.html",
       "/posts/website-with-quarto-automated-deployment/index.html"
     ]

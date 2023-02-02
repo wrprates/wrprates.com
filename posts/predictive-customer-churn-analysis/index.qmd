@@ -6,6 +6,43 @@ categories: [Reporting]
 image: preview.png
 ---
 
-Have you ever heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.
+```{r, echo=FALSE}
+library(dplyr)
+library(readr)
+library(h2o)
 
+# Preparing objects
+data <- list()
+vars <- list()
+
+# Reading the data
+data$raw <- readr::read_csv(
+  "https://raw.githubusercontent.com/wrprates/open-data/master/telco_customer_churn.csv"
+) |>
+  dplyr::mutate(Churn = as.factor(Churn))
+
+# Defining variables
+vars$y <- "Churn"
+vars$discard <- "customerID"
+vars$x <- setdiff(names(data$raw), c(vars$y, vars$discard))
+
+# Setup h2o
+h2o.init()
+data$h2o <- as.h2o(data$raw)
+data$splits <- h2o.splitFrame(data$h2o, ratios = 0.7)
+
+# Running the model
+model <- h2o.randomForest(x = vars$x, y = vars$y, training_frame = data$splits[[1]])
+preds <- h2o.predict(model, data$splits[[2]])
+h2o.performance(model, data$splits[[2]])
+
+
+```
+
+
+## The dataset
+
+```{r}
+
+```
 
