@@ -11,3 +11,8 @@ summary {
 .navbar-logo {
     max-height: 45px;
 }
+
+/* ReactTables */
+.ReactTable {
+    font-size: 0.7em; 
+}
