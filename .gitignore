@@ -5,3 +5,4 @@
 .RData
 .Ruserdata
 *.xlsx
+.DS_Store
