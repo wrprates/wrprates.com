@@ -112,6 +112,13 @@
     "text": "Customers to be prioritized with actions\nIn this section we are scoring the customers based on the risk of leaving the company. The results are shown in a chart that displays the probability of churn split into deciles.\nThe chart is a stacked column that compares the percentage of customers who churned versus those who did not. Additionally, a line represents the cumulative percentage of customers who churned. The main insights are as follows:\n\nThe first decile, which represents the customers with the highest risk of churn, has a churn rate of 74%, significantly higher than the overall churn rate of 26.54%.\nFrom deciles 1 to 4, the churn rates are higher than the overall churn rate.\nDecile 4 and below it include 78% of all customers who churned.\n\nThese insights highlight the importance of proactively targeting customers in the highest risk deciles to minimize churn.\n\n\nCode\nml$charts$risk_groups_churn"
   },
   {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#financial-implications-of-customer-churn",
+    "href": "posts/predictive-customer-churn-analysis/index.html#financial-implications-of-customer-churn",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Financial Implications of Customer Churn",
+    "text": "Financial Implications of Customer Churn\nIn this section, we present a chart that showcases the distribution of monthly charges among different deciles of customers.\nThe chart presented here is similar to the previous one, but instead of percentages, each stacked column now represents the sum of monthly charges for each decile.\nThis analysis shows that the first decile contains the highest sum of monthly charges, which highlights an important insight:\n\nthe most critical customers in terms of risk to churn, are also the ones generating the most revenue for the company.\n\nThis information can help the company prioritize its retention efforts and target its high-value customers effectively.\n\n\nCode\nml$charts$charge_for_risk_groups"
+  },
+  {
     "objectID": "posts/predictive-customer-churn-analysis/index.html#data-with-predictive-results",
     "href": "posts/predictive-customer-churn-analysis/index.html#data-with-predictive-results",
     "title": "Predictive Customer Churn Analysis",
@@ -119,18 +126,32 @@
     "text": "Data with Predictive Results\nThis section presents a table containing test data with corresponding predictions. The table provides a clear comparison between actual customer churn and the model’s predictions.\nAdditionally, a download button is provided to export the data as an Excel spreadsheet, making it easy to analyze and share the results.\n\n\nCode\nml$data$predictions |>\n  reactable::reactable(\n    columns = list(\n      `Contract` = colDef(minWidth = 150),\n      `PaymentMethod` = colDef(minWidth = 150)\n    ),\n    highlight = TRUE,\n    striped = FALSE,\n    filterable = TRUE,\n    searchable = FALSE,\n    compact = TRUE,\n    borderless = TRUE,\n    defaultPageSize = 7\n  )\n\n\n\n\n\n\n\n\n\nCode\ndownloadthis::download_this(\n  ml$data$predictions,\n  button_label = \"Download predictions\",\n  output_name = \"customer_churn_prediction\",\n  output_extension = \".xlsx\",\n  button_type = \"default\"\n)\n\n\n\n Download predictions"
   },
   {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#technical-next-steps",
+    "href": "posts/predictive-customer-churn-analysis/index.html#technical-next-steps",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Technical Next Steps",
+    "text": "Technical Next Steps\nThe insights generated in this report provide a valuable starting point for churn analysis. However, there is still room for improvement. Here are a few areas to consider for future work:\n\nFeature selection process: Adding a feature selection process can help to determine which variables have the greatest impact on churn and should be prioritized in the model.\nDetailed variable impact analysis: Expanding the understanding of how individual variables impact churn can help to fine-tune the model and improve its accuracy.\nPeriodic model updates: Implementing a process to periodically update the model and generate new predictions every month can help to ensure that the insights generated are always up-to-date and relevant.\n\nOverall, these next steps can help to deepen the understanding of customer churn and drive more informed business decisions."
+  },
+  {
     "objectID": "posts/predictive-customer-churn-analysis/index.html#future-recommendations",
     "href": "posts/predictive-customer-churn-analysis/index.html#future-recommendations",
     "title": "Predictive Customer Churn Analysis",
     "section": "Future Recommendations",
-    "text": "Future Recommendations\nThis section outlines the action plans to be taken based on the insights from the predictive churn analysis.\n\nAction plan based on risk deciles: Identify customers who are at the highest risk of churning and prioritize them for targeted interventions.\nCustomer segmentation: Divide customers into different segments based on the factors that contribute to their churn risk. This will help in developing customized strategies for each segment.\nAddress key drivers: Focus on the key drivers of customer churn and implement measures to address them. This could be through improving the customer experience, enhancing product features, or providing more personalized support.\nMonitor and evaluate: Regularly monitor the effectiveness of the actions taken and evaluate their impact on customer churn. This will help in making informed decisions and continuously improving the strategies.\nContinuously improve: Continuously collect and analyze customer data to identify new drivers of churn and stay ahead of the competition. This will help in staying relevant and improving customer retention in the long run."
+    "text": "Future Recommendations\nThere are some action plans that can be taken based on the insights from the predictive churn analysis.\n\nAction plan based on risk deciles: Identify customers who are at the highest risk of churning and prioritize them for targeted interventions.\nCustomer segmentation: Divide customers into different segments based on the factors that contribute to their churn risk. This will help in developing customized strategies for each segment.\nAddress key drivers: Focus on the key drivers of customer churn and implement measures to address them. This could be through improving the customer experience, enhancing product features, or providing more personalized support.\nMonitor and evaluate: Regularly monitor the effectiveness of the actions taken and evaluate their impact on customer churn. This will help in making informed decisions and continuously improving the strategies."
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#conclusion",
+    "href": "posts/predictive-customer-churn-analysis/index.html#conclusion",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis study provides a comprehensive overview of churn analysis for the company, including a predictive model using gradient boosting, an assessment of variable importance, and a financial overview of the customers at risk of churning, as well as suggestions for next steps to further improve the insights generated."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Blog",
     "section": "",
-    "text": "Predictive Customer Churn Analysis\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2023\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\nAnalyzing Unicorn Companies with treemaps in R\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nAug 20, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\nSet up a website with Quarto and automate deployment\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
+    "text": "Predictive Customer Churn Analysis\n\n\n\n\n\n\n\nReporting\n\n\nData Science\n\n\nMachine Learning\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2023\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\nAnalyzing Unicorn Companies with treemaps in R\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nAug 20, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\nSet up a website with Quarto and automate deployment\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

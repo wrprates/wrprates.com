@@ -1,8 +1,8 @@
 ---
 title: "Predictive Customer Churn Analysis"
 author: "Wlademir Ribeiro Prates"
-date: "2023-02-01"
-categories: [Reporting]
+date: "2023-02-08"
+categories: [Reporting, Data Science, Machine Learning]
 image: preview.png
 ---
 
@@ -92,19 +92,18 @@ ml$charts$vars_importance <- highcharter::highchart() |>
     highcharter::hc_chart(type = "bar") |>
     highcharter::hc_xAxis(categories = ml$vars$importance$variable) |>
     highcharter::hc_yAxis(
-      title = list(text = "Percentual de Importância"), labels = list(format = "{value}%")
+      title = list(text = "Importance Percentage"), labels = list(format = "{value}%")
     ) |>
     highcharter::hc_chart(zoomType = "xy") |>
     highcharter:: hc_colors(colors[4]) |>
     highcharter:: hc_legend(enabled = FALSE) |>
     highcharter::hc_tooltip(
       formatter = JS(
-        "function(){return  'Importância (%): <b>' + Highcharts.numberFormat(this.y) + '%</b>';}"
+        "function(){return  'Importance (%): <b>' + Highcharts.numberFormat(this.y) + '%</b>';}"
       ),
       useHTML = FALSE
     ) |>
-    highcharter::hc_title(text = "Importância das Variáveis") |>
-    highcharter::hc_subtitle(text = "Base para <i>Feature Selection</i>") |>
+    highcharter::hc_title(text = "Variables Importance") |>
     highcharter::hc_size(width = NULL, height = 500)
 
 # Calculates active and canceled customers and cumulative canceled for each decile
@@ -128,7 +127,7 @@ ml$data$chrun_by_risk_groups <- ml$data$predictions |>
 ml$charts$risk_groups_churn <- ml$data$chrun_by_risk_groups |>
   highcharter::hchart(hcaes(x = RiskGroup, y = prop, group = Churn), type = "column") |>
   highcharter::hc_add_series(
-    name="% Acumulado de Cancelados (sensibilidade)",
+    name="Cumulative % of canceled customers (recall)",
     data = (ml$data$chrun_by_risk_groups %>% dplyr::filter(Churn == "Yes"))$cum_prop,
     type = "line",
     dashStyle = "DashDot",
@@ -140,8 +139,8 @@ ml$charts$risk_groups_churn <- ml$data$chrun_by_risk_groups |>
       formatter = JS("function () {if(this.y===0){return null;} return Math.round( this.y ) + '%'; }")
     )
   ) |>
-    highcharter::hc_yAxis(title = list(text = "Proporção (%)"), max = 100) |>
-    highcharter::hc_xAxis(title = list(text = "Decil de Score")) |>
+    highcharter::hc_yAxis(title = list(text = "Proportion (%)"), max = 100) |>
+    highcharter::hc_xAxis(title = list(text = "Risk Group")) |>
     highcharter::hc_colors(colors) |>
     highcharter::hc_plotOptions(column = list(
       stacking = "normal",
@@ -163,7 +162,30 @@ ml$charts$risk_groups_churn <- ml$data$chrun_by_risk_groups |>
         <span style='font-size: 16px;'>{series.name}:</span>
         <span style='font-size: 16px; font-weight: bold;'>{point.y}</span> <br/>"
     ) |>
-    highcharter::hc_title(text = "Prop. Cancelados e Ativos em Decis de Score") 
+    highcharter::hc_title(text = "Churn by Group Risk and cumulative canceled customers")
+
+# Chart with financial values for each decile
+ml$data$charge_for_risk_groups <- ml$data$predictions |>
+  dplyr::group_by(Churn, RiskGroup) |>
+  dplyr::summarise(SumMonthlyCharges = sum(MonthlyCharges, na.rm = TRUE), .groups = "drop")
+
+ml$charts$charge_for_risk_groups <- ml$data$charge_for_risk_groups |>
+  highcharter::hchart(hcaes(x = RiskGroup, y = SumMonthlyCharges, group = Churn), type = "column") |>
+  highcharter::hc_plotOptions(column = list(
+      stacking = "normal",
+      dataLabels = list(
+        enabled = TRUE,
+        color = "black",
+        style = list(fontSize = "17px"),
+        formatter = JS("function () {
+          if(this.y===0){return null;} return Math.round(this.y / 1000) + 'k';
+        }")
+      )
+    )) |>
+  highcharter::hc_yAxis(title = list(text = "Monthly Charges ($)")) |>
+  highcharter::hc_xAxis(title = list(text = "Risk Group")) |>
+  highcharter::hc_colors(colors) |>
+  highcharter::hc_title(text = "Total Monthly Charges by Risk Group (probability deciles)") 
 ```
 
 Churn, or the **loss of customers from a company's customer base**, is a **critical metric** for businesses with **recurring revenue streams**. Understanding why customers leave and **predicting future churn** is essential for effective **customer relationship management**. This report focuses on a **predictive churn analysis** based on the Telco Churn dataset.
@@ -265,6 +287,22 @@ The chart is a stacked column that compares the percentage of customers who chur
 ml$charts$risk_groups_churn
 ```
 
+## Financial Implications of Customer Churn
+
+In this section, we present a chart that showcases the distribution of monthly charges among different deciles of customers. 
+
+The chart presented here is similar to the previous one, but instead of percentages, each stacked column now represents the sum of monthly charges for each decile.
+
+This analysis shows that **the first decile contains the highest sum of monthly charges**, which highlights an important insight:
+
+> the most critical customers in terms of risk to churn, are also the ones generating the most revenue for the company.
+
+This information can help the company prioritize its retention efforts and target its high-value customers effectively.
+
+```{r}
+ml$charts$charge_for_risk_groups
+```
+
 
 ## Data with Predictive Results
 
@@ -300,9 +338,21 @@ downloadthis::download_this(
 )
 ```
 
+## Technical Next Steps
+
+The insights generated in this report provide a valuable starting point for churn analysis. However, there is still room for improvement. Here are a few areas to consider for future work:
+
+- **Feature selection process**: Adding a feature selection process can help to determine which variables have the greatest impact on churn and should be prioritized in the model.
+
+- **Detailed variable impact analysis**: Expanding the understanding of how individual variables impact churn can help to fine-tune the model and improve its accuracy.
+
+- **Periodic model updates**: Implementing a process to periodically update the model and generate new predictions every month can help to ensure that the insights generated are always up-to-date and relevant.
+
+Overall, these next steps can help to deepen the understanding of customer churn and drive more informed business decisions.
+
 ## Future Recommendations
 
-This section outlines the action plans to be taken based on the insights from the predictive churn analysis.
+There are some action plans that can be taken based on the insights from the predictive churn analysis.
 
 - **Action plan based on risk deciles**: Identify customers who are at the highest risk of churning and prioritize them for targeted interventions.
 
@@ -312,4 +362,6 @@ This section outlines the action plans to be taken based on the insights from th
 
 - **Monitor and evaluate**: Regularly monitor the effectiveness of the actions taken and evaluate their impact on customer churn. This will help in making informed decisions and continuously improving the strategies.
 
-- **Continuously improve**: Continuously collect and analyze customer data to identify new drivers of churn and stay ahead of the competition. This will help in staying relevant and improving customer retention in the long run.
+## Conclusion
+
+This study provides a comprehensive overview of churn analysis for the company, including a predictive model using gradient boosting, an assessment of variable importance, and a financial overview of the customers at risk of churning, as well as suggestions for next steps to further improve the insights generated.
