@@ -14,6 +14,7 @@ image: preview.png
 
 library(downloadthis)
 library(dplyr)
+library(gridExtra)
 library(h2o)
 library(highcharter)
 library(readr)
@@ -106,12 +107,6 @@ ml$charts$vars_importance <- highcharter::highchart() |>
     highcharter::hc_subtitle(text = "Base para <i>Feature Selection</i>") |>
     highcharter::hc_size(width = NULL, height = 500)
 
-# h2o::h2o.pd_plot(
-#    object = ml$model,
-#    newdata = ml$data$splits$test,
-#    column = c("Contract")
-# )
-
 # Calculates active and canceled customers and cumulative canceled for each decile
 ml$data$chrun_by_risk_groups <- ml$data$predictions |>
   dplyr::group_by(RiskGroup, Churn) |>
@@ -171,10 +166,17 @@ ml$charts$risk_groups_churn <- ml$data$chrun_by_risk_groups |>
     highcharter::hc_title(text = "Prop. Cancelados e Ativos em Decis de Score") 
 ```
 
+Churn, or the **loss of customers from a company's customer base**, is a **critical metric** for businesses with **recurring revenue streams**. Understanding why customers leave and **predicting future churn** is essential for effective **customer relationship management**. This report focuses on a **predictive churn analysis** based on the Telco Churn dataset.
 
-## How is the company's churn today?
+> The [Telco Churn dataset](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) is commonly used in the field of customer churn analysis. It contains information about a telecommunications company's customers and their behavior, including whether they churned.
 
-Stacked bar chart with overall Churn. With real data we can show montlhy Churn.
+This report showcases a predictive churn analysis using the Telco Churn demo dataset. It presents the results of the analysis and provides **examples of insights to minimize customer churn**. The focus of the analysis is **to help companies identify customers who are at risk of leaving and take proactive steps to retain them**.
+
+## Churn Overview for the Company
+
+The following stacked bar chart displays the **overall churn rate**, calculated as the ratio of customers who have churned over the total number of customers.
+
+It provides a visual representation of the company's churn performance, making it **easy to understand the magnitude of the problem at a glance**.
 
 ```{r}
 ml$charts$overall_churn
@@ -182,26 +184,93 @@ ml$charts$overall_churn
 
 ## The predictive model
 
-Machine learning model description.
+In this report, a **machine learning** technique known as **Gradient Boosting Machines (GBM)** was trained to develop a predictive model for customer churn.
+
+The goal of the model is to **identify customers who are at risk of leaving**, so that the company can take action to retain them.
+
+> Gradient Boosting Machines (GBM) is a machine learning technique used to create predictive models. It is an ensemble method that combines multiple weak models to form a strong model for prediction. This technique is widely used for a variety of applications, including customer churn prediction, as it can handle complex relationships between variables and capture non-linear patterns in data.
 
 ### Variables importance
+
+This subsection displays a chart that shows the relative importance of each predictor variable in the GBM model. The chart provides a visual representation of how each variable contributes to the model's prediction. 
+
+The variables are ranked based on their importance, with **the most important variable listed first**. This information is useful in **understanding which variables have the greatest impact on customer churn**, so that the company can **focus its efforts** on addressing these drivers.
 
 ```{r, echo=FALSE}
 ml$charts$vars_importance
 ```
 
+We can also measure the isolated impact of the **variables the company can apply new actions** when trying to reduce Churn.
+
+Based on the chart above, let's say that the most important variables that the company can apply some actions to are:
+
+- `Contract` (e.g. plan improvements),
+- `MonthlyCharges` (e.g. reducing the fees with promotions),
+- `TechSupport` (e.g. improving support services),
+- `PaymentMethod` (e.g. offering new options or conditions).
+
+```{r}
+#| include: false
+
+plots_list <- purrr::map(
+  c("Contract", "MonthlyCharges", "TechSupport", "PaymentMethod"),
+  ~ h2o::h2o.pd_plot(
+      object = ml$model,
+      newdata = ml$data$splits$test,
+      column = .x
+    ) +
+    ggplot2::theme(
+      legend.position = "none",
+      axis.title.x = ggplot2::element_blank(),
+      panel.border = ggplot2::element_blank(),
+      panel.background = ggplot2::element_blank()
+    ) +
+    ggplot2::ggtitle(.x) +
+    ggplot2::labs(y = "Churn probability")
+)
+
+grid_of_plots <- do.call(
+  gridExtra::arrangeGrob,
+  c(lapply(plots_list, plot), ncol = 2, nrow = 2)
+)
+```
+
+
+```{r}
+plot(grid_of_plots)
+```
+
+We could summarize some main points about the behavior of the churn rate among these variables:
+
+- `Contract`: churn probability is higher in `month-to-month` category.
+- `MonthlyCharges`: churn probability gets higher when the value is equal or greater than approximately 80%.
+- `TechSupport`: churn probability is higher when there is `No` tech support.
+- `PaymentMethod`: churn probability is higher in the groups that uses `Eletronic check` as payment method.
+
 ## Customers to be prioritized with actions
 
-Stacked column chart with predictions probabilities split in deciles.
+In this section we are scoring the customers based on the risk of leaving the company. The results are shown in a chart that displays the probability of churn split into deciles.
+
+The chart is a stacked column that compares the percentage of customers who churned versus those who did not. Additionally, a line represents the cumulative percentage of customers who churned. The main insights are as follows:
+
+- The first decile, which represents the **customers with the highest risk of churn**, has a churn rate of **74%**, significantly higher than the overall churn rate of 26.54%.
+- From **deciles 1 to 4**, the churn rates are **higher than the overall churn** rate.
+- Decile 4 and below it include **78% of all customers who churned**.
+
+
+**These insights highlight the importance of proactively targeting customers in the highest risk deciles to minimize churn.**
+
 
 ```{r}
 ml$charts$risk_groups_churn
 ```
 
 
-## Data with predictions
+## Data with Predictive Results
 
-Table with predictions.
+This section presents a table containing test data with corresponding predictions. The table provides a clear comparison between actual customer churn and the model's predictions.
+
+Additionally, a download button is provided to export the data as an Excel spreadsheet, making it easy to analyze and share the results.
 
 ```{r}
 ml$data$predictions |>
@@ -230,3 +299,17 @@ downloadthis::download_this(
   button_type = "default"
 )
 ```
+
+## Future Recommendations
+
+This section outlines the action plans to be taken based on the insights from the predictive churn analysis.
+
+- **Action plan based on risk deciles**: Identify customers who are at the highest risk of churning and prioritize them for targeted interventions.
+
+- **Customer segmentation**: Divide customers into different segments based on the factors that contribute to their churn risk. This will help in developing customized strategies for each segment.
+
+- **Address key drivers**: Focus on the key drivers of customer churn and implement measures to address them. This could be through improving the customer experience, enhancing product features, or providing more personalized support.
+
+- **Monitor and evaluate**: Regularly monitor the effectiveness of the actions taken and evaluate their impact on customer churn. This will help in making informed decisions and continuously improving the strategies.
+
+- **Continuously improve**: Continuously collect and analyze customer data to identify new drivers of churn and stay ahead of the competition. This will help in staying relevant and improving customer retention in the long run.
