@@ -1,0 +1,22 @@
+---
+title: "Curso Introdução à Linguagem R"
+about:
+  template: solana
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
+    - icon: github
+      text: Github
+      href: https://github.com/wrprates/
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/wrprates
+    - icon: youtube
+      text: YouTube
+      href: https://www.youtube.com/user/wrpbr
+---
+
+Hi, I am Wlademir Ribeiro Prates. Welcome to my personal blog.
+
+I am a **Senior Data Scientist**. Experienced **R and Shiny** developer, with examples of use cases in several **large companies**. Experienced with **machine learning** implementation to solve business problems. **PhD and Master's in Finance**. Researcher in behavioral finance / economics, and capital markets. I also have a [website](https://cienciaenegocios.com/), where articles about business, technology and data science are published.
