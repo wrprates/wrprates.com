@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wrprates.com/lp-curso-introducao-linguagem-r/index.html</loc>
+    <lastmod>2023-02-21T05:59:41.406Z</lastmod>
+  </url>
+  <url>
     <loc>https://wrprates.com/posts/website-with-quarto-automated-deployment/index.html</loc>
-    <lastmod>2023-02-08T05:59:49.825Z</lastmod>
+    <lastmod>2023-02-21T05:59:42.101Z</lastmod>
   </url>
   <url>
     <loc>https://wrprates.com/posts/unicorn-companies-treemaps-in-r/index.html</loc>
-    <lastmod>2023-02-08T06:00:06.196Z</lastmod>
+    <lastmod>2023-02-21T05:59:43.363Z</lastmod>
   </url>
   <url>
     <loc>https://wrprates.com/posts/predictive-customer-churn-analysis/index.html</loc>
-    <lastmod>2023-02-08T06:00:17.548Z</lastmod>
+    <lastmod>2023-02-21T05:59:44.820Z</lastmod>
   </url>
   <url>
     <loc>https://wrprates.com/index.html</loc>
-    <lastmod>2023-02-08T06:00:17.917Z</lastmod>
+    <lastmod>2023-02-21T05:59:45.337Z</lastmod>
   </url>
   <url>
     <loc>https://wrprates.com/about.html</loc>
-    <lastmod>2023-02-08T06:00:18.279Z</lastmod>
+    <lastmod>2023-02-21T05:59:45.818Z</lastmod>
   </url>
 </urlset>

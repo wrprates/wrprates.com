@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "lp-curso-introducao-linguagem-r/index.html",
+    "href": "lp-curso-introducao-linguagem-r/index.html",
+    "title": "Curso Introdução à Linguagem R",
+    "section": "",
+    "text": "Hi, I am Wlademir Ribeiro Prates. Welcome to my personal blog.\nI am a Senior Data Scientist. Experienced R and Shiny developer, with examples of use cases in several large companies. Experienced with machine learning implementation to solve business problems. PhD and Master’s in Finance. Researcher in behavioral finance / economics, and capital markets. I also have a website, where articles about business, technology and data science are published."
+  },
+  {
     "objectID": "posts/website-with-quarto-automated-deployment/index.html",
     "href": "posts/website-with-quarto-automated-deployment/index.html",
     "title": "Set up a website with Quarto and automate deployment",
