@@ -9,6 +9,8 @@ format:
     toc-location: right
     toc-title: "Navegue nesta página"
 ---
+<a href="#top"></a>
+
 ::: {.column-page}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
@@ -70,7 +72,7 @@ Coloque sua carreira em **outro patamar**!
 
 <br>
 
-::: {.column-screen .lp_full_screen}
+::: {.column-screen .lp_full_screen_light}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 # **Wlademir Ribeiro Prates**
@@ -94,16 +96,67 @@ Conheça o profissional que irá lhe direcionar nessa jornada:
 :::
 :::
 
+::: {.column-screen .lp_full_screen_dark}
+::: {.column-body-outset .center}
+# *"Independente da sua área, aprender a trabalhar com dados ainda é um DIFERENCIAL, mas em breve será requisito OBRIGATÓRIO."*
+<br>
+:::
+:::
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+![](money_freedom.png)
+:::
+::: {.g-col-12 .g-col-md-5}
 ## Para profissionais da área de dados é **NORMAL**:
 
-- Trabalho **REMOTO**
-- Vagas em empresas nacionais e **INTERNACIONAIS**
-- **Salário ALTO**
-- Muita oferta para ser *freelancer*
-- Área em altíssimo **CRESCIMENTO**
+- Trabalho **REMOTO**.
+- Vagas em empresas nacionais e **INTERNACIONAIS**.
+- **Salário ALTO**.
+- Muita oferta para ser *freelancer*.
+- Área em altíssimo **CRESCIMENTO**.
 
 Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
+:::
+:::
+:::
+:::
 
-Independente da sua área, aprender a trabalhar com dados ainda é um DIFERENCIAL, mas em breve será requisito OBRIGATÓRIO.
+::: {.column-page}
+# **Quanto ganha um Cientista de Dados?**
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 
-<div class="max-width"> {{< video https://www.youtube.com/embed/rOBhZJNrnn4 >}} </div>
+## *Com o <b>treinamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
+
+\* Veja os dados do *Glassdoor* ao lado.
+
+:::
+::: {.g-col-12 .g-col-md-5}
+### *Cientista de Dados `no Brasil`*
+
+![](glassdoor_data_scientist_br.png)
+:::
+:::
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+## *Mas não se contente com pouco! <br>Há <b>vagas remotas</b> em outros países pagando <b>`$10.000`</b> mensais, isso mesmo, <b>dólares americanos</b>*!
+
+\* Veja os dados do *Glassdoor* ao lado.
+:::
+::: {.g-col-12 .g-col-md-5}
+### *Vagas remotas em `outros países`*
+![](glassdoor_data_scientist_usa.png)
+:::
+:::
+:::
+
+```{=html}
+<a href="#top">
+<div class="center"><input type="submit" value="Quero me inscrever gratuitamente" name="subscribe" id="mc-embedded-subscribe-back" class="button"></div>
+</a>
+```
+

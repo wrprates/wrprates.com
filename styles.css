@@ -21,39 +21,20 @@ summary {
   font-size: smaller;
 }
 
-.max-width {
-  max-width: 800px;
-  text-align: center;
-  margin: auto;
-}
-
 .navbar-logo {
   max-height: 45px;
 }
 
 /* LP utils */
-.lp_full_screen {
+.lp_full_screen_light {
   background-color: #f2f2f2;
   padding: 0px 20px;
 }
 
-/* Two column layout */
-.col-12 {
-  flex-basis: 100%;
-  max-width: 100%;
-}
-
-.col-12.col-md-6 {
-  flex-basis: 50%;
-  max-width: 50%;
-  padding-right: 12px;
-}
-
-@media (max-width: 767px) {
-  .col-12.col-md-6 {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
+.lp_full_screen_dark {
+  background-color: #22325e;
+  padding: 0px 20px;
+  color: #ffffff;
 }
 
 /* ReactTables */
@@ -141,5 +122,3 @@ summary {
   color: #999;
   margin-top: 5px;
 }
-
-
