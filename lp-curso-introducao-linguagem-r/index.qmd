@@ -154,9 +154,106 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 :::
 
+
+::: {.column-screen .lp_full_screen_dark}
+::: {.column-body-outset .center}
+# **O que você encontrará no treinamento?**
 ```{=html}
-<a href="#top">
-<div class="center"><input type="submit" value="Quero me inscrever gratuitamente" name="subscribe" id="mc-embedded-subscribe-back" class="button"></div>
+<div class="module">
+  <div class="module-header">
+    <h2>Module 1: Introduction to Programming</h2>
+  </div>
+  <div class="module-details">
+    <div class="class-count">
+      <p>10 Classes</p>
+    </div>
+    <div class="duration">
+      <p>Total Duration: 12 hours</p>
+    </div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-header">
+    <h2>Module 2: Introduction to Programming Part 2</h2>
+  </div>
+  <div class="module-details">
+    <div class="class-count">
+      <p>10 Classes</p>
+    </div>
+    <div class="duration">
+      <p>Total Duration: 10 hours</p>
+    </div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-header">
+    <h2>Module 3: Introduction to Programming Part 3</h2>
+  </div>
+  <div class="module-details">
+    <div class="class-count">
+      <p>10 Classes</p>
+    </div>
+    <div class="duration">
+      <p>Total Duration: 5 hours</p>
+    </div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-header">
+    <h2>Module 4: Introduction to Programming Part 4</h2>
+  </div>
+  <div class="module-details">
+    <div class="class-count">
+      <p>10 Classes</p>
+    </div>
+    <div class="duration">
+      <p>Total Duration: 8 hours</p>
+    </div>
+  </div>
+</div>
+```
+<br>
+:::
+:::
+
+::: {.column-screen}
+::: {.column-body}
+# **FAQ - Dúvidas frequentes?**
+```{=html}
+<div class="faq-content">
+<div class="faq-item">
+  <button class="faq-question">Question 1?</button>
+  <div class="faq-answer" open>
+    <p>Answer 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquet massa quis risus eleifend scelerisque. Nam auctor bibendum enim sed varius.</p>
+  </div>
+</div>
+<div class="faq-item">
+  <button class="faq-question">Question 2?</button>
+  <div class="faq-answer">
+    <p>Answer 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquet massa quis risus eleifend scelerisque. Nam auctor bibendum enim sed varius.</p>
+  </div>
+</div>
+<div class="faq-item">
+  <button class="faq-question">Question 3?</button>
+  <div class="faq-answer">
+    <p>Answer 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquet massa quis risus eleifend scelerisque. Nam auctor bibendum enim sed varius.</p>
+  </div>
+</div>
+</div>
+```
+<br>
+:::
+:::
+
+
+```{=html}
+<div class="center">
+<a href="#top" class="back-to-top">
+<button id="cta-button">Quero me inscrever gratuitamente</button>
 </a>
+</div>
 ```
 

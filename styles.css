@@ -37,6 +37,12 @@ summary {
   color: #ffffff;
 }
 
+.lp_full_screen_mid {
+  background-color: #333;
+  padding: 0px 20px;
+  color: #ffffff;
+}
+
 /* ReactTables */
 .ReactTable {
   font-size: 0.7em; 
@@ -122,3 +128,120 @@ summary {
   color: #999;
   margin-top: 5px;
 }
+
+/* CTA Button */
+#cta-button {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  display: block;
+  background-color: #FF5733;
+  color: #fff;
+  border: none;
+  border-radius: 35px;
+  padding: 15px 25px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#cta-button:hover {
+  background-color: #E84C1A;
+}
+
+.back-to-top {
+  text-decoration: none;
+}
+
+/* Module Container */
+.module {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.module-header {
+  margin-bottom: 8px;
+}
+
+.module-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+}
+
+.module-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.module-details .class-count, .module-details .duration {
+  margin-right: 16px;
+}
+
+.module-details p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+  margin: 0;
+}
+
+.module-details p:first-of-type {
+  font-weight: 600;
+  color: #333333;
+}
+
+/* FAQ Section */
+.faq-content {
+  padding: 20px;
+  margin: 0 auto;
+  width: 700px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-question {
+  background-color: #555;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-answer {
+  background-color: #777;
+  color: #fff;
+  display: none;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+.faq-question:focus + .faq-answer {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .faq-content {
+    width: 100%;
+  }
+}
+

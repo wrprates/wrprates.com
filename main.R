@@ -9,3 +9,4 @@ lapply(posts_folders, function(folder) {
 
 # Render website
 quarto::quarto_render()
+
