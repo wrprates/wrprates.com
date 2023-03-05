@@ -171,6 +171,7 @@ Além disso, saber `R` é um diferencial para **Analistas de Dados** e também p
 ::: {.g-col-12 .g-col-md-5}
 ![](percentual_vagas_r.png)
 :::
+<br>
 :::
 :::
 :::
@@ -188,56 +189,56 @@ Além disso, saber `R` é um diferencial para **Analistas de Dados** e também p
 ```{=html}
 <div class="module">
   <div class="module-header">
-    <h2>Module 1: Introduction to Programming</h2>
+    <h2>Módulo 1: Oportunidades de carreira com análise de dados</h2>
   </div>
   <div class="module-details">
     <div class="class-count">
-      <p>10 Classes</p>
+      <p>5 Aulas</p>
     </div>
     <div class="duration">
-      <p>Total Duration: 12 hours</p>
+      <p>Duração: 2 horas</p>
     </div>
   </div>
 </div>
 
 <div class="module">
   <div class="module-header">
-    <h2>Module 2: Introduction to Programming Part 2</h2>
+    <h2>Módulo 2: Introdução à análise de dados com R</h2>
   </div>
   <div class="module-details">
     <div class="class-count">
-      <p>10 Classes</p>
+      <p>10 Aulas</p>
     </div>
     <div class="duration">
-      <p>Total Duration: 10 hours</p>
+      <p>Duração: 3 horas</p>
     </div>
   </div>
 </div>
 
 <div class="module">
   <div class="module-header">
-    <h2>Module 3: Introduction to Programming Part 3</h2>
+    <h2>Módulo 3: Visualização e análise exploratória de dados com R</h2>
   </div>
   <div class="module-details">
     <div class="class-count">
-      <p>10 Classes</p>
+      <p>12 Aulas</p>
     </div>
     <div class="duration">
-      <p>Total Duration: 5 hours</p>
+      <p>Duração: 4 horas</p>
     </div>
   </div>
 </div>
 
 <div class="module">
   <div class="module-header">
-    <h2>Module 4: Introduction to Programming Part 4</h2>
+    <h2>Módulo 4: Comunicação da análise e <em>reporting</em></h2>
   </div>
   <div class="module-details">
     <div class="class-count">
-      <p>10 Classes</p>
+      <p>8 Aulas</p>
     </div>
     <div class="duration">
-      <p>Total Duration: 8 hours</p>
+      <p>Duração: 2 horas</p>
     </div>
   </div>
 </div>
