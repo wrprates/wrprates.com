@@ -18,7 +18,7 @@ website:
       - icon: youtube
         href: https://www.youtube.com/channel/UC6rS3fNDO19l0us3HEaqpAQ
   google-analytics: "G-JEQZHY19QW"
-  cookie-consent: true
+  cookie-consent: false
 format:
   html:
     include-after-body: disqus.html
