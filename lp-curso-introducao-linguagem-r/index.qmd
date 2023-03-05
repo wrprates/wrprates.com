@@ -16,9 +16,9 @@ format:
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 `WLADEMIR RIBEIRO PRATES`
 
-# Seja um **profissional desejado** pelas empresas: Trabalhe **de casa** com **salários** de **`R$ 15 mil`**
+# **Desbloqueie seu potencial** e impulsione sua carreira: trabalhe **de casa** com **salários** de **`R$ 15 mil`**
 
-Entre para a  **`área de Dados`** com o treinamento **"Introdução à Análise de Dados com a Linguagem R"**.
+Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Dados com a Linguagem R"**.
 
 <blockquote>
 - 100% focado no **Mercado de Trabalho**. <br>
@@ -32,37 +32,40 @@ Coloque sua carreira em **outro patamar**!
 ```{=html}
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">
-    <form action="https://cienciaenegocios.us20.list-manage.com/subscribe/post?u=7dd56b82660a42caac052da3e&amp;id=ec8a68702e&amp;f_id=00713be7f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self">
-      <div id="mc_embed_signup_scroll">
-        <div class="justify">
-          <h4>Entre na lista de espera e receba:</h4>
-          <ul>
-            <li><b>Guia de transição de carreira</b> para a área de dados.</li>
-            <li>Aulão "<b>Minha primeira análise de dados usando R</b>."</li>
-          </ul>
-        </div>
-        
-<div class="mc-field-group">
-    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Digite seu melhor e-mail">
-    <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
-</div>
-<div class="mc-field-group">
-    <input type="text" value="" name="MMERGE6" class="" id="mce-MMERGE6" placeholder="Nome">
-    <span id="mce-MMERGE6-HELPERTEXT" class="helper_text"></span>
-</div>
-<div class="mc-field-group size1of2">
-    <input type="text" name="PHONE" class="" value="" id="mce-PHONE" placeholder="(DDD) + Número do WhatsApp">
-    <span id="mce-PHONE-HELPERTEXT" class="helper_text"></span>
-</div>
-<div hidden="true"><input type="hidden" name="tags" value="3435431"></div>
-    <div id="mce-responses" class="clear">
+  <form action="https://cienciaenegocios.us20.list-manage.com/subscribe/post?u=7dd56b82660a42caac052da3e&amp;id=ec8a68702e&amp;f_id=00713be7f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self">
+    <div id="mc_embed_signup_scroll">
+      <div class="justify">
+        <h4>Entre na lista de espera e receba:</h4>
+        <ul>
+          <li><b>Guia de transição de carreira</b> para a área de dados.</li>
+          <li>Aulão "<b>Minha primeira análise de dados usando R</b>."</li>
+        </ul>
+      </div>
+      <div class="mc-field-group">
+        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Digite seu melhor e-mail">
+        <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
+      </div>
+      <div class="mc-field-group">
+        <input type="text" value="" name="MMERGE6" class="" id="mce-MMERGE6" placeholder="Nome">
+        <span id="mce-MMERGE6-HELPERTEXT" class="helper_text"></span>
+      </div>
+      <div class="mc-field-group size1of2">
+        <input type="text" name="PHONE" class="" value="" id="mce-PHONE" placeholder="(DDD) + Número do WhatsApp">
+        <span id="mce-PHONE-HELPERTEXT" class="helper_text"></span>
+      </div>
+      <div hidden="true"><input type="hidden" name="tags" value="3435431"></div>
+      <div id="mce-responses" class="clear">
         <div class="response" id="mce-error-response" style="display:none"></div>
         <div class="response" id="mce-success-response" style="display:none"></div>
-    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_7dd56b82660a42caac052da3e_ec8a68702e" tabindex="-1" value=""></div>
-    <div class="center"><input type="submit" value="Quero me inscrever gratuitamente" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+      </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_7dd56b82660a42caac052da3e_ec8a68702e" tabindex="-1" value="">
+      </div>
+      <div class="center">
+        <input type="submit" value="Quero me inscrever gratuitamente" name="subscribe" id="mc-embedded-subscribe" class="button">
+      </div>
     </div>
-</form>
+  </form>
 </div>
 <!--End mc_embed_signup-->
 ```
@@ -154,10 +157,34 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 :::
 
+::: {.column-screen .lp_full_screen_dark}
+::: {.column-page}
+## Como é o mercado de trabalho para quem conhece a linguagem R?
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+### **44% das vagas** de **Cientista de Dados** no mundo pedem a **linguagem R**!
+\* Veja os dados do *datanerd.tech* ao lado.
+
+Além disso, saber `R` é um diferencial para **Analistas de Dados** e também para **Analistas de Negócios**.
+:::
+
+::: {.g-col-12 .g-col-md-5}
+![](percentual_vagas_r.png)
+:::
+:::
+:::
+:::
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-page-outset .center}
+## Veja algumas **`vagas reais`** para quem tem conhecimento na **linguagem R**
+![](vagas_r_mercado.png)
+:::
+:::
 
 ::: {.column-screen .lp_full_screen_dark}
 ::: {.column-body-outset .center}
-# **O que você encontrará no treinamento?**
+# O que você encontrará no curso **Introdução à Análise de Dados com a Linguagem R**?
 ```{=html}
 <div class="module">
   <div class="module-header">
@@ -219,41 +246,76 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 :::
 
-::: {.column-screen}
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+## **Compra tranquila**, com 7 dias de garantia para solicitar seu dinheiro de volta.
+:::
+::: {.g-col-12 .g-col-md-5}
+![](garantia_7_dias_250px.png)
+:::
+:::
+:::
+
+::: {.column-screen .lp_full_screen_light}
 ::: {.column-body}
-# **FAQ - Dúvidas frequentes?**
+## **FAQ - Dúvidas frequentes**
 ```{=html}
-<div class="faq-content">
-<div class="faq-item">
-  <button class="faq-question">Question 1?</button>
-  <div class="faq-answer" open>
-    <p>Answer 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquet massa quis risus eleifend scelerisque. Nam auctor bibendum enim sed varius.</p>
-  </div>
-</div>
-<div class="faq-item">
-  <button class="faq-question">Question 2?</button>
-  <div class="faq-answer">
-    <p>Answer 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquet massa quis risus eleifend scelerisque. Nam auctor bibendum enim sed varius.</p>
-  </div>
-</div>
-<div class="faq-item">
-  <button class="faq-question">Question 3?</button>
-  <div class="faq-answer">
-    <p>Answer 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquet massa quis risus eleifend scelerisque. Nam auctor bibendum enim sed varius.</p>
-  </div>
-</div>
+<div class="faq-container">
+  <details class="faq-question">
+    <summary class="faq-question_title">Este curso é adequado para iniciantes em análise de dados?</summary>
+    <p class="faq-question_answer">Sim, este curso é uma introdução à análise de dados com a Linguagem R e é adequado para iniciantes.</p>
+  </details>
+
+  <details class="faq-question">
+    <summary class="faq-question_title">Qual é o tempo estimado de conclusão do curso?</summary>
+    <p class="faq-question_answer">O tempo estimado de conclusão do curso é de cerca de 3 semanas, mas os alunos podem fazer o curso em seu próprio ritmo.</p>
+  </details>
+
+  <details class="faq-question">
+    <summary class="faq-question_title">Como funciona o suporte ao aluno durante o curso?</summary>
+    <p class="faq-question_answer">Os alunos podem deixar seus comentários em cada aula, ou podem também interagir diretamente com o professor via e-mail.</p>
+  </details>
+  
+  <details class="faq-question">
+    <summary class="faq-question_title">Quais são as oportunidades de carreira após a conclusão deste curso?</summary>
+    <p class="faq-question_answer">Os alunos que concluírem o curso terão habilidades valiosas em análise de dados com a Linguagem R, o que pode ajudá-los a conseguir empregos em áreas como ciência de dados, análise de negócios e inteligência de negócios.</p>
+  </details>
+  
+  <details class="faq-question">
+    <summary class="faq-question_title">Qual é a diferença entre este curso e outros cursos de análise de dados disponíveis no mercado?</summary>
+    <p class="faq-question_answer">Este curso se concentra especificamente na linguagem R para análise de dados e é projetado para ser uma introdução acessível e abrangente para aqueles que desejam começar na análise de dados.</p>
+  </details>
+  
+  <details class="faq-question">
+    <summary class="faq-question_title">Como faço para me inscrever na lista de espera para o próximo lançamento do curso?</summary>
+    <p class="faq-question_answer">Os alunos podem se inscrever na lista de espera do curso visitando a landing page do curso e preenchendo o formulário de inscrição. Eles serão notificados por e-mail quando o curso estiver disponível para inscrição.</p>
+  </details>
+
+  <details class="faq-question">
+    <summary class="faq-question_title">Posso fazer este curso em meu próprio ritmo?</summary>
+    <p class="faq-question_answer">Sim, este curso é projetado para ser feito em seu próprio ritmo.</p>
+  </details>
+  
+  <details class="faq-question">
+    <summary class="faq-question_title">Como é a metodologia de ensino deste curso?</summary>
+    <p class="faq-question_answer">Este curso é baseado em vídeo-aulas e materiais complementares.</p>
+  </details>
 </div>
 ```
 <br>
 :::
 :::
 
-
+::: {.column-screen .lp_full_screen_light}
 ```{=html}
 <div class="center">
 <a href="#top" class="back-to-top">
-<button id="cta-button">Quero me inscrever gratuitamente</button>
+<button id="cta-button">Inscrição GRATUITA na <b>Lista de Espera</b></button>
 </a>
 </div>
 ```
+<br>
+:::
 
+## Dúvidas adicionais? Pergunte abaixo
