@@ -43,6 +43,12 @@ summary {
   color: #ffffff;
 }
 
+.lp_full_screen_dark_gradient {
+  background: linear-gradient(to bottom right, #22325e, #ff5733);
+  padding: 0px 20px;
+  color: #ffffff;
+}
+
 /* ReactTables */
 .ReactTable {
   font-size: 0.7em; 
@@ -53,6 +59,8 @@ summary {
   font-family: Arial, sans-serif;
   max-width: 600px;
   margin: 0 auto;
+  color: #fff;
+  background-color: #22325e;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
@@ -223,5 +231,27 @@ summary {
   margin-top: 10px;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+/* Text box */
+div.text-box {
+  background-color: #ffffff;
+  border: 4px solid #22325e;
+  box-shadow: 5px 0px 5px #9753b8;
+  padding: 20px;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+div.text-box h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #1a1a1a;
+  text-transform: uppercase;
 }
 

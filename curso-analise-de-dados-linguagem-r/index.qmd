@@ -5,11 +5,13 @@ website:
   cookie-consent: false
 format:
   html:
+    pagetitle: "Curso Introdução à Análise de Dados com a Linguagem R"
     toc: false
     toc-location: right
     toc-title: "Navegue nesta página"
 ---
 <a href="#top"></a>
+
 
 ::: {.column-page}
 ::: {.grid}
@@ -20,12 +22,18 @@ format:
 
 Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Dados com a Linguagem R"**.
 
-<blockquote>
-- 100% focado no **Mercado de Trabalho**. <br>
-- Professor **Qualificado e Experiente**. <br>
-</blockquote>
+<div class="text-box">
+<!-- <p> -->
+<!-- Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Dados com a Linguagem R"**. -->
 
-Coloque sua carreira em **outro patamar**!
+- 100% focado no **Mercado de Trabalho**. <br>
+- Professor **Qualificado e Experiente**.
+
+<!-- Coloque sua carreira em **outro patamar**! -->
+<!-- </p> -->
+</div>
+
+<p>Coloque sua carreira em **outro patamar**!</p>
 :::
 
 ::: {.g-col-12 .g-col-md-5}
@@ -62,8 +70,11 @@ Coloque sua carreira em **outro patamar**!
         <input type="text" name="b_7dd56b82660a42caac052da3e_ec8a68702e" tabindex="-1" value="">
       </div>
       <div class="center">
-        <input type="submit" value="Quero me inscrever gratuitamente" name="subscribe" id="mc-embedded-subscribe" class="button">
+        <p>
+          <input type="submit" value="Quero me inscrever gratuitamente" name="subscribe" id="mc-embedded-subscribe" class="button">
+        </p>
       </div>
+      <p><em>*Previsão de início em 03 de Maio de 2023.</em></p>
     </div>
   </form>
 </div>
@@ -75,7 +86,11 @@ Coloque sua carreira em **outro patamar**!
 
 <br>
 
-::: {.column-screen .lp_full_screen_light}
+::: {.column-screen .lp_full_screen_dark_gradient}
+
+<br>
+
+::: {.column-screen}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 # **Wlademir Ribeiro Prates**
@@ -87,7 +102,7 @@ Coloque sua carreira em **outro patamar**!
 Conheça o profissional que irá lhe direcionar nessa jornada:
 
 - **`Cientista de Dados Senior`**.
-- **`Doutor e Mestre`** em **Finanças**.
+- **`Doutor e Mestre`** em **Finanças** (UFSC).
 - Experiência em **projetos de consultoria** de *Data Science* para **grandes empresas como BASF, VIVO, DHL, BRASKEM, EMBRAER** e várias outras.
 - **Trabalhou** em empresas referência em seus setores, como **EY (Ernst&Young), Tembici, Appsilon e Aquarela**.
 - **Professor com mais de `10 anos`** de experiência em faculdades, MBA's e cursos online.
@@ -98,8 +113,9 @@ Conheça o profissional que irá lhe direcionar nessa jornada:
 :::
 :::
 :::
+:::
 
-::: {.column-screen .lp_full_screen_dark}
+::: {.column-screen .lp_full_screen_light}
 ::: {.column-body-outset .center}
 # *"Independente da sua área, aprender a trabalhar com dados ainda é um DIFERENCIAL, mas em breve será requisito OBRIGATÓRIO."*
 <br>
