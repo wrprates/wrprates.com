@@ -23,14 +23,10 @@ format:
 Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Dados com a Linguagem R"**.
 
 <div class="text-box">
-<!-- <p> -->
-<!-- Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Dados com a Linguagem R"**. -->
 
 - 100% focado no **Mercado de Trabalho**. <br>
 - Professor **Qualificado e Experiente**.
 
-<!-- Coloque sua carreira em **outro patamar**! -->
-<!-- </p> -->
 </div>
 
 <p>Coloque sua carreira em **outro patamar**!</p>
@@ -45,8 +41,8 @@ Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Da
       <div class="justify">
         <h4>Entre na lista de espera e receba:</h4>
         <ul>
-          <li><b>Guia de transição de carreira</b> para a área de dados.</li>
-          <li>Aulão "<b>Minha primeira análise de dados usando R</b>."</li>
+          <li><b>[Ebook] Guia de como entrar</b> para a área de dados.</li>
+          <li>Aulão "<b>Minha primeira análise de dados usando R</b>".</li>
         </ul>
       </div>
       <div class="mc-field-group">
@@ -102,9 +98,9 @@ Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Da
 Conheça o profissional que irá lhe direcionar nessa jornada:
 
 - **`Cientista de Dados Senior`**.
-- **`Doutor e Mestre`** em **Finanças** (UFSC).
-- Experiência em **projetos de consultoria** de *Data Science* para **grandes empresas como BASF, VIVO, DHL, BRASKEM, EMBRAER** e várias outras.
+- Experiência em **projetos de `consultoria`** de ***Data Science*** para **grandes empresas como BASF, VIVO, DHL, BRASKEM, EMBRAER** e várias outras.
 - **Trabalhou** em empresas referência em seus setores, como **EY (Ernst&Young), Tembici, Appsilon e Aquarela**.
+- **`Doutor e Mestre`** em **Finanças** (UFSC).
 - **Professor com mais de `10 anos`** de experiência em faculdades, MBA's e cursos online.
 :::
 
@@ -156,7 +152,7 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 ::: {.g-col-12 .g-col-md-5}
 ### *Cientista de Dados `no Brasil`*
 
-![](glassdoor_data_scientist_br.png)
+![](glassdoor_data_scientist_br.jpg)
 :::
 :::
 
@@ -168,7 +164,7 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 ::: {.g-col-12 .g-col-md-5}
 ### *Vagas remotas em `outros países`*
-![](glassdoor_data_scientist_usa.png)
+![](glassdoor_data_scientist_usa.jpg)
 :::
 :::
 :::
@@ -181,14 +177,18 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 ### **44% das vagas** de **Cientista de Dados** no mundo pedem a **linguagem R**!
 \* Veja os dados do *datanerd.tech* ao lado.
 
-Além disso, saber `R` é um diferencial para **Analistas de Dados** e também para **Analistas de Negócios**.
+Além disso, saber `R` é um diferencial para:
+
+ - **Analistas de Dados** e também para 
+ - **Analistas de Negócios**.
+
 :::
 
 ::: {.g-col-12 .g-col-md-5}
-![](percentual_vagas_r.png)
+![](percentual_vagas_r.jpg)
+:::
 :::
 <br>
-:::
 :::
 :::
 
@@ -201,25 +201,31 @@ Além disso, saber `R` é um diferencial para **Analistas de Dados** e também p
 
 ::: {.column-screen .lp_full_screen_dark}
 ::: {.column-body-outset .center}
-# O que você encontrará no curso **Introdução à Análise de Dados com a Linguagem R**?
+# O que você encontrará no curso **Introdução à Análise de Dados com a Linguagem R**
+
+<div class="text-box">
+## Objetivo
+Permitir que o aluno seja capaz de realizar **análises de dados de ponta a ponta** (desde a leitura dos dados até a comunicação dos resultados) no local onde já trabalha, bem como se preparar para **concorrer a vagas melhores** na **área de dados** das empresas.
+</div>
+
 ```{=html}
 <div class="module">
   <div class="module-header">
-    <h2>Módulo 1: Oportunidades de carreira com análise de dados</h2>
+    <h2>Módulo 1. Oportunidades de carreira com análise de dados</h2>
   </div>
   <div class="module-details">
     <div class="class-count">
-      <p>5 Aulas</p>
+      <p>4 Aulas</p>
     </div>
     <div class="duration">
-      <p>Duração: 2 horas</p>
+      <p>Duração: 1 hora e 30 min</p>
     </div>
   </div>
 </div>
 
 <div class="module">
   <div class="module-header">
-    <h2>Módulo 2: Introdução à análise de dados com R</h2>
+    <h2>Módulo 2. Introdução à análise de dados com R</h2>
   </div>
   <div class="module-details">
     <div class="class-count">
@@ -233,7 +239,21 @@ Além disso, saber `R` é um diferencial para **Analistas de Dados** e também p
 
 <div class="module">
   <div class="module-header">
-    <h2>Módulo 3: Visualização e análise exploratória de dados com R</h2>
+    <h2>Módulo 3. Trabalhando com dados</h2>
+  </div>
+  <div class="module-details">
+    <div class="class-count">
+      <p>5 Aulas</p>
+    </div>
+    <div class="duration">
+      <p>Duração: 2 horas</p>
+    </div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-header">
+    <h2>Módulo 4. Visualização de dados e análise exploratória</h2>
   </div>
   <div class="module-details">
     <div class="class-count">
@@ -247,7 +267,7 @@ Além disso, saber `R` é um diferencial para **Analistas de Dados** e também p
 
 <div class="module">
   <div class="module-header">
-    <h2>Módulo 4: Comunicação da análise e <em>reporting</em></h2>
+    <h2>Módulo 5. Comunicação da análise e <em>reporting</em></h2>
   </div>
   <div class="module-details">
     <div class="class-count">

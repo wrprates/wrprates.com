@@ -78,6 +78,8 @@ summary {
 
 #mc_embed_signup input[type="submit"] {
   width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
   margin: 0 auto;
   display: block;
   background-color: #FF5733;
@@ -254,4 +256,3 @@ div.text-box h2 {
   color: #1a1a1a;
   text-transform: uppercase;
 }
-
