@@ -75,7 +75,7 @@ In fact, to use this Action we will just need to copy and paste the `.yml` file 
 
 Inside your project, the `.yml` file needs to be located in the path `.github/workflows/main.yml`
 
-However, I did some changes, mostly based on [this great video](https://github.com/marketplace/actions/ftp-deploy) about this topic, but it is in Portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.
+However, I did some changes, mostly based on [this great video](https://www.youtube.com/watch?v=3cLbh-k2qKk) about this topic, but it is in Portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.
 
 ```
 on:
