@@ -1,0 +1,219 @@
+---
+navbar: false
+page-layout: full
+website:
+  cookie-consent: false
+  background: "#333333"
+format:
+  html:
+    pagetitle: "Ebook 7 Etapas práticas para entrar na área de dados"
+    toc: false
+    toc-location: right
+    toc-title: "Navegue nesta página"
+---
+::: {.column-screen}
+
+<a href="#top"></a>
+
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+`WLADEMIR RIBEIRO PRATES`
+
+# Comece do **`ZERO`** e **multiplique seu valor de mercado** na área **`mais promissora`** e **`segura`** do mercado de **TI**
+
+Dê o primeiro passo para entar na **`área de Dados`** com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
+
+<div class="text-box">
+- Pela área de dados você entra em TI **mesmo sem nunca ter escrito uma linha de código**.
+- A área de dados é praticamente **à prova dos grandes *layoffs* das *Big Techs***.<br>
+
+</div>
+
+<p>Coloque sua carreira em **outro patamar**!</p>
+:::
+
+::: {.g-col-12 .g-col-md-5}
+
+```{=html}
+<div id="ebook_carreira_box">
+  <div id="ebook_carreira_box_scroll">
+    
+    <p>Receba <b>salários altos</b> e trabalhe de forma remota <b>de onde quiser</b>! Comece hoje mesmo sua carreira na área de dados!</p>
+
+    <div class="center"> 
+      <img width="230" src="mockup_ebook_carreira_dados.png">
+    </div>
+
+    <div class="center">
+      De <span class="strike">R$ 47,90</span><br/>
+      <span class="novo_preco">por R$ 17,90</span>
+    </div>
+
+    <div class="center">
+      <p>
+        <input type="submit" value="Quero multiplicar meu valor de mercado!" name="subscribe" id="ebook_carreira_subscribe" class="button">
+      </p>
+    </div>
+  </div>
+</div>
+```
+:::
+:::
+:::
+<br>
+:::
+
+
+::: {.column-screen .lp_full_screen_dark_blue_gradient}
+
+<br>
+
+::: {.column-screen}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+
+`o Autor`
+
+# **Wlademir Ribeiro Prates**
+
+<em>"Trabalho remoto e atendo clientes do mundo inteiro!"</em>
+
+<hr></hr>
+
+Conheça o profissional que irá lhe direcionar nessa jornada:
+
+- **`Cientista de Dados Senior`**.
+- Experiência em **projetos de `consultoria`** de ***Data Science*** para **grandes empresas como BASF, VIVO, DHL, BRASKEM, EMBRAER** e várias outras.
+- **Trabalhou** em empresas referência em seus setores, como **EY (Ernst&Young), Tembici, Appsilon e Aquarela**.
+- **`Doutor e Mestre`** em **Finanças** (UFSC).
+- **Professor com mais de `10 anos`** de experiência em faculdades, MBA's e cursos online.
+:::
+
+::: {.g-col-12 .g-col-md-5}
+![](foto_wlad_pb.png)
+:::
+:::
+:::
+:::
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-body-outset .center}
+# *"Independente da sua área, aprender a trabalhar com dados ainda é um DIFERENCIAL, mas em breve será requisito OBRIGATÓRIO."*
+<br>
+:::
+:::
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+![](money_freedom.png)
+:::
+::: {.g-col-12 .g-col-md-5}
+## Para profissionais da área de dados é **NORMAL**:
+
+- Trabalho **REMOTO**.
+- Vagas em empresas nacionais e **INTERNACIONAIS**.
+- **Salário ALTO**.
+- Muita oferta para ser *freelancer*.
+- Área em altíssimo **CRESCIMENTO**.
+
+Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
+:::
+:::
+:::
+:::
+
+::: {.column-page}
+# **Quanto ganha um Cientista de Dados?**
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+
+## *Com o <b>treinamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
+
+\* Veja os dados do *Glassdoor* ao lado.
+
+:::
+::: {.g-col-12 .g-col-md-5}
+### *Cientista de Dados `no Brasil`*
+
+![](glassdoor_data_scientist_br.jpg)
+:::
+:::
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+## *Mas não se contente com pouco! <br>Há <b>vagas remotas</b> em outros países pagando <b>`$10.000`</b> mensais, isso mesmo, <b>dólares americanos</b>*!
+
+\* Veja os dados do *Glassdoor* ao lado.
+:::
+::: {.g-col-12 .g-col-md-5}
+### *Vagas remotas em `outros países`*
+![](glassdoor_data_scientist_usa.jpg)
+:::
+:::
+:::
+
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+## **Compra tranquila**, com 7 dias de garantia para solicitar seu dinheiro de volta.
+:::
+::: {.g-col-12 .g-col-md-5}
+![](garantia_7_dias_250px.png)
+:::
+:::
+:::
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-body}
+## **FAQ - Dúvidas frequentes**
+```{=html}
+<div class="faq-container">
+  <details class="faq-question">
+    <summary class="faq-question_title">Este ebook é voltado para iniciantes em análise de dados?</summary>
+    <p class="faq-question_answer">Sim, este ebook é uma introdução à área de dados e é adequado para iniciantes que desejam ingressar nesse mercado.</p>
+  </details>
+  <details class="faq-question">
+    <summary class="faq-question_title">Quanto tempo leva para concluir o ebook?</summary>
+    <p class="faq-question_answer">O tempo estimado de conclusão do ebook é de acordo com o seu ritmo de estudo, você pode fazer em um dia ou em algumas semanas.</p>
+  </details>
+  <details class="faq-question">
+    <summary class="faq-question_title">Como faço para aplicar os conhecimentos de forma proativa?</summary>
+    <p class="faq-question_answer">O ebook apresenta dicas e estratégias para você aplicar os conhecimentos adquiridos de forma proativa, garantindo assim um destaque no mercado de trabalho.</p>
+  </details>
+  <details class="faq-question">
+    <summary class="faq-question_title">Como posso construir um portfólio sólido?</summary>
+    <p class="faq-question_answer">O ebook apresenta as melhores práticas para você construir um portfólio sólido e impressionar os recrutadores na área de dados.</p>
+  </details>
+  <details class="faq-question">
+    <summary class="faq-question_title">Qual é a diferença entre este ebook e outros disponíveis no mercado?</summary>
+    <p class="faq-question_answer">Este ebook se concentra nas etapas práticas e essenciais para ingressar na área de dados, abordando desde a formação e habilidades necessárias até a busca por oportunidades e o avanço na carreira.</p>
+  </details>
+  <details class="faq-question">
+    <summary class="faq-question_title">Como faço para adquirir o ebook?</summary>
+    <p class="faq-question_answer">Basta clicar no botão disponível nesta página e seguir as instruções para adquirir o ebook e começar a mudar sua carreira na área de dados.</p>
+  </details>
+  <details class="faq-question">
+    <summary class="faq-question_title">Posso compartilhar o ebook com outras pessoas?</summary>
+    <p class="faq-question_answer">Não. O ebook é protegido por direitos autorais e só pode ser utilizado pelo comprador. Qualquer reprodução ou distribuição sem autorização é proibida e sujeita a penalidades legais.</p>
+  </details>
+</div>
+```
+<br>
+:::
+:::
+
+::: {.column-screen .lp_full_screen_light}
+```{=html}
+<div class="center">
+<a href="#top" class="back-to-top">
+<button id="cta-button">Quero multiplicar meu valor de mercado!</button>
+</a>
+</div>
+```
+<br>
+:::
+
+## Dúvidas adicionais? Pergunte abaixo
