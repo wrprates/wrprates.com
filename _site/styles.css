@@ -12,6 +12,10 @@
   justify-content: space-between;
 }
 
+.strike {
+  text-decoration: line-through;
+}
+
 pre code {
   background-color: transparent;
   font-size: small;
@@ -45,6 +49,12 @@ summary {
 
 .lp_full_screen_dark_gradient {
   background: linear-gradient(to bottom right, #22325e, #ff5733);
+  padding: 0px 20px;
+  color: #ffffff;
+}
+
+.lp_full_screen_dark_blue_gradient {
+  background: linear-gradient(to bottom right, #262626, #15c9ff);
   padding: 0px 20px;
   color: #ffffff;
 }
@@ -255,4 +265,58 @@ div.text-box h2 {
   font-weight: bold;
   color: #1a1a1a;
   text-transform: uppercase;
+}
+
+/*Ebook Carreira */
+#ebook_carreira_box {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #fff;
+  background-color: #2d6073;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  text-align: center !important;
+}
+
+#ebook_carreira_box h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+#ebook_carreira_box input[type="submit"] {
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  margin: 0 auto;
+  display: block;
+  background-color: #FF5733;
+  color: #fff;
+  border: none;
+  border-radius: 35px;
+  padding: 15px 25px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#ebook_carreira_box input[type="submit"]:hover {
+  background-color: #E84C1A;
+}
+
+#ebook_carreira_box_scroll {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.novo_preco {
+  color: #4cd038;
+  font-weight: 700;
+  font-size: 2.5em;
 }
