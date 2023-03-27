@@ -52,7 +52,9 @@ Dê o primeiro passo para entar na **`área de Dados`** com o Ebook **"7 Etapas 
 
     <div class="center">
       <p>
-        <input type="submit" value="Quero multiplicar meu valor de mercado!" name="subscribe" id="ebook_carreira_subscribe" class="button">
+        <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+          <button id="cta-button">Quero multiplicar meu valor de mercado!</button>
+        </a>
       </p>
     </div>
   </div>
