@@ -14,13 +14,40 @@ format:
 
 
 ::: {.column-page}
+
+<div class="center">
+# Multiplique por `3 vezes` o seu **valor de mercado**, entrando para a **área de dados** mesmo sem nunca ter escrito uma linha de código.
+</div>
+
+::: {.column-screen}
+::: {.column-page-outset}
+
+- **Você é DEV?** Venha para a **`área de Dados`**, que é praticamente à prova dos *layoffs* das *Big Techs*
+
+- **Você vem da Academia** (estatística, economia, administração, engenharias ...) e não consegue encontrar **seu espaço** no mercado?
+
+A área de dados é **multidisciplinar**, permite **trabalho remoto (de qualquer lugar), e tem salários altos**.
+
+E existem **muitas oportunidades**. 
+
+> <h2>Dê o <b>primeiro passo</b> para sua jornada na área de dados aprendendo uma linguagem que é um <b>diferencial</b> para os profissionais dessa área.</h2>
+
+<br>
+
+:::
+:::
+
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-page}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+
+# [CURSO] **"Introdução à Análise de Dados com a Linguagem R"**
+
 `WLADEMIR RIBEIRO PRATES`
 
-# **Desbloqueie seu potencial** e impulsione sua carreira: trabalhe **de casa** com **salários** de **`R$ 15 mil`**
-
-Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Dados com a Linguagem R"**.
+Faça parte do **`grupo seleto`** de profissionais da área de dados que recebem salários de **pelo menos** **`R$ 15 mil`**.
 
 <div class="text-box">
 
@@ -33,17 +60,16 @@ Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Da
 :::
 
 ::: {.g-col-12 .g-col-md-5}
+<br>
 ```{=html}
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">
   <form action="https://cienciaenegocios.us20.list-manage.com/subscribe/post?u=7dd56b82660a42caac052da3e&amp;id=ec8a68702e&amp;f_id=00713be7f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self">
     <div id="mc_embed_signup_scroll">
-      <div class="justify">
-        <h4>Entre na lista de espera e receba:</h4>
-        <ul>
-          <li><b>[Ebook] Guia de como entrar</b> para a área de dados.</li>
-          <li>Aulão "<b>Minha primeira análise de dados usando R</b>".</li>
-        </ul>
+      <div class="center">
+        <h4>Entre na lista de espera e receba antecipadamente oferta de
+        <br><span class="novo_preco">30% OFF</span><br>
+        no valor total do Curso</h4>
       </div>
       <div class="mc-field-group">
         <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Digite seu melhor e-mail">
@@ -67,10 +93,10 @@ Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Da
       </div>
       <div class="center">
         <p>
-          <input type="submit" value="Quero me inscrever gratuitamente" name="subscribe" id="mc-embedded-subscribe" class="button">
+          <input type="submit" value="Quero garantir minha vaga com desconto!" name="subscribe" id="mc-embedded-subscribe" class="button">
         </p>
       </div>
-      <p><em>*Previsão de início em 03 de Maio de 2023.</em></p>
+      <p><em>* Previsão de início em 03 de Maio de 2023.</em></p>
     </div>
   </form>
 </div>
@@ -78,9 +104,11 @@ Entre para a  **`área de Dados`** com o curso **"Introdução à Análise de Da
 ```
 :::
 :::
+<br>
+:::
+:::
 :::
 
-<br>
 
 ::: {.column-screen .lp_full_screen_dark_gradient}
 
