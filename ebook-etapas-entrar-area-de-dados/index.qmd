@@ -22,7 +22,7 @@ format:
 
 # Comece do **`ZERO`** e **multiplique seu valor de mercado** na área **`mais promissora`** e **`segura`** do mercado de **TI**
 
-Dê o primeiro passo para entar na **`área de Dados`** com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
+Dê o primeiro passo para entrar na **`área de Dados`** com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
 
 <div class="text-box">
 - Pela área de dados você entra em TI **mesmo sem nunca ter escrito uma linha de código**.
@@ -39,13 +39,14 @@ Dê o primeiro passo para entar na **`área de Dados`** com o Ebook **"7 Etapas 
 <div id="ebook_carreira_box">
   <div id="ebook_carreira_box_scroll">
     
-    <p>Receba <b>salários altos</b> e trabalhe de forma remota <b>de onde quiser</b>! Comece hoje mesmo sua carreira na área de dados!</p>
+    <p>Receba <b>salários altos</b> e trabalhe <b>de onde quiser</b>! Comece <b>hoje mesmo</b> sua carreira em dados!</p>
 
     <div class="center"> 
       <img width="230" src="mockup_ebook_carreira_dados.png">
     </div>
 
     <div class="center">
+      [Ebook] 7 Etapas Práticas para Entrar na Área de Dados<br>
       De <span class="strike">R$ 47,90</span><br/>
       <span class="novo_preco">por R$ 17,90</span>
     </div>
@@ -128,7 +129,7 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 
 ::: {.column-page}
-# **Quanto ganha um Cientista de Dados?**
+# Existem vários cargos na área de dados, mas veja como exemplo quanto ganha um **Cientista de Dados** ...
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 
@@ -157,6 +158,7 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 :::
 
+::: {.column-screen .lp_full_screen_light}
 ::: {.column-page}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
@@ -164,6 +166,7 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 ::: {.g-col-12 .g-col-md-5}
 ![](garantia_7_dias_250px.png)
+:::
 :::
 :::
 :::
