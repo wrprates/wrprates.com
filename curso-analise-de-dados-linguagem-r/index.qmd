@@ -382,5 +382,3 @@ Permitir que o aluno seja capaz de realizar **análises de dados de ponta a pont
 ```
 <br>
 :::
-
-## Dúvidas adicionais? Pergunte abaixo
