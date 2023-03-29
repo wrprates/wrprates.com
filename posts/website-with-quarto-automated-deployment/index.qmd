@@ -3,6 +3,9 @@ title: "Set up a website with Quarto and automate deployment"
 author: "Wlademir Ribeiro Prates"
 date: "2022-07-02"
 categories: [Reporting]
+format:
+  html:
+    include-after-body: disqus.html
 ---
 
 Anyone who works with data analysis and wants to share content faces some limitations from the traditional tools to build a website. One of the main reasons is the difficulty of sharing the results of chunks of code without needing to copy and paste images.

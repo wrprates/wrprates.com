@@ -4,6 +4,9 @@ author: "Wlademir Ribeiro Prates"
 date: "2023-02-08"
 categories: [Reporting, Data Science, Machine Learning]
 image: preview.png
+format:
+  html:
+    include-after-body: disqus.html
 ---
 
 ```{r}

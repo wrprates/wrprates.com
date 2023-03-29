@@ -21,7 +21,6 @@ website:
   cookie-consent: false
 format:
   html:
-    include-after-body: disqus.html
     theme: flatly
     css: styles.css
     toc: true
