@@ -49,26 +49,22 @@ format:
 ::: {.g-col-12 .g-col-md-5}
 `WLADEMIR RIBEIRO PRATES`
 
-# **Multiplique seu valor de mercado** em pelo menos **`3 vezes`** na **`área de dados`** em **7 etapas**
+# **Multiplique seu valor de mercado** e ganhe pelo menos **`R$ 15 mil`** na **`área de dados`** em **7 etapas**
 
-**O mercado não te espera!**
+**Milhares de profissionais já estão migrando de área!**  🏃 
 
-**Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**
+⏱️  **Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
 
 <div class="text-box">
 - Pela área de dados você entra em TI **mesmo sem nunca ter escrito uma linha de código**.
-- A área de dados é praticamente **à prova dos grandes *layoffs* das *Big Techs***.<br>
-
+- A área de dados é praticamente **à prova dos grandes *layoffs* (demissões) das *Big Techs***.<br>
 </div>
-
-<p>Coloque sua carreira em **outro patamar**!</p>
+<!-- <p>Coloque sua carreira em **outro patamar** trabalhando de onde quiser!</p> -->
 :::
-
 :::
 :::
 <br>
 :::
-
 
 ::: {.column-screen .lp_full_screen_dark_blue_gradient}
 
@@ -85,8 +81,6 @@ format:
 <em>"Trabalho remoto e atendo clientes do mundo inteiro!"</em>
 
 <hr></hr>
-
-Conheça o profissional que irá lhe direcionar nessa jornada:
 
 - **`Cientista de Dados Senior`**.
 - Experiência em **projetos de `consultoria`** de ***Data Science*** para **grandes empresas como BASF, VIVO, DHL, BRASKEM, EMBRAER** e várias outras.
@@ -130,12 +124,32 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 :::
 
+::: {.column-screen .lp_full_screen_mid}
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+## São cerca de **`6.500` novas vagas** na área de dados **todos os dias**!
+
+Milhares de profissionais ao redor do mundo estão garantindo salários altos e trabalhando em lugares onde as outras pessoas tiram férias.
+
+Aprenda as 7 etapas necessárias para você **rapidamente** (poucos meses!) se juntar a estes profissionais.
+
+Veja alguns salários no mundo (base anual) para os principais cargos.
+:::
+::: {.g-col-12 .g-col-md-5}
+<br>
+![Fonte: datanerd.tech](salarios_cargos_dados.png){fig-alt="Vagas e salários anuais na área de dados no mundo"}
+:::
+:::
+:::
+:::
+
 ::: {.column-page}
 # Existem vários cargos na área de dados, mas veja como exemplo quanto ganha um **Cientista de Dados** ...
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 
-## *Com o <b>treinamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
+## *Com o <b>direcionamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
 
 \* Veja os dados do *Glassdoor* ao lado.
 
@@ -160,20 +174,7 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 :::
 
-::: {.column-screen .lp_full_screen_light}
-::: {.column-page}
-::: {.grid}
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
-## **Compra tranquila**, com 7 dias de garantia para solicitar seu dinheiro de volta.
-:::
-::: {.g-col-12 .g-col-md-5}
-![](garantia_7_dias_250px.png){fig-alt="Compre com garantia!"}
-:::
-:::
-:::
-:::
-
-::: {.column-screen .lp_full_screen_light}
+::: {.column-screen .lp_full_screen_mid}
 ::: {.column-body}
 ## **FAQ - Dúvidas frequentes**
 ```{=html}
@@ -212,13 +213,37 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 :::
 :::
 
+::: {.column-screen .lp_full_screen_light}
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+## **Compra tranquila**, com 7 dias de garantia para solicitar seu dinheiro de volta.
+:::
+::: {.g-col-12 .g-col-md-5}
+![](garantia_7_dias_250px.png){fig-alt="Compre com garantia!"}
+:::
+:::
+:::
+:::
+
 ::: {.column-screen}
+::: {.column-body}
+<div class="center">
+## Adquira **agora mesmo** sua cópia do Ebook para garantir a oferta de:
+
+<span class="novo_preco">62% OFF!</span>
+
 ```{=html}
 <div class="center">
 <a href="#top" class="back-to-top">
 <button class="cta-button">Quero multiplicar meu valor de mercado!</button>
 </a>
-</div>
 ```
+
+<br/>
+<p>⏱️  Por tempo **limitado**!</p>
+
+</div>
 <br>
+:::
 :::
