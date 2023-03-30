@@ -376,7 +376,7 @@ Permitir que o aluno seja capaz de realizar **análises de dados de ponta a pont
 ```{=html}
 <div class="center">
 <a href="#top" class="back-to-top">
-<button id="cta-button">Inscrição GRATUITA na <b>Lista de Espera</b></button>
+<button class="cta-button">Inscrição GRATUITA na <b>Lista de Espera</b></button>
 </a>
 </div>
 ```
