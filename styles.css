@@ -29,6 +29,15 @@ summary {
   max-height: 45px;
 }
 
+.checklist {
+  list-style-type: none;
+}
+
+.checklist li:before {
+  content: "\2714";
+  margin-right: 5px;
+}
+
 /* LP utils */
 .lp_full_screen_light {
   background-color: #f2f2f2;

@@ -19,86 +19,40 @@ format:
 {{< video https://b-vz-c6feb2f4-c51.tv.pandavideo.com.br/47a6375b-b957-4aee-b824-7e42548abfdf/playlist.m3u8 >}}
 </div>
 
-# **`Ebook`** **7** Etapas práticas para entrar na **área de dados**
-
-<hr/>
-
-<!-- > Neste Ebook mostro as 7 etapas para você entrar ou se aperfeiçoar na área e ter uma direção de como seguir se desenvolvendo. -->
-
-<!-- Me chamo Wlademir Prates, e sou um **Cientista de Dados experiente** e também professor de cursos de especialização com disciplinas de *Machine Learning* e *Processamento de Linguagem Natural*. -->
-
-<!-- Minha formação é em Administração, e tenho doutorado em Finanças. -->
-
-<!-- Não venho da área de TI e passei por todas as dificuldades que existem para entrar e me desenvolver na área de dados. -->
-
-<!-- Mas acredite, vale a pena. -->
-
-<!-- Na área de dados geralmente você pode trabalhar de qualquer lugar (trabalho remoto) e o salário é muito bom comparado com outras áreas. -->
-
-<!-- Neste Ebook compilei 7 etapas que irão ser seu Guia para uma carreira bem sucedida. -->
-
-<!-- Falo, entre outras coisas, sobre: -->
-
-<!-- - Os principais cargos e suas atribuições dentro da área de dados; -->
-<!-- - Habilidades necessárias, tanto *soft* (de comportamento), quanto *hard* (técnicas) -->
-<!-- - Como buscar formação e educação da melhor forma; -->
-<!-- - Dicas gerais para você construir seu portfolio e impressionar recrutadores; -->
-<!-- - Como buscar por oportunidades de trabalho na área de forma assertiva. -->
-:::
-
-
-::: {.column-screen}
-::: {.column-page}
-::: {.grid}
-
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 ```{=html}
-<div id="ebook_carreira_box">
-  <div id="ebook_carreira_box_scroll">
-    
-    <p>Receba <b>salários altos</b> e trabalhe <b>de onde quiser</b>! Comece <b>hoje mesmo</b> sua carreira em dados!</p>
-
-    <div class="center"> 
-      <img width="230" src="mockup_ebook_carreira_dados.png" alt="Ebook 7 Etapas Carreira de Dados">
-    </div>
-
-    <div class="center">
-      [Ebook] 7 Etapas Práticas para Entrar na Área de Dados<br>
-      De <span class="strike">R$ 47,90</span><br/>
-      <span class="novo_preco">por R$ 17,90</span>
-    </div>
-
-    <div class="center">
-      <p>
-        <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
-          <button class="cta-button">Quero multiplicar meu valor de mercado!</button>
-        </a>
-      </p>
-    </div>
-  </div>
+<div class="center">
+<a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+<button class="cta-button">Quero meu Ebook agora mesmo!</button>
+</a>
 </div>
-```
-:::
-
-::: {.g-col-12 .g-col-md-5}
-`WLADEMIR RIBEIRO PRATES`
-
-# **Multiplique seu valor de mercado** e ganhe mais de **`R$ 10 mil`** na **`área de dados`** em **7 etapas**
-
-**Milhares de profissionais já estão migrando de área!**  🏃
-
-⏱️  **Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
-
-<div class="text-box">
-- Pela área de dados você entra em TI **mesmo sem nunca ter escrito uma linha de código**.
-- A área de dados é praticamente **à prova dos grandes *layoffs* (demissões) das *Big Techs***.<br>
-</div>
-<!-- <p>Coloque sua carreira em **outro patamar** trabalhando de onde quiser!</p> -->
-:::
-:::
-:::
 <br>
+```
+
+> Neste Ebook mostro as 7 etapas para você entrar ou se aperfeiçoar na área e ter uma direção de como seguir se desenvolvendo.
+
+Me chamo Wlademir Prates, e sou um **Cientista de Dados Senior** e também professor de cursos de especialização com disciplinas de *Machine Learning* e *Processamento de Linguagem Natural*.
+
+Minha formação é em Administração, e tenho doutorado em Finanças.
+
+**Não venho da área de TI** e **passei por inúmeras dificuldades** para entrar e me desenvolver na área de dados.
+
+Mas acredite, **vale a pena**.
+
+Na área de dados geralmente você pode trabalhar de qualquer lugar (**trabalho remoto**) e o **salário é muito bom** quando comparado com outras áreas.
+
+Neste Ebook **compilei 7 etapas que irão ser seu Guia para uma carreira bem sucedida**.
+
+Falo, entre outras coisas, sobre:
+
+ <ul class="checklist">
+    <li>Os principais cargos e suas atribuições dentro da área de dados;</li>
+    <li>Habilidades necessárias, tanto <em>soft</em> (de comportamento), quanto <em>hard</em> (técnicas);</li>
+    <li>Como buscar formação e educação da melhor forma;</li>
+    <li>Dicas gerais para você construir seu portfolio e impressionar recrutadores;</li>
+    <li>Como buscar por oportunidades de trabalho na área de forma assertiva.</li>
+  </ul>
 :::
+
 
 ::: {.column-screen .lp_full_screen_dark_blue_gradient}
 
@@ -206,6 +160,64 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 ![](glassdoor_data_scientist_usa.jpg){fig-alt="Salário do Cientista de Dados nos Estados Unidos"}
 :::
 :::
+:::
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-page}
+
+# **`Ebook`** **7** Etapas práticas para entrar na **área de dados**
+
+<hr/>
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+```{=html}
+<div id="ebook_carreira_box">
+  <div id="ebook_carreira_box_scroll">
+    
+    <p>Receba <b>salários altos</b> e trabalhe <b>de onde quiser</b>! Comece <b>hoje mesmo</b> sua carreira em dados!</p>
+
+    <div class="center"> 
+      <img width="230" src="mockup_ebook_carreira_dados.png" alt="Ebook 7 Etapas Carreira de Dados">
+    </div>
+
+    <div class="center">
+      [Ebook] 7 Etapas Práticas para Entrar na Área de Dados<br>
+      De <span class="strike">R$ 47,90</span><br/>
+      <span class="novo_preco">por R$ 17,90</span>
+    </div>
+
+    <div class="center">
+      <p>
+        <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+          <button class="cta-button">Quero multiplicar meu valor de mercado!</button>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+```
+:::
+
+::: {.g-col-12 .g-col-md-5}
+`WLADEMIR RIBEIRO PRATES`
+
+# **Multiplique seu valor de mercado** e ganhe mais de **`R$ 10 mil`** na **`área de dados`** em **7 etapas**
+
+**Milhares de profissionais já estão migrando de área!**  🏃
+
+⏱️  **Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
+
+<div class="text-box">
+- Pela área de dados você entra em TI **mesmo sem nunca ter escrito uma linha de código**.
+- A área de dados é praticamente **à prova dos grandes *layoffs* (demissões) das *Big Techs***.<br>
+</div>
+<!-- <p>Coloque sua carreira em **outro patamar** trabalhando de onde quiser!</p> -->
+:::
+:::
+:::
+<br>
 :::
 
 ::: {.column-screen .lp_full_screen_mid}
