@@ -7,13 +7,47 @@ format:
   html:
     pagetitle: "Ebook 7 Etapas práticas para entrar na área de dados"
     toc: false
-    toc-location: right
-    toc-title: "Navegue nesta página"
 ---
-::: {.column-screen}
 
 <a href="#top"></a>
 
+::: {.column-body-outset}
+
+<div class="center">
+## A **área de dados** é uma das **`mais promissoras`** do mercado, mas o **excesso de conteúdo e termos técnicos** para estudar **`desanimam` quem está começando**!
+
+{{< video https://b-vz-c6feb2f4-c51.tv.pandavideo.com.br/47a6375b-b957-4aee-b824-7e42548abfdf/playlist.m3u8 >}}
+</div>
+
+# **`Ebook`** **7** Etapas práticas para entrar na **área de dados**
+
+<hr/>
+
+<!-- > Neste Ebook mostro as 7 etapas para você entrar ou se aperfeiçoar na área e ter uma direção de como seguir se desenvolvendo. -->
+
+<!-- Me chamo Wlademir Prates, e sou um **Cientista de Dados experiente** e também professor de cursos de especialização com disciplinas de *Machine Learning* e *Processamento de Linguagem Natural*. -->
+
+<!-- Minha formação é em Administração, e tenho doutorado em Finanças. -->
+
+<!-- Não venho da área de TI e passei por todas as dificuldades que existem para entrar e me desenvolver na área de dados. -->
+
+<!-- Mas acredite, vale a pena. -->
+
+<!-- Na área de dados geralmente você pode trabalhar de qualquer lugar (trabalho remoto) e o salário é muito bom comparado com outras áreas. -->
+
+<!-- Neste Ebook compilei 7 etapas que irão ser seu Guia para uma carreira bem sucedida. -->
+
+<!-- Falo, entre outras coisas, sobre: -->
+
+<!-- - Os principais cargos e suas atribuições dentro da área de dados; -->
+<!-- - Habilidades necessárias, tanto *soft* (de comportamento), quanto *hard* (técnicas) -->
+<!-- - Como buscar formação e educação da melhor forma; -->
+<!-- - Dicas gerais para você construir seu portfolio e impressionar recrutadores; -->
+<!-- - Como buscar por oportunidades de trabalho na área de forma assertiva. -->
+:::
+
+
+::: {.column-screen}
 ::: {.column-page}
 ::: {.grid}
 
@@ -49,9 +83,9 @@ format:
 ::: {.g-col-12 .g-col-md-5}
 `WLADEMIR RIBEIRO PRATES`
 
-# **Multiplique seu valor de mercado** e ganhe pelo menos **`R$ 15 mil`** na **`área de dados`** em **7 etapas**
+# **Multiplique seu valor de mercado** e ganhe mais de **`R$ 10 mil`** na **`área de dados`** em **7 etapas**
 
-**Milhares de profissionais já estão migrando de área!**  🏃 
+**Milhares de profissionais já estão migrando de área!**  🏃
 
 ⏱️  **Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
 
