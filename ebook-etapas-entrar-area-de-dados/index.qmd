@@ -8,25 +8,45 @@ format:
     pagetitle: "Ebook 7 Etapas práticas para entrar na área de dados"
     toc: false
 ---
+::: {.column-screen}
+::: {.column-body-outset .center}
+## **`Ebook`** **Especialista em Dados: 7 Etapas Práticas**
+:::
+:::
 
-<a href="#top"></a>
-
-::: {.column-body-outset}
+::: {.column-page-outset}
 
 <div class="center">
-## A **área de dados** é uma das **`mais promissoras`** do mercado, mas o **excesso de conteúdo e termos técnicos** para estudar **`desanimam` quem está começando**!
+### Descubra Como se Tornar um **`ESPECIALISTA EM DADOS`** **Altamente Valorizado**. Entenda o Caminho para Salários de Mais de **`R$10 Mil`** em **7 Etapas Práticas**! 
 
-{{< video https://b-vz-c6feb2f4-c51.tv.pandavideo.com.br/47a6375b-b957-4aee-b824-7e42548abfdf/playlist.m3u8 >}}
+#### Entre para a Área de Dados Mesmo sem Ter Experiência em Programação!
+
+```{=html}
+<div style="position:relative;padding-top:56.25%;">
+<iframe id="panda-47a6375b-b957-4aee-b824-7e42548abfdf" src="https://player-vz-c6feb2f4-c51.tv.pandavideo.com.br/embed/?v=47a6375b-b957-4aee-b824-7e42548abfdf" style="border:none;position:absolute;top:0;left:0;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen=true width="100%" height="100%" fetchpriority="high">
+</iframe>
+</div>
+```
 </div>
 
 ```{=html}
 <div class="center">
 <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
-<button class="cta-button">Quero meu Ebook agora mesmo!</button>
+<button class="cta-button">Quero me tornar um Especialista em Dados!</button>
 </a>
+<img src="satisfacao_seguranca.webp" class="img-below-cta-button">
 </div>
 <br>
 ```
+:::
+
+
+::: {.column-screen .lp_full_screen_light}
+::: {.column-page-outset}
+
+<hr/>
+
+## A **melhor maneira** para se desenvolver na **área de dados**!
 
 > Neste Ebook mostro as 7 etapas para você entrar ou se aperfeiçoar na área e ter uma direção de como seguir se desenvolvendo.
 
@@ -45,12 +65,23 @@ Neste Ebook **compilei 7 etapas que irão ser seu Guia para uma carreira bem suc
 Falo, entre outras coisas, sobre:
 
  <ul class="checklist">
-    <li>Os principais cargos e suas atribuições dentro da área de dados;</li>
+    <li>Os principais cargos e suas atribuições dentro da área de dados (cientista de dados, engenheiro de dados, engenheiro de *machine learning*, analista de BI e analista de dados);</li>
     <li>Habilidades necessárias, tanto <em>soft</em> (de comportamento), quanto <em>hard</em> (técnicas);</li>
     <li>Como buscar formação e educação da melhor forma;</li>
     <li>Dicas gerais para você construir seu portfolio e impressionar recrutadores;</li>
     <li>Como buscar por oportunidades de trabalho na área de forma assertiva.</li>
-  </ul>
+</ul>
+  
+```{=html}
+<div class="center">
+<a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+<button class="cta-button">Quero me tornar um Especialista em Dados!</button>
+</a>
+</div>
+<br>
+```
+
+:::  
 :::
 
 
@@ -165,12 +196,9 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 ::: {.column-screen .lp_full_screen_light}
 ::: {.column-page}
 
-# **`Ebook`** **7** Etapas práticas para entrar na **área de dados**
-
-<hr/>
+## **`Ebook`** **Especialista em Dados: 7 Etapas Práticas**
 
 ::: {.grid}
-
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 ```{=html}
 <div id="ebook_carreira_box">
@@ -191,7 +219,7 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
     <div class="center">
       <p>
         <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
-          <button class="cta-button">Quero multiplicar meu valor de mercado!</button>
+          <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
         </a>
       </p>
     </div>
@@ -213,7 +241,6 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 - Pela área de dados você entra em TI **mesmo sem nunca ter escrito uma linha de código**.
 - A área de dados é praticamente **à prova dos grandes *layoffs* (demissões) das *Big Techs***.<br>
 </div>
-<!-- <p>Coloque sua carreira em **outro patamar** trabalhando de onde quiser!</p> -->
 :::
 :::
 :::
@@ -281,9 +308,10 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 
 ```{=html}
 <div class="center">
-<a href="#top" class="back-to-top">
-<button class="cta-button">Quero multiplicar meu valor de mercado!</button>
-</a>
+  <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+    <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
+  </a>
+</div>
 ```
 
 <br/>

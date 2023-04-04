@@ -2,7 +2,7 @@
 .center {
   text-align: center;
   margin: auto;
-  padding: 10px;
+  padding: 7px;
 }
 
 .justify {
@@ -31,7 +31,7 @@ summary {
 
 .checklist {
   list-style-type: none;
-  color: "green"}
+}
 
 .checklist li:before {
   content: "\2714";
@@ -161,7 +161,7 @@ summary {
 /* CTA Button */
 .cta-button {
   width: 100%;
-  max-width: 380px;
+  max-width: 470px;
   margin: 0 auto;
   display: block;
   background-color: #FF5733;
@@ -169,9 +169,16 @@ summary {
   border: none;
   border-radius: 35px;
   padding: 15px 25px;
-  font-size: 17px;
+  font-size: 22px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.img-below-cta-button {
+  max-width: 380px;
+  padding-top: 8px;
 }
 
 #cta-button:hover {
@@ -322,6 +329,11 @@ div.text-box h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.logo-ebook {
+  width: 100%;
+  max-width: 470px;
 }
 
 .novo_preco {
