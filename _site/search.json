@@ -158,7 +158,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Hi, I am Wlademir Ribeiro Prates. Welcome to my personal blog.\nI am a Senior Data Scientist. Experienced R and Shiny developer, with examples of use cases in several large companies. Experienced with machine learning implementation to solve business problems. PhD and Master’s in Finance. Researcher in behavioral finance / economics, and capital markets. I also have a website, where articles about business, technology and data science are published."
+    "text": "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-KL56G4\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>\nHi, I am Wlademir Ribeiro Prates. Welcome to my personal blog.\nI am a Senior Data Scientist. Experienced R and Shiny developer, with examples of use cases in several large companies. Experienced with machine learning implementation to solve business problems. PhD and Master’s in Finance. Researcher in behavioral finance / economics, and capital markets. I also have a website, where articles about business, technology and data science are published."
   },
   {
     "objectID": "about.html#education",
@@ -166,6 +166,13 @@
     "title": "About",
     "section": "Education",
     "text": "Education\n\n2012-2016 - PhD in Finance (UFSC)\n2010-2012 - Master’s in Finance (UFSC)\n2006-2009 - Undergraduate in Business Administration (Anhanguera)"
+  },
+  {
+    "objectID": "ebook-etapas-entrar-area-de-dados/index.html#ebook-especialista-em-dados-7-etapas-práticas",
+    "href": "ebook-etapas-entrar-area-de-dados/index.html#ebook-especialista-em-dados-7-etapas-práticas",
+    "title": "",
+    "section": "Ebook Especialista em Dados: 7 Etapas Práticas",
+    "text": "Ebook Especialista em Dados: 7 Etapas Práticas"
   },
   {
     "objectID": "ebook-etapas-entrar-area-de-dados/index.html#a-melhor-maneira-para-se-desenvolver-na-área-de-dados",
