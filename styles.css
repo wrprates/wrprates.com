@@ -1,8 +1,20 @@
 /* css styles */
+html {
+  scroll-behavior: smooth;
+}
+
 .center {
   text-align: center;
   margin: auto;
   padding: 7px;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .justify {
@@ -36,6 +48,12 @@ summary {
 .checklist li:before {
   content: "\2714";
   margin-right: 5px;
+}
+
+.vertical_line {
+  border-right: 1px solid;
+  border-color: #D8D8D9;
+  margin: 1rem 0;
 }
 
 /* LP utils */
@@ -177,6 +195,7 @@ summary {
 }
 
 .img-below-cta-button {
+  width: 100%;
   max-width: 380px;
   padding-top: 8px;
 }

@@ -10,15 +10,16 @@ format:
 ---
 ::: {.column-screen}
 ::: {.column-body-outset .center}
-## **`Ebook`** **Especialista em Dados: 7 Etapas Práticas**
+# **`Ebook`** **Especialista em Dados: 7 Etapas Práticas**
+
 :::
 :::
 
 ::: {.column-page-outset}
-
 <div class="center">
-### Descubra Como se Tornar um **`ESPECIALISTA EM DADOS`** **Altamente Valorizado**. Entenda o Caminho para Salários de Mais de **`R$10 Mil`** em **7 Etapas Práticas**! 
+### Torne-se um Profissional da **`ÁREA DE DADOS`** em **7 Etapas Práticas** e Não Fique Mais Bloqueado pelo **Excesso de Informação**!
 
+<!-- Entenda o Caminho para Salários de **Mais de `R$10 Mil`** -->
 #### Entre para a Área de Dados Mesmo sem Ter Experiência em Programação!
 
 ```{=html}
@@ -31,7 +32,7 @@ format:
 
 ```{=html}
 <div class="center">
-<a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+<a href="#final-sales-button" class="back-to-top">
 <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
 </a>
 <img src="satisfacao_seguranca.webp" class="img-below-cta-button">
@@ -40,17 +41,38 @@ format:
 ```
 :::
 
+::: {.column-screen .lp_full_screen_dark}
+
+<br />
+
+::: {.column-page}
+::: {.grid}
+::: {.g-col-12 .g-col-md-5 .g-start-md-2 .vertical_line}
+# Quer entrar para a `área de dados`, mas está **perdido** em meio tantos `termos técnicos` e **cursos extensos** para estudar?
+:::
+::: {.g-col-12 .g-col-md-5}
+
+<div class="vertical-center">
+### Este Ebook é um **guia completo** para uma carreira de sucesso na área de dados, incluindo informações sobre os principais cargos, habilidades necessárias, educação, construção de portfólio e busca de oportunidades de trabalho.
+</div>
+:::
+:::
+:::
+
+<br />
+
+:::
+
 
 ::: {.column-screen .lp_full_screen_light}
 ::: {.column-page-outset}
-
-<hr/>
-
 ## A **melhor maneira** para se desenvolver na **área de dados**!
 
 > Neste Ebook mostro as 7 etapas para você entrar ou se aperfeiçoar na área e ter uma direção de como seguir se desenvolvendo.
 
-Me chamo Wlademir Prates, e sou um **Cientista de Dados Senior** e também professor de cursos de especialização com disciplinas de *Machine Learning* e *Processamento de Linguagem Natural*.
+Me chamo Wlademir Prates, e sou um **Cientista de Dados Senior** com experiência em projetos de *Data Science* no Brasil e no Exterior.
+
+Também sou professor de cursos de especialização com disciplinas *Data Science*, como *Machine Learning* e *Processamento de Linguagem Natural*.
 
 Minha formação é em Administração, e tenho doutorado em Finanças.
 
@@ -74,7 +96,7 @@ Falo, entre outras coisas, sobre:
   
 ```{=html}
 <div class="center">
-<a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+<a href="#final-sales-button" class="back-to-top">
 <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
 </a>
 </div>
@@ -145,6 +167,9 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 
 ::: {.column-screen .lp_full_screen_mid}
 ::: {.column-page}
+
+<br />
+
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 ## São cerca de **`6.500` novas vagas** na área de dados **todos os dias**!
@@ -156,10 +181,14 @@ Aprenda as 7 etapas necessárias para você **rapidamente** (poucos meses!) se j
 Veja alguns salários no mundo (base anual) para os principais cargos.
 :::
 ::: {.g-col-12 .g-col-md-5}
-<br>
+<div class="vertical-center">
 ![Fonte: datanerd.tech](salarios_cargos_dados.png){fig-alt="Vagas e salários anuais na área de dados no mundo"}
+</div>
 :::
 :::
+
+<br />
+
 :::
 :::
 
@@ -193,10 +222,20 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 :::
 :::
 
+
+::: {.column-screen .lp_full_screen_dark}
+::: {.column-body-outset .center}
+# Aproveite esta `oportunidade única` para se desenvolver na área de dados!
+<br />
+:::
+:::
+
 ::: {.column-screen .lp_full_screen_light}
 ::: {.column-page}
 
+<div id="final-sales-button">
 ## **`Ebook`** **Especialista em Dados: 7 Etapas Práticas**
+</div>
 
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
@@ -308,7 +347,7 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 
 ```{=html}
 <div class="center">
-  <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+  <a href="#final-sales-button" class="back-to-top">
     <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
   </a>
 </div>
