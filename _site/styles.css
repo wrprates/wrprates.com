@@ -10,8 +10,8 @@ html {
 }
 
 .vertical-center {
-  margin: 0;
-  position: absolute;
+  margin: 30;
+  position: relative;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -52,8 +52,13 @@ summary {
 
 .vertical_line {
   border-right: 1px solid;
-  border-color: #D8D8D9;
+  border-color: #27C5F5;
   margin: 1rem 0;
+  padding-right: 10px;
+}
+
+.large_font {
+  font-size: larger;
 }
 
 /* LP utils */
@@ -63,13 +68,13 @@ summary {
 }
 
 .lp_full_screen_dark {
-  background-color: #22325e;
+  background-color: #2C2C2C;
   padding: 0px 20px;
-  color: #ffffff;
+  color: #fff;
 }
 
 .lp_full_screen_mid {
-  background-color: #333;
+  background-color: #2d6073;
   padding: 0px 20px;
   color: #ffffff;
 }
@@ -278,6 +283,10 @@ summary {
   margin-top: 10px;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+details>summary {
+    color: #ccc;
 }
 
 /* Text box */
