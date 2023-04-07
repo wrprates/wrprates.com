@@ -171,28 +171,28 @@ Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
 # **Quanto ganha um Cientista de Dados?**
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+### *Cientista de Dados `no Brasil`*
 
+![](glassdoor_data_scientist_br.jpg)
+:::
+::: {.g-col-12 .g-col-md-5}
 ## *Com o <b>treinamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
 
 \* Veja os dados do *Glassdoor* ao lado.
 
 :::
-::: {.g-col-12 .g-col-md-5}
-### *Cientista de Dados `no Brasil`*
-
-![](glassdoor_data_scientist_br.jpg)
-:::
 :::
 
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+### *Vagas remotas em `outros países`*
+![](glassdoor_data_scientist_usa.jpg)
+
+:::
+::: {.g-col-12 .g-col-md-5}
 ## *Mas não se contente com pouco! <br>Há <b>vagas remotas</b> em outros países pagando <b>`$10.000`</b> mensais, isso mesmo, <b>dólares americanos</b>*!
 
 \* Veja os dados do *Glassdoor* ao lado.
-:::
-::: {.g-col-12 .g-col-md-5}
-### *Vagas remotas em `outros países`*
-![](glassdoor_data_scientist_usa.jpg)
 :::
 :::
 :::

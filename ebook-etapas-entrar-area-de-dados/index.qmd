@@ -8,6 +8,9 @@ format:
     pagetitle: "Ebook 7 Etapas práticas para entrar na área de dados"
     toc: false
 ---
+
+::: {.large_font}
+
 ::: {.column-screen}
 ::: {.column-body-outset .center}
 # **`Ebook`** **Especialista em Dados: 7 Etapas Práticas**
@@ -42,10 +45,10 @@ format:
 :::
 
 ::: {.column-screen .lp_full_screen_dark}
+::: {.column-page}
 
 <br />
 
-::: {.column-page}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2 .vertical_line}
 # Quer entrar para a `área de dados`, mas está **perdido** em meio tantos `termos técnicos` e **cursos extensos** para estudar?
@@ -57,12 +60,11 @@ format:
 </div>
 :::
 :::
-:::
 
 <br />
 
 :::
-
+:::
 
 ::: {.column-screen .lp_full_screen_light}
 ::: {.column-page-outset}
@@ -87,11 +89,11 @@ Neste Ebook **compilei 7 etapas que irão ser seu Guia para uma carreira bem suc
 Falo, entre outras coisas, sobre:
 
  <ul class="checklist">
-    <li>Os principais cargos e suas atribuições dentro da área de dados (cientista de dados, engenheiro de dados, engenheiro de *machine learning*, analista de BI e analista de dados);</li>
-    <li>Habilidades necessárias, tanto <em>soft</em> (de comportamento), quanto <em>hard</em> (técnicas);</li>
-    <li>Como buscar formação e educação da melhor forma;</li>
-    <li>Dicas gerais para você construir seu portfolio e impressionar recrutadores;</li>
-    <li>Como buscar por oportunidades de trabalho na área de forma assertiva.</li>
+    <li>Os **principais cargos e suas atribuições** dentro da área de dados (cientista de dados, engenheiro de dados, engenheiro de *machine learning*, analista de BI e analista de dados);</li>
+    <li>**Habilidades necessárias**, tanto <em>soft</em> (de comportamento), quanto <em>hard</em> (técnicas);</li>
+    <li>Como buscar **formação e educação** da melhor forma;</li>
+    <li>Orientação de como você deve **construir seu portfolio** para **impressionar recrutadores**;</li>
+    <li>Como **buscar por oportunidades de trabalho** na área de forma assertiva.</li>
 </ul>
   
 ```{=html}
@@ -111,7 +113,6 @@ Falo, entre outras coisas, sobre:
 
 <br>
 
-::: {.column-screen}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 
@@ -135,22 +136,22 @@ Falo, entre outras coisas, sobre:
 :::
 :::
 :::
-:::
 
-::: {.column-screen .lp_full_screen_light}
+::: {.column-screen .lp_full_screen_dark}
 ::: {.column-body-outset .center}
 # *"Independente da sua área, aprender a trabalhar com dados ainda é um DIFERENCIAL, mas em breve será requisito OBRIGATÓRIO."*
 <br>
 :::
 :::
 
-::: {.column-screen .lp_full_screen_light}
+::: {.column-screen .lp_full_screen_dark}
 ::: {.column-page}
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 ![](money_freedom.png){fig-alt="Trabalhe de qualquer lugar!"}
 :::
 ::: {.g-col-12 .g-col-md-5}
+<div class="vertical-center">
 ## Para profissionais da área de dados é **NORMAL**:
 
 - Trabalho **REMOTO**.
@@ -160,12 +161,16 @@ Falo, entre outras coisas, sobre:
 - Área em altíssimo **CRESCIMENTO**.
 
 Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
+</div>
+
+<br />
+<br />
 :::
 :::
 :::
 :::
 
-::: {.column-screen .lp_full_screen_mid}
+::: {.column-screen .lp_full_screen_light}
 ::: {.column-page}
 
 <br />
@@ -192,45 +197,77 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 :::
 :::
 
+
+::: {.column-screen .lp_full_screen_dark}
 ::: {.column-page}
-# Existem vários cargos na área de dados, mas veja como exemplo quanto ganha um **Cientista de Dados** ...
+
+# Existem vários cargos na área de dados, mas veja por exemplo quanto ganha um **Cientista de Dados** ...
+
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 
-## *Com o <b>direcionamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
-
-\* Veja os dados do *Glassdoor* ao lado.
-
-:::
-::: {.g-col-12 .g-col-md-5}
 ### *Cientista de Dados `no Brasil`*
 
 ![](glassdoor_data_scientist_br.jpg){fig-alt="Salário do Cientista de Dados"}
 :::
+::: {.g-col-12 .g-col-md-5}
+
+<div class="vertical-center">
+## *Com o <b>direcionamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
+
+\* Veja os dados do *Glassdoor* ao lado.
+</div>
+:::
 :::
 
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
-## *Mas não se contente com pouco! <br>Há <b>vagas remotas</b> em outros países pagando <b>`$10.000`</b> mensais, isso mesmo, <b>dólares americanos</b>*!
 
-\* Veja os dados do *Glassdoor* ao lado.
-:::
-::: {.g-col-12 .g-col-md-5}
 ### *Vagas remotas em `outros países`*
 ![](glassdoor_data_scientist_usa.jpg){fig-alt="Salário do Cientista de Dados nos Estados Unidos"}
 :::
+::: {.g-col-12 .g-col-md-5}
+
+<div class="vertical-center">
+## *Mas não se contente com pouco! <br>Há <b>vagas remotas</b> em outros países pagando <b>`$10.000`</b> mensais, isso mesmo, <b>dólares americanos</b>*!
+
+\* Veja os dados do *Glassdoor* ao lado.
+</div>
 :::
 :::
 
+<div class="center">
+### Você também pode ser um desses profissionais, mas **precisa se apressar**! Entenda o porquê a seguir ...
+</div>
 
-::: {.column-screen .lp_full_screen_dark}
-::: {.column-body-outset .center}
-# Aproveite esta `oportunidade única` para se desenvolver na área de dados!
 <br />
+
 :::
 :::
 
 ::: {.column-screen .lp_full_screen_light}
+::: {.column-body-outset}
+
+<div class="center">
+## Aproveite esta **`oportunidade única`** para **se desenvolver** na área de dados!
+</div>
+
+Hoje em dia até mesmo os **salários de entrada são altos** para profssionais da área de dados, sejam analistas de dados, cientistas de dados, engenheiro de dados, etc. 
+
+**Milhares de profissionais já estão migrando de área!**  🏃
+
+Mas com a **procura cada vez maior pela área** é natural que daqui um tempo **apenas os profissionais mais experientes irão ter salários altos**.
+
+⏱️  **Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **Especialista em Dados: 7 Etapas Práticas**.
+
+### Então **não perca mais tempo** e **comece `hoje mesmo`** a construir sua carreira de sucesso na área de dados.
+
+<br>
+
+:::
+:::
+
+::: {.column-screen .lp_full_screen_dark}
 ::: {.column-page}
 
 <div id="final-sales-button">
@@ -239,49 +276,33 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+
+<div class="center"> 
+<img height="380" src="mockup_ebook_carreira_dados.png" alt="Ebook 7 Etapas Carreira de Dados">
+</div>
+
+:::
+::: {.g-col-12 .g-col-md-5}
+<div class="vertical-center center">
+<h3>Não perca a chance de se tornar um <b>PROFISSIONAL DE SUCESSO</b> na <b>área de dados</b></h3>
+<br />
+De <span class="strike"><b>R$ 47,90</b></span><br/>
+<span class="novo_preco">por <b>R$ 17,90</b></span>
+</div>
+:::
+:::
+
 ```{=html}
-<div id="ebook_carreira_box">
-  <div id="ebook_carreira_box_scroll">
-    
-    <p>Receba <b>salários altos</b> e trabalhe <b>de onde quiser</b>! Comece <b>hoje mesmo</b> sua carreira em dados!</p>
-
-    <div class="center"> 
-      <img width="230" src="mockup_ebook_carreira_dados.png" alt="Ebook 7 Etapas Carreira de Dados">
-    </div>
-
-    <div class="center">
-      [Ebook] 7 Etapas Práticas para Entrar na Área de Dados<br>
-      De <span class="strike">R$ 47,90</span><br/>
-      <span class="novo_preco">por R$ 17,90</span>
-    </div>
-
-    <div class="center">
-      <p>
-        <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
-          <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
-        </a>
-      </p>
-    </div>
-  </div>
+<div class="center">
+  <p>
+    <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
+      <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
+      <img src="meios_de_pagamento.png">
+    </a>
+  </p>
 </div>
 ```
-:::
 
-::: {.g-col-12 .g-col-md-5}
-`WLADEMIR RIBEIRO PRATES`
-
-# **Multiplique seu valor de mercado** e ganhe mais de **`R$ 10 mil`** na **`área de dados`** em **7 etapas**
-
-**Milhares de profissionais já estão migrando de área!**  🏃
-
-⏱️  **Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **"7 Etapas Práticas para Entrar na Área de Dados e Ser um Profissional de Sucesso"**.
-
-<div class="text-box">
-- Pela área de dados você entra em TI **mesmo sem nunca ter escrito uma linha de código**.
-- A área de dados é praticamente **à prova dos grandes *layoffs* (demissões) das *Big Techs***.<br>
-</div>
-:::
-:::
 :::
 <br>
 :::
@@ -359,4 +380,7 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 </div>
 <br>
 :::
+:::
+
+
 :::
