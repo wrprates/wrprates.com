@@ -277,9 +277,7 @@ Mas com a **procura cada vez maior pela área** é natural que daqui um tempo **
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 
-<div class="center"> 
-<img height="380" src="mockup_ebook_carreira_dados.png" alt="Ebook 7 Etapas Carreira de Dados">
-</div>
+![](mockup_ebook_carreira_dados.png)
 
 :::
 ::: {.g-col-12 .g-col-md-5}
@@ -297,7 +295,7 @@ De <span class="strike"><b>R$ 47,90</b></span><br/>
   <p>
     <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHJHZ" class="back-to-top">
       <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
-      <img src="meios_de_pagamento.png">
+      <img src="meios_de_pagamento.png" class="img-fluid">
     </a>
   </p>
 </div>
