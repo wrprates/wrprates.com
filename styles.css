@@ -91,6 +91,12 @@ summary {
   color: #ffffff;
 }
 
+.lp_full_screen_dark_purple_gradient {
+  background: linear-gradient(to bottom right, #52516D, #262626);
+  padding: 0px 20px;
+  color: #ffffff;
+}
+
 /* ReactTables */
 .ReactTable {
   font-size: 0.7em; 
