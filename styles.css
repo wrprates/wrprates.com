@@ -190,14 +190,14 @@ summary {
 /* CTA Button */
 .cta-button {
   width: 100%;
-  max-width: 470px;
+  max-width: 515px;
   margin: 0 auto;
   display: block;
-  background-color: #FF5733;
+  background-color: #00AEEF;
   color: #fff;
   border: none;
   border-radius: 35px;
-  padding: 15px 25px;
+  padding: 20px;
   font-size: 22px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -373,5 +373,5 @@ div.text-box h2 {
 .novo_preco {
   color: #4cd038;
   font-weight: 700;
-  font-size: 2.2em;
+  font-size: 2.4em;
 }

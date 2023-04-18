@@ -11,103 +11,27 @@ format:
 
 ::: {.large_font}
 
-::: {.column-screen}
-::: {.column-body-outset .center}
-### **`Minicurso`** **Desenvolva sua Carreira na Área de Dados**
-
-:::
-:::
-
-::: {.column-page-outset}
-<div class="center">
+::: {.column-page-outset .center}
 # O **Excesso de Conteúdo** na Área de Dados está **`Prejudicando`** seu **`Progresso`**?
 
+### **`Minicurso`** **Desenvolva sua Carreira na Área de Dados**
 
-####  Vou te Fornecer as Informações Práticas Necessárias para Ajudá-lo a Avançar!
+![](minicurso_telas.png)
 
-```{=html}
-<div style="position:relative;padding-top:56.25%;">
-<iframe id="panda-47a6375b-b957-4aee-b824-7e42548abfdf" src="https://player-vz-c6feb2f4-c51.tv.pandavideo.com.br/embed/?v=47a6375b-b957-4aee-b824-7e42548abfdf" style="border:none;position:absolute;top:0;left:0;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen=true width="100%" height="100%" fetchpriority="high">
-</iframe>
-</div>
-```
-</div>
+#### As **Dicas** Que Você Precisa Saber **Antes de Sair Estudando um Monte de Conteúdos**!
+
+<!-- #### **Tudo** que você precisa saber **antes de sair estudando um monte de conteúdos**! -->
 
 ```{=html}
 <div class="center">
 <a href="#final-sales-button" class="back-to-top">
-<button class="cta-button">Quero me tornar um Especialista em Dados!</button>
+<button class="cta-button">Quero me destacar na área de dados!</button>
 </a>
 <img src="satisfacao_seguranca.webp" class="img-below-cta-button">
 </div>
-<br>
+<br><br>
 ```
 :::
-
-::: {.column-screen .lp_full_screen_dark}
-::: {.column-page}
-
-<br />
-
-::: {.grid}
-::: {.g-col-12 .g-col-md-5 .g-start-md-2 .vertical_line}
-# Quer entrar para a `área de dados`, mas está **perdido** em meio tantos `termos técnicos` e **cursos extensos** para estudar?
-:::
-::: {.g-col-12 .g-col-md-5}
-
-<div class="vertical-center">
-### Este Ebook é um **guia completo** para uma carreira de sucesso na área de dados, incluindo informações sobre os principais cargos, habilidades necessárias, educação, construção de portfólio e busca de oportunidades de trabalho.
-</div>
-:::
-:::
-
-<br />
-
-:::
-:::
-
-::: {.column-screen .lp_full_screen_light}
-::: {.column-page-outset}
-## A **melhor maneira** para se desenvolver na **área de dados**!
-
-> Neste Ebook mostro as 7 etapas para você entrar ou se aperfeiçoar na área e ter uma direção de como seguir se desenvolvendo.
-
-Me chamo Wlademir Prates, e sou um **Cientista de Dados Senior** com experiência em projetos de *Data Science* no Brasil e no Exterior.
-
-Também sou professor de cursos de especialização com disciplinas *Data Science*, como *Machine Learning* e *Processamento de Linguagem Natural*.
-
-Minha formação é em Administração, e tenho doutorado em Finanças.
-
-**Não venho da área de TI** e **passei por inúmeras dificuldades** para entrar e me desenvolver na área de dados.
-
-Mas acredite, **vale a pena**.
-
-Na área de dados geralmente você pode trabalhar de qualquer lugar (**trabalho remoto**) e o **salário é muito bom** quando comparado com outras áreas.
-
-Neste Ebook **compilei 7 etapas que irão ser seu Guia para uma carreira bem sucedida**.
-
-Falo, entre outras coisas, sobre:
-
- <ul class="checklist">
-    <li>Os **principais cargos e suas atribuições** dentro da área de dados (cientista de dados, engenheiro de dados, engenheiro de *machine learning*, analista de BI e analista de dados);</li>
-    <li>**Habilidades necessárias**, tanto <em>soft</em> (de comportamento), quanto <em>hard</em> (técnicas);</li>
-    <li>Como buscar **formação e educação** da melhor forma;</li>
-    <li>Orientação de como você deve **construir seu portfolio** para **impressionar recrutadores**;</li>
-    <li>Como **buscar por oportunidades de trabalho** na área de forma assertiva.</li>
-</ul>
-  
-```{=html}
-<div class="center">
-<a href="#final-sales-button" class="back-to-top">
-<button class="cta-button">Quero me tornar um Especialista em Dados!</button>
-</a>
-</div>
-<br>
-```
-
-:::  
-:::
-
 
 ::: {.column-screen .lp_full_screen_dark_purple_gradient}
 
@@ -116,19 +40,19 @@ Falo, entre outras coisas, sobre:
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 
-`o Autor`
+`o Professor`
 
 # **Wlademir Ribeiro Prates**
-
-<em>"Trabalho remoto e atendo clientes do mundo inteiro!"</em>
 
 <hr></hr>
 
 - **`Cientista de Dados Senior`**.
 - Experiência em **projetos de `consultoria`** de ***Data Science*** para **grandes empresas como BASF, VIVO, DHL, BRASKEM, EMBRAER** e várias outras.
-- **Trabalhou** em empresas referência em seus setores, como **EY (Ernst&Young), Tembici, Appsilon e Aquarela**.
+- **Trabalhou** em **`empresas referência`** em seus setores, como **EY (Ernst&Young), Tembici, Appsilon e Aquarela**.
 - **`Doutor e Mestre`** em **Finanças** (UFSC).
-- **Professor com mais de `10 anos`** de experiência em faculdades, MBA's e cursos online.
+- **Professor com mais de `10 anos`** de experiência em faculdades, MBA's.
+- **Mais de `500 alunos` em cursos online**.
+
 :::
 
 ::: {.g-col-12 .g-col-md-5}
@@ -137,59 +61,56 @@ Falo, entre outras coisas, sobre:
 :::
 :::
 
-::: {.column-screen .lp_full_screen_dark}
-::: {.column-body-outset .center}
-# *"Independente da sua área, aprender a trabalhar com dados ainda é um DIFERENCIAL, mas em breve será requisito OBRIGATÓRIO."*
-<br>
-:::
-:::
-
-::: {.column-screen .lp_full_screen_dark}
-::: {.column-page}
-::: {.grid}
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
-![](money_freedom.png){fig-alt="Trabalhe de qualquer lugar!"}
-:::
-::: {.g-col-12 .g-col-md-5}
-<div class="vertical-center">
-## Para profissionais da área de dados é **NORMAL**:
-
-- Trabalho **REMOTO**.
-- Vagas em empresas nacionais e **INTERNACIONAIS**.
-- **Salário ALTO**.
-- Muita oferta para ser *freelancer*.
-- Área em altíssimo **CRESCIMENTO**.
-
-Faça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!
-</div>
-
-<br />
-<br />
-:::
-:::
-:::
-:::
-
 ::: {.column-screen .lp_full_screen_light}
 ::: {.column-page}
 
-<br />
+<div class="center">
+
+# **O Que Vou Encontrar no Minicurso?**
+
+</div>
 
 ::: {.grid}
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
-## São cerca de **`6.500` novas vagas** na área de dados **todos os dias**!
-
-Milhares de profissionais ao redor do mundo estão garantindo salários altos e trabalhando em lugares onde as outras pessoas tiram férias.
-
-Aprenda as 7 etapas necessárias para você **rapidamente** (poucos meses!) se juntar a estes profissionais.
-
-Veja alguns salários no mundo (base anual) para os principais cargos.
+::: {.g-col-12 .g-col-md-5 .g-start-md-2 .vertical_line}
+# **`1.`** **Perspectivas** e **Salários** do Mercado de Trabalho em Dados
 :::
 ::: {.g-col-12 .g-col-md-5}
+
 <div class="vertical-center">
-![Fonte: datanerd.tech](salarios_cargos_dados.png){fig-alt="Vagas e salários anuais na área de dados no mundo"}
+Dinâmica do mercado de trabalho em dados, os salários oferecidos e como funciona para atuar em outros países.
 </div>
 :::
+
+::: {.g-col-12 .g-col-md-5 .g-start-md-2 .vertical_line}
+# **`2.`** **Habilidades Necessárias** para Trabalhar com Dados
+:::
+::: {.g-col-12 .g-col-md-5}
+
+<div class="vertical-center">
+Habilidades técnicas (***hard skills***) e comportamentais (***soft skills***) que os profissionais da área de dados precisam ter.
+</div>
+:::
+
+::: {.g-col-12 .g-col-md-5 .g-start-md-2 .vertical_line}
+# **`3.`** Quais **Cargos** Você Pode Buscar na Área de Dados
+:::
+::: {.g-col-12 .g-col-md-5}
+
+<div class="vertical-center">
+Desde **cientista de dados até engenheiro de dados**, entenda as diferentes responsabilidades e **escolha o caminho certo** para sua carreira em dados.
+</div>
+:::
+
+::: {.g-col-12 .g-col-md-5 .g-start-md-2 .vertical_line}
+# **`4.`** Área de Dados nas **Organizações**
+:::
+::: {.g-col-12 .g-col-md-5}
+
+<div class="vertical-center">
+Entenda como as empresas que usam dados para tomar decisões **impulsionam o sucesso** dos negócios!
+</div>
+:::
+
 :::
 
 <br />
@@ -199,92 +120,62 @@ Veja alguns salários no mundo (base anual) para os principais cargos.
 
 
 ::: {.column-screen .lp_full_screen_dark}
+<p>
+<h1 class="center"> **`BÔNUS`** Você Irá Receber Também ... </h1>
+</p>
+:::
+
+::: {.column-screen}
 ::: {.column-page}
 
-# Existem vários cargos na área de dados, mas veja por exemplo quanto ganha um **Cientista de Dados** ...
+## **`EBOOK`** Especialista em Dados: 7 Etapas Práticas
 
 ::: {.grid}
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+::: {.g-col-12 .g-col-md-6 .g-start-md-2}
 
-### *Cientista de Dados `no Brasil`*
+![](mockup_ebook_carreira_dados.png)
 
-![](glassdoor_data_scientist_br.jpg){fig-alt="Salário do Cientista de Dados"}
 :::
-::: {.g-col-12 .g-col-md-5}
+::: {.g-col-12 .g-col-md-5 .vertical-center}
 
-<div class="vertical-center">
-## *Com o <b>direcionamento correto</b> ganhe pelo menos <b>`R$15.000`</b> por mês, incluindo os benefícios!*
+De forma totalmente **GRATUITA**, você receberá este EBook, no qual eu listei **7 Etapas Práticas** para que você consiga entrar na área de dados de forma assertiva.
 
-\* Veja os dados do *Glassdoor* ao lado.
-</div>
-:::
-:::
+Com o Minicurso e ainda mais este Ebook você conseguirá organizar suas pretensões de carreira na área de dados. 
 
-::: {.grid}
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+Este Ebook é um guia para no médio/longo prazo poupar muito tempo perdido da sua carreira testando áreas dfierentes e aprendendo conteúdos que não serão utilizados no cargo que você escolher seguir.
 
-### *Vagas remotas em `outros países`*
-![](glassdoor_data_scientist_usa.jpg){fig-alt="Salário do Cientista de Dados nos Estados Unidos"}
-:::
-::: {.g-col-12 .g-col-md-5}
-
-<div class="vertical-center">
-## *Mas não se contente com pouco! <br>Há <b>vagas remotas</b> em outros países pagando <b>`$10.000`</b> mensais, isso mesmo, <b>dólares americanos</b>*!
-
-\* Veja os dados do *Glassdoor* ao lado.
-</div>
 :::
 :::
 
-<div class="center">
-### Você também pode ser um desses profissionais, mas **precisa se apressar**! Entenda o porquê a seguir ...
-</div>
-
-<br />
-
 :::
+:::
+
+::: {.column-screen .lp_full_screen_dark}
+<p>
+<h1 class="center"> **`OFERTA DE 78% OFF`** Garanta HOJE <br> A Direção que Falta para Sua Carreira na Área de Dados</h1>
+</p>
 :::
 
 ::: {.column-screen .lp_full_screen_light}
-::: {.column-body-outset}
-
-<div class="center">
-## Aproveite esta **`oportunidade única`** para **se desenvolver** na área de dados!
-</div>
-
-Hoje em dia até mesmo os **salários de entrada são altos** para profssionais da área de dados, sejam analistas de dados, cientistas de dados, engenheiro de dados, etc. 
-
-**Milhares de profissionais já estão migrando de área!**  🏃
-
-Mas com a **procura cada vez maior pela área** é natural que daqui um tempo **apenas os profissionais mais experientes irão ter salários altos**.
-
-⏱️  **Não fique para trás** e se torne um *Especialista em Dados* com o Ebook **Especialista em Dados: 7 Etapas Práticas**.
-
-### Então **não perca mais tempo** e **comece `hoje mesmo`** a construir sua carreira de sucesso na área de dados.
-
-<br>
-
-:::
-:::
-
-::: {.column-screen .lp_full_screen_dark_purple_gradient}
 ::: {.column-page}
 
 <div id="final-sales-button">
-## **`Minicurso`** **Desenvolva Sua Carreira na área de dados**
+## **`Minicurso`** **Desenvolva Sua Carreira na área de dados + Ebook**
 </div>
 
 ::: {.grid}
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
+::: {.g-col-12 .g-col-md-7 .g-start-md-2}
 
+![](minicurso_plus_ebook.png){.center}
 
 :::
-::: {.g-col-12 .g-col-md-5}
+::: {.g-col-12 .g-col-md-4}
 <div class="vertical-center center">
-<h3>Não perca a chance de se tornar um <b>PROFISSIONAL DE SUCESSO</b> na <b>área de dados</b></h3>
+<h3>Torne-se um <b>PROFISSIONAL DE SUCESSO</b> na <b>área de dados</b></h3>
 <br />
 De <span class="strike"><b>R$ 129,90</b></span><br/>
-<span class="novo_preco">por <b>R$ 27,90</b></span>
+Por <b>APENAS</b><br/>
+<span class="novo_preco"><b>R$ 27,90</b></span>
 </div>
 :::
 :::
@@ -293,7 +184,7 @@ De <span class="strike"><b>R$ 129,90</b></span><br/>
 <div class="center">
   <p>
     <a href="https://secure.doppus.com/pay/PB3J0JMB3J0JGZOHO93" class="back-to-top">
-      <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
+      <button class="cta-button">Quero me destacar na área de dados!</button>
       <img src="meios_de_pagamento.png" class="img-fluid">
     </a>
   </p>
@@ -304,38 +195,38 @@ De <span class="strike"><b>R$ 129,90</b></span><br/>
 <br>
 :::
 
-::: {.column-screen .lp_full_screen_mid}
+::: {.column-screen .lp_full_screen_dark}
 ::: {.column-body}
 ## **FAQ - Dúvidas frequentes**
 ```{=html}
 <div class="faq-container">
   <details class="faq-question">
-    <summary class="faq-question_title">Este ebook é voltado para iniciantes em análise de dados?</summary>
-    <p class="faq-question_answer">Sim, este ebook é uma introdução à área de dados e é adequado para iniciantes que desejam ingressar nesse mercado.</p>
+    <summary class="faq-question_title">Quem pode participar deste Minicurso?</summary>
+    <p class="faq-question_answer">Qualquer pessoa interessada em aprender sobre a área de dados pode participar do Minicurso.</p>
   </details>
   <details class="faq-question">
-    <summary class="faq-question_title">Quanto tempo leva para concluir o ebook?</summary>
-    <p class="faq-question_answer">O tempo estimado de conclusão do ebook é de acordo com o seu ritmo de estudo, você pode fazer em um dia ou em algumas semanas.</p>
+    <summary class="faq-question_title">Qual é o tempo estimado para concluir o Minicurso e o Ebook?</summary>
+    <p class="faq-question_answer">O tempo estimado é em torno de 3 a 5 horas para concluir o Minicurso e a leitura do Ebook.</p>
   </details>
   <details class="faq-question">
-    <summary class="faq-question_title">Como faço para aplicar os conhecimentos de forma proativa?</summary>
-    <p class="faq-question_answer">O ebook apresenta dicas e estratégias para você aplicar os conhecimentos adquiridos de forma proativa, garantindo assim um destaque no mercado de trabalho.</p>
+    <summary class="faq-question_title">Quais são os conteúdos abordados no Minicurso?</summary>
+    <p class="faq-question_answer">Os conteúdos abordados no Minicurso são: mercado de trabalho, habilidades necessárias, principais papéis e funções na área de dados e o impacto da análise de dados nas organizações.</p>
   </details>
   <details class="faq-question">
-    <summary class="faq-question_title">Como posso construir um portfólio sólido?</summary>
-    <p class="faq-question_answer">O ebook apresenta as melhores práticas para você construir um portfólio sólido e impressionar os recrutadores na área de dados.</p>
+    <summary class="faq-question_title">Como faço para acessar o Minicurso?</summary>
+    <p class="faq-question_answer">O Minicurso é acessado por meio da plataforma online, utilizando um login e senha fornecidos no momento da inscrição.</p>
   </details>
   <details class="faq-question">
-    <summary class="faq-question_title">Qual é a diferença entre este ebook e outros disponíveis no mercado?</summary>
-    <p class="faq-question_answer">Este ebook se concentra nas etapas práticas e essenciais para ingressar na área de dados, abordando desde a formação e habilidades necessárias até a busca por oportunidades e o avanço na carreira.</p>
+    <summary class="faq-question_title">O Minicurso possui aulas em vídeo?</summary>
+    <p class="faq-question_answer">Sim, o Minicurso possui videoaulas que auxiliam no aprendizado e na compreensão dos conteúdos apresentados.</p>
   </details>
   <details class="faq-question">
     <summary class="faq-question_title">Como faço para adquirir o ebook?</summary>
     <p class="faq-question_answer">Basta clicar no botão disponível nesta página e seguir as instruções para adquirir o ebook e começar a mudar sua carreira na área de dados.</p>
   </details>
   <details class="faq-question">
-    <summary class="faq-question_title">Posso compartilhar o ebook com outras pessoas?</summary>
-    <p class="faq-question_answer">Não. O ebook é protegido por direitos autorais e só pode ser utilizado pelo comprador. Qualquer reprodução ou distribuição sem autorização é proibida e sujeita a penalidades legais.</p>
+    <summary class="faq-question_title">Como faço para tirar dúvidas sobre o conteúdo do Minicurso?</summary>
+    <p class="faq-question_answer">Você pode tirar suas dúvidas diretamente na plataforma, através do fórum de discussão.</p>
   </details>
 </div>
 ```
@@ -349,7 +240,7 @@ De <span class="strike"><b>R$ 129,90</b></span><br/>
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2}
 ## **Compra tranquila**, com 7 dias de garantia para solicitar seu dinheiro de volta.
 :::
-::: {.g-col-12 .g-col-md-5}
+::: {.g-col-12 .g-col-md-5 .center}
 ![](garantia_7_dias_250px.png){fig-alt="Compre com garantia!"}
 :::
 :::
@@ -359,14 +250,14 @@ De <span class="strike"><b>R$ 129,90</b></span><br/>
 ::: {.column-screen}
 ::: {.column-body}
 <div class="center">
-## Adquira **agora mesmo** sua cópia do Ebook para garantir a oferta de:
+## Adquira **agora mesmo** seu acesso ao Minicurso
 
-<span class="novo_preco">62% OFF!</span>
+<span class="novo_preco">78% OFF!</span>
 
 ```{=html}
 <div class="center">
   <a href="#final-sales-button" class="back-to-top">
-    <button class="cta-button">Quero me tornar um Especialista em Dados!</button>
+    <button class="cta-button">Quero me destacar na área de dados!</button>
   </a>
 </div>
 ```
