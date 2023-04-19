@@ -28,6 +28,10 @@ html {
   text-decoration: line-through;
 }
 
+code {
+  color: #187fd6;  
+}
+
 pre code {
   background-color: transparent;
   font-size: small;
