@@ -27,3 +27,6 @@ format:
     code-tools: true
     include-in-header: scripts_head.html
     include-before-body: scripts_body.html
+mainfont: Lato
+fontsize: 19px
+linestretch: 1.7
