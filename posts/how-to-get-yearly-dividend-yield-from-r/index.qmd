@@ -1,5 +1,5 @@
 ---
-title: "How to Get Yearly Dividends for Any Stock with R?"
+title: "Unlocking the Highest-Paying Dividend Stocks with R"
 author: "Wlademir Ribeiro Prates"
 date: "2023-10-09"
 categories: [Data Visualization, Finance]
@@ -202,6 +202,24 @@ Now, let's visualize the yearly dividend yield for these stocks:
 library(echarts4r)
 library(tidyr)
 
+chart_color_pallete <- c(
+  "#212529",  # Main color
+  "#A89F91",  # Warm gray
+  "#1C3A70",  # Deep blue
+  "#B0CCE1",  # Soft sky blue
+  "#D1495B",  # Bright red (For contrast and pop)
+  "#F9C74F",  # Golden yellow
+  "#43AA8B",  # Teal green
+  "#F8961E",  # Bright orange
+  "#6A0572",  # Deep purple
+  "#577590",  # Muted blue
+  "#F9844A",  # Coral
+  "#1982C4",  # Cerulean blue
+  "#6B4226",  # Brown (earthy tone)
+  "#3B3F45",  # Slightly lighter shade of the base
+  "#0A0C0F"  # Darker, almost black, shade
+)
+
 range_years <- max(years) - min(years) - 1
 
 # Transforming the data for plotting
@@ -223,7 +241,9 @@ stock_data |>
   e_charts(year) |>
   e_line(yield) |>
   e_y_axis(name = "Yield (%)") |>
-  e_tooltip(trigger = "axis")
+  e_tooltip(trigger = "axis") |>
+  e_color(chart_color_pallete) |>
+  e_hide_grid_lines(which = "y")
 
 ```
 
@@ -301,7 +321,9 @@ stock_data |>
   e_charts(year) |>
   e_line(yield) |>
   e_y_axis(name = "Yield (%)") |>
-  e_tooltip(trigger = "axis")
+  e_tooltip(trigger = "axis") |>
+  e_color(chart_color_pallete) |>
+  e_hide_grid_lines(which = "y")
 
 ```
 
