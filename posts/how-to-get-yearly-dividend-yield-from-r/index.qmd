@@ -2,24 +2,16 @@
 title: "How to Get Yearly Dividends for Any Stock with R?"
 author: "Wlademir Ribeiro Prates"
 date: "2023-10-09"
-categories: [Reporting, Data Science, Machine Learning]
+categories: [Data Visualization, Finance]
 image: preview.png
 format:
   html:
     include-after-body: disqus.html
 ---
 
-```{r}
-#| warning: false
-#| message: false
-#| echo: false
-#| include: false
+Investing in stocks is more than just looking at price appreciation. Dividends are a crucial part of the equation.
 
-
-```
-
-
-Investing in stocks is more than just looking at price appreciation. Dividends are a crucial part of the equation. Especially for investors who prioritize income generation, knowing the dividends a stock yields year-over-year can be invaluable. In this post, I'll guide you through a streamlined method using R to pull yearly dividend data for any stock. 
+Especially for investors who prioritize income generation, knowing the dividends a stock yields year-over-year can be invaluable. In this post, I'll guide you through a streamlined method using R to pull yearly dividend data for any stock. 
 
 **Dividends** are payments made by corporations to their shareholders, often as a distribution of profits. When analyzing stocks from a long-term perspective, dividends can make a significant difference in the total returns an investor receives.
 
@@ -36,12 +28,22 @@ Investing in stocks is more than just looking at price appreciation. Dividends a
 - Using `purrr` for functional programming within R.
 
 
+Recently I've posted a video on my YouTube channel about this subject. If you are Portuguese speaker (or want to try the automated subtitles) please check it out. But the same content is also available here in this blog post, even with more details.
+
+<center>
+<iframe width="100%" height="370" src="https://www.youtube.com/embed/g2L67Nk2zFY?si=w4KAsVzWZuc1Uuq6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</center>
+
 ## Fetching Yearly Dividends
 
 To get yearly dividends for a stock, we make use of the `quantmod` package which interfaces with various sources online to fetch stock data. Here's the code chunk to pull yearly dividends:
 
-
 ```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: false
+
 library(quantmod)
 library(dplyr)
 
@@ -66,6 +68,10 @@ get_yearly_dividends <- function(ticker, years) {
   
   return(yearly_data)
 }
+
+# Example for Coca-Cola Co.
+get_yearly_dividends("KO", c(2020:2023))
+
 ```
 
 
@@ -74,6 +80,11 @@ get_yearly_dividends <- function(ticker, years) {
 While dividends tell half the story, to evaluate the attractiveness of the dividends, we need to know at what price the stock closed at the end of each year. Here's how we can fetch that data:
 
 ```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: false
+
 get_yearly_closing_price <- function(ticker, years) {
   historical_prices <- quantmod::getSymbols(
     Symbol = ticker,
@@ -95,6 +106,9 @@ get_yearly_closing_price <- function(ticker, years) {
   return(historical_prices)
 }
 
+# Example for Coca-Cola Co.
+get_yearly_closing_price("KO", c(2020:2023))
+
 ```
 
 
@@ -103,6 +117,11 @@ get_yearly_closing_price <- function(ticker, years) {
 Combining the dividends and the closing price, we can calculate the yield for the stock year-over-year:
 
 ```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: false
+
 get_yearly_yield <- function(ticker, years) {
   yearly_yields <- get_yearly_dividends(ticker, years) |>
     dplyr::left_join(
@@ -117,61 +136,185 @@ get_yearly_yield <- function(ticker, years) {
   return(yearly_yields)
 }
 
-get_yearly_yield("TAEE11.SA", c(2020:2023))
+# Example for Coca-Cola Co.
+get_yearly_yield("KO", c(2020:2023))
 
 ```
 
-## A Practical Example
+## Practical Examples
 
-Let's take a few tickers as an example and pull their yearly yields:
+In this section, we will select various tickers, gather their data, and then filter for stocks that **consistently paid dividends throughout our chosen period**. Additionally, we'll set a **threshold to only include stocks with an average yearly dividend yield of 8% or higher**.
+
+We'll demonstrate this approach using both American and Brazilian stocks.
+
+Let's apply this example to some American stocks, and also to some Brazillian stocks.
+
+### Yearly Dividend Yield Analysis for Selected - American Stocks
+
+Tickers extracted from these blog posts: [US News](https://money.usnews.com/investing/dividends/slideshows/best-dividend-stocks-to-buy-this-year); [NerdWallet](https://www.nerdwallet.com/article/investing/how-to-invest-dividend-stocks)
 
 ```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: false
+
 library(purrr)
+
 tickers <- c(
-  "TAEE11",
-  "TRPL4",
-  "ALUP11",
-  "RADL3"
+  "XOM", # Exxon Mobil Corp.
+  "KO", # Coca-Cola Co. 
+  "PFE", # Pfizer Inc.
+  "WFC", # Wells Fargo & Co.
+  "KMB", # Kimberly-Clark Corp.
+  "PDM",  # Piedmont Office Realty Trust Inc
+  "BGFV", # Big 5 Sporting Goods Corp
+  "ARI",  # Apollo Commercial Real Estate Finance Inc
+  "REFI", # Chicago Atlantic Real Estate Finance Inc
+  "DX",   # Dynex Capital, Inc.
+  "BRBS", # Blue Ridge Bankshares Inc (VA)
+  "CFFN", # Capitol Federal Financial
+  "RGR",  # Sturm, Ruger & Co., Inc.
+  "ABR"   # Arbor Realty Trust Inc.
 )
 
-dados <- purrr::map(
-  paste0(tickers, ".SA"),
+years <- c(2017:2023)
+
+stock_data_list <- purrr::map(
+  tickers,
   get_yearly_yield,
-  c(2015:2023)
+  years
 ) |> 
   setNames(tickers)
-
-dados
 
 ```
 
 
 Now, let's visualize the yearly dividend yield for these stocks:
 
-
 ```{r}
 #| warning: false
 #| message: false
+#| echo: true
+#| code-fold: false
 
 # Loading necessary packages
 library(echarts4r)
 library(tidyr)
 
+range_years <- max(years) - min(years) - 1
+
 # Transforming the data for plotting
-# "dados" means "data" in Portuguese, so let's call our data "stock_data"
-stock_data <- dados |>
+stock_data <- stock_data_list |>
   bind_rows(.id = "ticker") |>
-  mutate(year = as.factor(year))
-  
+  mutate(year = as.factor(year)) |>
+  # Keeping only highest mean yields
+  group_by(ticker) |>
+   mutate(
+    yield_mean = mean(yield, na.rm = TRUE),
+    total_years = length(unique(year))
+  ) |>
+  filter(yield_mean >= 8 && total_years >= range_years) |>
+  ungroup() |>
+  arrange(year)
+
 stock_data |>
   group_by(ticker) |>
   e_charts(year) |>
   e_line(yield) |>
   e_y_axis(name = "Yield (%)") |>
-  e_theme("wonderland") |> 
-  e_tooltip(trigger = "axis") 
+  e_tooltip(trigger = "axis")
+
+```
+
+#### Yearly Dividend Yield Analysis for Selected - Brazillian Stocks
+
+Tickers extracted from this [blog post](https://blog.toroinvestimentos.com.br/bolsa/maiores-pagadoras-de-dividendos):
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: false
+
+tickers <- c(
+  "CSNA3",  # CSN
+  "SLCE3",  # SLC Agrícola
+  "CPFE3",  # CPFL Energia
+  "BBSE3",  # BB Seguridade
+  "ENBR3",  # Energias do Brasil
+  "JBSS3",  # JBS
+  "BRAP4",  # Bradespar
+  "BBDC4",  # Bradesco
+  "USIM5",  # Usiminas
+  "BBAS3",  # Banco do Brasil
+  "VIVT3",  # Telefônica
+  "EGIE3",  # Engie
+  "CMIG4",  # Cemig
+  "TAEE11", # Taesa
+  "GOAU4",  # Gerdau Metalúrgica
+  "ELET6",  # Eletrobras
+  "BEEF3",  # Minerva
+  "VALE3",  # Vale
+  "SANB11", # Santander
+  "GGBR4"   # Gerdau
+)
+
+years <- c(2017:2023)
+
+stock_data_list <- purrr::map(
+  paste0(tickers, ".SA"),
+  get_yearly_yield,
+  years
+) |> 
+  setNames(tickers)
+
+```
+
+
+Now, let's visualize the yearly dividend yield for these stocks:
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: false
+
+range_years <- max(years) - min(years) - 1
+
+# Transforming the data for plotting
+stock_data <- stock_data_list |>
+  bind_rows(.id = "ticker") |>
+  mutate(year = as.factor(year)) |>
+  # Keeping only highest mean yields
+  group_by(ticker) |>
+  mutate(
+    yield_mean = mean(yield, na.rm = TRUE),
+    total_years = length(unique(year))
+  ) |>
+  filter(yield_mean >= 8 && total_years >= range_years) |>
+  ungroup() |>
+  arrange(year)
+
+stock_data |>
+  group_by(ticker) |>
+  e_charts(year) |>
+  e_line(yield) |>
+  e_y_axis(name = "Yield (%)") |>
+  e_tooltip(trigger = "axis")
+
 ```
 
 ## Conclusion
 
-Using R, we have streamlined the process of fetching and analyzing yearly dividend data for stocks. This method allows investors and analysts to quickly evaluate the attractiveness of dividends over the years. By understanding the yearly yields, one can make better-informed decisions regarding their investments. As always, ensure that dividends are just one part of your holistic analysis when evaluating stocks. Happy investing!
+Using R, we have streamlined the process of fetching and analyzing yearly dividend data for stocks. This method allows investors and analysts to quickly evaluate the attractiveness of dividends over the years. By understanding the yearly yields, one can make better-informed decisions regarding their investments.
+
+Further, the flexibility and power of R enable the expansion of this analysis. With a similar approach, one could:
+
+- Compare the dividend yield with other financial metrics for a more comprehensive stock evaluation.
+- Predict future dividend yields based on historical data using time-series forecasting techniques.
+- Incorporate external economic factors, such as interest rates or GDP growth, to understand their impact on dividend yields.
+
+Remember, while dividends are a crucial aspect, they are just one part of a holistic analysis when evaluating stocks. Always consider a multitude of factors before making any investment decisions. Happy investing!
+
+
