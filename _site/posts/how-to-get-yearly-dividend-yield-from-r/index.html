@@ -9,7 +9,7 @@
 <meta name="author" content="Wlademir Ribeiro Prates">
 <meta name="dcterms.date" content="2023-10-09">
 
-<title>How to Get Yearly Dividends for Any Stock with R?</title>
+<title>Unlocking the Highest-Paying Dividend Stocks with R?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">How to Get Yearly Dividends for Any Stock with R?</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">Unlocking the Highest-Paying Dividend Stocks with R?</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Data Visualization</div>
                 <div class="quarto-category">Finance</div>
@@ -353,7 +353,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 1  2020  50.5
 2  2021  56.2
 3  2022  62.2
-4  2023  53.7</code></pre>
+4  2023  52.5</code></pre>
 </div>
 </div>
 </section>
@@ -384,7 +384,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 1  2020      1.64  50.5 KO      3.25
 2  2021      1.68  56.2 KO      2.99
 3  2022      1.76  62.2 KO      2.83
-4  2023      1.38  53.7 KO      2.57</code></pre>
+4  2023      1.38  52.5 KO      2.63</code></pre>
 </div>
 </div>
 </section>
@@ -431,31 +431,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(echarts4r)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>range_years <span class="ot">&lt;-</span> <span class="fu">max</span>(years) <span class="sc">-</span> <span class="fu">min</span>(years) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Transforming the data for plotting</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>stock_data <span class="ot">&lt;-</span> stock_data_list <span class="sc">|&gt;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"ticker"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.factor</span>(year)) <span class="sc">|&gt;</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keeping only highest mean yields</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_mean =</span> <span class="fu">mean</span>(yield, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_years =</span> <span class="fu">length</span>(<span class="fu">unique</span>(year))</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yield_mean <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;&amp;</span> total_years <span class="sc">&gt;=</span> range_years) <span class="sc">|&gt;</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>stock_data <span class="sc">|&gt;</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_line</span>(yield) <span class="sc">|&gt;</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_y_axis</span>(<span class="at">name =</span> <span class="st">"Yield (%)"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>chart_color_pallete <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#212529"</span>,  <span class="co"># Main color</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#A89F91"</span>,  <span class="co"># Warm gray</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1C3A70"</span>,  <span class="co"># Deep blue</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#B0CCE1"</span>,  <span class="co"># Soft sky blue</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#D1495B"</span>,  <span class="co"># Bright red (For contrast and pop)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#F9C74F"</span>,  <span class="co"># Golden yellow</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#43AA8B"</span>,  <span class="co"># Teal green</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#F8961E"</span>,  <span class="co"># Bright orange</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#6A0572"</span>,  <span class="co"># Deep purple</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#577590"</span>,  <span class="co"># Muted blue</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#F9844A"</span>,  <span class="co"># Coral</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1982C4"</span>,  <span class="co"># Cerulean blue</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#6B4226"</span>,  <span class="co"># Brown (earthy tone)</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#3B3F45"</span>,  <span class="co"># Slightly lighter shade of the base</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#0A0C0F"</span>  <span class="co"># Darker, almost black, shade</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>range_years <span class="ot">&lt;-</span> <span class="fu">max</span>(years) <span class="sc">-</span> <span class="fu">min</span>(years) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Transforming the data for plotting</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>stock_data <span class="ot">&lt;-</span> stock_data_list <span class="sc">|&gt;</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"ticker"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.factor</span>(year)) <span class="sc">|&gt;</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keeping only highest mean yields</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_mean =</span> <span class="fu">mean</span>(yield, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_years =</span> <span class="fu">length</span>(<span class="fu">unique</span>(year))</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yield_mean <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;&amp;</span> total_years <span class="sc">&gt;=</span> range_years) <span class="sc">|&gt;</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>stock_data <span class="sc">|&gt;</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_line</span>(yield) <span class="sc">|&gt;</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_y_axis</span>(<span class="at">name =</span> <span class="st">"Yield (%)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_color</span>(chart_color_pallete) <span class="sc">|&gt;</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_hide_grid_lines</span>(<span class="at">which =</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="htmlwidget-56eba95a12cb332f9122" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-56eba95a12cb332f9122">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"name":"Yield (%)"}],"xAxis":[{"data":["2017","2018","2019","2020","2021","2022","2023"],"type":"category","boundaryGap":true}],"legend":{"data":["ABR","ARI","BGFV","CFFN","DX"]},"series":[{"data":[{"value":["2017","14.4629"]},{"value":["2018","15.7862"]},{"value":["2019","11.4813"]},{"value":["2020","11.2572"]},{"value":["2021"," 9.0588"]},{"value":["2022","12.7522"]},{"value":["2023"," 8.5441"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"ABR","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","19.6331"]},{"value":["2018","19.6396"]},{"value":["2019","16.2115"]},{"value":["2020","18.0002"]},{"value":["2021","13.4037"]},{"value":["2022","14.4306"]},{"value":["2023","10.0287"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"ARI","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","12.7222"]},{"value":["2018","28.6710"]},{"value":["2019"," 9.1278"]},{"value":["2020"," 3.1950"]},{"value":["2021","17.5665"]},{"value":["2022","12.4026"]},{"value":["2023","10.0402"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"BGFV","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 9.7010"]},{"value":["2018","10.5104"]},{"value":["2019"," 8.6731"]},{"value":["2020"," 4.6265"]},{"value":["2021"," 9.6468"]},{"value":["2022"," 9.8505"]},{"value":["2023"," 5.3236"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"CFFN","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","57.6520"]},{"value":["2018","62.9771"]},{"value":["2019","33.3216"]},{"value":["2020","12.3991"]},{"value":["2021","11.3958"]},{"value":["2022","13.4683"]},{"value":["2023"," 9.7257"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"DX","type":"line","coordinateSystem":"cartesian2d"}],"tooltip":{"trigger":"axis"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-67daf4587dc75f893233" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-67daf4587dc75f893233">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"name":"Yield (%)","splitLine":{"show":false}}],"xAxis":[{"data":["2017","2018","2019","2020","2021","2022","2023"],"type":"category","boundaryGap":true}],"legend":{"data":["ABR","ARI","BGFV","CFFN","DX"]},"series":[{"data":[{"value":["2017","14.4629"]},{"value":["2018","15.7862"]},{"value":["2019","11.4813"]},{"value":["2020","11.2572"]},{"value":["2021"," 9.0588"]},{"value":["2022","12.7522"]},{"value":["2023"," 8.7596"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"ABR","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","19.6331"]},{"value":["2018","19.6396"]},{"value":["2019","16.2115"]},{"value":["2020","18.0002"]},{"value":["2021","13.4037"]},{"value":["2022","14.4306"]},{"value":["2023","10.1547"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"ARI","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","12.7222"]},{"value":["2018","28.6710"]},{"value":["2019"," 9.1278"]},{"value":["2020"," 3.1950"]},{"value":["2021","17.5665"]},{"value":["2022","12.4026"]},{"value":["2023","10.0536"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"BGFV","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 9.7010"]},{"value":["2018","10.5104"]},{"value":["2019"," 8.6731"]},{"value":["2020"," 4.6265"]},{"value":["2021"," 9.6468"]},{"value":["2022"," 9.8505"]},{"value":["2023"," 5.4721"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"CFFN","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","57.6519"]},{"value":["2018","62.9771"]},{"value":["2019","33.3217"]},{"value":["2020","12.3991"]},{"value":["2021","11.3958"]},{"value":["2022","13.4683"]},{"value":["2023","10.0257"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"DX","type":"line","coordinateSystem":"cartesian2d"}],"tooltip":{"trigger":"axis"},"color":["#212529","#A89F91","#1C3A70","#B0CCE1","#D1495B","#F9C74F","#43AA8B","#F8961E","#6A0572","#577590","#F9844A","#1982C4","#6B4226","#3B3F45","#0A0C0F"]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <section id="yearly-dividend-yield-analysis-for-selected---brazillian-stocks" class="level4">
@@ -517,10 +537,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(year) <span class="sc">|&gt;</span></span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_line</span>(yield) <span class="sc">|&gt;</span></span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_y_axis</span>(<span class="at">name =</span> <span class="st">"Yield (%)"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_color</span>(chart_color_pallete) <span class="sc">|&gt;</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_hide_grid_lines</span>(<span class="at">which =</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="htmlwidget-fbfd7fa243f98de82120" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fbfd7fa243f98de82120">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"name":"Yield (%)"}],"xAxis":[{"data":["2017","2018","2019","2020","2021","2022","2023"],"type":"category","boundaryGap":true}],"legend":{"data":["BBSE3","BRAP4","CPFE3","CSNA3","EGIE3","TAEE11","VIVT3"]},"series":[{"data":[{"value":["2017"," 9.5247"]},{"value":["2018","16.5436"]},{"value":["2019"," 5.8847"]},{"value":["2020","17.3738"]},{"value":["2021"," 5.7364"]},{"value":["2022"," 6.4677"]},{"value":["2023","10.9802"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"BBSE3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 8.0804"]},{"value":["2018"," 6.3566"]},{"value":["2019"," 7.8611"]},{"value":["2020"," 4.4525"]},{"value":["2021","45.5229"]},{"value":["2022","11.5908"]},{"value":["2023"," 5.5358"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"BRAP4","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 1.7859"]},{"value":["2018"," 1.4963"]},{"value":["2019"," 2.0842"]},{"value":["2020","15.1421"]},{"value":["2021","16.5497"]},{"value":["2022","10.6646"]},{"value":["2023"," 8.4152"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"CPFE3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2018","10.4694"]},{"value":["2019","14.5316"]},{"value":["2020"," 0.0712"]},{"value":["2021"," 9.4318"]},{"value":["2022","18.5593"]},{"value":["2023"," 5.3617"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"CSNA3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 9.4725"]},{"value":["2018","12.0240"]},{"value":["2019"," 5.4594"]},{"value":["2020"," 7.5152"]},{"value":["2021"," 8.2897"]},{"value":["2022"," 8.4187"]},{"value":["2023"," 6.5584"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"EGIE3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","14.5869"]},{"value":["2018","18.2554"]},{"value":["2019"," 8.7852"]},{"value":["2020","12.4726"]},{"value":["2021","14.3650"]},{"value":["2022","10.7949"]},{"value":["2023"," 6.8217"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"TAEE11","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","10.6361"]},{"value":["2018","11.7913"]},{"value":["2019"," 7.0936"]},{"value":["2020","13.1425"]},{"value":["2021"," 7.9643"]},{"value":["2022"," 5.6245"]},{"value":["2023"," 5.3476"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"VIVT3","type":"line","coordinateSystem":"cartesian2d"}],"tooltip":{"trigger":"axis"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-44d65fec9ee79c860677" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-44d65fec9ee79c860677">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"name":"Yield (%)","splitLine":{"show":false}}],"xAxis":[{"data":["2017","2018","2019","2020","2021","2022","2023"],"type":"category","boundaryGap":true}],"legend":{"data":["BBSE3","BRAP4","CPFE3","CSNA3","EGIE3","TAEE11","VIVT3"]},"series":[{"data":[{"value":["2017"," 9.5247"]},{"value":["2018","16.5436"]},{"value":["2019"," 5.8847"]},{"value":["2020","17.3738"]},{"value":["2021"," 5.7364"]},{"value":["2022"," 6.4677"]},{"value":["2023","10.9802"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"BBSE3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 8.0804"]},{"value":["2018"," 6.3566"]},{"value":["2019"," 7.8611"]},{"value":["2020"," 4.4525"]},{"value":["2021","45.5229"]},{"value":["2022","11.5908"]},{"value":["2023"," 5.5358"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"BRAP4","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 1.7859"]},{"value":["2018"," 1.4963"]},{"value":["2019"," 2.0842"]},{"value":["2020","15.1421"]},{"value":["2021","16.5497"]},{"value":["2022","10.6646"]},{"value":["2023"," 8.4152"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"CPFE3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2018","10.4694"]},{"value":["2019","14.5316"]},{"value":["2020"," 0.0712"]},{"value":["2021"," 9.4318"]},{"value":["2022","18.5593"]},{"value":["2023"," 5.3617"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"CSNA3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017"," 9.4725"]},{"value":["2018","12.0240"]},{"value":["2019"," 5.4594"]},{"value":["2020"," 7.5152"]},{"value":["2021"," 8.2897"]},{"value":["2022"," 8.4187"]},{"value":["2023"," 6.5584"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"EGIE3","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","14.5869"]},{"value":["2018","18.2554"]},{"value":["2019"," 8.7852"]},{"value":["2020","12.4726"]},{"value":["2021","14.3650"]},{"value":["2022","10.7949"]},{"value":["2023"," 6.8217"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"TAEE11","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":["2017","10.6361"]},{"value":["2018","11.7913"]},{"value":["2019"," 7.0936"]},{"value":["2020","13.1425"]},{"value":["2021"," 7.9643"]},{"value":["2022"," 5.6245"]},{"value":["2023"," 5.3476"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"VIVT3","type":"line","coordinateSystem":"cartesian2d"}],"tooltip":{"trigger":"axis"},"color":["#212529","#A89F91","#1C3A70","#B0CCE1","#D1495B","#F9C74F","#43AA8B","#F8961E","#6A0572","#577590","#F9844A","#1982C4","#6B4226","#3B3F45","#0A0C0F"]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -738,7 +760,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "How to Get Yearly Dividends for Any Stock with R?"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Unlocking the Highest-Paying Dividend Stocks with R?"</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Wlademir Ribeiro Prates"</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2023-10-09"</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Data Visualization, Finance]</span></span>
@@ -941,121 +963,143 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(echarts4r)</span>
 <span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>range_years <span class="ot">&lt;-</span> <span class="fu">max</span>(years) <span class="sc">-</span> <span class="fu">min</span>(years) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Transforming the data for plotting</span></span>
-<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a>stock_data <span class="ot">&lt;-</span> stock_data_list <span class="sc">|&gt;</span></span>
-<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"ticker"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.factor</span>(year)) <span class="sc">|&gt;</span></span>
-<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keeping only highest mean yields</span></span>
-<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
-<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
-<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_mean =</span> <span class="fu">mean</span>(yield, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_years =</span> <span class="fu">length</span>(<span class="fu">unique</span>(year))</span>
-<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yield_mean <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;&amp;</span> total_years <span class="sc">&gt;=</span> range_years) <span class="sc">|&gt;</span></span>
-<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
-<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a>stock_data <span class="sc">|&gt;</span></span>
-<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
-<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_line</span>(yield) <span class="sc">|&gt;</span></span>
-<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_y_axis</span>(<span class="at">name =</span> <span class="st">"Yield (%)"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>)</span>
-<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Yearly Dividend Yield Analysis for Selected - Brazillian Stocks</span></span>
-<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a>Tickers extracted from this <span class="co">[</span><span class="ot">blog post</span><span class="co">](https://blog.toroinvestimentos.com.br/bolsa/maiores-pagadoras-de-dividendos)</span>:</span>
-<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a>tickers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CSNA3"</span>,  <span class="co"># CSN</span></span>
-<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SLCE3"</span>,  <span class="co"># SLC Agrícola</span></span>
-<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CPFE3"</span>,  <span class="co"># CPFL Energia</span></span>
-<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BBSE3"</span>,  <span class="co"># BB Seguridade</span></span>
-<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ENBR3"</span>,  <span class="co"># Energias do Brasil</span></span>
-<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a>  <span class="st">"JBSS3"</span>,  <span class="co"># JBS</span></span>
-<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BRAP4"</span>,  <span class="co"># Bradespar</span></span>
-<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BBDC4"</span>,  <span class="co"># Bradesco</span></span>
-<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USIM5"</span>,  <span class="co"># Usiminas</span></span>
-<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BBAS3"</span>,  <span class="co"># Banco do Brasil</span></span>
-<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a>  <span class="st">"VIVT3"</span>,  <span class="co"># Telefônica</span></span>
-<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EGIE3"</span>,  <span class="co"># Engie</span></span>
-<span id="cb11-265"><a href="#cb11-265" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CMIG4"</span>,  <span class="co"># Cemig</span></span>
-<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TAEE11"</span>, <span class="co"># Taesa</span></span>
-<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GOAU4"</span>,  <span class="co"># Gerdau Metalúrgica</span></span>
-<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ELET6"</span>,  <span class="co"># Eletrobras</span></span>
-<span id="cb11-269"><a href="#cb11-269" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BEEF3"</span>,  <span class="co"># Minerva</span></span>
-<span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a>  <span class="st">"VALE3"</span>,  <span class="co"># Vale</span></span>
-<span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SANB11"</span>, <span class="co"># Santander</span></span>
-<span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GGBR4"</span>   <span class="co"># Gerdau</span></span>
-<span id="cb11-273"><a href="#cb11-273" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-274"><a href="#cb11-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-275"><a href="#cb11-275" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2017</span><span class="sc">:</span><span class="dv">2023</span>)</span>
-<span id="cb11-276"><a href="#cb11-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-277"><a href="#cb11-277" aria-hidden="true" tabindex="-1"></a>stock_data_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(</span>
-<span id="cb11-278"><a href="#cb11-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(tickers, <span class="st">".SA"</span>),</span>
-<span id="cb11-279"><a href="#cb11-279" aria-hidden="true" tabindex="-1"></a>  get_yearly_yield,</span>
-<span id="cb11-280"><a href="#cb11-280" aria-hidden="true" tabindex="-1"></a>  years</span>
-<span id="cb11-281"><a href="#cb11-281" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb11-282"><a href="#cb11-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(tickers)</span>
-<span id="cb11-283"><a href="#cb11-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-284"><a href="#cb11-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-285"><a href="#cb11-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-286"><a href="#cb11-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-287"><a href="#cb11-287" aria-hidden="true" tabindex="-1"></a>Now, let's visualize the yearly dividend yield for these stocks:</span>
-<span id="cb11-288"><a href="#cb11-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-291"><a href="#cb11-291" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-292"><a href="#cb11-292" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb11-293"><a href="#cb11-293" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb11-294"><a href="#cb11-294" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb11-295"><a href="#cb11-295" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>chart_color_pallete <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#212529"</span>,  <span class="co"># Main color</span></span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#A89F91"</span>,  <span class="co"># Warm gray</span></span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1C3A70"</span>,  <span class="co"># Deep blue</span></span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#B0CCE1"</span>,  <span class="co"># Soft sky blue</span></span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#D1495B"</span>,  <span class="co"># Bright red (For contrast and pop)</span></span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#F9C74F"</span>,  <span class="co"># Golden yellow</span></span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#43AA8B"</span>,  <span class="co"># Teal green</span></span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#F8961E"</span>,  <span class="co"># Bright orange</span></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#6A0572"</span>,  <span class="co"># Deep purple</span></span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#577590"</span>,  <span class="co"># Muted blue</span></span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#F9844A"</span>,  <span class="co"># Coral</span></span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1982C4"</span>,  <span class="co"># Cerulean blue</span></span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#6B4226"</span>,  <span class="co"># Brown (earthy tone)</span></span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#3B3F45"</span>,  <span class="co"># Slightly lighter shade of the base</span></span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#0A0C0F"</span>  <span class="co"># Darker, almost black, shade</span></span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a>range_years <span class="ot">&lt;-</span> <span class="fu">max</span>(years) <span class="sc">-</span> <span class="fu">min</span>(years) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a><span class="co"># Transforming the data for plotting</span></span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a>stock_data <span class="ot">&lt;-</span> stock_data_list <span class="sc">|&gt;</span></span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"ticker"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.factor</span>(year)) <span class="sc">|&gt;</span></span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keeping only highest mean yields</span></span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_mean =</span> <span class="fu">mean</span>(yield, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_years =</span> <span class="fu">length</span>(<span class="fu">unique</span>(year))</span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yield_mean <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;&amp;</span> total_years <span class="sc">&gt;=</span> range_years) <span class="sc">|&gt;</span></span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a>stock_data <span class="sc">|&gt;</span></span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_line</span>(yield) <span class="sc">|&gt;</span></span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_y_axis</span>(<span class="at">name =</span> <span class="st">"Yield (%)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_color</span>(chart_color_pallete) <span class="sc">|&gt;</span></span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_hide_grid_lines</span>(<span class="at">which =</span> <span class="st">"y"</span>)</span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Yearly Dividend Yield Analysis for Selected - Brazillian Stocks</span></span>
+<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a>Tickers extracted from this <span class="co">[</span><span class="ot">blog post</span><span class="co">](https://blog.toroinvestimentos.com.br/bolsa/maiores-pagadoras-de-dividendos)</span>:</span>
+<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb11-269"><a href="#cb11-269" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a>tickers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb11-273"><a href="#cb11-273" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CSNA3"</span>,  <span class="co"># CSN</span></span>
+<span id="cb11-274"><a href="#cb11-274" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SLCE3"</span>,  <span class="co"># SLC Agrícola</span></span>
+<span id="cb11-275"><a href="#cb11-275" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CPFE3"</span>,  <span class="co"># CPFL Energia</span></span>
+<span id="cb11-276"><a href="#cb11-276" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BBSE3"</span>,  <span class="co"># BB Seguridade</span></span>
+<span id="cb11-277"><a href="#cb11-277" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ENBR3"</span>,  <span class="co"># Energias do Brasil</span></span>
+<span id="cb11-278"><a href="#cb11-278" aria-hidden="true" tabindex="-1"></a>  <span class="st">"JBSS3"</span>,  <span class="co"># JBS</span></span>
+<span id="cb11-279"><a href="#cb11-279" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BRAP4"</span>,  <span class="co"># Bradespar</span></span>
+<span id="cb11-280"><a href="#cb11-280" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BBDC4"</span>,  <span class="co"># Bradesco</span></span>
+<span id="cb11-281"><a href="#cb11-281" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USIM5"</span>,  <span class="co"># Usiminas</span></span>
+<span id="cb11-282"><a href="#cb11-282" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BBAS3"</span>,  <span class="co"># Banco do Brasil</span></span>
+<span id="cb11-283"><a href="#cb11-283" aria-hidden="true" tabindex="-1"></a>  <span class="st">"VIVT3"</span>,  <span class="co"># Telefônica</span></span>
+<span id="cb11-284"><a href="#cb11-284" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EGIE3"</span>,  <span class="co"># Engie</span></span>
+<span id="cb11-285"><a href="#cb11-285" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CMIG4"</span>,  <span class="co"># Cemig</span></span>
+<span id="cb11-286"><a href="#cb11-286" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TAEE11"</span>, <span class="co"># Taesa</span></span>
+<span id="cb11-287"><a href="#cb11-287" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GOAU4"</span>,  <span class="co"># Gerdau Metalúrgica</span></span>
+<span id="cb11-288"><a href="#cb11-288" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ELET6"</span>,  <span class="co"># Eletrobras</span></span>
+<span id="cb11-289"><a href="#cb11-289" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BEEF3"</span>,  <span class="co"># Minerva</span></span>
+<span id="cb11-290"><a href="#cb11-290" aria-hidden="true" tabindex="-1"></a>  <span class="st">"VALE3"</span>,  <span class="co"># Vale</span></span>
+<span id="cb11-291"><a href="#cb11-291" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SANB11"</span>, <span class="co"># Santander</span></span>
+<span id="cb11-292"><a href="#cb11-292" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GGBR4"</span>   <span class="co"># Gerdau</span></span>
+<span id="cb11-293"><a href="#cb11-293" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-294"><a href="#cb11-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-295"><a href="#cb11-295" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2017</span><span class="sc">:</span><span class="dv">2023</span>)</span>
 <span id="cb11-296"><a href="#cb11-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-297"><a href="#cb11-297" aria-hidden="true" tabindex="-1"></a>range_years <span class="ot">&lt;-</span> <span class="fu">max</span>(years) <span class="sc">-</span> <span class="fu">min</span>(years) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb11-298"><a href="#cb11-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a><span class="co"># Transforming the data for plotting</span></span>
-<span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a>stock_data <span class="ot">&lt;-</span> stock_data_list <span class="sc">|&gt;</span></span>
-<span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"ticker"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.factor</span>(year)) <span class="sc">|&gt;</span></span>
-<span id="cb11-303"><a href="#cb11-303" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keeping only highest mean yields</span></span>
-<span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
-<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_mean =</span> <span class="fu">mean</span>(yield, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb11-307"><a href="#cb11-307" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_years =</span> <span class="fu">length</span>(<span class="fu">unique</span>(year))</span>
-<span id="cb11-308"><a href="#cb11-308" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-309"><a href="#cb11-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yield_mean <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;&amp;</span> total_years <span class="sc">&gt;=</span> range_years) <span class="sc">|&gt;</span></span>
-<span id="cb11-310"><a href="#cb11-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-311"><a href="#cb11-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
-<span id="cb11-312"><a href="#cb11-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-313"><a href="#cb11-313" aria-hidden="true" tabindex="-1"></a>stock_data <span class="sc">|&gt;</span></span>
-<span id="cb11-314"><a href="#cb11-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
-<span id="cb11-315"><a href="#cb11-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb11-316"><a href="#cb11-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_line</span>(yield) <span class="sc">|&gt;</span></span>
-<span id="cb11-317"><a href="#cb11-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_y_axis</span>(<span class="at">name =</span> <span class="st">"Yield (%)"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-318"><a href="#cb11-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>)</span>
-<span id="cb11-319"><a href="#cb11-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-320"><a href="#cb11-320" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-321"><a href="#cb11-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-322"><a href="#cb11-322" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
-<span id="cb11-323"><a href="#cb11-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-324"><a href="#cb11-324" aria-hidden="true" tabindex="-1"></a>Using R, we have streamlined the process of fetching and analyzing yearly dividend data for stocks. This method allows investors and analysts to quickly evaluate the attractiveness of dividends over the years. By understanding the yearly yields, one can make better-informed decisions regarding their investments.</span>
-<span id="cb11-325"><a href="#cb11-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-326"><a href="#cb11-326" aria-hidden="true" tabindex="-1"></a>Further, the flexibility and power of R enable the expansion of this analysis. With a similar approach, one could:</span>
-<span id="cb11-327"><a href="#cb11-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-328"><a href="#cb11-328" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare the dividend yield with other financial metrics for a more comprehensive stock evaluation.</span>
-<span id="cb11-329"><a href="#cb11-329" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predict future dividend yields based on historical data using time-series forecasting techniques.</span>
-<span id="cb11-330"><a href="#cb11-330" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Incorporate external economic factors, such as interest rates or GDP growth, to understand their impact on dividend yields.</span>
-<span id="cb11-331"><a href="#cb11-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-332"><a href="#cb11-332" aria-hidden="true" tabindex="-1"></a>Remember, while dividends are a crucial aspect, they are just one part of a holistic analysis when evaluating stocks. Always consider a multitude of factors before making any investment decisions. Happy investing!</span>
-<span id="cb11-333"><a href="#cb11-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-297"><a href="#cb11-297" aria-hidden="true" tabindex="-1"></a>stock_data_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(</span>
+<span id="cb11-298"><a href="#cb11-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(tickers, <span class="st">".SA"</span>),</span>
+<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a>  get_yearly_yield,</span>
+<span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a>  years</span>
+<span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(tickers)</span>
+<span id="cb11-303"><a href="#cb11-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-307"><a href="#cb11-307" aria-hidden="true" tabindex="-1"></a>Now, let's visualize the yearly dividend yield for these stocks:</span>
+<span id="cb11-308"><a href="#cb11-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-311"><a href="#cb11-311" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-312"><a href="#cb11-312" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb11-313"><a href="#cb11-313" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb11-314"><a href="#cb11-314" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb11-315"><a href="#cb11-315" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb11-316"><a href="#cb11-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-317"><a href="#cb11-317" aria-hidden="true" tabindex="-1"></a>range_years <span class="ot">&lt;-</span> <span class="fu">max</span>(years) <span class="sc">-</span> <span class="fu">min</span>(years) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb11-318"><a href="#cb11-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-319"><a href="#cb11-319" aria-hidden="true" tabindex="-1"></a><span class="co"># Transforming the data for plotting</span></span>
+<span id="cb11-320"><a href="#cb11-320" aria-hidden="true" tabindex="-1"></a>stock_data <span class="ot">&lt;-</span> stock_data_list <span class="sc">|&gt;</span></span>
+<span id="cb11-321"><a href="#cb11-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"ticker"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-322"><a href="#cb11-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.factor</span>(year)) <span class="sc">|&gt;</span></span>
+<span id="cb11-323"><a href="#cb11-323" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keeping only highest mean yields</span></span>
+<span id="cb11-324"><a href="#cb11-324" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
+<span id="cb11-325"><a href="#cb11-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-326"><a href="#cb11-326" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_mean =</span> <span class="fu">mean</span>(yield, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-327"><a href="#cb11-327" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_years =</span> <span class="fu">length</span>(<span class="fu">unique</span>(year))</span>
+<span id="cb11-328"><a href="#cb11-328" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-329"><a href="#cb11-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yield_mean <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;&amp;</span> total_years <span class="sc">&gt;=</span> range_years) <span class="sc">|&gt;</span></span>
+<span id="cb11-330"><a href="#cb11-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-331"><a href="#cb11-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
+<span id="cb11-332"><a href="#cb11-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-333"><a href="#cb11-333" aria-hidden="true" tabindex="-1"></a>stock_data <span class="sc">|&gt;</span></span>
+<span id="cb11-334"><a href="#cb11-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">|&gt;</span></span>
+<span id="cb11-335"><a href="#cb11-335" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb11-336"><a href="#cb11-336" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_line</span>(yield) <span class="sc">|&gt;</span></span>
+<span id="cb11-337"><a href="#cb11-337" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_y_axis</span>(<span class="at">name =</span> <span class="st">"Yield (%)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-338"><a href="#cb11-338" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-339"><a href="#cb11-339" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_color</span>(chart_color_pallete) <span class="sc">|&gt;</span></span>
+<span id="cb11-340"><a href="#cb11-340" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_hide_grid_lines</span>(<span class="at">which =</span> <span class="st">"y"</span>)</span>
+<span id="cb11-341"><a href="#cb11-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-342"><a href="#cb11-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-343"><a href="#cb11-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-344"><a href="#cb11-344" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb11-345"><a href="#cb11-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-346"><a href="#cb11-346" aria-hidden="true" tabindex="-1"></a>Using R, we have streamlined the process of fetching and analyzing yearly dividend data for stocks. This method allows investors and analysts to quickly evaluate the attractiveness of dividends over the years. By understanding the yearly yields, one can make better-informed decisions regarding their investments.</span>
+<span id="cb11-347"><a href="#cb11-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-348"><a href="#cb11-348" aria-hidden="true" tabindex="-1"></a>Further, the flexibility and power of R enable the expansion of this analysis. With a similar approach, one could:</span>
+<span id="cb11-349"><a href="#cb11-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-350"><a href="#cb11-350" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare the dividend yield with other financial metrics for a more comprehensive stock evaluation.</span>
+<span id="cb11-351"><a href="#cb11-351" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predict future dividend yields based on historical data using time-series forecasting techniques.</span>
+<span id="cb11-352"><a href="#cb11-352" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Incorporate external economic factors, such as interest rates or GDP growth, to understand their impact on dividend yields.</span>
+<span id="cb11-353"><a href="#cb11-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-354"><a href="#cb11-354" aria-hidden="true" tabindex="-1"></a>Remember, while dividends are a crucial aspect, they are just one part of a holistic analysis when evaluating stocks. Always consider a multitude of factors before making any investment decisions. Happy investing!</span>
+<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
