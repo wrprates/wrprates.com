@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/how-to-get-yearly-dividend-yield-from-r/index.html",
       "/posts/predictive-customer-churn-analysis/index.html",
       "/posts/unicorn-companies-treemaps-in-r/index.html",
       "/posts/website-with-quarto-automated-deployment/index.html"
