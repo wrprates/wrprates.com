@@ -7,7 +7,7 @@ website:
     location: navbar
     type: overlay
   navbar:
-    logo: logo.png
+    logo: logo.svg
     right:
       - href: about.qmd
         text: About
@@ -20,7 +20,7 @@ website:
   cookie-consent: false
 format:
   html:
-    theme: flatly
+    theme: litera
     css: styles.css
     toc: true
     code-fold: true
