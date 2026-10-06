@@ -18,8 +18,6 @@ listing:
   sort-ui: false
   filter-ui: false
   fields: [image, date, title, categories]
-  exclude:
-    title: "Hypothesis*"
 ---
 
 ::: {.hero}
@@ -62,6 +60,10 @@ What I have learned working with data across companies and roles, from analyst t
 
 [See all articles →](articles.qmd)
 
+## A free data science handbook
+
+I wrote [O Manual do Cientista de Dados](https://wrprates.github.io/o-manual-do-cientista-de-dados/), an open handbook in Portuguese on the practical side of data science. A good place to start is the chapter on [hypothesis testing](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html). The source is on [GitHub](https://github.com/wrprates/o-manual-do-cientista-de-dados).
+
 ## Elsewhere
 
-I share shorter notes and videos on [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/) and [YouTube](https://www.youtube.com/@wlademir). Code lives on [GitHub](https://github.com/wrprates/).
+I share shorter notes and videos on [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/), [Instagram](https://www.instagram.com/datamundo.cientista/) and [YouTube](https://www.youtube.com/@wlademir). Code lives on [GitHub](https://github.com/wrprates/).

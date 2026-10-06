@@ -10,8 +10,6 @@ listing:
   sort-ui: false
   filter-ui: false
   fields: [image, date, title, description, categories, reading-time]
-  exclude:
-    title: "Hypothesis*"
 page-layout: full
 code-tools: false
 title-block-banner: false

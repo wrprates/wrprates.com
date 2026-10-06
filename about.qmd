@@ -18,6 +18,9 @@ about:
     - icon: youtube
       text: YouTube
       href: https://www.youtube.com/@wlademir
+    - icon: instagram
+      text: Instagram
+      href: https://www.instagram.com/datamundo.cientista/
     - icon: mortarboard-fill
       text: Google Scholar
       href: https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ
@@ -36,6 +39,10 @@ This site is where I collect what I learn: applied analyses with code, notes on 
 - **Reproducible reporting** with Quarto and R Markdown.
 - **Finance and behavioral economics** as the analytical background behind much of my work.
 
+## Book
+
+I wrote [O Manual do Cientista de Dados](https://wrprates.github.io/o-manual-do-cientista-de-dados/), a free and open handbook in Portuguese about the practical side of data science. The chapter on [hypothesis testing](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html) is a good entry point. Source and contributions on [GitHub](https://github.com/wrprates/o-manual-do-cientista-de-dados).
+
 ## Research
 
 Before moving to industry, I did academic research in behavioral finance and capital markets. My publications are listed on [Google Scholar](https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ).
@@ -48,4 +55,4 @@ Before moving to industry, I did academic research in behavioral finance and cap
 
 ## Get in touch
 
-The best place to reach me is [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/).
+The best place to reach me is [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/). For shorter, more informal content, I'm on [Instagram](https://www.instagram.com/datamundo.cientista/) and [YouTube](https://www.youtube.com/@wlademir).

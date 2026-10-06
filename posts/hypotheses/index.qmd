@@ -1,5 +1,6 @@
 ---
-title: "Hypothesis "
+title: "Hypothesis"
+draft: true
 author: "Wlademir Ribeiro Prates"
 date: "2023-10-09"
 categories: [Data Visualization, Finance]
