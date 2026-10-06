@@ -576,3 +576,80 @@ p, li, blockquote, .hero-lead, .listing-description {
 .hero-lead p {
   font-weight: 400;
 }
+
+/* ---- Navbar ---- */
+.navbar {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eef0f3;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+}
+
+.navbar .navbar-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: #212529;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #495057;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: #212529;
+  background: #f1f3f5;
+}
+
+.navbar .navbar-nav .nav-link.active {
+  color: #212529;
+  font-weight: 600;
+  background: #f1f3f5;
+}
+
+.navbar .quarto-navbar-tools .quarto-navigation-tool,
+.navbar .navbar-nav .nav-link .bi {
+  color: #495057;
+}
+
+/* ---- Publications ---- */
+.pub-card {
+  height: 100%;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid #e9ecef;
+  border-radius: 14px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pub-venue {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6c757d;
+}
+
+.pub-title {
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: #212529;
+  text-decoration: none;
+}
+
+.pub-title:hover {
+  color: #4582ec;
+}
+
+.pub-authors {
+  font-size: 0.9rem;
+  color: #6c757d;
+}

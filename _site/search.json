@@ -151,7 +151,7 @@
     "href": "index.html#latest-articles",
     "title": "Hi, I’m Wlademir.",
     "section": "Latest articles",
-    "text": "Latest articles\n\n\n\n\n\n\n\n\n\n\nHypothesis\n\n\n\nOct 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnlocking the Highest-Paying Dividend Stocks with R\n\n\n\nOct 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive Customer Churn Analysis\n\n\n\nFeb 8, 2023\n\n\n\n\n\n\n\n\nNo matching items\n\n\nSee all articles →"
+    "text": "Latest articles\n\n\n\n\n\n\n\n\n\n\nUnlocking the Highest-Paying Dividend Stocks with R\n\n\n\nOct 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive Customer Churn Analysis\n\n\n\nFeb 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalyzing Unicorn Companies with treemaps in R\n\n\n\nAug 20, 2022\n\n\n\n\n\n\n\n\nNo matching items\n\n\nSee all articles →"
   },
   {
     "objectID": "index.html#the-book",
@@ -159,6 +159,13 @@
     "title": "Hi, I’m Wlademir.",
     "section": "The book",
     "text": "The book\n\n\nO Manual do Cientista de Dados Wlademir Prates\n\n\nO Manual do Cientista de Dados\nA free, open handbook in Portuguese about data science in practice: statistics, modeling, visualization and the reasoning behind them. An ongoing project, written in Quarto and open to contributions.\nRead online Source on GitHub"
+  },
+  {
+    "objectID": "index.html#research",
+    "href": "index.html#research",
+    "title": "Hi, I’m Wlademir.",
+    "section": "Research",
+    "text": "Research\nBefore industry, I did academic research in behavioral finance at UFSC, mostly on how investors decide under risk. These are the papers I would point you to first.\n\n\n\nJournal of Behavioral and Experimental Finance · 2018 On the neural substrates of the disposition effect and return performance Dorow, da Costa, Takase, Prates & Da Silva\n\n\n\n\nManagerial and Decision Economics · 2017 Risk aversion, the disposition effect, and group decision making: an experimental analysis Prates, da Costa & Dorow\n\n\n\n\nPLoS ONE · 2019 Propensity to sell stocks in an artificial stock market Prates, da Costa, Armada & Da Silva\n\n\n\n\nRevista Brasileira de Economia · 2019 Efeito disposição: propensão à venda de investidores individuais e institucionais Prates, da Costa & Santos\n\n\n\nAll publications on Google Scholar →"
   },
   {
     "objectID": "index.html#find-me",
@@ -424,7 +431,7 @@
     "href": "about.html#research",
     "title": "About",
     "section": "Research",
-    "text": "Research\nBefore moving to industry, I did academic research in behavioral finance and capital markets. My publications are listed on Google Scholar."
+    "text": "Research\nBefore moving to industry, I did academic research in behavioral finance and capital markets at UFSC, mostly on the disposition effect and how investors decide under risk. Selected papers:\n\nDorow, A., da Costa, N., Takase, E., Prates, W. R. & Da Silva, S. (2018). On the neural substrates of the disposition effect and return performance. Journal of Behavioral and Experimental Finance.\nPrates, W. R., da Costa, N. & Dorow, A. (2017). Risk aversion, the disposition effect, and group decision making: an experimental analysis. Managerial and Decision Economics.\nPrates, W. R., da Costa, N., Armada, M. J. R. & Da Silva, S. (2019). Propensity to sell stocks in an artificial stock market. PLoS ONE.\nPrates, W. R., da Costa, N. & Santos, A. P. (2019). Efeito disposição: propensão à venda de investidores individuais e institucionais. Revista Brasileira de Economia.\n\nThe full list is on Google Scholar."
   },
   {
     "objectID": "about.html#education",

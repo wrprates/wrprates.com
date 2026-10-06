@@ -45,7 +45,14 @@ I wrote [O Manual do Cientista de Dados](https://wrprates.github.io/o-manual-do-
 
 ## Research
 
-Before moving to industry, I did academic research in behavioral finance and capital markets. My publications are listed on [Google Scholar](https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ).
+Before moving to industry, I did academic research in behavioral finance and capital markets at UFSC, mostly on the disposition effect and how investors decide under risk. Selected papers:
+
+- Dorow, A., da Costa, N., Takase, E., **Prates, W. R.** & Da Silva, S. (2018). [On the neural substrates of the disposition effect and return performance](https://doi.org/10.1016/j.jbef.2017.12.003). *Journal of Behavioral and Experimental Finance*.
+- **Prates, W. R.**, da Costa, N. & Dorow, A. (2017). [Risk aversion, the disposition effect, and group decision making: an experimental analysis](https://doi.org/10.1002/mde.2843). *Managerial and Decision Economics*.
+- **Prates, W. R.**, da Costa, N., Armada, M. J. R. & Da Silva, S. (2019). [Propensity to sell stocks in an artificial stock market](https://doi.org/10.1371/journal.pone.0215685). *PLoS ONE*.
+- **Prates, W. R.**, da Costa, N. & Santos, A. P. (2019). [Efeito disposição: propensão à venda de investidores individuais e institucionais](https://doi.org/10.5935/0034-7140.20190005). *Revista Brasileira de Economia*.
+
+The full list is on [Google Scholar](https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ).
 
 ## Education
 

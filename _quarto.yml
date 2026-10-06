@@ -1,5 +1,6 @@
 project:
   type: website
+  execute-dir: project
 
 website:
   title: "Wlademir Prates"
@@ -13,9 +14,7 @@ website:
     location: navbar
     type: overlay
   navbar:
-    logo: logo.svg
-    title: false
-    logo-alt: "Wlademir Prates"
+    title: "Wlademir Prates"
     left:
       - href: index.qmd
         text: Home
@@ -52,6 +51,7 @@ website:
         href: https://www.instagram.com/datamundo.cientista/
         aria-label: Instagram
   cookie-consent: false
+  draft-mode: unlinked
 
 format:
   html:
