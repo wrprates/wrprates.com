@@ -156,6 +156,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL56G4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<!-- Open external links in a new tab (navbar, footer, about links, listings) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("a[href]").forEach(function (a) {
+    var href = a.getAttribute("href");
+    if (!/^https?:\/\//i.test(href)) return;
+    if (a.hostname === window.location.hostname) return;
+    a.setAttribute("target", "_blank");
+    var rel = (a.getAttribute("rel") || "").split(/\s+/).filter(Boolean);
+    ["noopener", "noreferrer"].forEach(function (r) { if (rel.indexOf(r) === -1) rel.push(r); });
+    a.setAttribute("rel", rel.join(" "));
+  });
+});
+</script>
+
 
 
 
@@ -648,6 +663,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

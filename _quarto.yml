@@ -56,6 +56,7 @@ website:
 format:
   html:
     theme: litera
+    link-external-newwindow: true
     css: styles.css
     toc: true
     code-fold: true
