@@ -1,0 +1,7 @@
+{
+  "positron.r.interpreters.default": "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/bin/R",
+  "positron.r.interpreters.override": [
+    "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/bin/R",
+    "/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/bin/R"
+  ]
+}

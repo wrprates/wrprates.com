@@ -1,12 +1,144 @@
 ---
-title: "Blog"
+description: "Data scientist and R/Shiny developer writing about applied data science, data applications in production, and building a career in data."
+pagetitle: "Applied data science and data applications"
+image: profile.jpeg
+page-layout: full
+title-block-style: none
+code-tools: false
+title-block-banner: false
+toc: false
 listing:
+  id: latest-articles
   contents: posts
   sort: "date desc"
-  type: default
-  categories: true
+  type: grid
+  grid-columns: 3
+  max-items: 3
+  categories: false
   sort-ui: false
   filter-ui: false
-page-layout: full
-title-block-banner: false
+  fields: [image, title, date]
 ---
+
+::: {.home}
+
+::: {.hero}
+::: {.grid}
+::: {.g-col-12 .g-col-md-4 .hero-photo}
+![](profile.jpeg){.rounded-circle fig-alt="Portrait of Wlademir Ribeiro Prates"}
+:::
+::: {.g-col-12 .g-col-md-8}
+<span class="eyebrow">Data scientist · R/Shiny developer · PhD in Finance</span>
+
+# Hi, I'm Wlademir. {.hero-title}
+
+::: {.hero-lead}
+I build data applications that make it to production, and I write here about what I learn on the way: analyses with code you can run, the engineering around data products, and notes on building a career in data.
+:::
+
+[Read the articles](articles.qmd){.btn .btn-primary role="button"}
+[About me](about.qmd){.btn .btn-outline-secondary role="button"}
+:::
+:::
+:::
+
+## What you will find here
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-4}
+::: {.topic-card}
+<i class="bi bi-bar-chart-line"></i>
+
+### Applied data science
+Analyses that start from a real question and end with a decision. Finance, customer behavior and visualization, with the code included.
+:::
+:::
+::: {.g-col-12 .g-col-md-4}
+::: {.topic-card}
+<i class="bi bi-rocket-takeoff"></i>
+
+### Data applications in production
+Shiny, Quarto, deployment and the less glamorous work that turns a notebook into something people rely on.
+:::
+:::
+::: {.g-col-12 .g-col-md-4}
+::: {.topic-card}
+<i class="bi bi-signpost-split"></i>
+
+### Career in data
+What I have learned working with data across companies and roles, from analyst to building and leading data products.
+:::
+:::
+:::
+
+## Latest articles
+
+::: {#latest-articles}
+:::
+
+[See all articles →](articles.qmd){.see-all}
+
+## The book
+
+::: {.book-card}
+::: {.book-cover}
+<span class="book-cover-title">O Manual do Cientista de Dados</span>
+<span class="book-cover-author">Wlademir Prates</span>
+:::
+::: {.book-body}
+### O Manual do Cientista de Dados
+
+A free, open handbook in Portuguese about data science in practice: statistics, modeling, visualization and the reasoning behind them. An ongoing project, written in Quarto and open to contributions.
+
+[Read online](https://wrprates.github.io/o-manual-do-cientista-de-dados/){.btn .btn-primary role="button"}
+[Source on GitHub](https://github.com/wrprates/o-manual-do-cientista-de-dados){.btn .btn-outline-secondary role="button"}
+:::
+:::
+
+## Research
+
+Before industry, I did academic research in behavioral finance at UFSC, mostly on how investors decide under risk. These are the papers I would point you to first.
+
+::: {.grid .pubs}
+::: {.g-col-12 .g-col-md-6}
+::: {.pub-card}
+<span class="pub-venue">Journal of Behavioral and Experimental Finance · 2018</span>
+<a class="pub-title" href="https://doi.org/10.1016/j.jbef.2017.12.003">On the neural substrates of the disposition effect and return performance</a>
+<span class="pub-authors">Dorow, da Costa, Takase, Prates & Da Silva</span>
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+::: {.pub-card}
+<span class="pub-venue">Managerial and Decision Economics · 2017</span>
+<a class="pub-title" href="https://doi.org/10.1002/mde.2843">Risk aversion, the disposition effect, and group decision making: an experimental analysis</a>
+<span class="pub-authors">Prates, da Costa & Dorow</span>
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+::: {.pub-card}
+<span class="pub-venue">PLoS ONE · 2019</span>
+<a class="pub-title" href="https://doi.org/10.1371/journal.pone.0215685">Propensity to sell stocks in an artificial stock market</a>
+<span class="pub-authors">Prates, da Costa, Armada & Da Silva</span>
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+::: {.pub-card}
+<span class="pub-venue">Revista Brasileira de Economia · 2019</span>
+<a class="pub-title" href="https://doi.org/10.5935/0034-7140.20190005">Efeito disposição: propensão à venda de investidores individuais e institucionais</a>
+<span class="pub-authors">Prates, da Costa & Santos</span>
+:::
+:::
+:::
+
+[All publications on Google Scholar →](https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ){.see-all}
+
+## Find me
+
+::: {.channels}
+[<i class="bi bi-linkedin"></i>LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/){.btn role="button"}
+[<i class="bi bi-instagram"></i>Instagram](https://www.instagram.com/datamundo.cientista/){.btn role="button"}
+[<i class="bi bi-youtube"></i>YouTube](https://www.youtube.com/@wlademir){.btn role="button"}
+[<i class="bi bi-github"></i>GitHub](https://github.com/wrprates/){.btn role="button"}
+:::
+
+:::

@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Wlademir Ribeiro Prates">
 <meta name="dcterms.date" content="2022-08-20">
 
-<title>Analyzing Unicorn Companies with treemaps in R</title>
+<title>Analyzing Unicorn Companies with treemaps in R – Wlademir Prates</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,11 +19,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -101,17 +72,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f1c4ef9ae6858ba5298a56bf7ee1c510.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,10 +96,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
+<!-- Webfonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- End Webfonts -->
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -145,7 +129,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   gtag('config', 'G-JEQZHY19QW');
 </script>
-
 <script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="../../site_libs/echarts4r-4.8.0/echarts-en.min.js"></script>
 <script src="../../site_libs/echarts4r-4.8.0/ecStat.min.js"></script>
@@ -159,46 +142,75 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Analyzing Unicorn Companies with treemaps in R – Wlademir Prates">
+<meta property="og:description" content="Applied data science, data applications in production, and career notes by Wlademir Ribeiro Prates.">
+<meta property="og:image" content="https://wrprates.com/posts/unicorn-companies-treemaps-in-r/preview.png">
+<meta property="og:site_name" content="Wlademir Prates">
+<meta property="og:image:height" content="1184">
+<meta property="og:image:width" content="2078">
+<meta name="twitter:title" content="Analyzing Unicorn Companies with treemaps in R – Wlademir Prates">
+<meta name="twitter:description" content="Applied data science, data applications in production, and career notes by Wlademir Ribeiro Prates.">
+<meta name="twitter:image" content="https://wrprates.com/posts/unicorn-companies-treemaps-in-r/preview.png">
+<meta name="twitter:image-height" content="1184">
+<meta name="twitter:image-width" content="2078">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../logo.svg" alt="" class="navbar-logo">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Wlademir Prates</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/wrprates/"><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles.html"> 
+<span class="menu-text">Articles</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/wlademir-ribeiro-prates/"><i class="bi bi-linkedin" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.youtube.com/channel/UC6rS3fNDO19l0us3HEaqpAQ"><i class="bi bi-youtube" role="img">
-</i> 
- <span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/wrprates/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/wlademir-ribeiro-prates/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@wlademir"> <i class="bi bi-youtube" role="img" aria-label="YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datamundo.cientista/"> <i class="bi bi-instagram" role="img" aria-label="Instagram">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -257,6 +269,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL56G4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<!-- Open external links in a new tab (navbar, footer, about links, listings) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("a[href]").forEach(function (a) {
+    var href = a.getAttribute("href");
+    if (!/^https?:\/\//i.test(href)) return;
+    if (a.hostname === window.location.hostname) return;
+    a.setAttribute("target", "_blank");
+    var rel = (a.getAttribute("rel") || "").split(/\s+/).filter(Boolean);
+    ["noopener", "noreferrer"].forEach(function (r) { if (rel.indexOf(r) === -1) rel.push(r); });
+    a.setAttribute("rel", rel.join(" "));
+  });
+});
+</script>
+
+
 
 
 
@@ -283,7 +311,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>In this very beginning of the post some settings are already created, like the colors palette for Countries and Industries, to use in the whole document.</p>
 <p>The next chunk of code is responsible to load the packages, read the data and create some useful variables, like valuation <code>Quartiles</code>, <code>Number of Investors</code> and <code>Years as Unicorn</code>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -319,7 +347,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>In this part I also create the color palettes that will be used in other charts as well.</p>
 <p>Here comes a nice tip: the usage of the R package <a href="https://github.com/BlakeRMills/MetBrewer"><code>MetBrewer</code></a> to create very nice color palettes.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>create_color_palette <span class="ot">&lt;-</span> <span class="cf">function</span>(vector, theme) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
@@ -348,7 +376,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p>Below we can see the sum of all the companies’ Valuations for Industry and Country in a column chart.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>unicorn_data_by_industry <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
@@ -370,7 +398,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>unicorn_data_by_country <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
@@ -399,7 +427,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>I won’t show all the table here, because if you want to have access to the complete dataset, please check the <a href="https://www.cbinsights.com/research-unicorn-companies">CBInsights</a> website.</p>
 <p>In the table it is possible to sort the data by column and also search.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>interactive_table_data <span class="ot">&lt;-</span> unicorn_data <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">"Date Joined"</span>, <span class="st">"Number of Investors"</span>, <span class="st">"Quartiles"</span>)) <span class="sc">|&gt;</span></span>
@@ -421,7 +449,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="htmlwidget-477de1b32094de8409af" class="reactable html-widget" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-477de1b32094de8409af">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Company":["ByteDance","SpaceX","SHEIN","Stripe","Canva","Checkout.com","Instacart","Databricks","Revolut","Epic Games","FTX","Fanatics","Chime","BYJU's","Xiaohongshu","J&T Express","Miro","Yuanfudao","DJI Innovations","Discord","goPuff","Yuanqi Senlin","Ripple","Blockchain.com","Plaid","OpenSea","Celonis","Grammarly","Devoted Health","Faire","Brex","JUUL Labs","Bitmain Technologies","Biosplice Therapeutics","GoodLeap","Xingsheng Selected","Deel","Getir","Airtable","ZongMu Technology","Rippling","Global Switch","Bolt","Alchemy","Weilong","Swiggy","Lalamove","Figma","Gusto","Chehaoduo"],"Valuation ($B)":[140,127,100,95,40,40,39,38,33,31.5,32,27,25,22,20,20,17.5,15.5,15,15,15,15,15,14,13.5,13.3,13,13,12.6,12.59,12.3,12,12,12,12,12,12,11.8,11.7,11.4,11.25,11.1,11,10.2,10.88,10.7,10,10,10,10],"Country":["China","United States","China","United States","Australia","United Kingdom","United States","United States","United Kingdom","United States","Bahamas","United States","United States","India","China","Indonesia","United States","China","China","United States","United States","China","United States","United Kingdom","United States","United States","Germany","United States","United States","United States","United States","United States","China","United States","United States","China","United States","Turkey","United States","China","United States","United Kingdom","United States","United States","China","India","Hong Kong","United States","United States","China"],"City":["Beijing","Hawthorne","Shenzhen","San Francisco","Surry Hills","London","San Francisco","San Francisco","London","Cary",null,"Jacksonville","San Francisco","Bengaluru","Shanghai","Jakarta","San Francisco","Beijing","Shenzhen","San Francisco","Philadelphia","Beijing","San Francisco","London","San Francisco","New York","Munich","San Francisco","Waltham","San Francisco","San Francisco","San Francisco","Beijing","San Diego","Roseville","Changsha","San Francisco","Istanbul","San Francisco","Shanghai","San Francisco","London","San Francisco","San Francisco","Luohe","Bengaluru","Cheung Sha Wan","San Francisco","San Francisco","Beijing"],"Industry":["Artificial intelligence","Other","E-commerce & direct-to-consumer","Fintech","Internet software & services","Fintech","Supply chain, logistics, & delivery","Data management & analytics","Fintech","Other","Fintech","E-commerce & direct-to-consumer","Fintech","Edtech","E-commerce & direct-to-consumer","Supply chain, logistics, & delivery","Internet software & services","Edtech","Hardware","Internet software & services","Supply chain, logistics, & delivery","Consumer & retail","Fintech","Fintech","Fintech","Internet software & services","Data management & analytics","Internet software & services","Health","Artificial intelligence","Fintech","Consumer & retail","Hardware","Health","Internet software & services","E-commerce & direct-to-consumer","Fintech","Supply chain, logistics, & delivery","Internet software & services","Auto & transportation","Internet software & services","Hardware","Fintech","Fintech","Consumer & retail","Supply chain, logistics, & delivery","Supply chain, logistics, & delivery","Internet software & services","Fintech","E-commerce & direct-to-consumer"],"Select Investors":["Sequoia Capital China, SIG Asia Investments, Sina Weibo, Softbank Group","Founders Fund, Draper Fisher Jurvetson, Rothenberg Ventures","Tiger Global Management, Sequoia Capital China, Shunwei Capital Partners","Khosla Ventures, LowercaseCapital, capitalG","Sequoia Capital China, Blackbird Ventures, Matrix Partners","Tiger Global Management, Insight Partners, DST Global","Khosla Ventures, Kleiner Perkins Caufield & Byers, Collaborative Fund","Andreessen Horowitz, New Enterprise Associates, Battery Ventures","index Ventures, DST Global, Ribbit Capital","Tencent Holdings, KKR, Smash Ventures","Sequoia Capital, Thoma Bravo, Softbank","SoftBank Group, Andreessen Horowitz, Temasek Holdings","Forerunner Ventures, Crosslink Capital, Homebrew","Tencent Holdings, Lightspeed India Partners, Sequoia Capital India","GGV Capital, ZhenFund, Tencent","Hillhouse Capital Management, Boyu Capital, Sequoia Capital China","Accel, AltaIR Capital, Technology Crossover Ventures","Tencent Holdings, Warbug Pincus, IDG Capital","Accel Partners, Sequoia Capital","Benchmark, Greylock Partners, Tencent Holdings","Accel, Softbank Group, Anthos Capital","Sequoia Capital China, Longfor Capitalm, Gaorong Capital","IDG Capital, Venture51, Lightspeed Venture Partners","Lightspeed Venture Partners, Google Ventures, Lakestar","New Enterprise Associates, Spar Capital, Index Ventures","Andreessen Horowitz, Thirty Five Ventures, Sound Ventures","Accel, 83North","General Catalyst, Institutional Venture Partners, Breyer Capital","Andreessen Horowitz, F-Prime Capital, Venrock","Khosla Ventures, Forerunner Ventures, Sequoia Capital","DST Global, Ribbit Capital, Greenoaks Capital Management","Tiger Global Management","Coatue Management, Sequoia Capital China, IDG Capital","Vickers Venture Partners, IKEA GreenTech","New Enterprise Associates, BDT Capital Partners, Davidson Kempner Capital Management","KKR, Tencent Holdings, Sequoia Capital China","Andreessen Horowitz, Spark Capital, Y Combinator","Tiger Global Management, Sequoia Capital, Revo Capital","Caffeinated Capital, CRV, Founder Collective","LTW Capital, Legend Capital, Qualcomm Ventures","Initialized Capital, Y Combinator, Kleiner Perkins Caufield & Byers","Aviation Industry Corporation of China, Essence Financial, Jiangsu Sha Steel Group","Activant Capital, Tribe Capital, General Atlantic","DFJ Growth Fund, Coatue Management, Addition","Tencent Holdings, Hillhouse Capital Management, Yunfeng Capital","Accel India, SAIF Partners, Norwest Venture Partners","MindWorks Ventures, Shunwei Capital Partners, Xiang He Capital","Index Ventures, Greylock Partners, Kleiner Perkins Caufield & Byers","General Catalyst Partners, Google Ventures, Kleiner Perkins Caufield & Byers","Sequoia Capital China, GX Capital"],"Years as Unicorn":[5,10,4,9,5,3,8,4,4,4,1,10,4,5,6,1,1,5,8,4,2,3,3,2,4,1,4,3,4,3,4,5,4,4,1,2,1,2,4,1,2,6,1,1,1,4,4,2,7,7]},"columns":[{"accessor":"Company","name":"Company","type":"character"},{"accessor":"Valuation ($B)","name":"Valuation ($B)","type":"numeric"},{"accessor":"Country","name":"Country","type":"character","html":true},{"accessor":"City","name":"City","type":"character"},{"accessor":"Industry","name":"Industry","type":"factor"},{"accessor":"Select Investors","name":"Select Investors","type":"character","minWidth":180},{"accessor":"Years as Unicorn","name":"Years as Unicorn","type":"numeric"}],"resizable":true,"searchable":true,"defaultPageSize":5,"paginationType":"numbers","showPageInfo":true,"minRows":1,"striped":true,"style":{"fontSize":"0.70rem"},"dataKey":"437d15a40dc7e115bc7a0df25b8c2896"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -430,7 +457,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The idea to show the following two treemaps is that as the number of companies is not so big, we can show all the 50 companies in only one view. So the user can compare companies that belong to different categories in the same chart.</p>
 <p>If you want to explore all the companies from the data, please check the next section.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>treemap_tooltip <span class="ot">&lt;-</span> htmlwidgets<span class="sc">::</span><span class="fu">JS</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"function(info){</span></span>
@@ -478,13 +505,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="htmlwidget-85644a448141cd769028" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
 <script type="application/json" data-for="htmlwidget-85644a448141cd769028">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"title":[{"text":"Unicorns by Country"}],"series":[{"type":"treemap","data":[{"name":"China","children":[{"name":"ByteDance","value":140},{"name":"SHEIN","value":100},{"name":"Xiaohongshu","value":20},{"name":"Yuanfudao","value":15.5},{"name":"DJI Innovations","value":15},{"name":"Yuanqi Senlin","value":15},{"name":"Bitmain Technologies","value":12},{"name":"Xingsheng Selected","value":12},{"name":"ZongMu Technology","value":11.4},{"name":"Weilong","value":10.88},{"name":"Chehaoduo","value":10}],"value":361.78,"itemStyle":{"color":"#C9C777"}},{"name":"United States","children":[{"name":"SpaceX","value":127},{"name":"Stripe","value":95},{"name":"Instacart","value":39},{"name":"Databricks","value":38},{"name":"Epic Games","value":31.5},{"name":"Fanatics","value":27},{"name":"Chime","value":25},{"name":"Miro","value":17.5},{"name":"Discord","value":15},{"name":"goPuff","value":15},{"name":"Ripple","value":15},{"name":"Plaid","value":13.5},{"name":"OpenSea","value":13.3},{"name":"Grammarly","value":13},{"name":"Devoted Health","value":12.6},{"name":"Faire","value":12.59},{"name":"Brex","value":12.3},{"name":"JUUL Labs","value":12},{"name":"Biosplice Therapeutics","value":12},{"name":"GoodLeap","value":12},{"name":"Deel","value":12},{"name":"Airtable","value":11.7},{"name":"Rippling","value":11.25},{"name":"Bolt","value":11},{"name":"Alchemy","value":10.2},{"name":"Figma","value":10},{"name":"Gusto","value":10}],"value":634.44,"itemStyle":{"color":"#EFC86E"}},{"name":"Australia","children":[{"name":"Canva","value":40}],"value":40,"itemStyle":{"color":"#90A9A6"}},{"name":"United Kingdom","children":[{"name":"Checkout.com","value":40},{"name":"Revolut","value":33},{"name":"Blockchain.com","value":14},{"name":"Global Switch","value":11.1}],"value":98.1,"itemStyle":{"color":"#A3C680"}},{"name":"Bahamas","children":[{"name":"FTX","value":32}],"value":32,"itemStyle":{"color":"#6671B8"}},{"name":"India","children":[{"name":"BYJU's","value":22},{"name":"Swiggy","value":10.7}],"value":32.7,"itemStyle":{"color":"#8BB97C"}},{"name":"Indonesia","children":[{"name":"J&T Express","value":20}],"value":20,"itemStyle":{"color":"#5862A0"}},{"name":"Germany","children":[{"name":"Celonis","value":13}],"value":13,"itemStyle":{"color":"#7AA570"}},{"name":"Turkey","children":[{"name":"Getir","value":11.8}],"value":11.8,"itemStyle":{}},{"name":"Hong Kong","children":[{"name":"Lalamove","value":10}],"value":10,"itemStyle":{}}],"leafDepth":2,"itemStyle":{"normal":{"borderWidth":0,"gapWidth":2,"backgroundColor":"white"}},"upperLabel":{"normal":{"show":true,"height":30,"formatter":"{b}","color":"black","fontSize":12}}}],"tooltip":{"trigger":"item","backgroundColor":"rgba(255,255,255,0.8)","formatter":"function(info){\n        var treePathInfo = info.treePathInfo;\n        var treePath = [];\n        for (var i = 1; i < treePathInfo.length; i++) {\n          treePath.push(treePathInfo[i].name);\n        }\n      return(\n        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '<\/strong>' + '<br>' +\n        'Valuation ($B): <i>' + info.value + '<\/i><br>'\n      )}"}},"dispose":true},"evals":["opts.tooltip.formatter"],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell" data-fig.fullwidth="true">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>unicorn_data <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(<span class="st">`</span><span class="at">Valuation ($B)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
@@ -519,7 +545,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="htmlwidget-f02c8982ed97a10b5acd" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
 <script type="application/json" data-for="htmlwidget-f02c8982ed97a10b5acd">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"title":[{"text":"Unicorns by Industry"}],"series":[{"type":"treemap","data":[{"name":"Artificial intelligence","children":[{"name":"ByteDance","value":140},{"name":"Faire","value":12.59}],"value":152.59,"itemStyle":{"color":"#2885B4"}},{"name":"Other","children":[{"name":"SpaceX","value":127},{"name":"Epic Games","value":31.5}],"value":158.5,"itemStyle":{"color":"#54949E"}},{"name":"E-commerce & direct-to-consumer","children":[{"name":"SHEIN","value":100},{"name":"Fanatics","value":27},{"name":"Xiaohongshu","value":20},{"name":"Xingsheng Selected","value":12},{"name":"Chehaoduo","value":10}],"value":169,"itemStyle":{"color":"#536479"}},{"name":"Fintech","children":[{"name":"Stripe","value":95},{"name":"Checkout.com","value":40},{"name":"Revolut","value":33},{"name":"FTX","value":32},{"name":"Chime","value":25},{"name":"Ripple","value":15},{"name":"Blockchain.com","value":14},{"name":"Plaid","value":13.5},{"name":"Brex","value":12.3},{"name":"Deel","value":12},{"name":"Bolt","value":11},{"name":"Alchemy","value":10.2},{"name":"Gusto","value":10}],"value":323,"itemStyle":{"color":"#A82203"}},{"name":"Internet software & services","children":[{"name":"Canva","value":40},{"name":"Miro","value":17.5},{"name":"Discord","value":15},{"name":"OpenSea","value":13.3},{"name":"Grammarly","value":13},{"name":"GoodLeap","value":12},{"name":"Airtable","value":11.7},{"name":"Rippling","value":11.25},{"name":"Figma","value":10}],"value":143.75,"itemStyle":{"color":"#7D433E"}},{"name":"Supply chain, logistics, & delivery","children":[{"name":"Instacart","value":39},{"name":"J&T Express","value":20},{"name":"goPuff","value":15},{"name":"Getir","value":11.8},{"name":"Swiggy","value":10.7},{"name":"Lalamove","value":10}],"value":106.5,"itemStyle":{"color":"#D6AA4A"}},{"name":"Data management & analytics","children":[{"name":"Databricks","value":38},{"name":"Celonis","value":13}],"value":51,"itemStyle":{"color":"#E08644"}},{"name":"Edtech","children":[{"name":"BYJU's","value":22},{"name":"Yuanfudao","value":15.5}],"value":37.5,"itemStyle":{"color":"#9F6A41"}},{"name":"Hardware","children":[{"name":"DJI Innovations","value":15},{"name":"Bitmain Technologies","value":12},{"name":"Global Switch","value":11.1}],"value":38.1,"itemStyle":{"color":"#C1614A"}},{"name":"Consumer & retail","children":[{"name":"Yuanqi Senlin","value":15},{"name":"JUUL Labs","value":12},{"name":"Weilong","value":10.88}],"value":37.88,"itemStyle":{"color":"#5C7634"}},{"name":"Health","children":[{"name":"Devoted Health","value":12.6},{"name":"Biosplice Therapeutics","value":12}],"value":24.6,"itemStyle":{"color":"#959F74"}},{"name":"Auto & transportation","children":[{"name":"ZongMu Technology","value":11.4}],"value":11.4,"itemStyle":{"color":"#D56D4A"}}],"leafDepth":2,"itemStyle":{"normal":{"borderWidth":0,"gapWidth":2,"backgroundColor":"white"}},"upperLabel":{"normal":{"show":true,"height":30,"formatter":"{b}","color":"black","fontSize":12}}}],"tooltip":{"trigger":"item","backgroundColor":"rgba(255,255,255,0.8)","formatter":"function(info){\n        var treePathInfo = info.treePathInfo;\n        var treePath = [];\n        for (var i = 1; i < treePathInfo.length; i++) {\n          treePath.push(treePathInfo[i].name);\n        }\n      return(\n        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '<\/strong>' + '<br>' +\n        'Valuation ($B): <i>' + info.value + '<\/i><br>'\n      )}"}},"dispose":true},"evals":["opts.tooltip.formatter"],"jsHooks":[]}</script>
 </div>
@@ -529,7 +554,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="anchored" data-anchor-id="exploring-all-unicorn-companies-with-treemaps">Exploring all Unicorn companies with <em>treemaps</em></h2>
 <p>This section will show treemaps that allow the user to explore all the Unicorn companies in the dataset. For that, I created a function for the treemap(next chunk of code) and I also decided to plot them by quartiles of valuation, to facilitate the navigation.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tree_map_chart <span class="ot">&lt;-</span> <span class="cf">function</span>(data, quartile, colors_df, <span class="at">tooltip =</span> treemap_tooltip) {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  filtered_data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Quartiles <span class="sc">==</span> quartile) </span>
@@ -584,7 +609,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>Check the grey bar below the treemap, and click in the first grey square to go back to the initial view of the treemap.</li>
 </ul>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>htmltools<span class="sc">::</span><span class="fu">div</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tree_map_chart</span>(<span class="at">data =</span> unicorn_data, <span class="at">quartile =</span> <span class="st">"Q1"</span>, <span class="at">colors_df =</span> colors_industry),</span>
@@ -597,7 +622,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div>
 <div id="htmlwidget-6ea0a078691c9a478629" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
 <script type="application/json" data-for="htmlwidget-6ea0a078691c9a478629">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"title":[{"text":"Unicorns by Industry - from $3.1B to $140B(Q1)"}],"series":[{"type":"treemap","data":[{"name":"Artificial intelligence","children":[{"name":"ByteDance","value":140},{"name":"Faire","value":12.59},{"name":"Pony.ai","value":8.5},{"name":"Scale AI","value":7.3},{"name":"Gong","value":7.25},{"name":"Automation Anywhere","value":6.8},{"name":"DataRobot","value":6.3},{"name":"6Sense","value":5.2},{"name":"Horizon Robotics","value":5},{"name":"Icertis","value":5},{"name":"Anduril","value":4.6},{"name":"Dataiku","value":4.6},{"name":"Dataminr","value":4.1},{"name":"MEGVII","value":4},{"name":"Harness","value":3.7},{"name":"Indigo Ag","value":3.5}],"value":228.44,"itemStyle":{"color":"#2885B4"}},{"name":"Other","children":[{"name":"SpaceX","value":127},{"name":"Epic Games","value":31.5},{"name":"HEYTEA","value":9.28},{"name":"Northvolt","value":9.08},{"name":"Black Unicorn Factory","value":6.1},{"name":"The Boring Company","value":5.7},{"name":"Howden Group Holdings","value":5},{"name":"Relativity Space","value":4.2},{"name":"Farmers Business Network","value":4},{"name":"Redwood Materials","value":3.7},{"name":"Helion Energy","value":3.5},{"name":"Sila Nanotechnologies","value":3.3},{"name":"Dadi Cinema","value":3.24}],"value":215.6,"itemStyle":{"color":"#54949E"}},{"name":"E-commerce & direct-to-consumer","children":[{"name":"SHEIN","value":100},{"name":"Fanatics","value":27},{"name":"Xiaohongshu","value":20},{"name":"Xingsheng Selected","value":12},{"name":"Chehaoduo","value":10},{"name":"Thrasio","value":10},{"name":"Kavak","value":8.7},{"name":"Ziroom","value":6.6},{"name":"Lianjia","value":5.77},{"name":"Back Market","value":5.7},{"name":"QuintoAndar","value":5.1},{"name":"OfBusiness","value":5},{"name":"Vinted","value":4.53},{"name":"Lenskart","value":4.5},{"name":"Miaoshou Doctor","value":4.25},{"name":"SSENSE","value":4.15},{"name":"Houzz","value":4},{"name":"Vuori","value":4},{"name":"StockX","value":3.8},{"name":"Dutchie","value":3.75},{"name":"GOAT","value":3.7},{"name":"Whatnot","value":3.7},{"name":"Whoop","value":3.6},{"name":"Mirakl","value":3.5},{"name":"Cars24","value":3.3},{"name":"Thumbtack","value":3.2},{"name":"Skims","value":3.2},{"name":"Nuvemshop","value":3.1}],"value":276.15,"itemStyle":{"color":"#536479"}},{"name":"Fintech","children":[{"name":"Stripe","value":95},{"name":"Checkout.com","value":40},{"name":"Revolut","value":33},{"name":"FTX","value":32},{"name":"Chime","value":25},{"name":"Ripple","value":15},{"name":"Blockchain.com","value":14},{"name":"Plaid","value":13.5},{"name":"Brex","value":12.3},{"name":"Deel","value":12},{"name":"Bolt","value":11},{"name":"Alchemy","value":10.2},{"name":"Gusto","value":10},{"name":"Digital Currency Group","value":10},{"name":"KuCoin","value":10},{"name":"N26","value":9.23},{"name":"Rapyd","value":8.75},{"name":"Chainalysis","value":8.6},{"name":"SumUp","value":8.5},{"name":"Tipalti","value":8.3},{"name":"Ramp","value":8.1},{"name":"Fireblocks","value":8},{"name":"FalconX","value":8},{"name":"Razorpay","value":7.5},{"name":"Carta","value":7.4},{"name":"Gemini","value":7.1},{"name":"ConsenSys","value":7},{"name":"Klarna","value":6.7},{"name":"National Stock Exchange of India","value":6.5},{"name":"Mollie","value":6.5},{"name":"Upgrade","value":6.28},{"name":"Better.com","value":6},{"name":"iCapital Network","value":6},{"name":"Airwallex","value":5.5},{"name":"Mambu","value":5.5},{"name":"Toss","value":5.48},{"name":"Trade Republic","value":5.36},{"name":"C6 Bank","value":5.05},{"name":"ZEPZ","value":5},{"name":"OakNorth Bank","value":5},{"name":"Pine Labs","value":5},{"name":"Qonto","value":5},{"name":"Creditas","value":4.8},{"name":"Pleo","value":4.7},{"name":"Lendable","value":4.58},{"name":"Monzo","value":4.5},{"name":"wefox","value":4.5},{"name":"BitPanda","value":4.11},{"name":"CRED","value":4.01},{"name":"Greensill","value":4},{"name":"Next Insurance","value":4},{"name":"Melio","value":4},{"name":"Digit Insurance","value":4},{"name":"SpotOn","value":3.6},{"name":"Celsius Network","value":3.5},{"name":"ChargeBee Technologies","value":3.5},{"name":"MoonPay","value":3.4},{"name":"Upstox","value":3.4},{"name":"Starling Bank","value":3.34},{"name":"BlockDaemon","value":3.25},{"name":"Cedar","value":3.2},{"name":"Blockstream","value":3.2},{"name":"HighRadius","value":3.1}],"value":605.04,"itemStyle":{"color":"#A82203"}},{"name":"Internet software & services","children":[{"name":"Canva","value":40},{"name":"Miro","value":17.5},{"name":"Discord","value":15},{"name":"OpenSea","value":13.3},{"name":"Grammarly","value":13},{"name":"GoodLeap","value":12},{"name":"Airtable","value":11.7},{"name":"Rippling","value":11.25},{"name":"Figma","value":10},{"name":"reddit","value":10},{"name":"Talkdesk","value":10},{"name":"Notion Labs","value":10},{"name":"OutSystems","value":9.5},{"name":"ServiceTitan","value":9.5},{"name":"Klaviyo","value":9.2},{"name":"Personio","value":8.5},{"name":"Dream11","value":8},{"name":"Hopin","value":7.75},{"name":"Dapper Labs","value":7.6},{"name":"Automattic","value":7.5},{"name":"Benchling","value":6.1},{"name":"Vice Media","value":5.7},{"name":"Workato","value":5.7},{"name":"Postman","value":5.6},{"name":"ContentSquare","value":5.6},{"name":"OneTrust","value":5.1},{"name":"VerSe Innovation(Dailyhunt)","value":5},{"name":"ShareChat","value":5},{"name":"Meesho","value":4.9},{"name":"BetterUp","value":4.7},{"name":"SonarSource","value":4.7},{"name":"Checkr","value":4.6},{"name":"Outreach","value":4.4},{"name":"Guild Education","value":4.4},{"name":"Sorare","value":4.3},{"name":"ThoughtSpot","value":4.2},{"name":"Globalization Partners","value":4.2},{"name":"Patreon","value":4},{"name":"PointClickCare","value":4},{"name":"Zapier","value":4},{"name":"BrowserStack","value":4},{"name":"ClickUp","value":4},{"name":"Aurora Solar","value":4},{"name":"Webflow","value":4},{"name":"Yuga Labs","value":4},{"name":"Papaya Global","value":3.7},{"name":"Autograph","value":3.66},{"name":"Relativity","value":3.6},{"name":"Rec Room","value":3.5},{"name":"Commure","value":3.5},{"name":"Tekion","value":3.5},{"name":"Highspot","value":3.5},{"name":"Handshake","value":3.5},{"name":"Aiven","value":3.21},{"name":"Ironclad","value":3.2},{"name":"Retool","value":3.2}],"value":395.57,"itemStyle":{"color":"#7D433E"}},{"name":"Supply chain, logistics, & delivery","children":[{"name":"Instacart","value":39},{"name":"J&T Express","value":20},{"name":"goPuff","value":15},{"name":"Getir","value":11.8},{"name":"Swiggy","value":10.7},{"name":"Lalamove","value":10},{"name":"Flexport","value":8},{"name":"RELEX","value":5.7},{"name":"Rappi","value":5.25},{"name":"Weee!","value":4.1},{"name":"Convoy","value":3.8},{"name":"Kurly","value":3.3},{"name":"Udaan","value":3.1},{"name":"Gorillas","value":3.1}],"value":142.85,"itemStyle":{"color":"#D6AA4A"}},{"name":"Data management & analytics","children":[{"name":"Databricks","value":38},{"name":"Celonis","value":13},{"name":"FiveTran","value":5.6},{"name":"Collibra","value":5.25},{"name":"SambaNova Systems","value":5},{"name":"Cockroach Labs","value":5},{"name":"dbt Labs","value":4.2},{"name":"Rubrik","value":4},{"name":"Cohesity","value":3.7},{"name":"VAST Data","value":3.7},{"name":"OwnBackup","value":3.35},{"name":"Starburst","value":3.35}],"value":94.15,"itemStyle":{"color":"#E08644"}},{"name":"Edtech","children":[{"name":"BYJU's","value":22},{"name":"Yuanfudao","value":15.5},{"name":"VIPKid","value":4.5},{"name":"Articulate","value":3.75},{"name":"Course Hero","value":3.6},{"name":"GoStudent","value":3.5},{"name":"Unacademy","value":3.44},{"name":"Eruditus Executive Education","value":3.2},{"name":"ApplyBoard","value":3.2}],"value":62.69,"itemStyle":{"color":"#9F6A41"}},{"name":"Hardware","children":[{"name":"DJI Innovations","value":15},{"name":"Bitmain Technologies","value":12},{"name":"Global Switch","value":11.1},{"name":"Royole Corporation","value":6},{"name":"Chipone","value":4.73},{"name":"UBTECH Robotics","value":4.58},{"name":"Cerebras Systems","value":4},{"name":"Flock Safety","value":3.5},{"name":"PsiQuantum","value":3.15}],"value":64.06,"itemStyle":{"color":"#C1614A"}},{"name":"Consumer & retail","children":[{"name":"Yuanqi Senlin","value":15},{"name":"JUUL Labs","value":12},{"name":"Weilong","value":10.88},{"name":"Easyhome","value":5.78},{"name":"Impossible Foods","value":4}],"value":47.66,"itemStyle":{"color":"#5C7634"}},{"name":"Health","children":[{"name":"Devoted Health","value":12.6},{"name":"Biosplice Therapeutics","value":12},{"name":"Tempus","value":8.1},{"name":"Caris Life Sciences","value":7.83},{"name":"We Doctor","value":7},{"name":"Ro","value":7},{"name":"Doctolib","value":6.4},{"name":"Hinge Health","value":6.2},{"name":"Lyra Health","value":5.85},{"name":"Cityblock Health","value":5.7},{"name":"United Imaging Healthcare","value":5},{"name":"Cerebral","value":4.8},{"name":"Reify Health","value":4.8},{"name":"Color","value":4.6},{"name":"Radiology Partners","value":4},{"name":"Olive","value":4},{"name":"Medlinker","value":3.92},{"name":"Intarcia Therapeutics","value":3.8},{"name":"Noom","value":3.7},{"name":"Abogen","value":3.7},{"name":"Otto Bock HealthCare","value":3.52},{"name":"Komodo Health","value":3.3},{"name":"Innovaccer","value":3.2},{"name":"Eikon Therapeutics","value":3.2}],"value":134.22,"itemStyle":{"color":"#959F74"}},{"name":"Auto & transportation","children":[{"name":"ZongMu Technology","value":11.4},{"name":"Nuro","value":8.6},{"name":"Bolt","value":8.4},{"name":"Ola Cabs","value":7.5},{"name":"Argo AI","value":7.25},{"name":"SVOLT","value":6.51},{"name":"Hello TransTech","value":5},{"name":"WM Motor","value":5},{"name":"Ola Electric Mobility","value":5},{"name":"Zhiji Auto","value":4.5},{"name":"WeRide","value":4.4},{"name":"Hozon Auto","value":3.95},{"name":"Applied Intuition","value":3.6},{"name":"Youxia Motors","value":3.35},{"name":"ECARX","value":3.31},{"name":"Via","value":3.3}],"value":91.07,"itemStyle":{"color":"#D56D4A"}},{"name":"Cybersecurity","children":[{"name":"Tanium","value":9},{"name":"Snyk","value":8.6},{"name":"Lacework","value":8.3},{"name":"StarkWare","value":8},{"name":"Netskope","value":7.5},{"name":"1Password","value":6.8},{"name":"Wiz","value":6},{"name":"Coalition","value":5},{"name":"Socure","value":4.5},{"name":"Arctic Wolf Networks","value":4.3},{"name":"Abnormal Security","value":4},{"name":"Acronis","value":3.5}],"value":75.5,"itemStyle":{"color":"#EA9F3D"}},{"name":"Mobile & telecommunications","children":[{"name":"Niantic","value":9},{"name":"Attentive","value":5.99},{"name":"Moon Active","value":5},{"name":"Yello Mobile","value":4},{"name":"Clubhouse","value":4},{"name":"Branch","value":4},{"name":"MessageBird","value":3.8},{"name":"HyalRoute","value":3.5},{"name":"Scopely","value":3.3}],"value":42.59,"itemStyle":{"color":"#7E7338"}},{"name":"Travel","children":[{"name":"OYO Rooms","value":9},{"name":"TripActions","value":7.25},{"name":"Hopper","value":5}],"value":21.25,"itemStyle":{"color":"#3D6245"}}],"leafDepth":1,"itemStyle":{"normal":{"borderWidth":0,"gapWidth":2,"backgroundColor":"white"}},"upperLabel":{"normal":{"show":false,"height":30,"formatter":"{b}","color":"black","fontSize":12}}}],"tooltip":{"trigger":"item","backgroundColor":"rgba(255,255,255,0.8)","formatter":"function(info){\n        var treePathInfo = info.treePathInfo;\n        var treePath = [];\n        for (var i = 1; i < treePathInfo.length; i++) {\n          treePath.push(treePathInfo[i].name);\n        }\n      return(\n        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '<\/strong>' + '<br>' +\n        'Valuation ($B): <i>' + info.value + '<\/i><br>'\n      )}"}},"dispose":true},"evals":["opts.tooltip.formatter"],"jsHooks":[]}</script>
@@ -617,7 +641,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section id="unicorn-companies-in-brazil-my-country" class="level2">
 <h2 class="anchored" data-anchor-id="unicorn-companies-in-brazil-my-country">Unicorn companies in Brazil (my country)</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>unicorn_data <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(<span class="st">`</span><span class="at">Valuation ($B)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
@@ -712,12 +736,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -749,7 +776,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -801,10 +848,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/wrprates\.com\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -814,8 +883,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -827,9 +905,244 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1095,37 +1408,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, fig.fullwidth = TRUE}</span></span>
-<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a>unicorn_data <span class="sc">|&gt;</span></span>
-<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(<span class="st">`</span><span class="at">Valuation ($B)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">50</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Industry, <span class="at">name =</span> Company, <span class="at">value =</span> <span class="st">`</span><span class="at">Valuation ($B)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">nest</span>(<span class="at">children =</span> <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"value"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(children, <span class="sc">~</span> <span class="fu">sum</span>(.x<span class="sc">$</span>value))) <span class="sc">|&gt;</span></span>
-<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">name =</span> Industry) <span class="sc">|&gt;</span></span>
-<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(colors_industry, <span class="at">by =</span> <span class="st">"name"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_charts</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_title</span>(<span class="at">text =</span> <span class="st">"Unicorns by Industry"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_treemap</span>(</span>
-<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a>    <span class="at">leafDepth =</span> <span class="dv">2</span>,</span>
-<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a>    <span class="at">itemStyle =</span> <span class="fu">list</span>(<span class="at">normal =</span> <span class="fu">list</span>(</span>
-<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a>      <span class="at">borderWidth =</span> <span class="dv">0</span>,</span>
-<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a>      <span class="at">gapWidth =</span> <span class="dv">2</span>,</span>
-<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a>      <span class="at">backgroundColor =</span> <span class="st">"white"</span></span>
-<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a>    )),</span>
-<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a>    <span class="at">upperLabel =</span> <span class="fu">list</span>(</span>
-<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a>      <span class="at">normal =</span> <span class="fu">list</span>(</span>
-<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a>        <span class="at">show =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a>        <span class="at">height =</span> <span class="dv">30</span>,</span>
-<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a>        <span class="at">formatter =</span> <span class="st">"{b}"</span>,</span>
-<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontSize =</span> <span class="dv">12</span></span>
-<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-265"><a href="#cb11-265" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_tooltip</span>(</span>
-<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a>    <span class="at">backgroundColor =</span> <span class="st">"rgba(255,255,255,0.8)"</span>,</span>
-<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a>    <span class="at">formatter =</span> treemap_tooltip</span>
-<span id="cb11-269"><a href="#cb11-269" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a><span class="in">unicorn_data |&gt;</span></span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a><span class="in">  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |&gt;</span></span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a><span class="in">  head(50) |&gt;</span></span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a><span class="in">  dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |&gt;</span></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a><span class="in">  tidyr::nest(children = c("name", "value")) |&gt;</span></span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a><span class="in">  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |&gt;</span></span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a><span class="in">  dplyr::rename(name = Industry) |&gt;</span></span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a><span class="in">  dplyr::left_join(colors_industry, by = "name") |&gt;</span></span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a><span class="in">  echarts4r::e_charts() |&gt;</span></span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="in">  echarts4r::e_title(text = "Unicorns by Industry") |&gt;</span></span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a><span class="in">  echarts4r::e_treemap(</span></span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a><span class="in">    leafDepth = 2,</span></span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a><span class="in">    itemStyle = list(normal = list(</span></span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a><span class="in">      borderWidth = 0,</span></span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a><span class="in">      gapWidth = 2,</span></span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a><span class="in">      backgroundColor = "white"</span></span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a><span class="in">    )),</span></span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a><span class="in">    upperLabel = list(</span></span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a><span class="in">      normal = list(</span></span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a><span class="in">        show = TRUE,</span></span>
+<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a><span class="in">        height = 30,</span></span>
+<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a><span class="in">        formatter = "{b}",</span></span>
+<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a><span class="in">        color = "black",</span></span>
+<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a><span class="in">        fontSize = 12</span></span>
+<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a><span class="in">      )</span></span>
+<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb11-265"><a href="#cb11-265" aria-hidden="true" tabindex="-1"></a><span class="in">  ) |&gt;</span></span>
+<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a><span class="in">  echarts4r::e_tooltip(</span></span>
+<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a><span class="in">    backgroundColor = "rgba(255,255,255,0.8)",</span></span>
+<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a><span class="in">    formatter = treemap_tooltip</span></span>
+<span id="cb11-269"><a href="#cb11-269" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
 <span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exploring all Unicorn companies with *treemaps*</span></span>
@@ -1250,9 +1563,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-397"><a href="#cb11-397" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Treemaps are very nice, but sometimes they are not clear about the size of some categories. So, other charts, like the column charts we used here, can help in understanding better the behavior of some categories.</span>
 <span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-399"><a href="#cb11-399" aria-hidden="true" tabindex="-1"></a>I hope you enjoyed this content. Please leave your comments below. If you want to see the updated version of this analysis, please also leave a comment.</span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Wlademir Ribeiro Prates</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/wrprates/">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/wlademir-ribeiro-prates/">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@wlademir">
+      <i class="bi bi-youtube" role="img" aria-label="YouTube">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datamundo.cientista/">
+      <i class="bi bi-instagram" role="img" aria-label="Instagram">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
 
 
 
