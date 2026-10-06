@@ -134,7 +134,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<meta name="quarto:status" content="draft">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -184,7 +183,7 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -1265,285 +1264,284 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2026-10-06"</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Statistics, Data Science]</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> preview.png</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="an">draft:</span><span class="co"> true</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">    include-after-body: disqus.html</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">    mermaid:</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">      theme: neutral</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>))</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#4582ec"</span>, <span class="st">"#22325e"</span>, <span class="st">"#9aa5b1"</span>)</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>Every company runs on beliefs. "Customers who finish onboarding stick around longer." "The new checkout converts better." "Support is slower in one region." Most of these beliefs are checked with a pivot table, a bar chart and a nod. That works until two averages look different and nobody can say whether the difference is real or noise.</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>Hypothesis tests exist for exactly that moment. They are not an academic ritual: they are the cheapest tool you have to say, with a known margin of error, whether a difference you see in the data would survive another sample. This post is the path I use to go from a business belief to the right test, with a worked example in R.</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you need</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Comfortable reading R. Every chunk is runnable, with simulated data, so nothing depends on private datasets.</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No statistics beyond the idea of an average and a distribution. The concepts you need are in the next section.</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>The structure comes from a chapter I wrote for <span class="co">[</span><span class="ot">O Manual do Cientista de Dados</span><span class="co">](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html)</span>, my open handbook in Portuguese. This is the English version, rewritten around a single example.</span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## The five steps</span></span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**State the business hypothesis** in plain words.</span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Translate it into a statistical hypothesis**: a null and an alternative.</span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Choose the test** based on the type of data and the number of groups.</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Shape the data** into what the test expects.</span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Run the test and read the result** in business terms, not only in p-values.</span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>Steps 1 and 5 are where most of the value is. Steps 2 to 4 are where most of the mistakes are. The decision flow below is for those three.</span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Four concepts before choosing</span></span>
-<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Null and alternative hypotheses</span></span>
-<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>Every test needs a **null hypothesis** ($H_0$), which always states an equality, and an **alternative** ($H_1$), which states what you suspect instead.</span>
-<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: average time to first purchase is the same with and without onboarding.</span>
-<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: it is different (two-sided), or it is shorter with onboarding (one-sided).</span>
-<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>Use a one-sided alternative only when the opposite direction would be irrelevant to the decision. When in doubt, go two-sided.</span>
-<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a><span class="fu">### The decision and the p-value</span></span>
-<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>The output of a test is a decision: **reject $H_0$** or **fail to reject $H_0$**. The p-value is the probability of seeing a difference at least as large as the one observed if $H_0$ were true. A small p-value is evidence against $H_0$. The usual threshold is 0.05, sometimes 0.10 in exploratory work. The threshold is a convention, not a law of nature, and it should be set before looking at the result.</span>
-<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parametric or non-parametric</span></span>
-<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>**Parametric** tests assume the data follow a known distribution, usually the normal. **Non-parametric** tests do not. In business data, non-parametric tests are often the safer default: metrics like revenue, time and counts are skewed, and samples are frequently small.</span>
-<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>A quick check is the Shapiro-Wilk test, whose $H_0$ is "the data are normal". If its p-value is below 0.05, treat the data as non-normal and pick the non-parametric branch.</span>
-<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span>
-<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Paired or unpaired</span></span>
-<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a>**Paired** samples measure the same unit twice, such as the same customer before and after a change. **Unpaired** samples come from different units in different groups. Paired tests need samples of equal size, matched row by row. Unpaired tests do not.</span>
-<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## The decision flow</span></span>
-<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a>Two questions decide almost everything: what type of data are you comparing, and how many groups are there?</span>
-<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-width: 9</span></span>
-<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart TD</span></span>
-<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a><span class="in">    Start{{"What type of data?"}}</span></span>
-<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a><span class="in">    Start --&gt;|CONTINUOUS| Groups{{"How many groups?"}}</span></span>
-<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a><span class="in">    Start --&gt;|CATEGORICAL| Prop["Difference in&lt;br/&gt;proportions"]</span></span>
-<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a><span class="in">    Groups --&gt;|1| G1["One sample vs&lt;br/&gt;a reference value"]</span></span>
-<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a><span class="in">    Groups --&gt;|2| G2["Two samples"]</span></span>
-<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a><span class="in">    Groups --&gt;|3+| G3["Three or more"]</span></span>
-<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a><span class="in">    G1 --&gt; T1["One-sample t-test"]</span></span>
-<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a><span class="in">    G1 --&gt; W1["Wilcoxon&lt;br/&gt;signed rank"]</span></span>
-<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a><span class="in">    G2 --&gt; T2["Two-sample t-test"]</span></span>
-<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a><span class="in">    G2 --&gt; W2["Wilcoxon rank sum&lt;br/&gt;(Mann-Whitney)"]</span></span>
-<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a><span class="in">    G3 --&gt; ANOVA["ANOVA"]</span></span>
-<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a><span class="in">    G3 --&gt; KW["Kruskal-Wallis"]</span></span>
-<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a><span class="in">    KW --&gt;|"Which groups differ?"| Post["Pairwise Wilcoxon&lt;br/&gt;or Dunn test"]</span></span>
-<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a><span class="in">    Prop --&gt; Z["Z-test"]</span></span>
-<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a><span class="in">    Prop --&gt; Chi["Chi-squared"]</span></span>
-<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a><span class="in">    Chi --&gt;|"Ordered groups?"| Trend["Chi-squared&lt;br/&gt;for trend"]</span></span>
-<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a><span class="in">    style T1 fill:#fff3bf,stroke:#f0b429</span></span>
-<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a><span class="in">    style T2 fill:#fff3bf,stroke:#f0b429</span></span>
-<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a><span class="in">    style ANOVA fill:#fff3bf,stroke:#f0b429</span></span>
-<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a><span class="in">    style Z fill:#fff3bf,stroke:#f0b429</span></span>
-<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a><span class="in">    style W1 fill:#e9ecef,stroke:#adb5bd</span></span>
-<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a><span class="in">    style W2 fill:#e9ecef,stroke:#adb5bd</span></span>
-<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a><span class="in">    style KW fill:#e9ecef,stroke:#adb5bd</span></span>
-<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a><span class="in">    style Post fill:#e9ecef,stroke:#adb5bd</span></span>
-<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a><span class="in">    style Chi fill:#e9ecef,stroke:#adb5bd</span></span>
-<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a><span class="in">    style Trend fill:#e9ecef,stroke:#adb5bd</span></span>
-<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a>Yellow boxes are parametric tests, grey boxes are non-parametric. Within each branch, the normality check decides which one to use.</span>
-<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## A worked example: three questions from one product team</span></span>
-<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>Imagine a subscription product. The team has three beliefs they want to settle before the quarterly review. The data below are simulated, so the numbers are not from any real company, but the shapes are the ones you meet in practice: skewed times and conversion rates in the single digits.</span>
-<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1200</span></span>
-<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">seq_len</span>(n),</span>
-<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a>  <span class="at">channel =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Paid search"</span>, <span class="st">"Organic"</span>, <span class="st">"Referral"</span>), n,</span>
-<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a>                   <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.35</span>, <span class="fl">0.20</span>)),</span>
-<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a>  <span class="at">onboarding =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Completed"</span>, <span class="st">"Skipped"</span>), n,</span>
-<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a>                      <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>))</span>
-<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Days until first purchase: skewed, shorter with onboarding and for referrals</span></span>
-<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>    <span class="at">base_rate =</span> <span class="fu">case_when</span>(</span>
-<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>      channel <span class="sc">==</span> <span class="st">"Referral"</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>,</span>
-<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a>      channel <span class="sc">==</span> <span class="st">"Organic"</span>  <span class="sc">~</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">9</span>,</span>
-<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>                  <span class="sc">~</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">11</span></span>
-<span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a>    <span class="at">days_to_first_purchase =</span> <span class="fu">round</span>(</span>
-<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="fu">if_else</span>(onboarding <span class="sc">==</span> <span class="st">"Completed"</span>, base_rate <span class="sc">*</span> <span class="fl">1.35</span>, base_rate)) <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>base_rate)</span>
-<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(customers)</span>
-<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question 1: did the redesigned checkout change conversion?</span></span>
-<span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a>The team ran an A/B test on the checkout page. Each visitor saw either the old or the new version and either converted or did not. Two groups, a yes/no outcome: this is the **categorical** branch, difference in proportions.</span>
-<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a>checkout <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">variant    =</span> <span class="fu">c</span>(<span class="st">"Old"</span>, <span class="st">"New"</span>),</span>
-<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a>  <span class="at">visitors   =</span> <span class="fu">c</span>(<span class="dv">4180</span>, <span class="dv">4210</span>),</span>
-<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a>  <span class="at">conversions =</span> <span class="fu">c</span>(<span class="dv">301</span>, <span class="dv">352</span>)</span>
-<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> conversions <span class="sc">/</span> visitors)</span>
-<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a>checkout</span>
-<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: the conversion rate is the same in both variants.</span>
-<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: the conversion rates differ.</span>
-<span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-179"><a href="#cb20-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-180"><a href="#cb20-180" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> checkout<span class="sc">$</span>conversions, <span class="at">n =</span> checkout<span class="sc">$</span>visitors)</span>
-<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-182"><a href="#cb20-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-183"><a href="#cb20-183" aria-hidden="true" tabindex="-1"></a>The new checkout converts at 8.4% against 7.2%, a lift of 1.2 percentage points, and the p-value is 0.052. If the team set the threshold at 0.05 before the test, the honest reading is: **we do not reject $H_0$ yet**. The confidence interval of the difference runs from about -2.3 points to just above zero, which says the same thing: the data are compatible with a real gain and with no gain at all.</span>
-<span id="cb20-184"><a href="#cb20-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a>This is the most common outcome in real A/B tests and the one most often misreported. Two things not to do: move the threshold to 0.10 after seeing the result, or declare the test "a trend". The right move is to decide what difference would matter for the business (say, one percentage point) and keep the test running until the sample can detect it. Had the result come in at 0.03, the next question would be the size of the lift and whether it pays for the engineering cost, not the p-value itself.</span>
-<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question 2: do customers who complete onboarding buy sooner?</span></span>
-<span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a>Here the outcome is **continuous** (days until first purchase) and there are **two groups** (completed or skipped onboarding). The groups are different customers, so the samples are unpaired.</span>
-<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(customers, <span class="fu">aes</span>(days_to_first_purchase, <span class="at">fill =</span> onboarding)) <span class="sc">+</span></span>
-<span id="cb20-196"><a href="#cb20-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">alpha =</span> <span class="fl">0.65</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> pal[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Days to first purchase"</span>, <span class="at">y =</span> <span class="st">"Customers"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>)</span>
-<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a>The distributions are clearly skewed: most customers buy in the first days and a long tail takes weeks. The normality check confirms what the plot already shows.</span>
-<span id="cb20-202"><a href="#cb20-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">|&gt;</span></span>
-<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(onboarding) <span class="sc">|&gt;</span></span>
-<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_days =</span> <span class="fu">median</span>(days_to_first_purchase),</span>
-<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_days =</span> <span class="fu">mean</span>(days_to_first_purchase),</span>
-<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">shapiro_p =</span> <span class="fu">shapiro.test</span>(days_to_first_purchase)<span class="sc">$</span>p.value</span>
-<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a>Both p-values are far below 0.05, so the data are not normal and we take the non-parametric branch: **Wilcoxon rank sum**, also known as Mann-Whitney U.</span>
-<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: the distributions of days to first purchase are the same in both groups.</span>
-<span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: customers who completed onboarding buy sooner (one-sided, because a slower result would not change the decision to keep onboarding).</span>
-<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-223"><a href="#cb20-223" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-224"><a href="#cb20-224" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(</span>
-<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a>  days_to_first_purchase <span class="sc">~</span> onboarding,</span>
-<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> customers,</span>
-<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"less"</span></span>
-<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a>$H_0$ is rejected. Had we used a t-test, we would probably have reached the same conclusion with this sample size, but with smaller samples the skew would have hurt the t-test first. With the Wilcoxon test the conclusion does not depend on the shape of the tail.</span>
-<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question 3: does time to first purchase differ across acquisition channels?</span></span>
-<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a>Same continuous outcome, now **three groups**. Non-normal data again, so the choice is **Kruskal-Wallis**.</span>
-<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: the three channels have the same distribution of days to first purchase.</span>
-<span id="cb20-238"><a href="#cb20-238" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: at least one channel differs.</span>
-<span id="cb20-239"><a href="#cb20-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-242"><a href="#cb20-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-243"><a href="#cb20-243" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">|&gt;</span></span>
-<span id="cb20-244"><a href="#cb20-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(channel) <span class="sc">|&gt;</span></span>
-<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">median_days =</span> <span class="fu">median</span>(days_to_first_purchase)) <span class="sc">|&gt;</span></span>
-<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(median_days)</span>
-<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-248"><a href="#cb20-248" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(days_to_first_purchase <span class="sc">~</span> <span class="fu">factor</span>(channel), <span class="at">data =</span> customers)</span>
-<span id="cb20-249"><a href="#cb20-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-250"><a href="#cb20-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-251"><a href="#cb20-251" aria-hidden="true" tabindex="-1"></a>Kruskal-Wallis only says that *at least one* channel is different. The question the team actually cares about is *which* one, and that requires pairwise comparisons with a correction for testing several pairs at once.</span>
-<span id="cb20-252"><a href="#cb20-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(</span>
-<span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a>  customers<span class="sc">$</span>days_to_first_purchase,</span>
-<span id="cb20-258"><a href="#cb20-258" aria-hidden="true" tabindex="-1"></a>  customers<span class="sc">$</span>channel,</span>
-<span id="cb20-259"><a href="#cb20-259" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.adjust.method =</span> <span class="st">"holm"</span></span>
-<span id="cb20-260"><a href="#cb20-260" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-261"><a href="#cb20-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-262"><a href="#cb20-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-265"><a href="#cb20-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-266"><a href="#cb20-266" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb20-267"><a href="#cb20-267" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">|&gt;</span></span>
-<span id="cb20-268"><a href="#cb20-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">channel =</span> <span class="fu">reorder</span>(channel, days_to_first_purchase, median)) <span class="sc">|&gt;</span></span>
-<span id="cb20-269"><a href="#cb20-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(channel, days_to_first_purchase, <span class="at">fill =</span> channel)) <span class="sc">+</span></span>
-<span id="cb20-270"><a href="#cb20-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb20-271"><a href="#cb20-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> pal) <span class="sc">+</span></span>
-<span id="cb20-272"><a href="#cb20-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb20-273"><a href="#cb20-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Days to first purchase"</span>)</span>
-<span id="cb20-274"><a href="#cb20-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-275"><a href="#cb20-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-276"><a href="#cb20-276" aria-hidden="true" tabindex="-1"></a>All three pairs differ after the Holm correction, and the medians tell the direction: referral customers buy soonest, paid search slowest, organic in between. The sentence for the quarterly review is "half of referral customers buy within five days, against eight days for paid search", not the Kruskal-Wallis statistic.</span>
-<span id="cb20-277"><a href="#cb20-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-278"><a href="#cb20-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading results without fooling yourself</span></span>
-<span id="cb20-279"><a href="#cb20-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-280"><a href="#cb20-280" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Significant is not the same as important.** With 1,200 customers, tiny differences become significant. Always report the size of the effect in business units: days, percentage points, revenue.</span>
-<span id="cb20-281"><a href="#cb20-281" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The threshold comes first.** Decide 0.05 or 0.10 before running the test. Moving it after seeing the p-value, as would be tempting with the 0.052 in question 1, is the most common way to lie to yourself.</span>
-<span id="cb20-282"><a href="#cb20-282" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Independence matters more than normality.** Repeated measurements of the same customer, or customers who influence each other, break every test in this post. Non-parametric tests do not fix that.</span>
-<span id="cb20-283"><a href="#cb20-283" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Many tests, many false positives.** If you test ten beliefs at 0.05, you expect one false positive. Correct for multiple comparisons, as done in question 3, or at least say how many tests you ran.</span>
-<span id="cb20-284"><a href="#cb20-284" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**A test answers one narrow question.** It says whether a difference is likely to be noise. It does not say why the difference exists, and it does not say the new checkout *caused* the lift unless the assignment was random.</span>
-<span id="cb20-285"><a href="#cb20-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-286"><a href="#cb20-286" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations of this guide</span></span>
-<span id="cb20-287"><a href="#cb20-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-288"><a href="#cb20-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The flow covers the tests that solve most business questions, not all tests. Correlation, regression and time-series questions need other tools.</span>
-<span id="cb20-289"><a href="#cb20-289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It does not cover power analysis: how many observations you need before running the test. Underpowered tests fail to reject $H_0$ even when the effect is real.</span>
-<span id="cb20-290"><a href="#cb20-290" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ANOVA and the t-test also assume similar variances across groups. R's default Welch t-test handles unequal variances; classic ANOVA does not.</span>
-<span id="cb20-291"><a href="#cb20-291" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The example uses simulated data with a known answer. Real data will be messier, and the first step is usually cleaning, not testing.</span>
-<span id="cb20-292"><a href="#cb20-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-293"><a href="#cb20-293" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cheat sheet</span></span>
-<span id="cb20-294"><a href="#cb20-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-295"><a href="#cb20-295" aria-hidden="true" tabindex="-1"></a>| Question | Data | Groups | Parametric | Non-parametric | R |</span>
-<span id="cb20-296"><a href="#cb20-296" aria-hidden="true" tabindex="-1"></a>|---|---|---|---|---|---|</span>
-<span id="cb20-297"><a href="#cb20-297" aria-hidden="true" tabindex="-1"></a>| Is a rate different between groups? | Categorical | 2+ | Z-test | Chi-squared, Fisher | <span class="in">`prop.test()`</span>, <span class="in">`chisq.test()`</span>, <span class="in">`fisher.test()`</span> |</span>
-<span id="cb20-298"><a href="#cb20-298" aria-hidden="true" tabindex="-1"></a>| Is a metric different from a target? | Continuous | 1 | One-sample t-test | Wilcoxon signed rank | <span class="in">`t.test(x, mu =)`</span>, <span class="in">`wilcox.test(x, mu =)`</span> |</span>
-<span id="cb20-299"><a href="#cb20-299" aria-hidden="true" tabindex="-1"></a>| Is a metric different between two groups? | Continuous | 2 | Two-sample t-test | Wilcoxon rank sum | <span class="in">`t.test(x, y)`</span>, <span class="in">`wilcox.test(x, y)`</span> |</span>
-<span id="cb20-300"><a href="#cb20-300" aria-hidden="true" tabindex="-1"></a>| Before vs after on the same units? | Continuous | 2 paired | Paired t-test | Wilcoxon signed rank | <span class="in">`t.test(x, y, paired = TRUE)`</span>, <span class="in">`wilcox.test(x, y, paired = TRUE)`</span> |</span>
-<span id="cb20-301"><a href="#cb20-301" aria-hidden="true" tabindex="-1"></a>| Is a metric different across 3+ groups? | Continuous | 3+ | ANOVA | Kruskal-Wallis | <span class="in">`aov()`</span>, <span class="in">`kruskal.test()`</span> |</span>
-<span id="cb20-302"><a href="#cb20-302" aria-hidden="true" tabindex="-1"></a>| Which groups differ? | Continuous | 3+ | Tukey HSD | Pairwise Wilcoxon, Dunn | <span class="in">`TukeyHSD()`</span>, <span class="in">`pairwise.wilcox.test()`</span> |</span>
-<span id="cb20-303"><a href="#cb20-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-304"><a href="#cb20-304" aria-hidden="true" tabindex="-1"></a><span class="fu">## References and next steps</span></span>
-<span id="cb20-305"><a href="#cb20-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-306"><a href="#cb20-306" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Prates, W. R. *O Manual do Cientista de Dados*, chapter 5: <span class="co">[</span><span class="ot">Análise de Hipóteses</span><span class="co">](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html)</span>. The Portuguese original of this flow, with Python equivalents for every test.</span>
-<span id="cb20-307"><a href="#cb20-307" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R documentation for <span class="co">[</span><span class="ot">`prop.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/prop.test.html)</span>, <span class="co">[</span><span class="ot">`wilcox.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/wilcox.test.html)</span>, <span class="co">[</span><span class="ot">`kruskal.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kruskal.test.html)</span> and <span class="co">[</span><span class="ot">`pairwise.wilcox.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/pairwise.wilcox.test.html)</span>.</span>
-<span id="cb20-308"><a href="#cb20-308" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Shapiro, S. S. &amp; Wilk, M. B. (1965). An analysis of variance test for normality. *Biometrika*, 52(3/4), 591–611.</span>
-<span id="cb20-309"><a href="#cb20-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-310"><a href="#cb20-310" aria-hidden="true" tabindex="-1"></a>A natural follow-up is power analysis: how to decide, before an A/B test starts, how many visitors you need so that a failure to reject $H_0$ actually means something. That is the next post in this series.</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">    include-after-body: disqus.html</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">    mermaid:</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">      theme: neutral</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>))</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#4582ec"</span>, <span class="st">"#22325e"</span>, <span class="st">"#9aa5b1"</span>)</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>Every company runs on beliefs. "Customers who finish onboarding stick around longer." "The new checkout converts better." "Support is slower in one region." Most of these beliefs are checked with a pivot table, a bar chart and a nod. That works until two averages look different and nobody can say whether the difference is real or noise.</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>Hypothesis tests exist for exactly that moment. They are not an academic ritual: they are the cheapest tool you have to say, with a known margin of error, whether a difference you see in the data would survive another sample. This post is the path I use to go from a business belief to the right test, with a worked example in R.</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you need</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Comfortable reading R. Every chunk is runnable, with simulated data, so nothing depends on private datasets.</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No statistics beyond the idea of an average and a distribution. The concepts you need are in the next section.</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>The structure comes from a chapter I wrote for <span class="co">[</span><span class="ot">O Manual do Cientista de Dados</span><span class="co">](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html)</span>, my open handbook in Portuguese. This is the English version, rewritten around a single example.</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## The five steps</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**State the business hypothesis** in plain words.</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Translate it into a statistical hypothesis**: a null and an alternative.</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Choose the test** based on the type of data and the number of groups.</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Shape the data** into what the test expects.</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Run the test and read the result** in business terms, not only in p-values.</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>Steps 1 and 5 are where most of the value is. Steps 2 to 4 are where most of the mistakes are. The decision flow below is for those three.</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Four concepts before choosing</span></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### Null and alternative hypotheses</span></span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>Every test needs a **null hypothesis** ($H_0$), which always states an equality, and an **alternative** ($H_1$), which states what you suspect instead.</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: average time to first purchase is the same with and without onboarding.</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: it is different (two-sided), or it is shorter with onboarding (one-sided).</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>Use a one-sided alternative only when the opposite direction would be irrelevant to the decision. When in doubt, go two-sided.</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### The decision and the p-value</span></span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>The output of a test is a decision: **reject $H_0$** or **fail to reject $H_0$**. The p-value is the probability of seeing a difference at least as large as the one observed if $H_0$ were true. A small p-value is evidence against $H_0$. The usual threshold is 0.05, sometimes 0.10 in exploratory work. The threshold is a convention, not a law of nature, and it should be set before looking at the result.</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parametric or non-parametric</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>**Parametric** tests assume the data follow a known distribution, usually the normal. **Non-parametric** tests do not. In business data, non-parametric tests are often the safer default: metrics like revenue, time and counts are skewed, and samples are frequently small.</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a>A quick check is the Shapiro-Wilk test, whose $H_0$ is "the data are normal". If its p-value is below 0.05, treat the data as non-normal and pick the non-parametric branch.</span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### Paired or unpaired</span></span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a>**Paired** samples measure the same unit twice, such as the same customer before and after a change. **Unpaired** samples come from different units in different groups. Paired tests need samples of equal size, matched row by row. Unpaired tests do not.</span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## The decision flow</span></span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>Two questions decide almost everything: what type of data are you comparing, and how many groups are there?</span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-width: 9</span></span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart TD</span></span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a><span class="in">    Start{{"What type of data?"}}</span></span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a><span class="in">    Start --&gt;|CONTINUOUS| Groups{{"How many groups?"}}</span></span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a><span class="in">    Start --&gt;|CATEGORICAL| Prop["Difference in&lt;br/&gt;proportions"]</span></span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a><span class="in">    Groups --&gt;|1| G1["One sample vs&lt;br/&gt;a reference value"]</span></span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a><span class="in">    Groups --&gt;|2| G2["Two samples"]</span></span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a><span class="in">    Groups --&gt;|3+| G3["Three or more"]</span></span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a><span class="in">    G1 --&gt; T1["One-sample t-test"]</span></span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a><span class="in">    G1 --&gt; W1["Wilcoxon&lt;br/&gt;signed rank"]</span></span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a><span class="in">    G2 --&gt; T2["Two-sample t-test"]</span></span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a><span class="in">    G2 --&gt; W2["Wilcoxon rank sum&lt;br/&gt;(Mann-Whitney)"]</span></span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a><span class="in">    G3 --&gt; ANOVA["ANOVA"]</span></span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a><span class="in">    G3 --&gt; KW["Kruskal-Wallis"]</span></span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a><span class="in">    KW --&gt;|"Which groups differ?"| Post["Pairwise Wilcoxon&lt;br/&gt;or Dunn test"]</span></span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a><span class="in">    Prop --&gt; Z["Z-test"]</span></span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a><span class="in">    Prop --&gt; Chi["Chi-squared"]</span></span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a><span class="in">    Chi --&gt;|"Ordered groups?"| Trend["Chi-squared&lt;br/&gt;for trend"]</span></span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a><span class="in">    style T1 fill:#fff3bf,stroke:#f0b429</span></span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a><span class="in">    style T2 fill:#fff3bf,stroke:#f0b429</span></span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a><span class="in">    style ANOVA fill:#fff3bf,stroke:#f0b429</span></span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a><span class="in">    style Z fill:#fff3bf,stroke:#f0b429</span></span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a><span class="in">    style W1 fill:#e9ecef,stroke:#adb5bd</span></span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a><span class="in">    style W2 fill:#e9ecef,stroke:#adb5bd</span></span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a><span class="in">    style KW fill:#e9ecef,stroke:#adb5bd</span></span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a><span class="in">    style Post fill:#e9ecef,stroke:#adb5bd</span></span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a><span class="in">    style Chi fill:#e9ecef,stroke:#adb5bd</span></span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a><span class="in">    style Trend fill:#e9ecef,stroke:#adb5bd</span></span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a>Yellow boxes are parametric tests, grey boxes are non-parametric. Within each branch, the normality check decides which one to use.</span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## A worked example: three questions from one product team</span></span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a>Imagine a subscription product. The team has three beliefs they want to settle before the quarterly review. The data below are simulated, so the numbers are not from any real company, but the shapes are the ones you meet in practice: skewed times and conversion rates in the single digits.</span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1200</span></span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">seq_len</span>(n),</span>
+<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a>  <span class="at">channel =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Paid search"</span>, <span class="st">"Organic"</span>, <span class="st">"Referral"</span>), n,</span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a>                   <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.35</span>, <span class="fl">0.20</span>)),</span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a>  <span class="at">onboarding =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Completed"</span>, <span class="st">"Skipped"</span>), n,</span>
+<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a>                      <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>))</span>
+<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Days until first purchase: skewed, shorter with onboarding and for referrals</span></span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a>    <span class="at">base_rate =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>      channel <span class="sc">==</span> <span class="st">"Referral"</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>,</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>      channel <span class="sc">==</span> <span class="st">"Organic"</span>  <span class="sc">~</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">9</span>,</span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>                  <span class="sc">~</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">11</span></span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a>    <span class="at">days_to_first_purchase =</span> <span class="fu">round</span>(</span>
+<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="fu">if_else</span>(onboarding <span class="sc">==</span> <span class="st">"Completed"</span>, base_rate <span class="sc">*</span> <span class="fl">1.35</span>, base_rate)) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>base_rate)</span>
+<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(customers)</span>
+<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question 1: did the redesigned checkout change conversion?</span></span>
+<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a>The team ran an A/B test on the checkout page. Each visitor saw either the old or the new version and either converted or did not. Two groups, a yes/no outcome: this is the **categorical** branch, difference in proportions.</span>
+<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-162"><a href="#cb20-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a>checkout <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">variant    =</span> <span class="fu">c</span>(<span class="st">"Old"</span>, <span class="st">"New"</span>),</span>
+<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">visitors   =</span> <span class="fu">c</span>(<span class="dv">4180</span>, <span class="dv">4210</span>),</span>
+<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a>  <span class="at">conversions =</span> <span class="fu">c</span>(<span class="dv">301</span>, <span class="dv">352</span>)</span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> conversions <span class="sc">/</span> visitors)</span>
+<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a>checkout</span>
+<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: the conversion rate is the same in both variants.</span>
+<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: the conversion rates differ.</span>
+<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-178"><a href="#cb20-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-179"><a href="#cb20-179" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> checkout<span class="sc">$</span>conversions, <span class="at">n =</span> checkout<span class="sc">$</span>visitors)</span>
+<span id="cb20-180"><a href="#cb20-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-182"><a href="#cb20-182" aria-hidden="true" tabindex="-1"></a>The new checkout converts at 8.4% against 7.2%, a lift of 1.2 percentage points, and the p-value is 0.052. If the team set the threshold at 0.05 before the test, the honest reading is: **we do not reject $H_0$ yet**. The confidence interval of the difference runs from about -2.3 points to just above zero, which says the same thing: the data are compatible with a real gain and with no gain at all.</span>
+<span id="cb20-183"><a href="#cb20-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-184"><a href="#cb20-184" aria-hidden="true" tabindex="-1"></a>This is the most common outcome in real A/B tests and the one most often misreported. Two things not to do: move the threshold to 0.10 after seeing the result, or declare the test "a trend". The right move is to decide what difference would matter for the business (say, one percentage point) and keep the test running until the sample can detect it. Had the result come in at 0.03, the next question would be the size of the lift and whether it pays for the engineering cost, not the p-value itself.</span>
+<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question 2: do customers who complete onboarding buy sooner?</span></span>
+<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a>Here the outcome is **continuous** (days until first purchase) and there are **two groups** (completed or skipped onboarding). The groups are different customers, so the samples are unpaired.</span>
+<span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-192"><a href="#cb20-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(customers, <span class="fu">aes</span>(days_to_first_purchase, <span class="at">fill =</span> onboarding)) <span class="sc">+</span></span>
+<span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">alpha =</span> <span class="fl">0.65</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb20-196"><a href="#cb20-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> pal[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Days to first purchase"</span>, <span class="at">y =</span> <span class="st">"Customers"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>)</span>
+<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a>The distributions are clearly skewed: most customers buy in the first days and a long tail takes weeks. The normality check confirms what the plot already shows.</span>
+<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-204"><a href="#cb20-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">|&gt;</span></span>
+<span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(onboarding) <span class="sc">|&gt;</span></span>
+<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_days =</span> <span class="fu">median</span>(days_to_first_purchase),</span>
+<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_days =</span> <span class="fu">mean</span>(days_to_first_purchase),</span>
+<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">shapiro_p =</span> <span class="fu">shapiro.test</span>(days_to_first_purchase)<span class="sc">$</span>p.value</span>
+<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a>Both p-values are far below 0.05, so the data are not normal and we take the non-parametric branch: **Wilcoxon rank sum**, also known as Mann-Whitney U.</span>
+<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: the distributions of days to first purchase are the same in both groups.</span>
+<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: customers who completed onboarding buy sooner (one-sided, because a slower result would not change the decision to keep onboarding).</span>
+<span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-222"><a href="#cb20-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-223"><a href="#cb20-223" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(</span>
+<span id="cb20-224"><a href="#cb20-224" aria-hidden="true" tabindex="-1"></a>  days_to_first_purchase <span class="sc">~</span> onboarding,</span>
+<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> customers,</span>
+<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"less"</span></span>
+<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a>$H_0$ is rejected. Had we used a t-test, we would probably have reached the same conclusion with this sample size, but with smaller samples the skew would have hurt the t-test first. With the Wilcoxon test the conclusion does not depend on the shape of the tail.</span>
+<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question 3: does time to first purchase differ across acquisition channels?</span></span>
+<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a>Same continuous outcome, now **three groups**. Non-normal data again, so the choice is **Kruskal-Wallis**.</span>
+<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_0$: the three channels have the same distribution of days to first purchase.</span>
+<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$H_1$: at least one channel differs.</span>
+<span id="cb20-238"><a href="#cb20-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-241"><a href="#cb20-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-242"><a href="#cb20-242" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">|&gt;</span></span>
+<span id="cb20-243"><a href="#cb20-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(channel) <span class="sc">|&gt;</span></span>
+<span id="cb20-244"><a href="#cb20-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">median_days =</span> <span class="fu">median</span>(days_to_first_purchase)) <span class="sc">|&gt;</span></span>
+<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(median_days)</span>
+<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(days_to_first_purchase <span class="sc">~</span> <span class="fu">factor</span>(channel), <span class="at">data =</span> customers)</span>
+<span id="cb20-248"><a href="#cb20-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-249"><a href="#cb20-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-250"><a href="#cb20-250" aria-hidden="true" tabindex="-1"></a>Kruskal-Wallis only says that *at least one* channel is different. The question the team actually cares about is *which* one, and that requires pairwise comparisons with a correction for testing several pairs at once.</span>
+<span id="cb20-251"><a href="#cb20-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-254"><a href="#cb20-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(</span>
+<span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a>  customers<span class="sc">$</span>days_to_first_purchase,</span>
+<span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a>  customers<span class="sc">$</span>channel,</span>
+<span id="cb20-258"><a href="#cb20-258" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.adjust.method =</span> <span class="st">"holm"</span></span>
+<span id="cb20-259"><a href="#cb20-259" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-260"><a href="#cb20-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-261"><a href="#cb20-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-264"><a href="#cb20-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-265"><a href="#cb20-265" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb20-266"><a href="#cb20-266" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">|&gt;</span></span>
+<span id="cb20-267"><a href="#cb20-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">channel =</span> <span class="fu">reorder</span>(channel, days_to_first_purchase, median)) <span class="sc">|&gt;</span></span>
+<span id="cb20-268"><a href="#cb20-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(channel, days_to_first_purchase, <span class="at">fill =</span> channel)) <span class="sc">+</span></span>
+<span id="cb20-269"><a href="#cb20-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb20-270"><a href="#cb20-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> pal) <span class="sc">+</span></span>
+<span id="cb20-271"><a href="#cb20-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb20-272"><a href="#cb20-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Days to first purchase"</span>)</span>
+<span id="cb20-273"><a href="#cb20-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-274"><a href="#cb20-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-275"><a href="#cb20-275" aria-hidden="true" tabindex="-1"></a>All three pairs differ after the Holm correction, and the medians tell the direction: referral customers buy soonest, paid search slowest, organic in between. The sentence for the quarterly review is "half of referral customers buy within five days, against eight days for paid search", not the Kruskal-Wallis statistic.</span>
+<span id="cb20-276"><a href="#cb20-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-277"><a href="#cb20-277" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading results without fooling yourself</span></span>
+<span id="cb20-278"><a href="#cb20-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-279"><a href="#cb20-279" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Significant is not the same as important.** With 1,200 customers, tiny differences become significant. Always report the size of the effect in business units: days, percentage points, revenue.</span>
+<span id="cb20-280"><a href="#cb20-280" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The threshold comes first.** Decide 0.05 or 0.10 before running the test. Moving it after seeing the p-value, as would be tempting with the 0.052 in question 1, is the most common way to lie to yourself.</span>
+<span id="cb20-281"><a href="#cb20-281" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Independence matters more than normality.** Repeated measurements of the same customer, or customers who influence each other, break every test in this post. Non-parametric tests do not fix that.</span>
+<span id="cb20-282"><a href="#cb20-282" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Many tests, many false positives.** If you test ten beliefs at 0.05, you expect one false positive. Correct for multiple comparisons, as done in question 3, or at least say how many tests you ran.</span>
+<span id="cb20-283"><a href="#cb20-283" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**A test answers one narrow question.** It says whether a difference is likely to be noise. It does not say why the difference exists, and it does not say the new checkout *caused* the lift unless the assignment was random.</span>
+<span id="cb20-284"><a href="#cb20-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-285"><a href="#cb20-285" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations of this guide</span></span>
+<span id="cb20-286"><a href="#cb20-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-287"><a href="#cb20-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The flow covers the tests that solve most business questions, not all tests. Correlation, regression and time-series questions need other tools.</span>
+<span id="cb20-288"><a href="#cb20-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It does not cover power analysis: how many observations you need before running the test. Underpowered tests fail to reject $H_0$ even when the effect is real.</span>
+<span id="cb20-289"><a href="#cb20-289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ANOVA and the t-test also assume similar variances across groups. R's default Welch t-test handles unequal variances; classic ANOVA does not.</span>
+<span id="cb20-290"><a href="#cb20-290" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The example uses simulated data with a known answer. Real data will be messier, and the first step is usually cleaning, not testing.</span>
+<span id="cb20-291"><a href="#cb20-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-292"><a href="#cb20-292" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cheat sheet</span></span>
+<span id="cb20-293"><a href="#cb20-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-294"><a href="#cb20-294" aria-hidden="true" tabindex="-1"></a>| Question | Data | Groups | Parametric | Non-parametric | R |</span>
+<span id="cb20-295"><a href="#cb20-295" aria-hidden="true" tabindex="-1"></a>|---|---|---|---|---|---|</span>
+<span id="cb20-296"><a href="#cb20-296" aria-hidden="true" tabindex="-1"></a>| Is a rate different between groups? | Categorical | 2+ | Z-test | Chi-squared, Fisher | <span class="in">`prop.test()`</span>, <span class="in">`chisq.test()`</span>, <span class="in">`fisher.test()`</span> |</span>
+<span id="cb20-297"><a href="#cb20-297" aria-hidden="true" tabindex="-1"></a>| Is a metric different from a target? | Continuous | 1 | One-sample t-test | Wilcoxon signed rank | <span class="in">`t.test(x, mu =)`</span>, <span class="in">`wilcox.test(x, mu =)`</span> |</span>
+<span id="cb20-298"><a href="#cb20-298" aria-hidden="true" tabindex="-1"></a>| Is a metric different between two groups? | Continuous | 2 | Two-sample t-test | Wilcoxon rank sum | <span class="in">`t.test(x, y)`</span>, <span class="in">`wilcox.test(x, y)`</span> |</span>
+<span id="cb20-299"><a href="#cb20-299" aria-hidden="true" tabindex="-1"></a>| Before vs after on the same units? | Continuous | 2 paired | Paired t-test | Wilcoxon signed rank | <span class="in">`t.test(x, y, paired = TRUE)`</span>, <span class="in">`wilcox.test(x, y, paired = TRUE)`</span> |</span>
+<span id="cb20-300"><a href="#cb20-300" aria-hidden="true" tabindex="-1"></a>| Is a metric different across 3+ groups? | Continuous | 3+ | ANOVA | Kruskal-Wallis | <span class="in">`aov()`</span>, <span class="in">`kruskal.test()`</span> |</span>
+<span id="cb20-301"><a href="#cb20-301" aria-hidden="true" tabindex="-1"></a>| Which groups differ? | Continuous | 3+ | Tukey HSD | Pairwise Wilcoxon, Dunn | <span class="in">`TukeyHSD()`</span>, <span class="in">`pairwise.wilcox.test()`</span> |</span>
+<span id="cb20-302"><a href="#cb20-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-303"><a href="#cb20-303" aria-hidden="true" tabindex="-1"></a><span class="fu">## References and next steps</span></span>
+<span id="cb20-304"><a href="#cb20-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-305"><a href="#cb20-305" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Prates, W. R. *O Manual do Cientista de Dados*, chapter 5: <span class="co">[</span><span class="ot">Análise de Hipóteses</span><span class="co">](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html)</span>. The Portuguese original of this flow, with Python equivalents for every test.</span>
+<span id="cb20-306"><a href="#cb20-306" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R documentation for <span class="co">[</span><span class="ot">`prop.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/prop.test.html)</span>, <span class="co">[</span><span class="ot">`wilcox.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/wilcox.test.html)</span>, <span class="co">[</span><span class="ot">`kruskal.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kruskal.test.html)</span> and <span class="co">[</span><span class="ot">`pairwise.wilcox.test`</span><span class="co">](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/pairwise.wilcox.test.html)</span>.</span>
+<span id="cb20-307"><a href="#cb20-307" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Shapiro, S. S. &amp; Wilk, M. B. (1965). An analysis of variance test for normality. *Biometrika*, 52(3/4), 591–611.</span>
+<span id="cb20-308"><a href="#cb20-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-309"><a href="#cb20-309" aria-hidden="true" tabindex="-1"></a>A natural follow-up is power analysis: how to decide, before an A/B test starts, how many visitors you need so that a failure to reject $H_0$ actually means something. That is the next post in this series.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

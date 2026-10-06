@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/hypotheses/index.html",
       "/posts/how-to-get-yearly-dividend-yield-from-r/index.html",
       "/posts/predictive-customer-churn-analysis/index.html",
       "/posts/unicorn-companies-treemaps-in-r/index.html",
@@ -11,6 +12,7 @@
   {
     "listing": "/articles.html",
     "items": [
+      "/posts/hypotheses/index.html",
       "/posts/how-to-get-yearly-dividend-yield-from-r/index.html",
       "/posts/predictive-customer-churn-analysis/index.html",
       "/posts/unicorn-companies-treemaps-in-r/index.html",

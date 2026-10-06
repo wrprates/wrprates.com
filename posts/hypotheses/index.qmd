@@ -5,7 +5,6 @@ author: "Wlademir Ribeiro Prates"
 date: "2026-10-06"
 categories: [Statistics, Data Science]
 image: preview.png
-draft: true
 format:
   html:
     include-after-body: disqus.html
