@@ -144,28 +144,28 @@
     "href": "index.html#what-you-will-find-here",
     "title": "Hi, I’m Wlademir.",
     "section": "What you will find here",
-    "text": "What you will find here\n\n\nApplied data science\nAnalyses that start from a real question and end with a decision. Finance, customer behavior, and visualization, always with the code included.\n\n\nData applications in production\nShiny, Quarto, deployment, and the less glamorous work that turns a notebook into something people rely on.\n\n\nCareer in data\nWhat I have learned working with data across companies and roles, from analyst to building and leading data products."
+    "text": "What you will find here\n\n\n\n\n\nApplied data science\nAnalyses that start from a real question and end with a decision. Finance, customer behavior and visualization, with the code included.\n\n\n\n\n\n\n\nData applications in production\nShiny, Quarto, deployment and the less glamorous work that turns a notebook into something people rely on.\n\n\n\n\n\n\n\nCareer in data\nWhat I have learned working with data across companies and roles, from analyst to building and leading data products."
   },
   {
     "objectID": "index.html#latest-articles",
     "href": "index.html#latest-articles",
     "title": "Hi, I’m Wlademir.",
     "section": "Latest articles",
-    "text": "Latest articles\n\n\n\n\n\n\n\n\n\n\nUnlocking the Highest-Paying Dividend Stocks with R\n\n\n\nData Visualization\n\n\nFinance\n\n\n\n\nOct 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive Customer Churn Analysis\n\n\n\nReporting\n\n\nData Science\n\n\nMachine Learning\n\n\n\n\nFeb 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalyzing Unicorn Companies with treemaps in R\n\n\n\nReporting\n\n\n\n\nAug 20, 2022\n\n\n\n\n\n\n\n\nNo matching items\n\n\nSee all articles →"
+    "text": "Latest articles\n\n\n\n\n\n\n\n\n\n\nHypothesis\n\n\n\nOct 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnlocking the Highest-Paying Dividend Stocks with R\n\n\n\nOct 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive Customer Churn Analysis\n\n\n\nFeb 8, 2023\n\n\n\n\n\n\n\n\nNo matching items\n\n\nSee all articles →"
   },
   {
-    "objectID": "index.html#a-free-data-science-handbook",
-    "href": "index.html#a-free-data-science-handbook",
+    "objectID": "index.html#the-book",
+    "href": "index.html#the-book",
     "title": "Hi, I’m Wlademir.",
-    "section": "A free data science handbook",
-    "text": "A free data science handbook\nI wrote O Manual do Cientista de Dados, an open handbook in Portuguese on the practical side of data science. A good place to start is the chapter on hypothesis testing. The source is on GitHub."
+    "section": "The book",
+    "text": "The book\n\n\nO Manual do Cientista de Dados Wlademir Prates\n\n\nO Manual do Cientista de Dados\nA free, open handbook in Portuguese about data science in practice: statistics, modeling, visualization and the reasoning behind them. An ongoing project, written in Quarto and open to contributions.\nRead online Source on GitHub"
   },
   {
-    "objectID": "index.html#elsewhere",
-    "href": "index.html#elsewhere",
+    "objectID": "index.html#find-me",
+    "href": "index.html#find-me",
     "title": "Hi, I’m Wlademir.",
-    "section": "Elsewhere",
-    "text": "Elsewhere\nI share shorter notes and videos on LinkedIn, Instagram and YouTube. Code lives on GitHub."
+    "section": "Find me",
+    "text": "Find me\n\nLinkedIn Instagram YouTube GitHub"
   },
   {
     "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html",
@@ -417,7 +417,7 @@
     "href": "about.html#book",
     "title": "About",
     "section": "Book",
-    "text": "Book\nI wrote O Manual do Cientista de Dados, a free and open handbook in Portuguese about the practical side of data science. The chapter on hypothesis testing is a good entry point. Source and contributions on GitHub."
+    "text": "Book\nI wrote O Manual do Cientista de Dados, a free and open handbook in Portuguese about data science in practice: statistics, modeling, visualization and the reasoning behind them. It is an ongoing project, with source and contributions on GitHub."
   },
   {
     "objectID": "about.html#research",

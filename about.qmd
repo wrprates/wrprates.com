@@ -41,7 +41,7 @@ This site is where I collect what I learn: applied analyses with code, notes on 
 
 ## Book
 
-I wrote [O Manual do Cientista de Dados](https://wrprates.github.io/o-manual-do-cientista-de-dados/), a free and open handbook in Portuguese about the practical side of data science. The chapter on [hypothesis testing](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html) is a good entry point. Source and contributions on [GitHub](https://github.com/wrprates/o-manual-do-cientista-de-dados).
+I wrote [O Manual do Cientista de Dados](https://wrprates.github.io/o-manual-do-cientista-de-dados/), a free and open handbook in Portuguese about data science in practice: statistics, modeling, visualization and the reasoning behind them. It is an ongoing project, with source and contributions on [GitHub](https://github.com/wrprates/o-manual-do-cientista-de-dados).
 
 ## Research
 

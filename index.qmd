@@ -17,8 +17,10 @@ listing:
   categories: false
   sort-ui: false
   filter-ui: false
-  fields: [image, date, title, categories]
+  fields: [image, title, date]
 ---
+
+::: {.home}
 
 ::: {.hero}
 ::: {.grid}
@@ -26,30 +28,46 @@ listing:
 ![](profile.jpeg){.rounded-circle fig-alt="Portrait of Wlademir Ribeiro Prates"}
 :::
 ::: {.g-col-12 .g-col-md-8}
+<span class="eyebrow">Data scientist · R/Shiny developer · PhD in Finance</span>
+
 # Hi, I'm Wlademir. {.hero-title}
 
-I'm a data scientist and R/Shiny developer with a PhD in Finance. I build data applications that make it to production and write here about what I learn on the way: applied analyses with code you can run, the engineering around data products, and notes on building a career in data.
+::: {.hero-lead}
+I build data applications that make it to production, and I write here about what I learn on the way: analyses with code you can run, the engineering around data products, and notes on building a career in data.
+:::
 
-[Read the articles](articles.qmd){.btn .btn-primary .btn-lg role="button"}
-[About me](about.qmd){.btn .btn-outline-secondary .btn-lg role="button"}
+[Read the articles](articles.qmd){.btn .btn-primary role="button"}
+[About me](about.qmd){.btn .btn-outline-secondary role="button"}
 :::
 :::
 :::
 
 ## What you will find here
 
-::: {.grid .topics}
+::: {.grid}
 ::: {.g-col-12 .g-col-md-4}
+::: {.topic-card}
+<i class="bi bi-bar-chart-line"></i>
+
 ### Applied data science
-Analyses that start from a real question and end with a decision. Finance, customer behavior, and visualization, always with the code included.
+Analyses that start from a real question and end with a decision. Finance, customer behavior and visualization, with the code included.
+:::
 :::
 ::: {.g-col-12 .g-col-md-4}
+::: {.topic-card}
+<i class="bi bi-rocket-takeoff"></i>
+
 ### Data applications in production
-Shiny, Quarto, deployment, and the less glamorous work that turns a notebook into something people rely on.
+Shiny, Quarto, deployment and the less glamorous work that turns a notebook into something people rely on.
+:::
 :::
 ::: {.g-col-12 .g-col-md-4}
+::: {.topic-card}
+<i class="bi bi-signpost-split"></i>
+
 ### Career in data
 What I have learned working with data across companies and roles, from analyst to building and leading data products.
+:::
 :::
 :::
 
@@ -58,12 +76,32 @@ What I have learned working with data across companies and roles, from analyst t
 ::: {#latest-articles}
 :::
 
-[See all articles →](articles.qmd)
+[See all articles →](articles.qmd){.see-all}
 
-## A free data science handbook
+## The book
 
-I wrote [O Manual do Cientista de Dados](https://wrprates.github.io/o-manual-do-cientista-de-dados/), an open handbook in Portuguese on the practical side of data science. A good place to start is the chapter on [hypothesis testing](https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html). The source is on [GitHub](https://github.com/wrprates/o-manual-do-cientista-de-dados).
+::: {.book-card}
+::: {.book-cover}
+<span class="book-cover-title">O Manual do Cientista de Dados</span>
+<span class="book-cover-author">Wlademir Prates</span>
+:::
+::: {.book-body}
+### O Manual do Cientista de Dados
 
-## Elsewhere
+A free, open handbook in Portuguese about data science in practice: statistics, modeling, visualization and the reasoning behind them. An ongoing project, written in Quarto and open to contributions.
 
-I share shorter notes and videos on [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/), [Instagram](https://www.instagram.com/datamundo.cientista/) and [YouTube](https://www.youtube.com/@wlademir). Code lives on [GitHub](https://github.com/wrprates/).
+[Read online](https://wrprates.github.io/o-manual-do-cientista-de-dados/){.btn .btn-primary role="button"}
+[Source on GitHub](https://github.com/wrprates/o-manual-do-cientista-de-dados){.btn .btn-outline-secondary role="button"}
+:::
+:::
+
+## Find me
+
+::: {.channels}
+[<i class="bi bi-linkedin"></i>LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/){.btn role="button"}
+[<i class="bi bi-instagram"></i>Instagram](https://www.instagram.com/datamundo.cientista/){.btn role="button"}
+[<i class="bi bi-youtube"></i>YouTube](https://www.youtube.com/@wlademir){.btn role="button"}
+[<i class="bi bi-github"></i>GitHub](https://github.com/wrprates/){.btn role="button"}
+:::
+
+:::

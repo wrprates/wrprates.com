@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f1ac42c4d9a04ce89a7c69d6cb68b14d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-13c39a81d542e5f462cd53ae9518b6e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
@@ -98,6 +98,12 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
+<!-- Webfonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- End Webfonts -->
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -233,57 +239,70 @@ window.Quarto = {
 
 
 
+<div class="home">
 <div class="hero">
 <div class="grid">
 <div class="g-col-12 g-col-md-4 hero-photo">
 <p><img src="profile.jpeg" class="rounded-circle img-fluid" alt="Portrait of Wlademir Ribeiro Prates"></p>
 </div>
-<section id="hi-im-wlademir." class="level1 hero-title g-col-12 g-col-md-8">
+<div class="g-col-12 g-col-md-8">
+<p><span class="eyebrow">Data scientist · R/Shiny developer · PhD in Finance</span></p>
+<section id="hi-im-wlademir." class="level1 hero-title">
 <h1 class="hero-title">Hi, I’m Wlademir.</h1>
-<p>I’m a data scientist and R/Shiny developer with a PhD in Finance. I build data applications that make it to production and write here about what I learn on the way: applied analyses with code you can run, the engineering around data products, and notes on building a career in data.</p>
-<p><a href="./articles.html" class="btn btn-primary btn-lg" role="button">Read the articles</a> <a href="./about.html" class="btn btn-outline-secondary btn-lg" role="button">About me</a></p>
+<div class="hero-lead">
+<p>I build data applications that make it to production, and I write here about what I learn on the way: analyses with code you can run, the engineering around data products, and notes on building a career in data.</p>
+</div>
+<p><a href="./articles.html" class="btn btn-primary" role="button">Read the articles</a> <a href="./about.html" class="btn btn-outline-secondary" role="button">About me</a></p>
 </section>
+</div>
 </div>
 </div>
 <section id="what-you-will-find-here" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-will-find-here">What you will find here</h2>
-<div class="grid topics">
-<section id="applied-data-science" class="level3 g-col-12 g-col-md-4">
+<div class="grid">
+<div class="g-col-12 g-col-md-4">
+<div class="topic-card">
+<p><i class="bi bi-bar-chart-line"></i></p>
+<section id="applied-data-science" class="level3">
 <h3 class="anchored" data-anchor-id="applied-data-science">Applied data science</h3>
-<p>Analyses that start from a real question and end with a decision. Finance, customer behavior, and visualization, always with the code included.</p>
+<p>Analyses that start from a real question and end with a decision. Finance, customer behavior and visualization, with the code included.</p>
 </section>
-<section id="data-applications-in-production" class="level3 g-col-12 g-col-md-4">
+</div>
+</div>
+<div class="g-col-12 g-col-md-4">
+<div class="topic-card">
+<p><i class="bi bi-rocket-takeoff"></i></p>
+<section id="data-applications-in-production" class="level3">
 <h3 class="anchored" data-anchor-id="data-applications-in-production">Data applications in production</h3>
-<p>Shiny, Quarto, deployment, and the less glamorous work that turns a notebook into something people rely on.</p>
+<p>Shiny, Quarto, deployment and the less glamorous work that turns a notebook into something people rely on.</p>
 </section>
-<section id="career-in-data" class="level3 g-col-12 g-col-md-4">
+</div>
+</div>
+<div class="g-col-12 g-col-md-4">
+<div class="topic-card">
+<p><i class="bi bi-signpost-split"></i></p>
+<section id="career-in-data" class="level3">
 <h3 class="anchored" data-anchor-id="career-in-data">Career in data</h3>
 <p>What I have learned working with data across companies and roles, from analyst to building and leading data products.</p>
 </section>
+</div>
+</div>
 </div>
 </section>
 <section id="latest-articles" class="level2">
 <h2 class="anchored" data-anchor-id="latest-articles">Latest articles</h2>
 <div id="listing-latest-articles" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNGaW5hbmNl" data-listing-date-sort="1696820400000" data-listing-file-modified-sort="1697493251859" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1446">
-<a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="0" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNGaW5hbmNl" data-listing-date-sort="1696820400000" data-listing-file-modified-sort="1791256593696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="352">
+<a href="./posts/hypotheses/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/how-to-get-yearly-dividend-yield-from-r/preview.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./posts/hypotheses/preview.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Unlocking the Highest-Paying Dividend Stocks with R
+Hypothesis
 </h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">
-Data Visualization
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RmluYW5jZQ=='); return false;">
-Finance
-</div>
-</div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
 Oct 9, 2023
@@ -293,7 +312,26 @@ Oct 9, 2023
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="UmVwb3J0aW5nJTJDRGF0YSUyMFNjaWVuY2UlMkNNYWNoaW5lJTIwTGVhcm5pbmc=" data-listing-date-sort="1675825200000" data-listing-file-modified-sort="1680132152116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2330">
+<div class="g-col-1" data-index="1" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNGaW5hbmNl" data-listing-date-sort="1696820400000" data-listing-file-modified-sort="1697493251859" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1446">
+<a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/how-to-get-yearly-dividend-yield-from-r/preview.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Unlocking the Highest-Paying Dividend Stocks with R
+</h5>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Oct 9, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="UmVwb3J0aW5nJTJDRGF0YSUyMFNjaWVuY2UlMkNNYWNoaW5lJTIwTGVhcm5pbmc=" data-listing-date-sort="1675825200000" data-listing-file-modified-sort="1680132152116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2330">
 <a href="./posts/predictive-customer-churn-analysis/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -303,44 +341,9 @@ Oct 9, 2023
 <h5 class="no-anchor card-title listing-title">
 Predictive Customer Churn Analysis
 </h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UmVwb3J0aW5n'); return false;">
-Reporting
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFNjaWVuY2U='); return false;">
-Data Science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">
-Machine Learning
-</div>
-</div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
 Feb 8, 2023
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="UmVwb3J0aW5n" data-listing-date-sort="1660964400000" data-listing-file-modified-sort="1680132152116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2369">
-<a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/unicorn-companies-treemaps-in-r/preview.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Analyzing Unicorn Companies with treemaps in R
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UmVwb3J0aW5n'); return false;">
-Reporting
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Aug 20, 2022
 </div>
 </div>
 </div>
@@ -352,19 +355,31 @@ Aug 20, 2022
 No matching items
 </div>
 </div>
-<p><a href="./articles.html">See all articles →</a></p>
+<p><a href="./articles.html" class="see-all">See all articles →</a></p>
 </section>
-<section id="a-free-data-science-handbook" class="level2">
-<h2 class="anchored" data-anchor-id="a-free-data-science-handbook">A free data science handbook</h2>
-<p>I wrote <a href="https://wrprates.github.io/o-manual-do-cientista-de-dados/">O Manual do Cientista de Dados</a>, an open handbook in Portuguese on the practical side of data science. A good place to start is the chapter on <a href="https://wrprates.github.io/o-manual-do-cientista-de-dados/teste_de_hipoteses.html">hypothesis testing</a>. The source is on <a href="https://github.com/wrprates/o-manual-do-cientista-de-dados">GitHub</a>.</p>
+<section id="the-book" class="level2">
+<h2 class="anchored" data-anchor-id="the-book">The book</h2>
+<div class="book-card">
+<div class="book-cover">
+<p><span class="book-cover-title">O Manual do Cientista de Dados</span> <span class="book-cover-author">Wlademir Prates</span></p>
+</div>
+<section id="o-manual-do-cientista-de-dados" class="level3 book-body">
+<h3 class="anchored" data-anchor-id="o-manual-do-cientista-de-dados">O Manual do Cientista de Dados</h3>
+<p>A free, open handbook in Portuguese about data science in practice: statistics, modeling, visualization and the reasoning behind them. An ongoing project, written in Quarto and open to contributions.</p>
+<p><a href="https://wrprates.github.io/o-manual-do-cientista-de-dados/" class="btn btn-primary" role="button">Read online</a> <a href="https://github.com/wrprates/o-manual-do-cientista-de-dados" class="btn btn-outline-secondary" role="button">Source on GitHub</a></p>
 </section>
-<section id="elsewhere" class="level2">
-<h2 class="anchored" data-anchor-id="elsewhere">Elsewhere</h2>
-<p>I share shorter notes and videos on <a href="https://www.linkedin.com/in/wlademir-ribeiro-prates/">LinkedIn</a>, <a href="https://www.instagram.com/datamundo.cientista/">Instagram</a> and <a href="https://www.youtube.com/@wlademir">YouTube</a>. Code lives on <a href="https://github.com/wrprates/">GitHub</a>.</p>
+</div>
+</section>
+<section id="find-me" class="level2">
+<h2 class="anchored" data-anchor-id="find-me">Find me</h2>
+<div class="channels">
+<p><a href="https://www.linkedin.com/in/wlademir-ribeiro-prates/" class="btn" role="button"><i class="bi bi-linkedin"></i>LinkedIn</a> <a href="https://www.instagram.com/datamundo.cientista/" class="btn" role="button"><i class="bi bi-instagram"></i>Instagram</a> <a href="https://www.youtube.com/@wlademir" class="btn" role="button"><i class="bi bi-youtube"></i>YouTube</a> <a href="https://github.com/wrprates/" class="btn" role="button"><i class="bi bi-github"></i>GitHub</a></p>
+</div>
+</section>
+</div>
 
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
