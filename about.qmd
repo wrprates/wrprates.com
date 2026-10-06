@@ -1,29 +1,51 @@
 ---
 title: "About"
+description: "Data scientist and R/Shiny developer with a PhD in Finance."
 image: profile.jpeg
+toc: false
+code-tools: false
 about:
   template: solana
+  image-shape: round
+  image-width: 14em
   links:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
     - icon: github
-      text: Github
+      text: GitHub
       href: https://github.com/wrprates/
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com/wrprates
     - icon: youtube
       text: YouTube
-      href: https://www.youtube.com/user/wrpbr
+      href: https://www.youtube.com/@wlademir
+    - icon: mortarboard-fill
+      text: Google Scholar
+      href: https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ
 ---
 
-Hi, I am Wlademir Ribeiro Prates. Welcome to my personal blog.
+Hi, I'm Wlademir Ribeiro Prates.
 
-I am a **Senior Data Scientist**. Experienced **R and Shiny** developer, with examples of use cases in several **large companies**. Experienced with **machine learning** implementation to solve business problems. **PhD and Master's in Finance**. Researcher in behavioral finance / economics, and capital markets. I also have a [website](https://cienciaenegocios.com/), where articles about business, technology and data science are published.
+I'm a data scientist and R/Shiny developer. I have built machine learning solutions and data applications for business problems in large companies, and I hold a PhD and a Master's in Finance from UFSC, where I researched behavioral finance and capital markets.
+
+This site is where I collect what I learn: applied analyses with code, notes on taking data applications to production, and reflections on building a career in data.
+
+## What I work with
+
+- **R and Shiny**, from exploratory analysis to applications used in production.
+- **Machine learning applied to business problems**, with attention to whether the model actually changes a decision.
+- **Reproducible reporting** with Quarto and R Markdown.
+- **Finance and behavioral economics** as the analytical background behind much of my work.
+
+## Research
+
+Before moving to industry, I did academic research in behavioral finance and capital markets. My publications are listed on [Google Scholar](https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ).
 
 ## Education
 
-- 2012-2016 - PhD in Finance (UFSC)
-- 2010-2012 - Master's in Finance (UFSC)
-- 2006-2009 - Undergraduate in Business Administration (Anhanguera)
+- 2012–2016 — PhD in Finance, UFSC
+- 2010–2012 — Master's in Finance, UFSC
+- 2006–2009 — Bachelor's in Business Administration, Anhanguera
+
+## Get in touch
+
+The best place to reach me is [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/).

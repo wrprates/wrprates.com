@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Data scientist and R/Shiny developer writing about applied data science, data applications in production, and building a career in data.">
+<meta name="description" content="All articles by Wlademir Ribeiro Prates on applied data science, R, Shiny, and data applications in production.">
 
-<title>Applied data science and data applications – Wlademir Prates</title>
+<title>Articles – Wlademir Prates</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f1ac42c4d9a04ce89a7c69d6cb68b14d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-547d68994a0836f6e957673d1bb1538f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,20 +72,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-latest-articles .list');
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-latest-articles'] = new List('listing-latest-articles', options);
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -151,12 +151,12 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Applied data science and data applications">
-<meta property="og:description" content="Data scientist and R/Shiny developer writing about applied data science, data applications in production, and building a career in data.">
+<meta property="og:title" content="Articles – Wlademir Prates">
+<meta property="og:description" content="All articles by Wlademir Ribeiro Prates on applied data science, R, Shiny, and data applications in production.">
 <meta property="og:image" content="https://wrprates.com/profile.jpeg">
 <meta property="og:site_name" content="Wlademir Prates">
-<meta name="twitter:title" content="Applied data science and data applications">
-<meta name="twitter:description" content="Data scientist and R/Shiny developer writing about applied data science, data applications in production, and building a career in data.">
+<meta name="twitter:title" content="Articles – Wlademir Prates">
+<meta name="twitter:description" content="All articles by Wlademir Ribeiro Prates on applied data science, R, Shiny, and data applications in production.">
 <meta name="twitter:image" content="https://wrprates.com/profile.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -179,11 +179,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./articles.html"> 
+    <a class="nav-link active" href="./articles.html" aria-current="page"> 
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
@@ -218,59 +218,57 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RGF0YSUyMFNjaWVuY2U=">Data Science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFZpc3VhbGl6YXRpb24=">Data Visualization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RmluYW5jZQ==">Finance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVwb3J0aW5n">Reporting <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content column-page-left" id="quarto-document-content">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL56G4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Articles</h1>
+</div>
+
+<div>
+  <div class="description">
+    All articles by Wlademir Ribeiro Prates on applied data science, R, Shiny, and data applications in production.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 
-<div class="hero">
-<div class="grid">
-<div class="g-col-12 g-col-md-4 hero-photo">
-<p><img src="profile.jpeg" class="rounded-circle img-fluid" alt="Portrait of Wlademir Ribeiro Prates"></p>
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNGaW5hbmNl" data-listing-date-sort="1696820400000" data-listing-file-modified-sort="1697493251859" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1446">
+<div class="thumbnail">
+<p><a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="no-external"></a></p><a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/how-to-get-yearly-dividend-yield-from-r/preview.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="no-external"></a></p>
 </div>
-<section id="hi-im-wlademir." class="level1 hero-title g-col-12 g-col-md-8">
-<h1 class="hero-title">Hi, I’m Wlademir.</h1>
-<p>I’m a data scientist and R/Shiny developer with a PhD in Finance. I build data applications that make it to production and write here about what I learn on the way: applied analyses with code you can run, the engineering around data products, and notes on building a career in data.</p>
-<p><a href="./articles.html" class="btn btn-primary btn-lg" role="button">Read the articles</a> <a href="./about.html" class="btn btn-outline-secondary btn-lg" role="button">About me</a></p>
-</section>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="no-external">Unlocking the Highest-Paying Dividend Stocks with R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="no-external"></a>
 </div>
-</div>
-<section id="what-you-will-find-here" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-will-find-here">What you will find here</h2>
-<div class="grid topics">
-<section id="applied-data-science" class="level3 g-col-12 g-col-md-4">
-<h3 class="anchored" data-anchor-id="applied-data-science">Applied data science</h3>
-<p>Analyses that start from a real question and end with a decision. Finance, customer behavior, and visualization, always with the code included.</p>
-</section>
-<section id="data-applications-in-production" class="level3 g-col-12 g-col-md-4">
-<h3 class="anchored" data-anchor-id="data-applications-in-production">Data applications in production</h3>
-<p>Shiny, Quarto, deployment, and the less glamorous work that turns a notebook into something people rely on.</p>
-</section>
-<section id="career-in-data" class="level3 g-col-12 g-col-md-4">
-<h3 class="anchored" data-anchor-id="career-in-data">Career in data</h3>
-<p>What I have learned working with data across companies and roles, from analyst to building and leading data products.</p>
-</section>
-</div>
-</section>
-<section id="latest-articles" class="level2">
-<h2 class="anchored" data-anchor-id="latest-articles">Latest articles</h2>
-<div id="listing-latest-articles" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNGaW5hbmNl" data-listing-date-sort="1696820400000" data-listing-file-modified-sort="1697493251859" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1446">
-<a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/how-to-get-yearly-dividend-yield-from-r/preview.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Unlocking the Highest-Paying Dividend Stocks with R
-</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">
 Data Visualization
@@ -279,25 +277,34 @@ Data Visualization
 Finance
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+<div class="listing-description">
+<a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="no-external">Investing in stocks is more than just looking at price appreciation. Dividends are a crucial part of the equation.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/how-to-get-yearly-dividend-yield-from-r/index.html" class="no-external">
 <div class="listing-date">
 Oct 9, 2023
 </div>
-</div>
-</div>
+<div class="listing-reading-time">
+8 min
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="UmVwb3J0aW5nJTJDRGF0YSUyMFNjaWVuY2UlMkNNYWNoaW5lJTIwTGVhcm5pbmc=" data-listing-date-sort="1675825200000" data-listing-file-modified-sort="1680132152116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2330">
-<a href="./posts/predictive-customer-churn-analysis/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/predictive-customer-churn-analysis/preview.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Predictive Customer Churn Analysis
-</h5>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="UmVwb3J0aW5nJTJDRGF0YSUyMFNjaWVuY2UlMkNNYWNoaW5lJTIwTGVhcm5pbmc=" data-listing-date-sort="1675825200000" data-listing-file-modified-sort="1680132152116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2330">
+<div class="thumbnail">
+<p><a href="./posts/predictive-customer-churn-analysis/index.html" class="no-external"></a></p><a href="./posts/predictive-customer-churn-analysis/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/predictive-customer-churn-analysis/preview.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/predictive-customer-churn-analysis/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/predictive-customer-churn-analysis/index.html" class="no-external">Predictive Customer Churn Analysis</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/predictive-customer-churn-analysis/index.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UmVwb3J0aW5n'); return false;">
 Reporting
@@ -309,55 +316,92 @@ Data Science
 Machine Learning
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+<div class="listing-description">
+<a href="./posts/predictive-customer-churn-analysis/index.html" class="no-external">Churn, or the <strong>loss of customers from a company’s customer base</strong>, is a <strong>critical metric</strong> for businesses with <strong>recurring revenue streams</strong>. Understanding why customers leave and <strong>pred…</strong><strong></strong><strong></strong></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/predictive-customer-churn-analysis/index.html" class="no-external">
 <div class="listing-date">
 Feb 8, 2023
 </div>
-</div>
-</div>
+<div class="listing-reading-time">
+12 min
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="UmVwb3J0aW5n" data-listing-date-sort="1660964400000" data-listing-file-modified-sort="1680132152116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2369">
-<a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/unicorn-companies-treemaps-in-r/preview.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Analyzing Unicorn Companies with treemaps in R
-</h5>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="UmVwb3J0aW5n" data-listing-date-sort="1660964400000" data-listing-file-modified-sort="1680132152116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2369">
+<div class="thumbnail">
+<p><a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="no-external"></a></p><a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/unicorn-companies-treemaps-in-r/preview.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="no-external">Analyzing Unicorn Companies with treemaps in R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UmVwb3J0aW5n'); return false;">
 Reporting
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+<div class="listing-description">
+<a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="no-external">Have you ever heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/unicorn-companies-treemaps-in-r/index.html" class="no-external">
 <div class="listing-date">
 Aug 20, 2022
 </div>
-</div>
-</div>
+<div class="listing-reading-time">
+12 min
 </div>
 </a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="UmVwb3J0aW5n" data-listing-date-sort="1656730800000" data-listing-file-modified-sort="1680132152117" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1004">
+<div class="thumbnail">
+<p><a href="./posts/website-with-quarto-automated-deployment/index.html" class="no-external"></a></p><a href="./posts/website-with-quarto-automated-deployment/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/website-with-quarto-automated-deployment/github_secrets.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/website-with-quarto-automated-deployment/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/website-with-quarto-automated-deployment/index.html" class="no-external">Set up a website with Quarto and automate deployment</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/website-with-quarto-automated-deployment/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UmVwb3J0aW5n'); return false;">
+Reporting
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/website-with-quarto-automated-deployment/index.html" class="no-external">Anyone who works with data analysis and wants to share content faces some limitations from the traditional tools to build a website. One of the main reasons is the…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/website-with-quarto-automated-deployment/index.html" class="no-external">
+<div class="listing-date">
+Jul 2, 2022
+</div>
+<div class="listing-reading-time">
+6 min
+</div>
+</a>
+</div>
 </div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div>
-<p><a href="./articles.html">See all articles →</a></p>
-</section>
-<section id="elsewhere" class="level2">
-<h2 class="anchored" data-anchor-id="elsewhere">Elsewhere</h2>
-<p>I share shorter notes and videos on <a href="https://www.linkedin.com/in/wlademir-ribeiro-prates/">LinkedIn</a> and <a href="https://www.youtube.com/@wlademir">YouTube</a>. Code lives on <a href="https://github.com/wrprates/">GitHub</a>.</p>
-
-
-
-</section>
-
-</main> <!-- /main -->
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

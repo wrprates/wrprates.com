@@ -1,248 +1,73 @@
 [
   {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html",
-    "href": "posts/website-with-quarto-automated-deployment/index.html",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "",
-    "text": "Anyone who works with data analysis and wants to share content faces some limitations from the traditional tools to build a website. One of the main reasons is the difficulty of sharing the results of chunks of code without needing to copy and paste images.\nFor example, suppose you are a data scientist and use Python or R to build interactive charts and tables in your work. In that case, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.\nThere are already many available solutions that facilitate this job. But here I want to draw attention to Quarto."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto is a great reporting tool, which is supported by RStudio. Its own definition is:\n\nQuarto is an open-source scientific and technical publishing system built on Pandoc.\n\nIn Quarto, you can “create dynamic content with Python, R, Julia, and Observable”.\nIn other words, with Quarto, it is possible to create reports using the same syntax used to build RMarkdown documents, but in Quarto there are more possibilities when compared with RMarkdown.\nOne of the biggest Quarto advantages is that it is a multi-language platform. Besides that, RStudio announces that Quarto is the “next generation version of R Markdown”."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "Basic workflow for a Quarto website with automated deployment",
-    "text": "Basic workflow for a Quarto website with automated deployment\nAfter taking a look to Quarto documentation and watching a video (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose.\nSo, the workflow I built using Quarto had as a result this website (check the Github repo), and works like described below:\n\nWrite a post or build a static page (locally).\nRender the website (locally).\nPush it to Git.\nAfter a merge in certain branch, automate the deployment process (upload the files via FTP)."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "Steps to create an automated Quarto website",
-    "text": "Steps to create an automated Quarto website\nQuarto documentation is great. Basically, all you need to know how to create a website with Quarto is to read this session in their website.\nBelow I am sharing the main commands that you will need, and also the needed information to set up the automated deployment.\n\nStep 1. Download and install Quarto\nIf you don’t have Quarto installed yet you can follow the steps here.\n\n\nStep 2. Build a Quarto website or blog\nAfter having installed Quarto, it is needed to run on terminal the following code to create a Quarto website:\nquarto create-project mysite --type website\nIf your website will be a blog, so you may prefer to use the following code:\nquarto create-project myblog --type website:blog\nThis code will create a basic folder structure with the main files needed to start customizing your website.\n\n\nStep 3. Create a repo on Github\nTo be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need to create a Github repository for the project.\nIn this post I expect the reader to have at least minimum experience with Git (create repositories, understand how branches work, git push, git pull.)\n\n\nStep 4. Set up Github Actions\nWe will need to go to the Github Actions Marketplace and look for “FTP Deploy”, or just click here.\nIn fact, to use this Action we will just need to copy and paste the .yml file as it is in the example from the Action’s page.\nInside your project, the .yml file needs to be located in the path .github/workflows/main.yml\nHowever, I did some changes, mostly based on this great video about this topic, but it is in Portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.\non:\n  push:\n    branches:\n      - main\nname: 🚀 Deploy website on push\njobs:\n  web-deploy:\n    name: 🎉 Deploy\n    runs-on: ubuntu-latest\n    steps:\n    - name: 🚚 Get latest code\n      uses: actions/checkout@v2\n    \n    - name: 📂 Sync files\n      uses: SamKirkland/FTP-Deploy-Action@4.3.0\n      with:\n        server: ${{ secrets.ftp_host }}\n        username: ${{ secrets.ftp_user }}\n        password: ${{ secrets.ftp_password }}\n        local-dir: ./_site/\n        server-dir: ${{ secrets.server_dir }}\nBasically what these commands are doing is updating the files in the website Host after any push on main branch of the project.\n\nDetails about Github Secrets\nHere we are also using Github Secrets for the Host information.\nGithub Secrets will allow us to add private information, like passwords and usernames, without worrying about security.\nThey’ll be securely saved on your Github account and you will call the variable that contains the “secrets” in your code. So this sensitive information doesn’t need to be hard coded.\nCheck out the screenshot below to see what Github Secrets looks like. You need to record them as they are being called (e.g. ftp_host for secrets.ftp_user). Register the secrets with small letters and don’t worry if they appear with capital letters (see screenshot).\n\n\n\nUsing Github Secrets\n\n\nSome general comments:\n\nThe only needed information here is ftp_host, ftp_user and ftp_password. They are the same that you use for other commom FTP services.\nI added local-dir because of Quarto files structure.\nI used server-dir to specify the folder where the website will be (e.g. public_html)."
-  },
-  {
-    "objectID": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
-    "href": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
-    "title": "Set up a website with Quarto and automate deployment",
-    "section": "Final comments",
-    "text": "Final comments\nAfter all the steps above you are ready to git push your changes and submit a Pull Request to merge your local branch with the main branch (if you created a separated branch, which is highly recommended!).\nAfter merging with main, check if the files in your Host were updated. If yes, check if your website is now running on the internet.\nI am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.\nDid you like this post? Leave your comments below and share your experience if you try to set up a website as I described here."
-  },
-  {
-    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html",
-    "href": "posts/unicorn-companies-treemaps-in-r/index.html",
-    "title": "Analyzing Unicorn Companies with treemaps in R",
-    "section": "",
-    "text": "Have you ever heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.\nA Unicorn company is usually defined as a private startup valued at over U$ 1 billion.\nThe full and updated list of Unicorn companies in the world used on this analysis can be found here, at the CBInsights website.\nNote: the data for this post was downloaded on 1st October 2022.\nWhat will you see in this blog post?\nWhat technical skills will you find here?\nIn this kind of blog post, I won’t write any interpretations about the charts and tables, because I want to be able to update the data in the future without needing to replace text paragraphs. So, the idea is to keep the charts as self-explanatory as possible."
-  },
-  {
-    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#reading-data-unicorn-companies-list",
-    "href": "posts/unicorn-companies-treemaps-in-r/index.html#reading-data-unicorn-companies-list",
-    "title": "Analyzing Unicorn Companies with treemaps in R",
-    "section": "Reading data: Unicorn companies list",
-    "text": "Reading data: Unicorn companies list\nFirst, we need to load the used packages and read the data. Below I am showing the first rows of the raw data and doing some data manipulations.\nIn this very beginning of the post some settings are already created, like the colors palette for Countries and Industries, to use in the whole document.\nThe next chunk of code is responsible to load the packages, read the data and create some useful variables, like valuation Quartiles, Number of Investors and Years as Unicorn.\n\n\nCode\n# Loading packages\nlibrary(dplyr)\nlibrary(echarts4r)\nlibrary(lubridate)\nlibrary(MetBrewer)\nlibrary(reactable)\nlibrary(readxl)\n\n# Reading the Excel file\nunicorn_data <- readxl::read_excel(\"unicorn_companies.xlsx\", skip = 2) |>\n  dplyr::arrange(dplyr::desc(\"Valuation ($B)\")) |>\n  dplyr::mutate(\n    `Years as Unicorn` = round(\n      (lubridate::interval(`Date Joined`, lubridate::today()) %/% months(1)) / 12,\n      digits = 2\n    ),\n    `Number of Investors` = stringr::str_count(`Select Investors`, ',') + 1,\n    `Industry` = as.factor(`Industry`),\n    Quartiles = dplyr::case_when(\n      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.25, na.rm = TRUE) ~ 'Q4',\n      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.5, na.rm = TRUE) ~ 'Q3',\n      `Valuation ($B)` <= quantile(`Valuation ($B)`, 0.75, na.rm = TRUE) ~ 'Q2',\n      `Valuation ($B)` <= quantile(`Valuation ($B)`, 1, na.rm = TRUE) ~ 'Q1'\n    )\n  )"
-  },
-  {
-    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#valuation-by-country-and-industry",
-    "href": "posts/unicorn-companies-treemaps-in-r/index.html#valuation-by-country-and-industry",
-    "title": "Analyzing Unicorn Companies with treemaps in R",
-    "section": "Valuation by Country and Industry",
-    "text": "Valuation by Country and Industry\nAfter reading the data I have created two charts to briefly show the summarized data by Country and by Industry.\nIn this part I also create the color palettes that will be used in other charts as well.\nHere comes a nice tip: the usage of the R package MetBrewer to create very nice color palettes.\n\n\nCode\ncreate_color_palette <- function(vector, theme) {\n  dplyr::tibble(\n    name = vector,\n    itemStyle = dplyr::tibble(\n      color = as.character(MetBrewer::met.brewer(theme, length(vector)))\n    )\n  )\n}\n\nunicorn_data_by_country <- unicorn_data |>\n  dplyr::group_by(Country) |>\n  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |>\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>\n  head(15)\n\ncolors_country <- create_color_palette(unicorn_data_by_country$Country, \"Derain\")\n\nunicorn_data_by_industry <- unicorn_data |>\n  dplyr::group_by(Industry) |>\n  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |>\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`))\n\ncolors_industry <- create_color_palette(unicorn_data_by_industry$Industry, \"Juarez\")\n\n\nBelow we can see the sum of all the companies’ Valuations for Industry and Country in a column chart.\n\n\nCode\nunicorn_data_by_industry |>\n  dplyr::left_join(\n    colors_industry |> dplyr::rename(Industry = name, color = `itemStyle`),\n    by = \"Industry\"\n  ) |>\n  echarts4r::e_charts(`Valuation ($B)`) |>\n  echarts4r::e_legend(show = FALSE) |>\n  echarts4r::e_bar(Industry) |>\n  echarts4r::e_y_axis(type = \"category\") |>\n  echarts4r::e_grid(containLabel = TRUE) |>\n  echarts4r::e_tooltip() |>\n  echarts4r::e_add_nested('itemStyle', color) |>\n  echarts4r::e_title(text = \"Unicorns by Industry\", subtext = \"Sum the valuation of all the Industries\")\n\n\n\n\n\n\n\n\nCode\nunicorn_data_by_country |>\n  dplyr::left_join(\n    colors_country |> dplyr::rename(Country = name, color = `itemStyle`),\n    by = \"Country\"\n  ) |> \n  echarts4r::e_charts(`Valuation ($B)`) |>\n  echarts4r::e_legend(show = FALSE) |>\n  echarts4r::e_bar(Country) |>\n  echarts4r::e_y_axis(type = \"category\") |>\n  echarts4r::e_grid(containLabel = TRUE) |>\n  echarts4r::e_tooltip() |>\n  echarts4r::e_add_nested('itemStyle', color) |>\n  echarts4r::e_title(text = \"Unicorns by Country\", subtext = \"Sum the valuation of the 15 first countries\")"
-  },
-  {
-    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-the-top-50-unicorn-companies",
-    "href": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-the-top-50-unicorn-companies",
-    "title": "Analyzing Unicorn Companies with treemaps in R",
-    "section": "Exploring the top 50 Unicorn companies",
-    "text": "Exploring the top 50 Unicorn companies\nIn this section I filtered the data just to show the first 50 Unicorn companies with the highest valuation.\nWe will see here an interactive table and also two treemaps, showing the data by Country and by Industry.\nI won’t show all the table here, because if you want to have access to the complete dataset, please check the CBInsights website.\nIn the table it is possible to sort the data by column and also search.\n\n\nCode\ninteractive_table_data <- unicorn_data |>\n  dplyr::select(-c(\"Date Joined\", \"Number of Investors\", \"Quartiles\")) |>\n  dplyr::mutate(`Years as Unicorn` = floor(`Years as Unicorn`)) |>\n  head(50)\n\n# Creating an interactive table\nreactable::reactable(\n  interactive_table_data,\n  columns = list(\n    `Select Investors` = colDef(minWidth = 180),\n    Country = colDef(html = TRUE)\n  ),\n  style = list(fontSize = \"0.70rem\"),\n  defaultPageSize = 5,\n  searchable = TRUE,\n  striped = TRUE,\n  resizable = TRUE\n)\n\n\n\n\n\n\n\nBelow it is possible to check two treemaps built with the R language. In the next section all the companies will be visible, but here we can see only the first 50.\nThe idea to show the following two treemaps is that as the number of companies is not so big, we can show all the 50 companies in only one view. So the user can compare companies that belong to different categories in the same chart.\nIf you want to explore all the companies from the data, please check the next section.\n\n\nCode\ntreemap_tooltip <- htmlwidgets::JS(\n      \"function(info){\n        var treePathInfo = info.treePathInfo;\n        var treePath = [];\n        for (var i = 1; i < treePathInfo.length; i++) {\n          treePath.push(treePathInfo[i].name);\n        }\n      return(\n        '<strong>' + echarts.format.encodeHTML(treePath.join(' / ')) + '</strong>' + '<br>' +\n        'Valuation ($B): <i>' + info.value + '</i><br>'\n      )}\"\n      )\n\nunicorn_data |>\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>\n  head(50) |>\n  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |>\n  tidyr::nest(children = c(\"name\", \"value\")) |>\n  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>\n  dplyr::rename(name = Country) |>\n  dplyr::left_join(colors_country, by = \"name\") |>\n  echarts4r::e_charts() |>\n  echarts4r::e_title(text = \"Unicorns by Country\") |>\n  echarts4r::e_treemap(\n    leafDepth = 2,\n    itemStyle = list(normal = list(\n      borderWidth = 0,\n      gapWidth = 2,\n      backgroundColor = \"white\"\n    )),\n    upperLabel = list(\n      normal = list(\n        show = TRUE,\n        height = 30,\n        formatter = \"{b}\",\n        color = \"black\",\n        fontSize = 12\n      )\n    )\n  ) |>\n  echarts4r::e_tooltip(\n    backgroundColor = \"rgba(255,255,255,0.8)\",\n    formatter = treemap_tooltip\n  )\n\n\n\n\n\n\n\n\n\nCode\nunicorn_data |>\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>\n  head(50) |>\n  dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |>\n  tidyr::nest(children = c(\"name\", \"value\")) |>\n  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>\n  dplyr::rename(name = Industry) |>\n  dplyr::left_join(colors_industry, by = \"name\") |>\n  echarts4r::e_charts() |>\n  echarts4r::e_title(text = \"Unicorns by Industry\") |>\n  echarts4r::e_treemap(\n    leafDepth = 2,\n    itemStyle = list(normal = list(\n      borderWidth = 0,\n      gapWidth = 2,\n      backgroundColor = \"white\"\n    )),\n    upperLabel = list(\n      normal = list(\n        show = TRUE,\n        height = 30,\n        formatter = \"{b}\",\n        color = \"black\",\n        fontSize = 12\n      )\n    )\n  ) |>\n  echarts4r::e_tooltip(\n    backgroundColor = \"rgba(255,255,255,0.8)\",\n    formatter = treemap_tooltip\n  )"
-  },
-  {
-    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-all-unicorn-companies-with-treemaps",
-    "href": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-all-unicorn-companies-with-treemaps",
-    "title": "Analyzing Unicorn Companies with treemaps in R",
-    "section": "Exploring all Unicorn companies with treemaps",
-    "text": "Exploring all Unicorn companies with treemaps\nThis section will show treemaps that allow the user to explore all the Unicorn companies in the dataset. For that, I created a function for the treemap(next chunk of code) and I also decided to plot them by quartiles of valuation, to facilitate the navigation.\n\n\nCode\ntree_map_chart <- function(data, quartile, colors_df, tooltip = treemap_tooltip) {\n  filtered_data <- data |> dplyr::filter(Quartiles == quartile) \n\n  treemap_data <- filtered_data |>\n    dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>\n    dplyr::filter(Quartiles == quartile) |>\n    dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |>\n    tidyr::nest(children = c(\"name\", \"value\")) |>\n    dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>\n    dplyr::rename(name = Industry) |>\n    dplyr::left_join(colors_df, by = \"name\")\n\n  min_valuation <- min(filtered_data$`Valuation ($B)`)\n  max_valuation <- max(filtered_data$`Valuation ($B)`)\n\n  treemap_data |>\n    echarts4r::e_charts() |>\n    echarts4r::e_title(\n      text = paste0(\"Unicorns by Industry - from $\",  min_valuation, \"B to $\", max_valuation, \"B\", \"(\", quartile,\")\")\n    ) |>\n    echarts4r::e_treemap(\n      leafDepth = 1,\n      itemStyle = list(\n        normal = list(\n          borderWidth = 0,\n          gapWidth = 2,\n          backgroundColor = \"white\"\n        )\n      ),\n      upperLabel = list(\n        normal = list(\n          show = FALSE,\n          height = 30,\n          formatter = \"{b}\",\n          color = \"black\",\n          fontSize = 12\n        )\n      )\n    ) |>\n    echarts4r::e_tooltip(\n      backgroundColor = \"rgba(255,255,255,0.8)\",\n      formatter = treemap_tooltip\n    )\n}\n\n\nBelow we can see treemaps created in R, with the echarts4r library, with data split into quartiles.\nHow to navigate in those treemaps?\n\nClick on the desired Industry and see all the companies for that category.\nCheck the grey bar below the treemap, and click in the first grey square to go back to the initial view of the treemap.\n\n\n\nCode\nhtmltools::div(\n  tree_map_chart(data = unicorn_data, quartile = \"Q1\", colors_df = colors_industry),\n  htmltools::br(),\n  tree_map_chart(data = unicorn_data, quartile = \"Q2\", colors_df = colors_industry),\n  htmltools::br(),\n  tree_map_chart(data = unicorn_data, quartile = \"Q3\", colors_df = colors_industry),\n  htmltools::br(),\n  tree_map_chart(data = unicorn_data, quartile = \"Q4\", colors_df = colors_industry),\n)"
-  },
-  {
-    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#unicorn-companies-in-brazil-my-country",
-    "href": "posts/unicorn-companies-treemaps-in-r/index.html#unicorn-companies-in-brazil-my-country",
-    "title": "Analyzing Unicorn Companies with treemaps in R",
-    "section": "Unicorn companies in Brazil (my country)",
-    "text": "Unicorn companies in Brazil (my country)\n\n\nCode\nunicorn_data |>\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |>\n  dplyr::filter(Country == \"Brazil\") |>\n  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |>\n  tidyr::nest(children = c(\"name\", \"value\")) |>\n  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |>\n  dplyr::rename(name = Country) |>\n  dplyr::left_join(colors_country, by = \"name\") |>\n  echarts4r::e_charts() |>\n    echarts4r::e_title(text = \"Unicorns in Brazil\") |>\n    echarts4r::e_treemap(\n      leafDepth = 2,\n      itemStyle = list(\n        normal = list(\n          borderWidth = 0,\n          gapWidth = 2,\n          backgroundColor = \"white\"\n        )\n      ),\n      upperLabel = list(\n        normal = list(\n          show = TRUE,\n          height = 30,\n          formatter = \"{b}\",\n          color = \"black\",\n          fontSize = 12\n        )\n      )\n    ) |>\n    echarts4r::e_tooltip(\n      backgroundColor = \"rgba(255,255,255,0.8)\",\n      formatter = treemap_tooltip\n    )"
-  },
-  {
-    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#final-comments",
-    "href": "posts/unicorn-companies-treemaps-in-r/index.html#final-comments",
-    "title": "Analyzing Unicorn Companies with treemaps in R",
-    "section": "Final comments",
-    "text": "Final comments\nThis post showed a brief example of generating an interactive report based on Data Analysis. This post shows how we can facilitate the understanding of a data set by plotting charts in an objective way.\nBelow are some points I’d like to highlight about the technical side from this blog post:\n\nWhen doing data analysis, try to keep the same colors for categorical variables in the whole study. It is basic, but requires some extra work, like creating a palette color and setting the desired colors usually as a column in the dataset. But this is a very important step to allow the user to quickly reach some conclusions from the data.\nTreemaps are very nice, but sometimes they are not clear about the size of some categories. So, other charts, like the column charts we used here, can help in understanding better the behavior of some categories.\n\nI hope you enjoyed this content. Please leave your comments below. If you want to see the updated version of this analysis, please also leave a comment."
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html",
-    "href": "posts/predictive-customer-churn-analysis/index.html",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "",
-    "text": "Churn, or the loss of customers from a company’s customer base, is a critical metric for businesses with recurring revenue streams. Understanding why customers leave and predicting future churn is essential for effective customer relationship management. This report focuses on a predictive churn analysis based on the Telco Churn dataset.\nThis report showcases a predictive churn analysis using the Telco Churn demo dataset. It presents the results of the analysis and provides examples of insights to minimize customer churn. The focus of the analysis is to help companies identify customers who are at risk of leaving and take proactive steps to retain them."
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#churn-overview-for-the-company",
-    "href": "posts/predictive-customer-churn-analysis/index.html#churn-overview-for-the-company",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "Churn Overview for the Company",
-    "text": "Churn Overview for the Company\nThe following stacked bar chart displays the overall churn rate, calculated as the ratio of customers who have churned over the total number of customers.\nIt provides a visual representation of the company’s churn performance, making it easy to understand the magnitude of the problem at a glance.\n\n\nCode\nml$charts$overall_churn"
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#the-predictive-model",
-    "href": "posts/predictive-customer-churn-analysis/index.html#the-predictive-model",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "The predictive model",
-    "text": "The predictive model\nIn this report, a machine learning technique known as Gradient Boosting Machines (GBM) was trained to develop a predictive model for customer churn.\nThe goal of the model is to identify customers who are at risk of leaving, so that the company can take action to retain them.\n\nGradient Boosting Machines (GBM) is a machine learning technique used to create predictive models. It is an ensemble method that combines multiple weak models to form a strong model for prediction. This technique is widely used for a variety of applications, including customer churn prediction, as it can handle complex relationships between variables and capture non-linear patterns in data.\n\n\nVariables importance\nThis subsection displays a chart that shows the relative importance of each predictor variable in the GBM model. The chart provides a visual representation of how each variable contributes to the model’s prediction.\nThe variables are ranked based on their importance, with the most important variable listed first. This information is useful in understanding which variables have the greatest impact on customer churn, so that the company can focus its efforts on addressing these drivers.\n\n\n\n\n\n\n\nWe can also measure the isolated impact of the variables the company can apply new actions when trying to reduce Churn.\nBased on the chart above, let’s say that the most important variables that the company can apply some actions to are:\n\nContract (e.g. plan improvements),\nMonthlyCharges (e.g. reducing the fees with promotions),\nTechSupport (e.g. improving support services),\nPaymentMethod (e.g. offering new options or conditions).\n\n\n\nCode\nplot(grid_of_plots)\n\n\n\n\n\nWe could summarize some main points about the behavior of the churn rate among these variables:\n\nContract: churn probability is higher in month-to-month category.\nMonthlyCharges: churn probability gets higher when the value is equal or greater than approximately 80%.\nTechSupport: churn probability is higher when there is No tech support.\nPaymentMethod: churn probability is higher in the groups that uses Eletronic check as payment method."
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#customers-to-be-prioritized-with-actions",
-    "href": "posts/predictive-customer-churn-analysis/index.html#customers-to-be-prioritized-with-actions",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "Customers to be prioritized with actions",
-    "text": "Customers to be prioritized with actions\nIn this section we are scoring the customers based on the risk of leaving the company. The results are shown in a chart that displays the probability of churn split into deciles.\nThe chart is a stacked column that compares the percentage of customers who churned versus those who did not. Additionally, a line represents the cumulative percentage of customers who churned. The main insights are as follows:\n\nThe first decile, which represents the customers with the highest risk of churn, has a churn rate of 74%, significantly higher than the overall churn rate of 26.54%.\nFrom deciles 1 to 4, the churn rates are higher than the overall churn rate.\nDecile 4 and below it include 78% of all customers who churned.\n\nThese insights highlight the importance of proactively targeting customers in the highest risk deciles to minimize churn.\n\n\nCode\nml$charts$risk_groups_churn"
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#financial-implications-of-customer-churn",
-    "href": "posts/predictive-customer-churn-analysis/index.html#financial-implications-of-customer-churn",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "Financial Implications of Customer Churn",
-    "text": "Financial Implications of Customer Churn\nIn this section, we present a chart that showcases the distribution of monthly charges among different deciles of customers.\nThe chart presented here is similar to the previous one, but instead of percentages, each stacked column now represents the sum of monthly charges for each decile.\nThis analysis shows that the first decile contains the highest sum of monthly charges, which highlights an important insight:\n\nthe most critical customers in terms of risk to churn, are also the ones generating the most revenue for the company.\n\nThis information can help the company prioritize its retention efforts and target its high-value customers effectively.\n\n\nCode\nml$charts$charge_for_risk_groups"
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#data-with-predictive-results",
-    "href": "posts/predictive-customer-churn-analysis/index.html#data-with-predictive-results",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "Data with Predictive Results",
-    "text": "Data with Predictive Results\nThis section presents a table containing test data with corresponding predictions. The table provides a clear comparison between actual customer churn and the model’s predictions.\nAdditionally, a download button is provided to export the data as an Excel spreadsheet, making it easy to analyze and share the results.\n\n\nCode\nml$data$predictions |>\n  reactable::reactable(\n    columns = list(\n      `Contract` = colDef(minWidth = 150),\n      `PaymentMethod` = colDef(minWidth = 150)\n    ),\n    highlight = TRUE,\n    striped = FALSE,\n    filterable = TRUE,\n    searchable = FALSE,\n    compact = TRUE,\n    borderless = TRUE,\n    defaultPageSize = 7\n  )\n\n\n\n\n\n\n\n\n\nCode\ndownloadthis::download_this(\n  ml$data$predictions,\n  button_label = \"Download predictions\",\n  output_name = \"customer_churn_prediction\",\n  output_extension = \".xlsx\",\n  button_type = \"default\"\n)\n\n\n\n Download predictions"
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#technical-next-steps",
-    "href": "posts/predictive-customer-churn-analysis/index.html#technical-next-steps",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "Technical Next Steps",
-    "text": "Technical Next Steps\nThe insights generated in this report provide a valuable starting point for churn analysis. However, there is still room for improvement. Here are a few areas to consider for future work:\n\nFeature selection process: Adding a feature selection process can help to determine which variables have the greatest impact on churn and should be prioritized in the model.\nDetailed variable impact analysis: Expanding the understanding of how individual variables impact churn can help to fine-tune the model and improve its accuracy.\nPeriodic model updates: Implementing a process to periodically update the model and generate new predictions every month can help to ensure that the insights generated are always up-to-date and relevant.\n\nOverall, these next steps can help to deepen the understanding of customer churn and drive more informed business decisions."
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#future-recommendations",
-    "href": "posts/predictive-customer-churn-analysis/index.html#future-recommendations",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "Future Recommendations",
-    "text": "Future Recommendations\nThere are some action plans that can be taken based on the insights from the predictive churn analysis.\n\nAction plan based on risk deciles: Identify customers who are at the highest risk of churning and prioritize them for targeted interventions.\nCustomer segmentation: Divide customers into different segments based on the factors that contribute to their churn risk. This will help in developing customized strategies for each segment.\nAddress key drivers: Focus on the key drivers of customer churn and implement measures to address them. This could be through improving the customer experience, enhancing product features, or providing more personalized support.\nMonitor and evaluate: Regularly monitor the effectiveness of the actions taken and evaluate their impact on customer churn. This will help in making informed decisions and continuously improving the strategies."
-  },
-  {
-    "objectID": "posts/predictive-customer-churn-analysis/index.html#conclusion",
-    "href": "posts/predictive-customer-churn-analysis/index.html#conclusion",
-    "title": "Predictive Customer Churn Analysis",
-    "section": "Conclusion",
-    "text": "Conclusion\nThis study provides a comprehensive overview of churn analysis for the company, including a predictive model using gradient boosting, an assessment of variable importance, and a financial overview of the customers at risk of churning, as well as suggestions for next steps to further improve the insights generated."
-  },
-  {
-    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html",
-    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html",
-    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
-    "section": "",
-    "text": "Investing in stocks is more than just looking at price appreciation. Dividends are a crucial part of the equation.\nEspecially for investors who prioritize income generation, knowing the dividends a stock yields year-over-year can be invaluable. In this post, I’ll guide you through a streamlined method using R to pull yearly dividend data for any stock.\nDividends are payments made by corporations to their shareholders, often as a distribution of profits. When analyzing stocks from a long-term perspective, dividends can make a significant difference in the total returns an investor receives.\nIn this blog post, you will discover:\nR tools and techniques covered here:\nRecently I’ve posted a video on my YouTube channel about this subject. If you are Portuguese speaker (or want to try the automated subtitles) please check it out. But the same content is also available here in this blog post, even with more details."
-  },
-  {
-    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#fetching-yearly-dividends",
-    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#fetching-yearly-dividends",
-    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
-    "section": "Fetching Yearly Dividends",
-    "text": "Fetching Yearly Dividends\nTo get yearly dividends for a stock, we make use of the quantmod package which interfaces with various sources online to fetch stock data. Here’s the code chunk to pull yearly dividends:\n\nlibrary(quantmod)\nlibrary(dplyr)\n\nget_yearly_dividends <- function(ticker, years) {\n  historical_dividends <- quantmod::getDividends(\n    Symbol = ticker,\n    from = paste0(min(years), \"-01-01\"),\n    to = paste0(max(years), \"-12-31\")\n  ) |>\n    setNames(\"dividends\")\n  \n  yearly_data <- historical_dividends |>\n    dplyr::as_tibble(rownames = \"date\") |>\n    dplyr::mutate(\n      ticker = gsub(\".SA\", \"\", ticker),\n      year = lubridate::year(date)\n    ) |>\n    group_by(year) |>\n    dplyr::summarise(\n      dividends = sum(dividends)\n    )\n  \n  return(yearly_data)\n}\n\n# Example for Coca-Cola Co.\nget_yearly_dividends(\"KO\", c(2020:2023))\n\n# A tibble: 4 × 2\n   year dividends\n  <dbl>     <dbl>\n1  2020      1.64\n2  2021      1.68\n3  2022      1.76\n4  2023      1.38"
-  },
-  {
-    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#getting-yearly-closing-price",
-    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#getting-yearly-closing-price",
-    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
-    "section": "Getting Yearly Closing Price",
-    "text": "Getting Yearly Closing Price\nWhile dividends tell half the story, to evaluate the attractiveness of the dividends, we need to know at what price the stock closed at the end of each year. Here’s how we can fetch that data:\n\nget_yearly_closing_price <- function(ticker, years) {\n  historical_prices <- quantmod::getSymbols(\n    Symbol = ticker,\n    from = paste0(min(years), \"-01-01\"),\n    to = paste0(max(years), \"-12-31\"),\n    auto.assign = FALSE\n  ) |>\n    dplyr::as_tibble(rownames = \"date\") |>\n    dplyr::select(date, tidyr::contains(\"Adjusted\")) |>\n    setNames(c(\"date\", \"price\")) |>\n    dplyr::mutate(\n      ticker = gsub(\".SA\", \"\", ticker),\n      year = lubridate::year(date)\n    ) |>\n    group_by(year) |>\n    dplyr::summarise(\n      price = last(price)\n    )\n  return(historical_prices)\n}\n\n# Example for Coca-Cola Co.\nget_yearly_closing_price(\"KO\", c(2020:2023))\n\n# A tibble: 4 × 2\n   year price\n  <dbl> <dbl>\n1  2020  50.5\n2  2021  56.2\n3  2022  62.2\n4  2023  52.5"
-  },
-  {
-    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#calculating-yearly-yield",
-    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#calculating-yearly-yield",
-    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
-    "section": "Calculating Yearly Yield",
-    "text": "Calculating Yearly Yield\nCombining the dividends and the closing price, we can calculate the yield for the stock year-over-year:\n\nget_yearly_yield <- function(ticker, years) {\n  yearly_yields <- get_yearly_dividends(ticker, years) |>\n    dplyr::left_join(\n      get_yearly_closing_price(ticker, years),\n      by = \"year\"\n    ) |>\n    dplyr::mutate(\n      ticker = gsub(\".SA\", \"\", ticker),\n      yield = round(100 * dividends / price, 4)\n    )\n  \n  return(yearly_yields)\n}\n\n# Example for Coca-Cola Co.\nget_yearly_yield(\"KO\", c(2020:2023))\n\n# A tibble: 4 × 5\n   year dividends price ticker yield\n  <dbl>     <dbl> <dbl> <chr>  <dbl>\n1  2020      1.64  50.5 KO      3.25\n2  2021      1.68  56.2 KO      2.99\n3  2022      1.76  62.2 KO      2.83\n4  2023      1.38  52.5 KO      2.63"
-  },
-  {
-    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#practical-examples",
-    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#practical-examples",
-    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
-    "section": "Practical Examples",
-    "text": "Practical Examples\nIn this section, we will select various tickers, gather their data, and then filter for stocks that consistently paid dividends throughout our chosen period. Additionally, we’ll set a threshold to only include stocks with an average yearly dividend yield of 8% or higher.\nWe’ll demonstrate this approach using both American and Brazilian stocks.\nLet’s apply this example to some American stocks, and also to some Brazillian stocks.\n\nYearly Dividend Yield Analysis for Selected - American Stocks\nTickers extracted from these blog posts: US News; NerdWallet\n\nlibrary(purrr)\n\ntickers <- c(\n  \"XOM\", # Exxon Mobil Corp.\n  \"KO\", # Coca-Cola Co. \n  \"PFE\", # Pfizer Inc.\n  \"WFC\", # Wells Fargo & Co.\n  \"KMB\", # Kimberly-Clark Corp.\n  \"PDM\",  # Piedmont Office Realty Trust Inc\n  \"BGFV\", # Big 5 Sporting Goods Corp\n  \"ARI\",  # Apollo Commercial Real Estate Finance Inc\n  \"REFI\", # Chicago Atlantic Real Estate Finance Inc\n  \"DX\",   # Dynex Capital, Inc.\n  \"BRBS\", # Blue Ridge Bankshares Inc (VA)\n  \"CFFN\", # Capitol Federal Financial\n  \"RGR\",  # Sturm, Ruger & Co., Inc.\n  \"ABR\"   # Arbor Realty Trust Inc.\n)\n\nyears <- c(2017:2023)\n\nstock_data_list <- purrr::map(\n  tickers,\n  get_yearly_yield,\n  years\n) |> \n  setNames(tickers)\n\nNow, let’s visualize the yearly dividend yield for these stocks:\n\n# Loading necessary packages\nlibrary(echarts4r)\nlibrary(tidyr)\n\nchart_color_pallete <- c(\n  \"#212529\",  # Main color\n  \"#A89F91\",  # Warm gray\n  \"#1C3A70\",  # Deep blue\n  \"#B0CCE1\",  # Soft sky blue\n  \"#D1495B\",  # Bright red (For contrast and pop)\n  \"#F9C74F\",  # Golden yellow\n  \"#43AA8B\",  # Teal green\n  \"#F8961E\",  # Bright orange\n  \"#6A0572\",  # Deep purple\n  \"#577590\",  # Muted blue\n  \"#F9844A\",  # Coral\n  \"#1982C4\",  # Cerulean blue\n  \"#6B4226\",  # Brown (earthy tone)\n  \"#3B3F45\",  # Slightly lighter shade of the base\n  \"#0A0C0F\"  # Darker, almost black, shade\n)\n\nrange_years <- max(years) - min(years) - 1\n\n# Transforming the data for plotting\nstock_data <- stock_data_list |>\n  bind_rows(.id = \"ticker\") |>\n  mutate(year = as.factor(year)) |>\n  # Keeping only highest mean yields\n  group_by(ticker) |>\n   mutate(\n    yield_mean = mean(yield, na.rm = TRUE),\n    total_years = length(unique(year))\n  ) |>\n  filter(yield_mean >= 8 && total_years >= range_years) |>\n  ungroup() |>\n  arrange(year)\n\nstock_data |>\n  group_by(ticker) |>\n  e_charts(year) |>\n  e_line(yield) |>\n  e_y_axis(name = \"Yield (%)\") |>\n  e_tooltip(trigger = \"axis\") |>\n  e_color(chart_color_pallete) |>\n  e_hide_grid_lines(which = \"y\")\n\n\n\n\n\n\nYearly Dividend Yield Analysis for Selected - Brazillian Stocks\nTickers extracted from this blog post:\n\ntickers <- c(\n  \"CSNA3\",  # CSN\n  \"SLCE3\",  # SLC Agrícola\n  \"CPFE3\",  # CPFL Energia\n  \"BBSE3\",  # BB Seguridade\n  \"ENBR3\",  # Energias do Brasil\n  \"JBSS3\",  # JBS\n  \"BRAP4\",  # Bradespar\n  \"BBDC4\",  # Bradesco\n  \"USIM5\",  # Usiminas\n  \"BBAS3\",  # Banco do Brasil\n  \"VIVT3\",  # Telefônica\n  \"EGIE3\",  # Engie\n  \"CMIG4\",  # Cemig\n  \"TAEE11\", # Taesa\n  \"GOAU4\",  # Gerdau Metalúrgica\n  \"ELET6\",  # Eletrobras\n  \"BEEF3\",  # Minerva\n  \"VALE3\",  # Vale\n  \"SANB11\", # Santander\n  \"GGBR4\"   # Gerdau\n)\n\nyears <- c(2017:2023)\n\nstock_data_list <- purrr::map(\n  paste0(tickers, \".SA\"),\n  get_yearly_yield,\n  years\n) |> \n  setNames(tickers)\n\nNow, let’s visualize the yearly dividend yield for these stocks:\n\nrange_years <- max(years) - min(years) - 1\n\n# Transforming the data for plotting\nstock_data <- stock_data_list |>\n  bind_rows(.id = \"ticker\") |>\n  mutate(year = as.factor(year)) |>\n  # Keeping only highest mean yields\n  group_by(ticker) |>\n  mutate(\n    yield_mean = mean(yield, na.rm = TRUE),\n    total_years = length(unique(year))\n  ) |>\n  filter(yield_mean >= 8 && total_years >= range_years) |>\n  ungroup() |>\n  arrange(year)\n\nstock_data |>\n  group_by(ticker) |>\n  e_charts(year) |>\n  e_line(yield) |>\n  e_y_axis(name = \"Yield (%)\") |>\n  e_tooltip(trigger = \"axis\") |>\n  e_color(chart_color_pallete) |>\n  e_hide_grid_lines(which = \"y\")"
-  },
-  {
-    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#conclusion",
-    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#conclusion",
-    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
-    "section": "Conclusion",
-    "text": "Conclusion\nUsing R, we have streamlined the process of fetching and analyzing yearly dividend data for stocks. This method allows investors and analysts to quickly evaluate the attractiveness of dividends over the years. By understanding the yearly yields, one can make better-informed decisions regarding their investments.\nFurther, the flexibility and power of R enable the expansion of this analysis. With a similar approach, one could:\n\nCompare the dividend yield with other financial metrics for a more comprehensive stock evaluation.\nPredict future dividend yields based on historical data using time-series forecasting techniques.\nIncorporate external economic factors, such as interest rates or GDP growth, to understand their impact on dividend yields.\n\nRemember, while dividends are a crucial aspect, they are just one part of a holistic analysis when evaluating stocks. Always consider a multitude of factors before making any investment decisions. Happy investing!"
-  },
-  {
-    "objectID": "minicurso-carreira-na-area-de-dados/index.html#ebook-especialista-em-dados-7-etapas-práticas",
-    "href": "minicurso-carreira-na-area-de-dados/index.html#ebook-especialista-em-dados-7-etapas-práticas",
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html",
+    "href": "curso-analise-de-dados-linguagem-r/index.html",
     "title": "",
-    "section": "EBOOK Especialista em Dados: 7 Etapas Práticas",
-    "text": "EBOOK Especialista em Dados: 7 Etapas Práticas\n\n\n\n\n\nDe forma totalmente GRATUITA, você receberá este EBook, no qual eu listei 7 Etapas Práticas para que você consiga entrar na área de dados de forma assertiva.\nCom o Minicurso e ainda mais este Ebook você conseguirá organizar suas pretensões de carreira na área de dados.\nEste Ebook é um guia para no médio/longo prazo poupar muito tempo perdido da sua carreira testando áreas dfierentes e aprendendo conteúdos que não serão utilizados no cargo que você escolher seguir."
+    "section": "",
+    "text": "Code"
   },
   {
-    "objectID": "minicurso-carreira-na-area-de-dados/index.html#minicurso-desenvolva-sua-carreira-na-área-de-dados-ebook",
-    "href": "minicurso-carreira-na-area-de-dados/index.html#minicurso-desenvolva-sua-carreira-na-área-de-dados-ebook",
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#para-profissionais-da-área-de-dados-é-normal",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#para-profissionais-da-área-de-dados-é-normal",
     "title": "",
-    "section": "Minicurso Desenvolva Sua Carreira na área de dados + Ebook",
-    "text": "Minicurso Desenvolva Sua Carreira na área de dados + Ebook"
+    "section": "Para profissionais da área de dados é NORMAL:",
+    "text": "Para profissionais da área de dados é NORMAL:\n\nTrabalho REMOTO.\nVagas em empresas nacionais e INTERNACIONAIS.\nSalário ALTO.\nMuita oferta para ser freelancer.\nÁrea em altíssimo CRESCIMENTO.\n\nFaça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!"
   },
   {
-    "objectID": "minicurso-carreira-na-area-de-dados/index.html#faq---dúvidas-frequentes",
-    "href": "minicurso-carreira-na-area-de-dados/index.html#faq---dúvidas-frequentes",
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#com-o-treinamento-correto-ganhe-pelo-menos-r15.000-por-mês-incluindo-os-benefícios",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#com-o-treinamento-correto-ganhe-pelo-menos-r15.000-por-mês-incluindo-os-benefícios",
     "title": "",
-    "section": "FAQ - Dúvidas frequentes",
-    "text": "FAQ - Dúvidas frequentes\n\n  \n    Quem pode participar deste Minicurso?\n    Qualquer pessoa interessada em aprender sobre a área de dados pode participar do Minicurso.\n  \n  \n    Qual é o tempo estimado para concluir o Minicurso e o Ebook?\n    O tempo estimado é em torno de 3 a 5 horas para concluir o Minicurso e a leitura do Ebook.\n  \n  \n    Quais são os conteúdos abordados no Minicurso?\n    Os conteúdos abordados no Minicurso são: mercado de trabalho, habilidades necessárias, principais papéis e funções na área de dados e o impacto da análise de dados nas organizações.\n  \n  \n    Como faço para acessar o Minicurso?\n    O Minicurso é acessado por meio da plataforma online, utilizando um login e senha fornecidos no momento da inscrição.\n  \n  \n    O Minicurso possui aulas em vídeo?\n    Sim, o Minicurso possui videoaulas que auxiliam no aprendizado e na compreensão dos conteúdos apresentados.\n  \n  \n    Como faço para adquirir o ebook?\n    Basta clicar no botão disponível nesta página e seguir as instruções para adquirir o ebook e começar a mudar sua carreira na área de dados.\n  \n  \n    Como faço para tirar dúvidas sobre o conteúdo do Minicurso?\n    Você pode tirar suas dúvidas diretamente na plataforma, através do fórum de discussão."
+    "section": "Com o treinamento correto ganhe pelo menos R$15.000 por mês, incluindo os benefícios!",
+    "text": "Com o treinamento correto ganhe pelo menos R$15.000 por mês, incluindo os benefícios!\n* Veja os dados do Glassdoor ao lado."
   },
   {
-    "objectID": "minicurso-carreira-na-area-de-dados/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
-    "href": "minicurso-carreira-na-area-de-dados/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#mas-não-se-contente-com-pouco-há-vagas-remotas-em-outros-países-pagando-10.000-mensais-isso-mesmo-dólares-americanos",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#mas-não-se-contente-com-pouco-há-vagas-remotas-em-outros-países-pagando-10.000-mensais-isso-mesmo-dólares-americanos",
+    "title": "",
+    "section": "Mas não se contente com pouco! Há vagas remotas em outros países pagando $10.000 mensais, isso mesmo, dólares americanos!",
+    "text": "Mas não se contente com pouco! Há vagas remotas em outros países pagando $10.000 mensais, isso mesmo, dólares americanos!\n* Veja os dados do Glassdoor ao lado."
+  },
+  {
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#como-é-o-mercado-de-trabalho-para-quem-conhece-a-linguagem-r",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#como-é-o-mercado-de-trabalho-para-quem-conhece-a-linguagem-r",
+    "title": "",
+    "section": "Como é o mercado de trabalho para quem conhece a linguagem R?",
+    "text": "Como é o mercado de trabalho para quem conhece a linguagem R?\n\n\n44% das vagas de Cientista de Dados no mundo pedem a linguagem R!\n* Veja os dados do datanerd.tech ao lado.\nAlém disso, saber R é um diferencial para:\n\nAnalistas de Dados e também para\nAnalistas de Negócios."
+  },
+  {
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#veja-algumas-vagas-reais-para-quem-tem-conhecimento-na-linguagem-r",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#veja-algumas-vagas-reais-para-quem-tem-conhecimento-na-linguagem-r",
+    "title": "",
+    "section": "Veja algumas vagas reais para quem tem conhecimento na linguagem R",
+    "text": "Veja algumas vagas reais para quem tem conhecimento na linguagem R"
+  },
+  {
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#objetivo",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#objetivo",
+    "title": "",
+    "section": "Objetivo",
+    "text": "Objetivo\nPermitir que o aluno seja capaz de realizar análises de dados de ponta a ponta (desde a leitura dos dados até a comunicação dos resultados) no local onde já trabalha, bem como se preparar para concorrer a vagas melhores na área de dados das empresas."
+  },
+  {
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
     "title": "",
     "section": "Compra tranquila, com 7 dias de garantia para solicitar seu dinheiro de volta.",
     "text": "Compra tranquila, com 7 dias de garantia para solicitar seu dinheiro de volta."
   },
   {
-    "objectID": "minicurso-carreira-na-area-de-dados/index.html#adquira-agora-mesmo-seu-acesso-ao-minicurso",
-    "href": "minicurso-carreira-na-area-de-dados/index.html#adquira-agora-mesmo-seu-acesso-ao-minicurso",
+    "objectID": "curso-analise-de-dados-linguagem-r/index.html#faq---dúvidas-frequentes",
+    "href": "curso-analise-de-dados-linguagem-r/index.html#faq---dúvidas-frequentes",
     "title": "",
-    "section": "Adquira agora mesmo seu acesso ao Minicurso",
-    "text": "Adquira agora mesmo seu acesso ao Minicurso\n78% OFF!\n\n  \n    Quero me destacar na área de dados!\n  \n\n\n\n⏱️  Por tempo limitado!"
+    "section": "FAQ - Dúvidas frequentes",
+    "text": "FAQ - Dúvidas frequentes\n\n  \n    Este curso é adequado para iniciantes em análise de dados?\n    Sim, este curso é uma introdução à análise de dados com a Linguagem R e é adequado para iniciantes.\n  \n\n  \n    Qual é o tempo estimado de conclusão do curso?\n    O tempo estimado de conclusão do curso é de cerca de 3 semanas, mas os alunos podem fazer o curso em seu próprio ritmo.\n  \n\n  \n    Como funciona o suporte ao aluno durante o curso?\n    Os alunos podem deixar seus comentários em cada aula, ou podem também interagir diretamente com o professor via e-mail.\n  \n  \n  \n    Quais são as oportunidades de carreira após a conclusão deste curso?\n    Os alunos que concluírem o curso terão habilidades valiosas em análise de dados com a Linguagem R, o que pode ajudá-los a conseguir empregos em áreas como ciência de dados, análise de negócios e inteligência de negócios.\n  \n  \n  \n    Qual é a diferença entre este curso e outros cursos de análise de dados disponíveis no mercado?\n    Este curso se concentra especificamente na linguagem R para análise de dados e é projetado para ser uma introdução acessível e abrangente para aqueles que desejam começar na análise de dados.\n  \n  \n  \n    Como faço para me inscrever na lista de espera para o próximo lançamento do curso?\n    Os alunos podem se inscrever na lista de espera do curso visitando a landing page do curso e preenchendo o formulário de inscrição. Eles serão notificados por e-mail quando o curso estiver disponível para inscrição.\n  \n\n  \n    Posso fazer este curso em meu próprio ritmo?\n    Sim, este curso é projetado para ser feito em seu próprio ritmo.\n  \n  \n  \n    Como é a metodologia de ensino deste curso?\n    Este curso é baseado em vídeo-aulas e materiais complementares."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
+    "objectID": "ebook-etapas-entrar-area-de-dados/index.html",
+    "href": "ebook-etapas-entrar-area-de-dados/index.html",
+    "title": "",
     "section": "",
-    "text": "Unlocking the Highest-Paying Dividend Stocks with R\n\n\n\n\n\n\n\nData Visualization\n\n\nFinance\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\nPredictive Customer Churn Analysis\n\n\n\n\n\n\n\nReporting\n\n\nData Science\n\n\nMachine Learning\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2023\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\nAnalyzing Unicorn Companies with treemaps in R\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nAug 20, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\n  \n\n\n\n\nSet up a website with Quarto and automate deployment\n\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\nWlademir Ribeiro Prates\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-KL56G4\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>\nHi, I am Wlademir Ribeiro Prates. Welcome to my personal blog.\nI am a Senior Data Scientist. Experienced R and Shiny developer, with examples of use cases in several large companies. Experienced with machine learning implementation to solve business problems. PhD and Master’s in Finance. Researcher in behavioral finance / economics, and capital markets. I also have a website, where articles about business, technology and data science are published."
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "About",
-    "section": "Education",
-    "text": "Education\n\n2012-2016 - PhD in Finance (UFSC)\n2010-2012 - Master’s in Finance (UFSC)\n2006-2009 - Undergraduate in Business Administration (Anhanguera)"
+    "text": "Code"
   },
   {
     "objectID": "ebook-etapas-entrar-area-de-dados/index.html#a-melhor-maneira-para-se-desenvolver-na-área-de-dados",
@@ -315,59 +140,304 @@
     "text": "Adquira agora mesmo sua cópia do Ebook para garantir a oferta de:\n62% OFF!\n\n  \n    Quero me tornar um Especialista em Dados!\n  \n\n\n\n⏱️  Por tempo limitado!"
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#para-profissionais-da-área-de-dados-é-normal",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#para-profissionais-da-área-de-dados-é-normal",
-    "title": "",
-    "section": "Para profissionais da área de dados é NORMAL:",
-    "text": "Para profissionais da área de dados é NORMAL:\n\nTrabalho REMOTO.\nVagas em empresas nacionais e INTERNACIONAIS.\nSalário ALTO.\nMuita oferta para ser freelancer.\nÁrea em altíssimo CRESCIMENTO.\n\nFaça parte dos profissionais DATA DRIVEN que estão revolucionando o mercado!"
+    "objectID": "index.html#what-you-will-find-here",
+    "href": "index.html#what-you-will-find-here",
+    "title": "Hi, I’m Wlademir.",
+    "section": "What you will find here",
+    "text": "What you will find here\n\n\nApplied data science\nAnalyses that start from a real question and end with a decision. Finance, customer behavior, and visualization, always with the code included.\n\n\nData applications in production\nShiny, Quarto, deployment, and the less glamorous work that turns a notebook into something people rely on.\n\n\nCareer in data\nWhat I have learned working with data across companies and roles, from analyst to building and leading data products."
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#com-o-treinamento-correto-ganhe-pelo-menos-r15.000-por-mês-incluindo-os-benefícios",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#com-o-treinamento-correto-ganhe-pelo-menos-r15.000-por-mês-incluindo-os-benefícios",
-    "title": "",
-    "section": "Com o treinamento correto ganhe pelo menos R$15.000 por mês, incluindo os benefícios!",
-    "text": "Com o treinamento correto ganhe pelo menos R$15.000 por mês, incluindo os benefícios!\n* Veja os dados do Glassdoor ao lado."
+    "objectID": "index.html#latest-articles",
+    "href": "index.html#latest-articles",
+    "title": "Hi, I’m Wlademir.",
+    "section": "Latest articles",
+    "text": "Latest articles\n\n\n\n\n\n\n\n\n\n\nUnlocking the Highest-Paying Dividend Stocks with R\n\n\n\nData Visualization\n\n\nFinance\n\n\n\n\nOct 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive Customer Churn Analysis\n\n\n\nReporting\n\n\nData Science\n\n\nMachine Learning\n\n\n\n\nFeb 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalyzing Unicorn Companies with treemaps in R\n\n\n\nReporting\n\n\n\n\nAug 20, 2022\n\n\n\n\n\n\n\n\nNo matching items\n\n\nSee all articles →"
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#mas-não-se-contente-com-pouco-há-vagas-remotas-em-outros-países-pagando-10.000-mensais-isso-mesmo-dólares-americanos",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#mas-não-se-contente-com-pouco-há-vagas-remotas-em-outros-países-pagando-10.000-mensais-isso-mesmo-dólares-americanos",
-    "title": "",
-    "section": "Mas não se contente com pouco! Há vagas remotas em outros países pagando $10.000 mensais, isso mesmo, dólares americanos!",
-    "text": "Mas não se contente com pouco! Há vagas remotas em outros países pagando $10.000 mensais, isso mesmo, dólares americanos!\n* Veja os dados do Glassdoor ao lado."
+    "objectID": "index.html#elsewhere",
+    "href": "index.html#elsewhere",
+    "title": "Hi, I’m Wlademir.",
+    "section": "Elsewhere",
+    "text": "Elsewhere\nI share shorter notes and videos on LinkedIn and YouTube. Code lives on GitHub."
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#como-é-o-mercado-de-trabalho-para-quem-conhece-a-linguagem-r",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#como-é-o-mercado-de-trabalho-para-quem-conhece-a-linguagem-r",
-    "title": "",
-    "section": "Como é o mercado de trabalho para quem conhece a linguagem R?",
-    "text": "Como é o mercado de trabalho para quem conhece a linguagem R?\n\n\n44% das vagas de Cientista de Dados no mundo pedem a linguagem R!\n* Veja os dados do datanerd.tech ao lado.\nAlém disso, saber R é um diferencial para:\n\nAnalistas de Dados e também para\nAnalistas de Negócios."
+    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html",
+    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html",
+    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
+    "section": "",
+    "text": "Investing in stocks is more than just looking at price appreciation. Dividends are a crucial part of the equation.\nEspecially for investors who prioritize income generation, knowing the dividends a stock yields year-over-year can be invaluable. In this post, I’ll guide you through a streamlined method using R to pull yearly dividend data for any stock.\nDividends are payments made by corporations to their shareholders, often as a distribution of profits. When analyzing stocks from a long-term perspective, dividends can make a significant difference in the total returns an investor receives.\nIn this blog post, you will discover:\nR tools and techniques covered here:\nRecently I’ve posted a video on my YouTube channel about this subject. If you are Portuguese speaker (or want to try the automated subtitles) please check it out. But the same content is also available here in this blog post, even with more details."
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#veja-algumas-vagas-reais-para-quem-tem-conhecimento-na-linguagem-r",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#veja-algumas-vagas-reais-para-quem-tem-conhecimento-na-linguagem-r",
-    "title": "",
-    "section": "Veja algumas vagas reais para quem tem conhecimento na linguagem R",
-    "text": "Veja algumas vagas reais para quem tem conhecimento na linguagem R"
+    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#fetching-yearly-dividends",
+    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#fetching-yearly-dividends",
+    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
+    "section": "Fetching Yearly Dividends",
+    "text": "Fetching Yearly Dividends\nTo get yearly dividends for a stock, we make use of the quantmod package which interfaces with various sources online to fetch stock data. Here’s the code chunk to pull yearly dividends:\n\nlibrary(quantmod)\nlibrary(dplyr)\n\nget_yearly_dividends &lt;- function(ticker, years) {\n  historical_dividends &lt;- quantmod::getDividends(\n    Symbol = ticker,\n    from = paste0(min(years), \"-01-01\"),\n    to = paste0(max(years), \"-12-31\")\n  ) |&gt;\n    setNames(\"dividends\")\n  \n  yearly_data &lt;- historical_dividends |&gt;\n    dplyr::as_tibble(rownames = \"date\") |&gt;\n    dplyr::mutate(\n      ticker = gsub(\".SA\", \"\", ticker),\n      year = lubridate::year(date)\n    ) |&gt;\n    group_by(year) |&gt;\n    dplyr::summarise(\n      dividends = sum(dividends)\n    )\n  \n  return(yearly_data)\n}\n\n# Example for Coca-Cola Co.\nget_yearly_dividends(\"KO\", c(2020:2023))\n\n# A tibble: 4 × 2\n   year dividends\n  &lt;dbl&gt;     &lt;dbl&gt;\n1  2020      1.64\n2  2021      1.68\n3  2022      1.76\n4  2023      1.38"
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#objetivo",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#objetivo",
-    "title": "",
-    "section": "Objetivo",
-    "text": "Objetivo\nPermitir que o aluno seja capaz de realizar análises de dados de ponta a ponta (desde a leitura dos dados até a comunicação dos resultados) no local onde já trabalha, bem como se preparar para concorrer a vagas melhores na área de dados das empresas."
+    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#getting-yearly-closing-price",
+    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#getting-yearly-closing-price",
+    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
+    "section": "Getting Yearly Closing Price",
+    "text": "Getting Yearly Closing Price\nWhile dividends tell half the story, to evaluate the attractiveness of the dividends, we need to know at what price the stock closed at the end of each year. Here’s how we can fetch that data:\n\nget_yearly_closing_price &lt;- function(ticker, years) {\n  historical_prices &lt;- quantmod::getSymbols(\n    Symbol = ticker,\n    from = paste0(min(years), \"-01-01\"),\n    to = paste0(max(years), \"-12-31\"),\n    auto.assign = FALSE\n  ) |&gt;\n    dplyr::as_tibble(rownames = \"date\") |&gt;\n    dplyr::select(date, tidyr::contains(\"Adjusted\")) |&gt;\n    setNames(c(\"date\", \"price\")) |&gt;\n    dplyr::mutate(\n      ticker = gsub(\".SA\", \"\", ticker),\n      year = lubridate::year(date)\n    ) |&gt;\n    group_by(year) |&gt;\n    dplyr::summarise(\n      price = last(price)\n    )\n  return(historical_prices)\n}\n\n# Example for Coca-Cola Co.\nget_yearly_closing_price(\"KO\", c(2020:2023))\n\n# A tibble: 4 × 2\n   year price\n  &lt;dbl&gt; &lt;dbl&gt;\n1  2020  50.5\n2  2021  56.2\n3  2022  62.2\n4  2023  52.5"
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
+    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#calculating-yearly-yield",
+    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#calculating-yearly-yield",
+    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
+    "section": "Calculating Yearly Yield",
+    "text": "Calculating Yearly Yield\nCombining the dividends and the closing price, we can calculate the yield for the stock year-over-year:\n\nget_yearly_yield &lt;- function(ticker, years) {\n  yearly_yields &lt;- get_yearly_dividends(ticker, years) |&gt;\n    dplyr::left_join(\n      get_yearly_closing_price(ticker, years),\n      by = \"year\"\n    ) |&gt;\n    dplyr::mutate(\n      ticker = gsub(\".SA\", \"\", ticker),\n      yield = round(100 * dividends / price, 4)\n    )\n  \n  return(yearly_yields)\n}\n\n# Example for Coca-Cola Co.\nget_yearly_yield(\"KO\", c(2020:2023))\n\n# A tibble: 4 × 5\n   year dividends price ticker yield\n  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;\n1  2020      1.64  50.5 KO      3.25\n2  2021      1.68  56.2 KO      2.99\n3  2022      1.76  62.2 KO      2.83\n4  2023      1.38  52.5 KO      2.63"
+  },
+  {
+    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#practical-examples",
+    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#practical-examples",
+    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
+    "section": "Practical Examples",
+    "text": "Practical Examples\nIn this section, we will select various tickers, gather their data, and then filter for stocks that consistently paid dividends throughout our chosen period. Additionally, we’ll set a threshold to only include stocks with an average yearly dividend yield of 8% or higher.\nWe’ll demonstrate this approach using both American and Brazilian stocks.\nLet’s apply this example to some American stocks, and also to some Brazillian stocks.\n\nYearly Dividend Yield Analysis for Selected - American Stocks\nTickers extracted from these blog posts: US News; NerdWallet\n\nlibrary(purrr)\n\ntickers &lt;- c(\n  \"XOM\", # Exxon Mobil Corp.\n  \"KO\", # Coca-Cola Co. \n  \"PFE\", # Pfizer Inc.\n  \"WFC\", # Wells Fargo & Co.\n  \"KMB\", # Kimberly-Clark Corp.\n  \"PDM\",  # Piedmont Office Realty Trust Inc\n  \"BGFV\", # Big 5 Sporting Goods Corp\n  \"ARI\",  # Apollo Commercial Real Estate Finance Inc\n  \"REFI\", # Chicago Atlantic Real Estate Finance Inc\n  \"DX\",   # Dynex Capital, Inc.\n  \"BRBS\", # Blue Ridge Bankshares Inc (VA)\n  \"CFFN\", # Capitol Federal Financial\n  \"RGR\",  # Sturm, Ruger & Co., Inc.\n  \"ABR\"   # Arbor Realty Trust Inc.\n)\n\nyears &lt;- c(2017:2023)\n\nstock_data_list &lt;- purrr::map(\n  tickers,\n  get_yearly_yield,\n  years\n) |&gt; \n  setNames(tickers)\n\nNow, let’s visualize the yearly dividend yield for these stocks:\n\n# Loading necessary packages\nlibrary(echarts4r)\nlibrary(tidyr)\n\nchart_color_pallete &lt;- c(\n  \"#212529\",  # Main color\n  \"#A89F91\",  # Warm gray\n  \"#1C3A70\",  # Deep blue\n  \"#B0CCE1\",  # Soft sky blue\n  \"#D1495B\",  # Bright red (For contrast and pop)\n  \"#F9C74F\",  # Golden yellow\n  \"#43AA8B\",  # Teal green\n  \"#F8961E\",  # Bright orange\n  \"#6A0572\",  # Deep purple\n  \"#577590\",  # Muted blue\n  \"#F9844A\",  # Coral\n  \"#1982C4\",  # Cerulean blue\n  \"#6B4226\",  # Brown (earthy tone)\n  \"#3B3F45\",  # Slightly lighter shade of the base\n  \"#0A0C0F\"  # Darker, almost black, shade\n)\n\nrange_years &lt;- max(years) - min(years) - 1\n\n# Transforming the data for plotting\nstock_data &lt;- stock_data_list |&gt;\n  bind_rows(.id = \"ticker\") |&gt;\n  mutate(year = as.factor(year)) |&gt;\n  # Keeping only highest mean yields\n  group_by(ticker) |&gt;\n   mutate(\n    yield_mean = mean(yield, na.rm = TRUE),\n    total_years = length(unique(year))\n  ) |&gt;\n  filter(yield_mean &gt;= 8 && total_years &gt;= range_years) |&gt;\n  ungroup() |&gt;\n  arrange(year)\n\nstock_data |&gt;\n  group_by(ticker) |&gt;\n  e_charts(year) |&gt;\n  e_line(yield) |&gt;\n  e_y_axis(name = \"Yield (%)\") |&gt;\n  e_tooltip(trigger = \"axis\") |&gt;\n  e_color(chart_color_pallete) |&gt;\n  e_hide_grid_lines(which = \"y\")\n\n\n\n\n\n\nYearly Dividend Yield Analysis for Selected - Brazillian Stocks\nTickers extracted from this blog post:\n\ntickers &lt;- c(\n  \"CSNA3\",  # CSN\n  \"SLCE3\",  # SLC Agrícola\n  \"CPFE3\",  # CPFL Energia\n  \"BBSE3\",  # BB Seguridade\n  \"ENBR3\",  # Energias do Brasil\n  \"JBSS3\",  # JBS\n  \"BRAP4\",  # Bradespar\n  \"BBDC4\",  # Bradesco\n  \"USIM5\",  # Usiminas\n  \"BBAS3\",  # Banco do Brasil\n  \"VIVT3\",  # Telefônica\n  \"EGIE3\",  # Engie\n  \"CMIG4\",  # Cemig\n  \"TAEE11\", # Taesa\n  \"GOAU4\",  # Gerdau Metalúrgica\n  \"ELET6\",  # Eletrobras\n  \"BEEF3\",  # Minerva\n  \"VALE3\",  # Vale\n  \"SANB11\", # Santander\n  \"GGBR4\"   # Gerdau\n)\n\nyears &lt;- c(2017:2023)\n\nstock_data_list &lt;- purrr::map(\n  paste0(tickers, \".SA\"),\n  get_yearly_yield,\n  years\n) |&gt; \n  setNames(tickers)\n\nNow, let’s visualize the yearly dividend yield for these stocks:\n\nrange_years &lt;- max(years) - min(years) - 1\n\n# Transforming the data for plotting\nstock_data &lt;- stock_data_list |&gt;\n  bind_rows(.id = \"ticker\") |&gt;\n  mutate(year = as.factor(year)) |&gt;\n  # Keeping only highest mean yields\n  group_by(ticker) |&gt;\n  mutate(\n    yield_mean = mean(yield, na.rm = TRUE),\n    total_years = length(unique(year))\n  ) |&gt;\n  filter(yield_mean &gt;= 8 && total_years &gt;= range_years) |&gt;\n  ungroup() |&gt;\n  arrange(year)\n\nstock_data |&gt;\n  group_by(ticker) |&gt;\n  e_charts(year) |&gt;\n  e_line(yield) |&gt;\n  e_y_axis(name = \"Yield (%)\") |&gt;\n  e_tooltip(trigger = \"axis\") |&gt;\n  e_color(chart_color_pallete) |&gt;\n  e_hide_grid_lines(which = \"y\")"
+  },
+  {
+    "objectID": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#conclusion",
+    "href": "posts/how-to-get-yearly-dividend-yield-from-r/index.html#conclusion",
+    "title": "Unlocking the Highest-Paying Dividend Stocks with R",
+    "section": "Conclusion",
+    "text": "Conclusion\nUsing R, we have streamlined the process of fetching and analyzing yearly dividend data for stocks. This method allows investors and analysts to quickly evaluate the attractiveness of dividends over the years. By understanding the yearly yields, one can make better-informed decisions regarding their investments.\nFurther, the flexibility and power of R enable the expansion of this analysis. With a similar approach, one could:\n\nCompare the dividend yield with other financial metrics for a more comprehensive stock evaluation.\nPredict future dividend yields based on historical data using time-series forecasting techniques.\nIncorporate external economic factors, such as interest rates or GDP growth, to understand their impact on dividend yields.\n\nRemember, while dividends are a crucial aspect, they are just one part of a holistic analysis when evaluating stocks. Always consider a multitude of factors before making any investment decisions. Happy investing!"
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html",
+    "href": "posts/predictive-customer-churn-analysis/index.html",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "",
+    "text": "Churn, or the loss of customers from a company’s customer base, is a critical metric for businesses with recurring revenue streams. Understanding why customers leave and predicting future churn is essential for effective customer relationship management. This report focuses on a predictive churn analysis based on the Telco Churn dataset.\nThis report showcases a predictive churn analysis using the Telco Churn demo dataset. It presents the results of the analysis and provides examples of insights to minimize customer churn. The focus of the analysis is to help companies identify customers who are at risk of leaving and take proactive steps to retain them."
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#churn-overview-for-the-company",
+    "href": "posts/predictive-customer-churn-analysis/index.html#churn-overview-for-the-company",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Churn Overview for the Company",
+    "text": "Churn Overview for the Company\nThe following stacked bar chart displays the overall churn rate, calculated as the ratio of customers who have churned over the total number of customers.\nIt provides a visual representation of the company’s churn performance, making it easy to understand the magnitude of the problem at a glance.\n\n\nCode\nml$charts$overall_churn"
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#the-predictive-model",
+    "href": "posts/predictive-customer-churn-analysis/index.html#the-predictive-model",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "The predictive model",
+    "text": "The predictive model\nIn this report, a machine learning technique known as Gradient Boosting Machines (GBM) was trained to develop a predictive model for customer churn.\nThe goal of the model is to identify customers who are at risk of leaving, so that the company can take action to retain them.\n\nGradient Boosting Machines (GBM) is a machine learning technique used to create predictive models. It is an ensemble method that combines multiple weak models to form a strong model for prediction. This technique is widely used for a variety of applications, including customer churn prediction, as it can handle complex relationships between variables and capture non-linear patterns in data.\n\n\nVariables importance\nThis subsection displays a chart that shows the relative importance of each predictor variable in the GBM model. The chart provides a visual representation of how each variable contributes to the model’s prediction.\nThe variables are ranked based on their importance, with the most important variable listed first. This information is useful in understanding which variables have the greatest impact on customer churn, so that the company can focus its efforts on addressing these drivers.\n\n\n\n\n\n\nWe can also measure the isolated impact of the variables the company can apply new actions when trying to reduce Churn.\nBased on the chart above, let’s say that the most important variables that the company can apply some actions to are:\n\nContract (e.g. plan improvements),\nMonthlyCharges (e.g. reducing the fees with promotions),\nTechSupport (e.g. improving support services),\nPaymentMethod (e.g. offering new options or conditions).\n\n\n\nCode\nplot(grid_of_plots)\n\n\n\n\n\n\n\n\n\nWe could summarize some main points about the behavior of the churn rate among these variables:\n\nContract: churn probability is higher in month-to-month category.\nMonthlyCharges: churn probability gets higher when the value is equal or greater than approximately 80%.\nTechSupport: churn probability is higher when there is No tech support.\nPaymentMethod: churn probability is higher in the groups that uses Eletronic check as payment method."
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#customers-to-be-prioritized-with-actions",
+    "href": "posts/predictive-customer-churn-analysis/index.html#customers-to-be-prioritized-with-actions",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Customers to be prioritized with actions",
+    "text": "Customers to be prioritized with actions\nIn this section we are scoring the customers based on the risk of leaving the company. The results are shown in a chart that displays the probability of churn split into deciles.\nThe chart is a stacked column that compares the percentage of customers who churned versus those who did not. Additionally, a line represents the cumulative percentage of customers who churned. The main insights are as follows:\n\nThe first decile, which represents the customers with the highest risk of churn, has a churn rate of 74%, significantly higher than the overall churn rate of 26.54%.\nFrom deciles 1 to 4, the churn rates are higher than the overall churn rate.\nDecile 4 and below it include 78% of all customers who churned.\n\nThese insights highlight the importance of proactively targeting customers in the highest risk deciles to minimize churn.\n\n\nCode\nml$charts$risk_groups_churn"
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#financial-implications-of-customer-churn",
+    "href": "posts/predictive-customer-churn-analysis/index.html#financial-implications-of-customer-churn",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Financial Implications of Customer Churn",
+    "text": "Financial Implications of Customer Churn\nIn this section, we present a chart that showcases the distribution of monthly charges among different deciles of customers.\nThe chart presented here is similar to the previous one, but instead of percentages, each stacked column now represents the sum of monthly charges for each decile.\nThis analysis shows that the first decile contains the highest sum of monthly charges, which highlights an important insight:\n\nthe most critical customers in terms of risk to churn, are also the ones generating the most revenue for the company.\n\nThis information can help the company prioritize its retention efforts and target its high-value customers effectively.\n\n\nCode\nml$charts$charge_for_risk_groups"
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#data-with-predictive-results",
+    "href": "posts/predictive-customer-churn-analysis/index.html#data-with-predictive-results",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Data with Predictive Results",
+    "text": "Data with Predictive Results\nThis section presents a table containing test data with corresponding predictions. The table provides a clear comparison between actual customer churn and the model’s predictions.\nAdditionally, a download button is provided to export the data as an Excel spreadsheet, making it easy to analyze and share the results.\n\n\nCode\nml$data$predictions |&gt;\n  reactable::reactable(\n    columns = list(\n      `Contract` = colDef(minWidth = 150),\n      `PaymentMethod` = colDef(minWidth = 150)\n    ),\n    highlight = TRUE,\n    striped = FALSE,\n    filterable = TRUE,\n    searchable = FALSE,\n    compact = TRUE,\n    borderless = TRUE,\n    defaultPageSize = 7\n  )\n\n\n\n\n\n\n\n\nCode\ndownloadthis::download_this(\n  ml$data$predictions,\n  button_label = \"Download predictions\",\n  output_name = \"customer_churn_prediction\",\n  output_extension = \".xlsx\",\n  button_type = \"default\"\n)\n\n\n\n Download predictions"
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#technical-next-steps",
+    "href": "posts/predictive-customer-churn-analysis/index.html#technical-next-steps",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Technical Next Steps",
+    "text": "Technical Next Steps\nThe insights generated in this report provide a valuable starting point for churn analysis. However, there is still room for improvement. Here are a few areas to consider for future work:\n\nFeature selection process: Adding a feature selection process can help to determine which variables have the greatest impact on churn and should be prioritized in the model.\nDetailed variable impact analysis: Expanding the understanding of how individual variables impact churn can help to fine-tune the model and improve its accuracy.\nPeriodic model updates: Implementing a process to periodically update the model and generate new predictions every month can help to ensure that the insights generated are always up-to-date and relevant.\n\nOverall, these next steps can help to deepen the understanding of customer churn and drive more informed business decisions."
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#future-recommendations",
+    "href": "posts/predictive-customer-churn-analysis/index.html#future-recommendations",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Future Recommendations",
+    "text": "Future Recommendations\nThere are some action plans that can be taken based on the insights from the predictive churn analysis.\n\nAction plan based on risk deciles: Identify customers who are at the highest risk of churning and prioritize them for targeted interventions.\nCustomer segmentation: Divide customers into different segments based on the factors that contribute to their churn risk. This will help in developing customized strategies for each segment.\nAddress key drivers: Focus on the key drivers of customer churn and implement measures to address them. This could be through improving the customer experience, enhancing product features, or providing more personalized support.\nMonitor and evaluate: Regularly monitor the effectiveness of the actions taken and evaluate their impact on customer churn. This will help in making informed decisions and continuously improving the strategies."
+  },
+  {
+    "objectID": "posts/predictive-customer-churn-analysis/index.html#conclusion",
+    "href": "posts/predictive-customer-churn-analysis/index.html#conclusion",
+    "title": "Predictive Customer Churn Analysis",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis study provides a comprehensive overview of churn analysis for the company, including a predictive model using gradient boosting, an assessment of variable importance, and a financial overview of the customers at risk of churning, as well as suggestions for next steps to further improve the insights generated."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html",
+    "href": "posts/website-with-quarto-automated-deployment/index.html",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "",
+    "text": "Anyone who works with data analysis and wants to share content faces some limitations from the traditional tools to build a website. One of the main reasons is the difficulty of sharing the results of chunks of code without needing to copy and paste images.\nFor example, suppose you are a data scientist and use Python or R to build interactive charts and tables in your work. In that case, it might be difficult to be able to publish this kind of result on a website using the traditional platforms.\nThere are already many available solutions that facilitate this job. But here I want to draw attention to Quarto."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#what-is-quarto",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto is a great reporting tool, which is supported by RStudio. Its own definition is:\n\nQuarto is an open-source scientific and technical publishing system built on Pandoc.\n\nIn Quarto, you can “create dynamic content with Python, R, Julia, and Observable”.\nIn other words, with Quarto, it is possible to create reports using the same syntax used to build RMarkdown documents, but in Quarto there are more possibilities when compared with RMarkdown.\nOne of the biggest Quarto advantages is that it is a multi-language platform. Besides that, RStudio announces that Quarto is the “next generation version of R Markdown”."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#basic-workflow-for-a-quarto-website-with-automated-deployment",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "Basic workflow for a Quarto website with automated deployment",
+    "text": "Basic workflow for a Quarto website with automated deployment\nAfter taking a look to Quarto documentation and watching a video (Pt) about automated deployment with Github Actions, I realized that it could be easier than I thought to set up a personal blog with the requirements that I had for this purpose.\nSo, the workflow I built using Quarto had as a result this website (check the Github repo), and works like described below:\n\nWrite a post or build a static page (locally).\nRender the website (locally).\nPush it to Git.\nAfter a merge in certain branch, automate the deployment process (upload the files via FTP)."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#steps-to-create-an-automated-quarto-website",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "Steps to create an automated Quarto website",
+    "text": "Steps to create an automated Quarto website\nQuarto documentation is great. Basically, all you need to know how to create a website with Quarto is to read this session in their website.\nBelow I am sharing the main commands that you will need, and also the needed information to set up the automated deployment.\n\nStep 1. Download and install Quarto\nIf you don’t have Quarto installed yet you can follow the steps here.\n\n\nStep 2. Build a Quarto website or blog\nAfter having installed Quarto, it is needed to run on terminal the following code to create a Quarto website:\nquarto create-project mysite --type website\nIf your website will be a blog, so you may prefer to use the following code:\nquarto create-project myblog --type website:blog\nThis code will create a basic folder structure with the main files needed to start customizing your website.\n\n\nStep 3. Create a repo on Github\nTo be able to benefit from Github Actions, which we will use to automate the publishing workflow, you will need to create a Github repository for the project.\nIn this post I expect the reader to have at least minimum experience with Git (create repositories, understand how branches work, git push, git pull.)\n\n\nStep 4. Set up Github Actions\nWe will need to go to the Github Actions Marketplace and look for “FTP Deploy”, or just click here.\nIn fact, to use this Action we will just need to copy and paste the .yml file as it is in the example from the Action’s page.\nInside your project, the .yml file needs to be located in the path .github/workflows/main.yml\nHowever, I did some changes, mostly based on this great video about this topic, but it is in Portuguese. I also did some other changes that were also needed to allow working with Quarto files structure.\non:\n  push:\n    branches:\n      - main\nname: 🚀 Deploy website on push\njobs:\n  web-deploy:\n    name: 🎉 Deploy\n    runs-on: ubuntu-latest\n    steps:\n    - name: 🚚 Get latest code\n      uses: actions/checkout@v2\n    \n    - name: 📂 Sync files\n      uses: SamKirkland/FTP-Deploy-Action@4.3.0\n      with:\n        server: ${{ secrets.ftp_host }}\n        username: ${{ secrets.ftp_user }}\n        password: ${{ secrets.ftp_password }}\n        local-dir: ./_site/\n        server-dir: ${{ secrets.server_dir }}\nBasically what these commands are doing is updating the files in the website Host after any push on main branch of the project.\n\nDetails about Github Secrets\nHere we are also using Github Secrets for the Host information.\nGithub Secrets will allow us to add private information, like passwords and usernames, without worrying about security.\nThey’ll be securely saved on your Github account and you will call the variable that contains the “secrets” in your code. So this sensitive information doesn’t need to be hard coded.\nCheck out the screenshot below to see what Github Secrets looks like. You need to record them as they are being called (e.g. ftp_host for secrets.ftp_user). Register the secrets with small letters and don’t worry if they appear with capital letters (see screenshot).\n\n\n\nUsing Github Secrets\n\n\nSome general comments:\n\nThe only needed information here is ftp_host, ftp_user and ftp_password. They are the same that you use for other commom FTP services.\nI added local-dir because of Quarto files structure.\nI used server-dir to specify the folder where the website will be (e.g. public_html)."
+  },
+  {
+    "objectID": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
+    "href": "posts/website-with-quarto-automated-deployment/index.html#final-comments",
+    "title": "Set up a website with Quarto and automate deployment",
+    "section": "Final comments",
+    "text": "Final comments\nAfter all the steps above you are ready to git push your changes and submit a Pull Request to merge your local branch with the main branch (if you created a separated branch, which is highly recommended!).\nAfter merging with main, check if the files in your Host were updated. If yes, check if your website is now running on the internet.\nI am using Hostgator to host the website. And my first impression is good. The website quickly updates after the merging.\nDid you like this post? Leave your comments below and share your experience if you try to set up a website as I described here."
+  },
+  {
+    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html",
+    "href": "posts/unicorn-companies-treemaps-in-r/index.html",
+    "title": "Analyzing Unicorn Companies with treemaps in R",
+    "section": "",
+    "text": "Have you ever heard about Unicorn companies? This post shows a list of Unicorn companies around the world, analyzing them with data analysis techniques, using the R language.\nA Unicorn company is usually defined as a private startup valued at over U$ 1 billion.\nThe full and updated list of Unicorn companies in the world used on this analysis can be found here, at the CBInsights website.\nNote: the data for this post was downloaded on 1st October 2022.\nWhat will you see in this blog post?\nWhat technical skills will you find here?\nIn this kind of blog post, I won’t write any interpretations about the charts and tables, because I want to be able to update the data in the future without needing to replace text paragraphs. So, the idea is to keep the charts as self-explanatory as possible."
+  },
+  {
+    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#reading-data-unicorn-companies-list",
+    "href": "posts/unicorn-companies-treemaps-in-r/index.html#reading-data-unicorn-companies-list",
+    "title": "Analyzing Unicorn Companies with treemaps in R",
+    "section": "Reading data: Unicorn companies list",
+    "text": "Reading data: Unicorn companies list\nFirst, we need to load the used packages and read the data. Below I am showing the first rows of the raw data and doing some data manipulations.\nIn this very beginning of the post some settings are already created, like the colors palette for Countries and Industries, to use in the whole document.\nThe next chunk of code is responsible to load the packages, read the data and create some useful variables, like valuation Quartiles, Number of Investors and Years as Unicorn.\n\n\nCode\n# Loading packages\nlibrary(dplyr)\nlibrary(echarts4r)\nlibrary(lubridate)\nlibrary(MetBrewer)\nlibrary(reactable)\nlibrary(readxl)\n\n# Reading the Excel file\nunicorn_data &lt;- readxl::read_excel(\"unicorn_companies.xlsx\", skip = 2) |&gt;\n  dplyr::arrange(dplyr::desc(\"Valuation ($B)\")) |&gt;\n  dplyr::mutate(\n    `Years as Unicorn` = round(\n      (lubridate::interval(`Date Joined`, lubridate::today()) %/% months(1)) / 12,\n      digits = 2\n    ),\n    `Number of Investors` = stringr::str_count(`Select Investors`, ',') + 1,\n    `Industry` = as.factor(`Industry`),\n    Quartiles = dplyr::case_when(\n      `Valuation ($B)` &lt;= quantile(`Valuation ($B)`, 0.25, na.rm = TRUE) ~ 'Q4',\n      `Valuation ($B)` &lt;= quantile(`Valuation ($B)`, 0.5, na.rm = TRUE) ~ 'Q3',\n      `Valuation ($B)` &lt;= quantile(`Valuation ($B)`, 0.75, na.rm = TRUE) ~ 'Q2',\n      `Valuation ($B)` &lt;= quantile(`Valuation ($B)`, 1, na.rm = TRUE) ~ 'Q1'\n    )\n  )"
+  },
+  {
+    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#valuation-by-country-and-industry",
+    "href": "posts/unicorn-companies-treemaps-in-r/index.html#valuation-by-country-and-industry",
+    "title": "Analyzing Unicorn Companies with treemaps in R",
+    "section": "Valuation by Country and Industry",
+    "text": "Valuation by Country and Industry\nAfter reading the data I have created two charts to briefly show the summarized data by Country and by Industry.\nIn this part I also create the color palettes that will be used in other charts as well.\nHere comes a nice tip: the usage of the R package MetBrewer to create very nice color palettes.\n\n\nCode\ncreate_color_palette &lt;- function(vector, theme) {\n  dplyr::tibble(\n    name = vector,\n    itemStyle = dplyr::tibble(\n      color = as.character(MetBrewer::met.brewer(theme, length(vector)))\n    )\n  )\n}\n\nunicorn_data_by_country &lt;- unicorn_data |&gt;\n  dplyr::group_by(Country) |&gt;\n  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |&gt;\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |&gt;\n  head(15)\n\ncolors_country &lt;- create_color_palette(unicorn_data_by_country$Country, \"Derain\")\n\nunicorn_data_by_industry &lt;- unicorn_data |&gt;\n  dplyr::group_by(Industry) |&gt;\n  dplyr::summarise(`Valuation ($B)` = sum(`Valuation ($B)`)) |&gt;\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`))\n\ncolors_industry &lt;- create_color_palette(unicorn_data_by_industry$Industry, \"Juarez\")\n\n\nBelow we can see the sum of all the companies’ Valuations for Industry and Country in a column chart.\n\n\nCode\nunicorn_data_by_industry |&gt;\n  dplyr::left_join(\n    colors_industry |&gt; dplyr::rename(Industry = name, color = `itemStyle`),\n    by = \"Industry\"\n  ) |&gt;\n  echarts4r::e_charts(`Valuation ($B)`) |&gt;\n  echarts4r::e_legend(show = FALSE) |&gt;\n  echarts4r::e_bar(Industry) |&gt;\n  echarts4r::e_y_axis(type = \"category\") |&gt;\n  echarts4r::e_grid(containLabel = TRUE) |&gt;\n  echarts4r::e_tooltip() |&gt;\n  echarts4r::e_add_nested('itemStyle', color) |&gt;\n  echarts4r::e_title(text = \"Unicorns by Industry\", subtext = \"Sum the valuation of all the Industries\")\n\n\n\n\n\n\n\n\nCode\nunicorn_data_by_country |&gt;\n  dplyr::left_join(\n    colors_country |&gt; dplyr::rename(Country = name, color = `itemStyle`),\n    by = \"Country\"\n  ) |&gt; \n  echarts4r::e_charts(`Valuation ($B)`) |&gt;\n  echarts4r::e_legend(show = FALSE) |&gt;\n  echarts4r::e_bar(Country) |&gt;\n  echarts4r::e_y_axis(type = \"category\") |&gt;\n  echarts4r::e_grid(containLabel = TRUE) |&gt;\n  echarts4r::e_tooltip() |&gt;\n  echarts4r::e_add_nested('itemStyle', color) |&gt;\n  echarts4r::e_title(text = \"Unicorns by Country\", subtext = \"Sum the valuation of the 15 first countries\")"
+  },
+  {
+    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-the-top-50-unicorn-companies",
+    "href": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-the-top-50-unicorn-companies",
+    "title": "Analyzing Unicorn Companies with treemaps in R",
+    "section": "Exploring the top 50 Unicorn companies",
+    "text": "Exploring the top 50 Unicorn companies\nIn this section I filtered the data just to show the first 50 Unicorn companies with the highest valuation.\nWe will see here an interactive table and also two treemaps, showing the data by Country and by Industry.\nI won’t show all the table here, because if you want to have access to the complete dataset, please check the CBInsights website.\nIn the table it is possible to sort the data by column and also search.\n\n\nCode\ninteractive_table_data &lt;- unicorn_data |&gt;\n  dplyr::select(-c(\"Date Joined\", \"Number of Investors\", \"Quartiles\")) |&gt;\n  dplyr::mutate(`Years as Unicorn` = floor(`Years as Unicorn`)) |&gt;\n  head(50)\n\n# Creating an interactive table\nreactable::reactable(\n  interactive_table_data,\n  columns = list(\n    `Select Investors` = colDef(minWidth = 180),\n    Country = colDef(html = TRUE)\n  ),\n  style = list(fontSize = \"0.70rem\"),\n  defaultPageSize = 5,\n  searchable = TRUE,\n  striped = TRUE,\n  resizable = TRUE\n)\n\n\n\n\n\n\nBelow it is possible to check two treemaps built with the R language. In the next section all the companies will be visible, but here we can see only the first 50.\nThe idea to show the following two treemaps is that as the number of companies is not so big, we can show all the 50 companies in only one view. So the user can compare companies that belong to different categories in the same chart.\nIf you want to explore all the companies from the data, please check the next section.\n\n\nCode\ntreemap_tooltip &lt;- htmlwidgets::JS(\n      \"function(info){\n        var treePathInfo = info.treePathInfo;\n        var treePath = [];\n        for (var i = 1; i &lt; treePathInfo.length; i++) {\n          treePath.push(treePathInfo[i].name);\n        }\n      return(\n        '&lt;strong&gt;' + echarts.format.encodeHTML(treePath.join(' / ')) + '&lt;/strong&gt;' + '&lt;br&gt;' +\n        'Valuation ($B): &lt;i&gt;' + info.value + '&lt;/i&gt;&lt;br&gt;'\n      )}\"\n      )\n\nunicorn_data |&gt;\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |&gt;\n  head(50) |&gt;\n  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |&gt;\n  tidyr::nest(children = c(\"name\", \"value\")) |&gt;\n  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |&gt;\n  dplyr::rename(name = Country) |&gt;\n  dplyr::left_join(colors_country, by = \"name\") |&gt;\n  echarts4r::e_charts() |&gt;\n  echarts4r::e_title(text = \"Unicorns by Country\") |&gt;\n  echarts4r::e_treemap(\n    leafDepth = 2,\n    itemStyle = list(normal = list(\n      borderWidth = 0,\n      gapWidth = 2,\n      backgroundColor = \"white\"\n    )),\n    upperLabel = list(\n      normal = list(\n        show = TRUE,\n        height = 30,\n        formatter = \"{b}\",\n        color = \"black\",\n        fontSize = 12\n      )\n    )\n  ) |&gt;\n  echarts4r::e_tooltip(\n    backgroundColor = \"rgba(255,255,255,0.8)\",\n    formatter = treemap_tooltip\n  )\n\n\n\n\n\n\n\n\nCode\nunicorn_data |&gt;\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |&gt;\n  head(50) |&gt;\n  dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |&gt;\n  tidyr::nest(children = c(\"name\", \"value\")) |&gt;\n  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |&gt;\n  dplyr::rename(name = Industry) |&gt;\n  dplyr::left_join(colors_industry, by = \"name\") |&gt;\n  echarts4r::e_charts() |&gt;\n  echarts4r::e_title(text = \"Unicorns by Industry\") |&gt;\n  echarts4r::e_treemap(\n    leafDepth = 2,\n    itemStyle = list(normal = list(\n      borderWidth = 0,\n      gapWidth = 2,\n      backgroundColor = \"white\"\n    )),\n    upperLabel = list(\n      normal = list(\n        show = TRUE,\n        height = 30,\n        formatter = \"{b}\",\n        color = \"black\",\n        fontSize = 12\n      )\n    )\n  ) |&gt;\n  echarts4r::e_tooltip(\n    backgroundColor = \"rgba(255,255,255,0.8)\",\n    formatter = treemap_tooltip\n  )"
+  },
+  {
+    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-all-unicorn-companies-with-treemaps",
+    "href": "posts/unicorn-companies-treemaps-in-r/index.html#exploring-all-unicorn-companies-with-treemaps",
+    "title": "Analyzing Unicorn Companies with treemaps in R",
+    "section": "Exploring all Unicorn companies with treemaps",
+    "text": "Exploring all Unicorn companies with treemaps\nThis section will show treemaps that allow the user to explore all the Unicorn companies in the dataset. For that, I created a function for the treemap(next chunk of code) and I also decided to plot them by quartiles of valuation, to facilitate the navigation.\n\n\nCode\ntree_map_chart &lt;- function(data, quartile, colors_df, tooltip = treemap_tooltip) {\n  filtered_data &lt;- data |&gt; dplyr::filter(Quartiles == quartile) \n\n  treemap_data &lt;- filtered_data |&gt;\n    dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |&gt;\n    dplyr::filter(Quartiles == quartile) |&gt;\n    dplyr::select(Industry, name = Company, value = `Valuation ($B)`) |&gt;\n    tidyr::nest(children = c(\"name\", \"value\")) |&gt;\n    dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |&gt;\n    dplyr::rename(name = Industry) |&gt;\n    dplyr::left_join(colors_df, by = \"name\")\n\n  min_valuation &lt;- min(filtered_data$`Valuation ($B)`)\n  max_valuation &lt;- max(filtered_data$`Valuation ($B)`)\n\n  treemap_data |&gt;\n    echarts4r::e_charts() |&gt;\n    echarts4r::e_title(\n      text = paste0(\"Unicorns by Industry - from $\",  min_valuation, \"B to $\", max_valuation, \"B\", \"(\", quartile,\")\")\n    ) |&gt;\n    echarts4r::e_treemap(\n      leafDepth = 1,\n      itemStyle = list(\n        normal = list(\n          borderWidth = 0,\n          gapWidth = 2,\n          backgroundColor = \"white\"\n        )\n      ),\n      upperLabel = list(\n        normal = list(\n          show = FALSE,\n          height = 30,\n          formatter = \"{b}\",\n          color = \"black\",\n          fontSize = 12\n        )\n      )\n    ) |&gt;\n    echarts4r::e_tooltip(\n      backgroundColor = \"rgba(255,255,255,0.8)\",\n      formatter = treemap_tooltip\n    )\n}\n\n\nBelow we can see treemaps created in R, with the echarts4r library, with data split into quartiles.\nHow to navigate in those treemaps?\n\nClick on the desired Industry and see all the companies for that category.\nCheck the grey bar below the treemap, and click in the first grey square to go back to the initial view of the treemap.\n\n\n\nCode\nhtmltools::div(\n  tree_map_chart(data = unicorn_data, quartile = \"Q1\", colors_df = colors_industry),\n  htmltools::br(),\n  tree_map_chart(data = unicorn_data, quartile = \"Q2\", colors_df = colors_industry),\n  htmltools::br(),\n  tree_map_chart(data = unicorn_data, quartile = \"Q3\", colors_df = colors_industry),\n  htmltools::br(),\n  tree_map_chart(data = unicorn_data, quartile = \"Q4\", colors_df = colors_industry),\n)"
+  },
+  {
+    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#unicorn-companies-in-brazil-my-country",
+    "href": "posts/unicorn-companies-treemaps-in-r/index.html#unicorn-companies-in-brazil-my-country",
+    "title": "Analyzing Unicorn Companies with treemaps in R",
+    "section": "Unicorn companies in Brazil (my country)",
+    "text": "Unicorn companies in Brazil (my country)\n\n\nCode\nunicorn_data |&gt;\n  dplyr::arrange(dplyr::desc(`Valuation ($B)`)) |&gt;\n  dplyr::filter(Country == \"Brazil\") |&gt;\n  dplyr::select(Country, name = Company, value = `Valuation ($B)`) |&gt;\n  tidyr::nest(children = c(\"name\", \"value\")) |&gt;\n  dplyr::mutate(value = purrr::map_dbl(children, ~ sum(.x$value))) |&gt;\n  dplyr::rename(name = Country) |&gt;\n  dplyr::left_join(colors_country, by = \"name\") |&gt;\n  echarts4r::e_charts() |&gt;\n    echarts4r::e_title(text = \"Unicorns in Brazil\") |&gt;\n    echarts4r::e_treemap(\n      leafDepth = 2,\n      itemStyle = list(\n        normal = list(\n          borderWidth = 0,\n          gapWidth = 2,\n          backgroundColor = \"white\"\n        )\n      ),\n      upperLabel = list(\n        normal = list(\n          show = TRUE,\n          height = 30,\n          formatter = \"{b}\",\n          color = \"black\",\n          fontSize = 12\n        )\n      )\n    ) |&gt;\n    echarts4r::e_tooltip(\n      backgroundColor = \"rgba(255,255,255,0.8)\",\n      formatter = treemap_tooltip\n    )"
+  },
+  {
+    "objectID": "posts/unicorn-companies-treemaps-in-r/index.html#final-comments",
+    "href": "posts/unicorn-companies-treemaps-in-r/index.html#final-comments",
+    "title": "Analyzing Unicorn Companies with treemaps in R",
+    "section": "Final comments",
+    "text": "Final comments\nThis post showed a brief example of generating an interactive report based on Data Analysis. This post shows how we can facilitate the understanding of a data set by plotting charts in an objective way.\nBelow are some points I’d like to highlight about the technical side from this blog post:\n\nWhen doing data analysis, try to keep the same colors for categorical variables in the whole study. It is basic, but requires some extra work, like creating a palette color and setting the desired colors usually as a column in the dataset. But this is a very important step to allow the user to quickly reach some conclusions from the data.\nTreemaps are very nice, but sometimes they are not clear about the size of some categories. So, other charts, like the column charts we used here, can help in understanding better the behavior of some categories.\n\nI hope you enjoyed this content. Please leave your comments below. If you want to see the updated version of this analysis, please also leave a comment."
+  },
+  {
+    "objectID": "posts/hypotheses /index.html",
+    "href": "posts/hypotheses /index.html",
+    "title": "Hypothesis",
+    "section": "",
+    "text": "This section presents details on the statistical tests applied to evaluate business hypotheses raised from interaction with the client.\nStatistics has an area called hypothesis testing, which enables the verification or refutation of an existing hypothesis about data behavior. Hypothesis tests are widely used in the academic field, but they also hold great value when used appropriately in the corporate context.\nIn companies, there are various beliefs about how things happen and relate. Formalizing these beliefs into business hypotheses allows for the formulation of statistical hypotheses, which can be tested and validated (or not) with the use of hypothesis tests.\nHowever, for the test results to be correct, it is necessary to know the main types of existing tests and some of their concepts. This allows for proper guidance on the correct application to be used for each hypothesis.\nBasically, the steps for good execution of hypothesis tests are:\n\nDefine a business hypothesis;\nTransform it into a statistical hypothesis;\nChoose the correct test based on the data characteristics and the expected outcome;\nTransform the data so that it is in accordance with the input required by the chosen test;\nApply the hypothesis test.\n\n\nWhy Use a Hypothesis Test?\nWhen Excel pivot tables are no longer sufficient for the results of the analyses to be conclusive, it is a good indication that it is time to use hypothesis tests.\nA hypothesis test helps to eliminate the uncertainty that remains even after data summarization procedures, as occurs with pivot tables in spreadsheet software.\nFor example, an organization wants to know if men have higher salaries than women in a certain position. The pivot table will bring the result, which can be expressed through the average salaries for that position by each gender (male or female). However, the average result may show only a small difference between the salaries of men and women, which leaves the initial doubt hanging and no conclusion can be drawn.\nA statistical hypothesis test is able to say (when well applied) that the salary of women is indeed lower or higher in that case, and that the result shown in the average is not just a mere coincidence."
+  },
+  {
+    "objectID": "minicurso-carreira-na-area-de-dados/index.html",
+    "href": "minicurso-carreira-na-area-de-dados/index.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "minicurso-carreira-na-area-de-dados/index.html#ebook-especialista-em-dados-7-etapas-práticas",
+    "href": "minicurso-carreira-na-area-de-dados/index.html#ebook-especialista-em-dados-7-etapas-práticas",
+    "title": "",
+    "section": "EBOOK Especialista em Dados: 7 Etapas Práticas",
+    "text": "EBOOK Especialista em Dados: 7 Etapas Práticas\n\n\n\n\n\nDe forma totalmente GRATUITA, você receberá este EBook, no qual eu listei 7 Etapas Práticas para que você consiga entrar na área de dados de forma assertiva.\nCom o Minicurso e ainda mais este Ebook você conseguirá organizar suas pretensões de carreira na área de dados.\nEste Ebook é um guia para no médio/longo prazo poupar muito tempo perdido da sua carreira testando áreas dfierentes e aprendendo conteúdos que não serão utilizados no cargo que você escolher seguir."
+  },
+  {
+    "objectID": "minicurso-carreira-na-area-de-dados/index.html#minicurso-desenvolva-sua-carreira-na-área-de-dados-ebook",
+    "href": "minicurso-carreira-na-area-de-dados/index.html#minicurso-desenvolva-sua-carreira-na-área-de-dados-ebook",
+    "title": "",
+    "section": "Minicurso Desenvolva Sua Carreira na área de dados + Ebook",
+    "text": "Minicurso Desenvolva Sua Carreira na área de dados + Ebook"
+  },
+  {
+    "objectID": "minicurso-carreira-na-area-de-dados/index.html#faq---dúvidas-frequentes",
+    "href": "minicurso-carreira-na-area-de-dados/index.html#faq---dúvidas-frequentes",
+    "title": "",
+    "section": "FAQ - Dúvidas frequentes",
+    "text": "FAQ - Dúvidas frequentes\n\n  \n    Quem pode participar deste Minicurso?\n    Qualquer pessoa interessada em aprender sobre a área de dados pode participar do Minicurso.\n  \n  \n    Qual é o tempo estimado para concluir o Minicurso e o Ebook?\n    O tempo estimado é em torno de 3 a 5 horas para concluir o Minicurso e a leitura do Ebook.\n  \n  \n    Quais são os conteúdos abordados no Minicurso?\n    Os conteúdos abordados no Minicurso são: mercado de trabalho, habilidades necessárias, principais papéis e funções na área de dados e o impacto da análise de dados nas organizações.\n  \n  \n    Como faço para acessar o Minicurso?\n    O Minicurso é acessado por meio da plataforma online, utilizando um login e senha fornecidos no momento da inscrição.\n  \n  \n    O Minicurso possui aulas em vídeo?\n    Sim, o Minicurso possui videoaulas que auxiliam no aprendizado e na compreensão dos conteúdos apresentados.\n  \n  \n    Como faço para adquirir o ebook?\n    Basta clicar no botão disponível nesta página e seguir as instruções para adquirir o ebook e começar a mudar sua carreira na área de dados.\n  \n  \n    Como faço para tirar dúvidas sobre o conteúdo do Minicurso?\n    Você pode tirar suas dúvidas diretamente na plataforma, através do fórum de discussão."
+  },
+  {
+    "objectID": "minicurso-carreira-na-area-de-dados/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
+    "href": "minicurso-carreira-na-area-de-dados/index.html#compra-tranquila-com-7-dias-de-garantia-para-solicitar-seu-dinheiro-de-volta.",
     "title": "",
     "section": "Compra tranquila, com 7 dias de garantia para solicitar seu dinheiro de volta.",
     "text": "Compra tranquila, com 7 dias de garantia para solicitar seu dinheiro de volta."
   },
   {
-    "objectID": "curso-analise-de-dados-linguagem-r/index.html#faq---dúvidas-frequentes",
-    "href": "curso-analise-de-dados-linguagem-r/index.html#faq---dúvidas-frequentes",
+    "objectID": "minicurso-carreira-na-area-de-dados/index.html#adquira-agora-mesmo-seu-acesso-ao-minicurso",
+    "href": "minicurso-carreira-na-area-de-dados/index.html#adquira-agora-mesmo-seu-acesso-ao-minicurso",
     "title": "",
-    "section": "FAQ - Dúvidas frequentes",
-    "text": "FAQ - Dúvidas frequentes\n\n  \n    Este curso é adequado para iniciantes em análise de dados?\n    Sim, este curso é uma introdução à análise de dados com a Linguagem R e é adequado para iniciantes.\n  \n\n  \n    Qual é o tempo estimado de conclusão do curso?\n    O tempo estimado de conclusão do curso é de cerca de 3 semanas, mas os alunos podem fazer o curso em seu próprio ritmo.\n  \n\n  \n    Como funciona o suporte ao aluno durante o curso?\n    Os alunos podem deixar seus comentários em cada aula, ou podem também interagir diretamente com o professor via e-mail.\n  \n  \n  \n    Quais são as oportunidades de carreira após a conclusão deste curso?\n    Os alunos que concluírem o curso terão habilidades valiosas em análise de dados com a Linguagem R, o que pode ajudá-los a conseguir empregos em áreas como ciência de dados, análise de negócios e inteligência de negócios.\n  \n  \n  \n    Qual é a diferença entre este curso e outros cursos de análise de dados disponíveis no mercado?\n    Este curso se concentra especificamente na linguagem R para análise de dados e é projetado para ser uma introdução acessível e abrangente para aqueles que desejam começar na análise de dados.\n  \n  \n  \n    Como faço para me inscrever na lista de espera para o próximo lançamento do curso?\n    Os alunos podem se inscrever na lista de espera do curso visitando a landing page do curso e preenchendo o formulário de inscrição. Eles serão notificados por e-mail quando o curso estiver disponível para inscrição.\n  \n\n  \n    Posso fazer este curso em meu próprio ritmo?\n    Sim, este curso é projetado para ser feito em seu próprio ritmo.\n  \n  \n  \n    Como é a metodologia de ensino deste curso?\n    Este curso é baseado em vídeo-aulas e materiais complementares."
+    "section": "Adquira agora mesmo seu acesso ao Minicurso",
+    "text": "Adquira agora mesmo seu acesso ao Minicurso\n78% OFF!\n\n  \n    Quero me destacar na área de dados!\n  \n\n\n\n⏱️  Por tempo limitado!"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "&lt;iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-KL56G4\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"&gt;&lt;/iframe&gt;\nHi, I’m Wlademir Ribeiro Prates.\nI’m a data scientist and R/Shiny developer. I have built machine learning solutions and data applications for business problems in large companies, and I hold a PhD and a Master’s in Finance from UFSC, where I researched behavioral finance and capital markets.\nThis site is where I collect what I learn: applied analyses with code, notes on taking data applications to production, and reflections on building a career in data."
+  },
+  {
+    "objectID": "about.html#what-i-work-with",
+    "href": "about.html#what-i-work-with",
+    "title": "About",
+    "section": "What I work with",
+    "text": "What I work with\n\nR and Shiny, from exploratory analysis to applications used in production.\nMachine learning applied to business problems, with attention to whether the model actually changes a decision.\nReproducible reporting with Quarto and R Markdown.\nFinance and behavioral economics as the analytical background behind much of my work."
+  },
+  {
+    "objectID": "about.html#research",
+    "href": "about.html#research",
+    "title": "About",
+    "section": "Research",
+    "text": "Research\nBefore moving to industry, I did academic research in behavioral finance and capital markets. My publications are listed on Google Scholar."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\n\n2012–2016 — PhD in Finance, UFSC\n2010–2012 — Master’s in Finance, UFSC\n2006–2009 — Bachelor’s in Business Administration, Anhanguera"
+  },
+  {
+    "objectID": "about.html#get-in-touch",
+    "href": "about.html#get-in-touch",
+    "title": "About",
+    "section": "Get in touch",
+    "text": "Get in touch\nThe best place to reach me is LinkedIn."
+  },
+  {
+    "objectID": "articles.html",
+    "href": "articles.html",
+    "title": "Articles",
+    "section": "",
+    "text": "Unlocking the Highest-Paying Dividend Stocks with R\n\n\n\n\n\n\nData Visualization\n\n\nFinance\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\n8 min\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive Customer Churn Analysis\n\n\n\n\n\n\nReporting\n\n\nData Science\n\n\nMachine Learning\n\n\n\n\n\n\n\n\n\nFeb 8, 2023\n\n\n12 min\n\n\n\n\n\n\n\n\n\n\n\n\nAnalyzing Unicorn Companies with treemaps in R\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\nAug 20, 2022\n\n\n12 min\n\n\n\n\n\n\n\n\n\n\n\n\nSet up a website with Quarto and automate deployment\n\n\n\n\n\n\nReporting\n\n\n\n\n\n\n\n\n\nJul 2, 2022\n\n\n6 min\n\n\n\n\n\n\nNo matching items"
   }
 ]

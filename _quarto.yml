@@ -1,23 +1,52 @@
 project:
   type: website
+
 website:
+  title: "Wlademir Prates"
+  description: "Applied data science, data applications in production, and career notes by Wlademir Ribeiro Prates."
   site-url: https://wrprates.com/
   favicon: favicon.png
-  search: 
+  image: profile.jpeg
+  open-graph: true
+  twitter-card: true
+  search:
     location: navbar
     type: overlay
   navbar:
     logo: logo.svg
-    right:
+    title: false
+    logo-alt: "Wlademir Prates"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: articles.qmd
+        text: Articles
       - href: about.qmd
         text: About
+    right:
       - icon: github
         href: https://github.com/wrprates/
+        aria-label: GitHub
       - icon: linkedin
         href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
+        aria-label: LinkedIn
       - icon: youtube
-        href: https://www.youtube.com/channel/UC6rS3fNDO19l0us3HEaqpAQ
+        href: https://www.youtube.com/@wlademir
+        aria-label: YouTube
+  page-footer:
+    left: "© Wlademir Ribeiro Prates"
+    right:
+      - icon: github
+        href: https://github.com/wrprates/
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://www.linkedin.com/in/wlademir-ribeiro-prates/
+        aria-label: LinkedIn
+      - icon: youtube
+        href: https://www.youtube.com/@wlademir
+        aria-label: YouTube
   cookie-consent: false
+
 format:
   html:
     theme: litera
@@ -27,6 +56,7 @@ format:
     code-tools: true
     include-in-header: scripts_head.html
     include-before-body: scripts_body.html
+
 mainfont: Lato
 fontsize: 19px
 linestretch: 1.7

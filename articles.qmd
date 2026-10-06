@@ -1,0 +1,19 @@
+---
+title: "Articles"
+description: "All articles by Wlademir Ribeiro Prates on applied data science, R, Shiny, and data applications in production."
+image: profile.jpeg
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [image, date, title, description, categories, reading-time]
+  exclude:
+    title: "Hypothesis*"
+page-layout: full
+code-tools: false
+title-block-banner: false
+toc: false
+---

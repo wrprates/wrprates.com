@@ -1,0 +1,40 @@
+---
+title: "Hypothesis "
+author: "Wlademir Ribeiro Prates"
+date: "2023-10-09"
+categories: [Data Visualization, Finance]
+image: preview.png
+format:
+  html:
+    include-after-body: disqus.html
+---
+This section presents details on the statistical tests applied to evaluate business hypotheses raised from interaction with the client.
+
+Statistics has an area called **hypothesis testing**, which enables the verification or refutation of an existing hypothesis about data behavior. Hypothesis tests are widely used in the **academic field**, but they also hold great value when used appropriately in the **corporate context**.
+
+In companies, there are various beliefs about how things happen and relate. Formalizing these beliefs into **business hypotheses** allows for the formulation of **statistical hypotheses**, which can be tested and validated (or not) with the use of hypothesis tests.
+
+However, for the test results to be correct, it is necessary to know the main types of existing tests and some of their concepts. This allows for proper guidance on the correct application to be used for each hypothesis.
+
+Basically, the **steps for good execution** of hypothesis tests are:
+
+1. Define a **business hypothesis**;
+2. Transform it into a **statistical hypothesis**;
+3. **Choose the correct test** based on the data characteristics and the expected outcome;
+4. **Transform the data** so that it is in accordance with the *input* required by the chosen test;
+5. **Apply** the hypothesis test.
+
+<div style="background:#f5f5f5; padding:20px; margin: 10px;">
+
+#### Why Use a Hypothesis Test? {.unnumbered}
+
+When Excel pivot tables are no longer sufficient for the results of the analyses to be conclusive, it is a good indication that it is time to use hypothesis tests.
+
+A hypothesis test helps to eliminate the uncertainty that remains even after data summarization procedures, as occurs with pivot tables in spreadsheet *software*.
+
+For example, an organization wants to know if men have higher salaries than women in a certain position. The pivot table will bring the result, which can be expressed through the average salaries for that position by each gender (male or female). However, the average result may show only a small difference between the salaries of men and women, which leaves the initial doubt hanging and no conclusion can be drawn.
+
+A statistical hypothesis test is able to say (when well applied) that the salary of women is indeed lower or higher in that case, and that the result shown in the average is not just a mere coincidence. 
+
+</div>
+

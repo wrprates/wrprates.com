@@ -1,12 +1,67 @@
 ---
-title: "Blog"
+description: "Data scientist and R/Shiny developer writing about applied data science, data applications in production, and building a career in data."
+pagetitle: "Applied data science and data applications"
+image: profile.jpeg
+page-layout: full
+title-block-style: none
+code-tools: false
+title-block-banner: false
+toc: false
 listing:
+  id: latest-articles
   contents: posts
   sort: "date desc"
-  type: default
-  categories: true
+  type: grid
+  grid-columns: 3
+  max-items: 3
+  categories: false
   sort-ui: false
   filter-ui: false
-page-layout: full
-title-block-banner: false
+  fields: [image, date, title, categories]
+  exclude:
+    title: "Hypothesis*"
 ---
+
+::: {.hero}
+::: {.grid}
+::: {.g-col-12 .g-col-md-4 .hero-photo}
+![](profile.jpeg){.rounded-circle fig-alt="Portrait of Wlademir Ribeiro Prates"}
+:::
+::: {.g-col-12 .g-col-md-8}
+# Hi, I'm Wlademir. {.hero-title}
+
+I'm a data scientist and R/Shiny developer with a PhD in Finance. I build data applications that make it to production and write here about what I learn on the way: applied analyses with code you can run, the engineering around data products, and notes on building a career in data.
+
+[Read the articles](articles.qmd){.btn .btn-primary .btn-lg role="button"}
+[About me](about.qmd){.btn .btn-outline-secondary .btn-lg role="button"}
+:::
+:::
+:::
+
+## What you will find here
+
+::: {.grid .topics}
+::: {.g-col-12 .g-col-md-4}
+### Applied data science
+Analyses that start from a real question and end with a decision. Finance, customer behavior, and visualization, always with the code included.
+:::
+::: {.g-col-12 .g-col-md-4}
+### Data applications in production
+Shiny, Quarto, deployment, and the less glamorous work that turns a notebook into something people rely on.
+:::
+::: {.g-col-12 .g-col-md-4}
+### Career in data
+What I have learned working with data across companies and roles, from analyst to building and leading data products.
+:::
+:::
+
+## Latest articles
+
+::: {#latest-articles}
+:::
+
+[See all articles →](articles.qmd)
+
+## Elsewhere
+
+I share shorter notes and videos on [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/) and [YouTube](https://www.youtube.com/@wlademir). Code lives on [GitHub](https://github.com/wrprates/).
