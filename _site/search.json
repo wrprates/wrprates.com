@@ -480,14 +480,35 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "&lt;iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-KL56G4\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"&gt;&lt;/iframe&gt;\nHi, I’m Wlademir Ribeiro Prates.\nI’m a data scientist and R/Shiny developer. I have built machine learning solutions and data applications for business problems in large companies, and I hold a PhD and a Master’s in Finance from UFSC, where I researched behavioral finance and capital markets.\nThis site is where I collect what I learn: applied analyses with code, notes on taking data applications to production, and reflections on building a career in data."
+    "text": "&lt;iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-KL56G4\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"&gt;&lt;/iframe&gt;\nHi, I’m Wlademir Ribeiro Prates.\nI’m a senior data scientist and R/Shiny engineer. Today I lead an R/Shiny development and QA team at Halo Media, building analytical applications for Marsh. Before that I spent close to a decade turning data into products and decisions, first as a consultant in Brazil and then as an engineer for companies in the United States and Europe. I hold a PhD and a Master’s in Finance from UFSC, where I researched behavioral finance and capital markets.\nThis site is where I collect what I learn: applied analyses with code, notes on taking data applications to production, and reflections on building a career in data."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\n\n\nPhD in Finance Universidade Federal de Santa Catarina (UFSC) · 2012–2016\n\n\nMaster’s in Finance Universidade Federal de Santa Catarina (UFSC) · 2010–2012\n\n\nBachelor’s in Business Administration Anhanguera · 2006–2009"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "About",
+    "section": "Experience",
+    "text": "Experience\n\n\n 2025 – present · New York, remote\n\nTechnical Team Lead · Halo Media\n\nJoined as Senior R/Shiny Engineer and now lead the development and QA team that builds analytical tools and dashboards for Marsh. Architecture decisions, code review, automated testing and CI/CD, and mentoring developers.\n\n\n 2024 – 2025 · Los Angeles, remote\n\nSenior Data Scientist, R/Shiny Developer · Firebird\n\nAnalytical web applications for the music industry, helping bands plan and optimize tours. Shiny on top of BigQuery, with rhino, R6 and telemetry.\n\n\n 2021 – 2024 · Warsaw, remote\n\nSenior R/Shiny Developer, then Tech Lead · Appsilon\n\nShiny applications for Genmab, comparing patient treatments with statistical tests and rich visualizations. Also apps for Warner Bros., from budget planning to an internal GPT tool for film concepts.\n\n\n 2020 – 2021 · São Paulo, remote\n\nData Science Specialist · Tembici\n\nLed analyses with statistical modeling and machine learning, and built and maintained the customer churn model in production. The same kind of work behind this article.\n\n\n 2018 – 2020 · São Paulo\n\nSenior Data Scientist, then Data Science Manager · EY\n\nPeople Analytics consulting for companies such as Vivo (Telefónica), BASF and Braskem: predicting employee turnover, understanding what drives productivity, and in-company training on hypothesis testing, visualization and machine learning.\n\n\n 2017 – 2018 · Florianópolis\n\nData Scientist · Aquarela Advanced Analytics\n\nPredictive and prescriptive projects with dashboards in R/Shiny for Votorantim, Embraer and DHL, from predictive maintenance for aircraft parts to the best delivery time in logistics.\n\n\n2015 – 2017 · Florianópolis\n\nEarlier\n\nKnowledge management in personal and corporate finance at Par Mais, and a year as professor at UFSC’s Department of Production Engineering."
+  },
+  {
+    "objectID": "about.html#teaching",
+    "href": "about.html#teaching",
+    "title": "About",
+    "section": "Teaching",
+    "text": "Teaching\nTeaching has run alongside the industry work the whole time. Since 2024 I teach online data science classes and mentor people starting in the field at Data Mundo. From 2019 to 2021 I taught the machine learning and NLP modules of an MBA in artificial intelligence and big data at Sustentare Escola de Negócios, and in 2015 I was a professor at UFSC."
   },
   {
     "objectID": "about.html#what-i-work-with",
     "href": "about.html#what-i-work-with",
     "title": "About",
     "section": "What I work with",
-    "text": "What I work with\n\nR and Shiny, from exploratory analysis to applications used in production.\nMachine learning applied to business problems, with attention to whether the model actually changes a decision.\nReproducible reporting with Quarto and R Markdown.\nFinance and behavioral economics as the analytical background behind much of my work."
+    "text": "What I work with\n\nR and Shiny, from exploratory analysis to applications used in production, with testing, CI/CD and telemetry around them.\nMachine learning applied to business problems, with attention to whether the model actually changes a decision.\nSQL and cloud data warehouses such as BigQuery and Redshift, plus Python and LLM tooling when the problem asks for it.\nReproducible reporting with Quarto and R Markdown.\nFinance and behavioral economics as the analytical background behind much of my work."
   },
   {
     "objectID": "about.html#book",
@@ -502,13 +523,6 @@
     "title": "About",
     "section": "Research",
     "text": "Research\nBefore moving to industry, I did academic research in behavioral finance and capital markets at UFSC, mostly on the disposition effect and how investors decide under risk. Selected papers:\n\nDorow, A., da Costa, N., Takase, E., Prates, W. R. & Da Silva, S. (2018). On the neural substrates of the disposition effect and return performance. Journal of Behavioral and Experimental Finance.\nPrates, W. R., da Costa, N. & Dorow, A. (2017). Risk aversion, the disposition effect, and group decision making: an experimental analysis. Managerial and Decision Economics.\nPrates, W. R., da Costa, N., Armada, M. J. R. & Da Silva, S. (2019). Propensity to sell stocks in an artificial stock market. PLoS ONE.\nPrates, W. R., da Costa, N. & Santos, A. P. (2019). Efeito disposição: propensão à venda de investidores individuais e institucionais. Revista Brasileira de Economia.\n\nThe full list is on Google Scholar."
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "About",
-    "section": "Education",
-    "text": "Education\n\n2012–2016 — PhD in Finance, UFSC\n2010–2012 — Master’s in Finance, UFSC\n2006–2009 — Bachelor’s in Business Administration, Anhanguera"
   },
   {
     "objectID": "about.html#get-in-touch",

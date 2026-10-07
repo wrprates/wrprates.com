@@ -1,13 +1,14 @@
 ---
 title: "About"
-description: "Data scientist and R/Shiny developer with a PhD in Finance."
+description: "Senior data scientist and R/Shiny engineer with a PhD in Finance."
 image: profile.jpeg
 toc: false
 code-tools: false
+page-layout: full
 about:
-  template: solana
+  template: trestles
   image-shape: round
-  image-width: 14em
+  image-width: 11em
   links:
     - icon: linkedin
       text: LinkedIn
@@ -28,14 +29,90 @@ about:
 
 Hi, I'm Wlademir Ribeiro Prates.
 
-I'm a data scientist and R/Shiny developer. I have built machine learning solutions and data applications for business problems in large companies, and I hold a PhD and a Master's in Finance from UFSC, where I researched behavioral finance and capital markets.
+I'm a senior data scientist and R/Shiny engineer. Today I lead an R/Shiny development and QA team at Halo Media, building analytical applications for Marsh. Before that I spent close to a decade turning data into products and decisions, first as a consultant in Brazil and then as an engineer for companies in the United States and Europe. I hold a PhD and a Master's in Finance from UFSC, where I researched behavioral finance and capital markets.
 
 This site is where I collect what I learn: applied analyses with code, notes on taking data applications to production, and reflections on building a career in data.
 
+## Education
+
+::: {.edu}
+::: {.edu-item}
+<span class="edu-degree">PhD in Finance</span>
+<span class="edu-meta">Universidade Federal de Santa Catarina (UFSC) · 2012–2016</span>
+:::
+::: {.edu-item}
+<span class="edu-degree">Master's in Finance</span>
+<span class="edu-meta">Universidade Federal de Santa Catarina (UFSC) · 2010–2012</span>
+:::
+::: {.edu-item}
+<span class="edu-degree">Bachelor's in Business Administration</span>
+<span class="edu-meta">Anhanguera · 2006–2009</span>
+:::
+:::
+
+## Experience
+
+::: {.timeline}
+
+::: {.timeline-item .current}
+<img class="timeline-logo" src="img/logos/halo.png" alt="Halo Media logo">
+<span class="timeline-period">2025 – present · New York, remote</span>
+<p class="timeline-role">Technical Team Lead <span class="timeline-org">· Halo Media</span></p>
+Joined as Senior R/Shiny Engineer and now lead the development and QA team that builds analytical tools and dashboards for Marsh. Architecture decisions, code review, automated testing and CI/CD, and mentoring developers.
+:::
+
+::: {.timeline-item}
+<img class="timeline-logo" src="img/logos/firebird.png" alt="Firebird logo">
+<span class="timeline-period">2024 – 2025 · Los Angeles, remote</span>
+<p class="timeline-role">Senior Data Scientist, R/Shiny Developer <span class="timeline-org">· Firebird</span></p>
+Analytical web applications for the music industry, helping bands plan and optimize tours. Shiny on top of BigQuery, with rhino, R6 and telemetry.
+:::
+
+::: {.timeline-item}
+<img class="timeline-logo" src="img/logos/appsilon.png" alt="Appsilon logo">
+<span class="timeline-period">2021 – 2024 · Warsaw, remote</span>
+<p class="timeline-role">Senior R/Shiny Developer, then Tech Lead <span class="timeline-org">· Appsilon</span></p>
+Shiny applications for Genmab, comparing patient treatments with statistical tests and rich visualizations. Also apps for Warner Bros., from budget planning to an internal GPT tool for film concepts.
+:::
+
+::: {.timeline-item}
+<img class="timeline-logo" src="img/logos/tembici.png" alt="Tembici logo">
+<span class="timeline-period">2020 – 2021 · São Paulo, remote</span>
+<p class="timeline-role">Data Science Specialist <span class="timeline-org">· Tembici</span></p>
+Led analyses with statistical modeling and machine learning, and built and maintained the customer churn model in production. The same kind of work behind [this article](posts/predictive-customer-churn-analysis/index.qmd).
+:::
+
+::: {.timeline-item}
+<img class="timeline-logo" src="img/logos/ey.svg" alt="EY logo">
+<span class="timeline-period">2018 – 2020 · São Paulo</span>
+<p class="timeline-role">Senior Data Scientist, then Data Science Manager <span class="timeline-org">· EY</span></p>
+People Analytics consulting for companies such as Vivo (Telefónica), BASF and Braskem: predicting employee turnover, understanding what drives productivity, and in-company training on hypothesis testing, visualization and machine learning.
+:::
+
+::: {.timeline-item}
+<img class="timeline-logo" src="img/logos/aquarela.png" alt="Aquarela logo">
+<span class="timeline-period">2017 – 2018 · Florianópolis</span>
+<p class="timeline-role">Data Scientist <span class="timeline-org">· Aquarela Advanced Analytics</span></p>
+Predictive and prescriptive projects with dashboards in R/Shiny for Votorantim, Embraer and DHL, from predictive maintenance for aircraft parts to the best delivery time in logistics.
+:::
+
+::: {.timeline-item}
+<span class="timeline-period">2015 – 2017 · Florianópolis</span>
+<p class="timeline-role">Earlier</p>
+Knowledge management in personal and corporate finance at Par Mais, and a year as professor at UFSC's Department of Production Engineering.
+:::
+
+:::
+
+## Teaching
+
+Teaching has run alongside the industry work the whole time. Since 2024 I teach online data science classes and mentor people starting in the field at Data Mundo. From 2019 to 2021 I taught the machine learning and NLP modules of an MBA in artificial intelligence and big data at Sustentare Escola de Negócios, and in 2015 I was a professor at UFSC.
+
 ## What I work with
 
-- **R and Shiny**, from exploratory analysis to applications used in production.
+- **R and Shiny**, from exploratory analysis to applications used in production, with testing, CI/CD and telemetry around them.
 - **Machine learning applied to business problems**, with attention to whether the model actually changes a decision.
+- **SQL and cloud data warehouses** such as BigQuery and Redshift, plus Python and LLM tooling when the problem asks for it.
 - **Reproducible reporting** with Quarto and R Markdown.
 - **Finance and behavioral economics** as the analytical background behind much of my work.
 
@@ -53,12 +130,6 @@ Before moving to industry, I did academic research in behavioral finance and cap
 - **Prates, W. R.**, da Costa, N. & Santos, A. P. (2019). [Efeito disposição: propensão à venda de investidores individuais e institucionais](https://doi.org/10.5935/0034-7140.20190005). *Revista Brasileira de Economia*.
 
 The full list is on [Google Scholar](https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ).
-
-## Education
-
-- 2012–2016 — PhD in Finance, UFSC
-- 2010–2012 — Master's in Finance, UFSC
-- 2006–2009 — Bachelor's in Business Administration, Anhanguera
 
 ## Get in touch
 
