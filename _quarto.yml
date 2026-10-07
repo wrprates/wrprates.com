@@ -1,6 +1,9 @@
 project:
   type: website
   execute-dir: project
+  resources:
+    - CNAME
+    - .nojekyll
 
 website:
   title: "Wlademir Prates"

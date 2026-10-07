@@ -58,7 +58,7 @@ Analyses that start from a real question and end with a decision. Finance, custo
 <i class="bi bi-rocket-takeoff"></i>
 
 ### Data applications in production
-Shiny, Quarto, deployment and the less glamorous work that turns a notebook into something people rely on.
+Shiny, Quarto, deployment and the less glamorous work that turns a script into something people rely on.
 :::
 :::
 ::: {.g-col-12 .g-col-md-4}
