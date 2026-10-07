@@ -654,17 +654,45 @@ p, li, blockquote, .hero-lead, .listing-description {
   color: #6c757d;
 }
 
-/* ---- About: timeline ---- */
+
+/* ---- About: wider content column ---- */
+.quarto-about-trestles {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.quarto-about-trestles .about-entity {
+  flex: 0 0 300px;
+}
+
+.quarto-about-trestles .about-contents {
+  flex: 1 1 auto;
+  max-width: 680px;
+}
+
+/* ---- About: timeline (logos as nodes) ---- */
 .timeline {
   position: relative;
   margin: 1.5rem 0 2rem 0;
-  padding-left: 1.75rem;
-  border-left: 2px solid #e3e8f0;
+  padding-left: 0;
+  border-left: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 21px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: #e3e8f0;
 }
 
 .timeline-item {
   position: relative;
-  padding-bottom: 1.6rem;
+  padding-left: 4rem;
+  padding-bottom: 2rem;
+  min-height: 3rem;
 }
 
 .timeline-item:last-child {
@@ -672,19 +700,44 @@ p, li, blockquote, .hero-lead, .listing-description {
 }
 
 .timeline-item::before {
-  content: "";
-  position: absolute;
-  left: calc(-1.75rem - 7px);
-  top: 0.45rem;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #fff;
-  border: 3px solid #4582ec;
+  display: none;
 }
 
-.timeline-item.current::before {
-  background: #4582ec;
+.timeline-item p:has(> .timeline-logo) {
+  margin: 0;
+}
+
+.timeline-logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: 0 0 0 6px #fff;
+}
+
+/* etapa "Earlier", sem logo: um ponto simples no trilho */
+.timeline-item:not(:has(.timeline-logo))::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0.35rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #c9d2df;
+}
+
+.timeline-item.current .timeline-period {
+  color: #4582ec;
 }
 
 .timeline-period {
@@ -713,4 +766,52 @@ p, li, blockquote, .hero-lead, .listing-description {
   margin: 0.35rem 0 0 0;
   color: #495057;
   font-size: 0.97rem;
+}
+
+/* sem divisor vertical entre as colunas do About */
+.quarto-about-trestles .about-contents,
+.quarto-about-trestles .about-entity {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* ---- About: education block ---- */
+.edu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0 0.5rem 0;
+}
+
+@media (max-width: 575.98px) {
+  .edu {
+    grid-template-columns: 1fr;
+  }
+}
+
+.edu-item {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: #f6f8fb;
+}
+
+.edu-item p {
+  margin: 0;
+}
+
+.edu-degree,
+.edu-meta {
+  display: block;
+}
+
+.edu-degree {
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.edu-meta {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #6c757d;
 }

@@ -1,5 +1,5 @@
 ---
-description: "Data scientist and R/Shiny developer writing about applied data science, data applications in production, and building a career in data."
+description: "Senior data scientist and R/Shiny engineer writing about applied data science, data applications in production, and building a career in data."
 pagetitle: "Applied data science and data applications"
 image: profile.jpeg
 page-layout: full
@@ -28,12 +28,12 @@ listing:
 ![](profile.jpeg){.rounded-circle fig-alt="Portrait of Wlademir Ribeiro Prates"}
 :::
 ::: {.g-col-12 .g-col-md-8}
-<span class="eyebrow">Data scientist · R/Shiny developer · PhD in Finance</span>
+<span class="eyebrow">Senior data scientist · R/Shiny engineer · PhD in Finance</span>
 
 # Hi, I'm Wlademir. {.hero-title}
 
 ::: {.hero-lead}
-I build data applications that make it to production, and I write here about what I learn on the way: analyses with code you can run, the engineering around data products, and notes on building a career in data.
+I lead an R/Shiny engineering team and have spent the last decade building data applications that make it to production. I write here about what I learn on the way: analyses with code you can run, the engineering around data products, and notes on building a career in data.
 :::
 
 [Read the articles](articles.qmd){.btn .btn-primary role="button"}
