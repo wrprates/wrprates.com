@@ -6,3 +6,6 @@
 .Ruserdata
 *.xlsx
 .DS_Store
+
+# Quarto intermediate files
+*.rmarkdown
