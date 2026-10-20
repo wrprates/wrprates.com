@@ -37,7 +37,7 @@ website:
         href: https://www.youtube.com/@wlademir
         aria-label: YouTube
       - icon: instagram
-        href: https://www.instagram.com/datamundo.cientista/
+        href: https://www.instagram.com/wlademirprates/
         aria-label: Instagram
   page-footer:
     left: "© Wlademir Ribeiro Prates"
@@ -52,7 +52,7 @@ website:
         href: https://www.youtube.com/@wlademir
         aria-label: YouTube
       - icon: instagram
-        href: https://www.instagram.com/datamundo.cientista/
+        href: https://www.instagram.com/wlademirprates/
         aria-label: Instagram
   cookie-consent: false
   draft-mode: unlinked

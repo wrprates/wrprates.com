@@ -21,7 +21,7 @@ about:
       href: https://www.youtube.com/@wlademir
     - icon: instagram
       text: Instagram
-      href: https://www.instagram.com/datamundo.cientista/
+      href: https://www.instagram.com/wlademirprates/
     - icon: mortarboard-fill
       text: Google Scholar
       href: https://scholar.google.com/citations?hl=pt-BR&user=DIaC850AAAAJ
@@ -133,4 +133,4 @@ The full list is on [Google Scholar](https://scholar.google.com/citations?hl=pt-
 
 ## Get in touch
 
-The best place to reach me is [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/). For shorter, more informal content, I'm on [Instagram](https://www.instagram.com/datamundo.cientista/) and [YouTube](https://www.youtube.com/@wlademir).
+The best place to reach me is [LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/). For shorter, more informal content, I'm on [Instagram](https://www.instagram.com/wlademirprates/) and [YouTube](https://www.youtube.com/@wlademir).

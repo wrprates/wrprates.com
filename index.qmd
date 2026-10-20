@@ -136,7 +136,7 @@ Before industry, I did academic research in behavioral finance at UFSC, mostly o
 
 ::: {.channels}
 [<i class="bi bi-linkedin"></i>LinkedIn](https://www.linkedin.com/in/wlademir-ribeiro-prates/){.btn role="button"}
-[<i class="bi bi-instagram"></i>Instagram](https://www.instagram.com/datamundo.cientista/){.btn role="button"}
+[<i class="bi bi-instagram"></i>Instagram](https://www.instagram.com/wlademirprates/){.btn role="button"}
 [<i class="bi bi-youtube"></i>YouTube](https://www.youtube.com/@wlademir){.btn role="button"}
 [<i class="bi bi-github"></i>GitHub](https://github.com/wrprates/){.btn role="button"}
 :::
